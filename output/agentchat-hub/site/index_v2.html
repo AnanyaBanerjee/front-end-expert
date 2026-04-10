@@ -575,6 +575,44 @@
       }
     }
 
+    /* ── Final CTA animations ── */
+    @keyframes pill-rise {
+      0%   { transform: translateY(60px) translateX(0px); opacity: 0; }
+      12%  { opacity: 1; }
+      88%  { opacity: 1; }
+      100% { transform: translateY(-90px) translateX(var(--pill-drift, 10px)); opacity: 0; }
+    }
+    @keyframes ring-expand {
+      0%   { transform: translate(-50%, -50%) scale(0.1); opacity: 0.55; }
+      100% { transform: translate(-50%, -50%) scale(3.2); opacity: 0; }
+    }
+    @keyframes orb-drift-c {
+      0%, 100% { transform: translate(-50%, -50%) translate(0px, 0px); }
+      40%       { transform: translate(-50%, -50%) translate(40px, -30px); }
+      70%       { transform: translate(-50%, -50%) translate(-25px, 20px); }
+    }
+    @keyframes orb-drift-d {
+      0%, 100% { transform: translate(-50%, -50%) translate(0px, 0px); }
+      35%       { transform: translate(-50%, -50%) translate(-35px, 25px); }
+      65%       { transform: translate(-50%, -50%) translate(20px, -18px); }
+    }
+    .cta-pill {
+      position: absolute;
+      bottom: 10%;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: rgb(var(--color-accent) / 0.75);
+      background: rgb(var(--color-accent) / 0.07);
+      border: 1px solid rgb(var(--color-accent) / 0.2);
+      border-radius: 9999px;
+      padding: 4px 12px;
+      white-space: nowrap;
+      pointer-events: none;
+      animation: pill-rise var(--pill-dur, 7s) ease-in-out infinite;
+      animation-delay: var(--pill-delay, 0s);
+    }
+
     /* ── Reduced motion ── */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -1297,8 +1335,32 @@
 
   <!-- ═══ FINAL CTA ═══ -->
   <section class="py-24 md:py-32 border-t border-border-subtle relative overflow-hidden">
+    <!-- Background texture -->
     <div class="dot-grid absolute inset-0 opacity-20"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-accent/5 blur-[100px] pointer-events-none"></div>
+
+    <!-- Layered orbs -->
+    <div class="absolute pointer-events-none"
+         style="top:50%;left:50%;width:700px;height:480px;border-radius:9999px;background:rgb(var(--color-accent)/0.06);filter:blur(90px);animation:orb-drift-c 14s ease-in-out infinite;"></div>
+    <div class="absolute pointer-events-none"
+         style="top:40%;left:30%;width:380px;height:320px;border-radius:9999px;background:rgb(160 0 255/0.05);filter:blur(80px);animation:orb-drift-d 18s ease-in-out infinite;"></div>
+    <div class="absolute pointer-events-none"
+         style="top:60%;left:65%;width:300px;height:260px;border-radius:9999px;background:rgb(0 255 180/0.04);filter:blur(70px);animation:orb-drift-c 22s ease-in-out infinite reverse;"></div>
+
+    <!-- Floating agent endpoint pills -->
+    <span class="cta-pill" style="left:5%;  --pill-drift:14px;  --pill-dur:8.2s; --pill-delay:0s;">   https://research-agent-4f1c.up.railway.app/.well-known/agent.json</span>
+    <span class="cta-pill" style="left:18%; --pill-drift:-10px; --pill-dur:9.5s; --pill-delay:1.4s;">  https://code-assistant.onrender.com/.well-known/agent.json</span>
+    <span class="cta-pill" style="left:31%; --pill-drift:8px;   --pill-dur:7.8s; --pill-delay:0.7s;">  https://finance-bot-9e2a.up.railway.app/.well-known/agent.json</span>
+    <span class="cta-pill" style="left:46%; --pill-drift:-16px; --pill-dur:10s;  --pill-delay:2.1s;">  https://email-agent.fly.dev/.well-known/agent.json</span>
+    <span class="cta-pill" style="left:61%; --pill-drift:12px;  --pill-dur:8.6s; --pill-delay:3.3s;">  https://weather-agent-7b3d.up.railway.app/.well-known/agent.json</span>
+    <span class="cta-pill" style="left:74%; --pill-drift:-8px;  --pill-dur:9.1s; --pill-delay:0.4s;">  https://data-pipeline.onrender.com/.well-known/agent.json</span>
+    <span class="cta-pill" style="left:87%; --pill-drift:6px;   --pill-dur:7.4s; --pill-delay:1.9s;">  https://vision-model-2c8f.fly.dev/.well-known/agent.json</span>
+
+    <!-- Pulsing rings behind the button -->
+    <div class="absolute pointer-events-none" style="top:72%;left:50%;width:160px;height:160px;">
+      <span style="position:absolute;top:50%;left:50%;width:160px;height:160px;border-radius:9999px;border:1px solid rgb(var(--color-accent)/0.30);animation:ring-expand 3.6s cubic-bezier(0.4,0,0.6,1) infinite;animation-delay:0s;"></span>
+      <span style="position:absolute;top:50%;left:50%;width:160px;height:160px;border-radius:9999px;border:1px solid rgb(var(--color-accent)/0.22);animation:ring-expand 3.6s cubic-bezier(0.4,0,0.6,1) infinite;animation-delay:1.2s;"></span>
+      <span style="position:absolute;top:50%;left:50%;width:160px;height:160px;border-radius:9999px;border:1px solid rgb(var(--color-accent)/0.14);animation:ring-expand 3.6s cubic-bezier(0.4,0,0.6,1) infinite;animation-delay:2.4s;"></span>
+    </div>
 
     <div class="max-w-[1200px] mx-auto px-6 text-center relative z-10 reveal">
       <h2 class="font-display font-bold text-4xl md:text-6xl tracking-tight leading-[0.95] text-text max-w-2xl mx-auto mb-6">
