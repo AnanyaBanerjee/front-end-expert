@@ -12,15 +12,15 @@ front-end-tech/
 │   ├── minimalist-skill/# Editorial, Notion/Linear-inspired
 │   ├── brutalist-skill/ # Swiss typographic / CRT terminal
 │   └── impeccable/      # Design quality, anti-patterns, a11y
-├── agentchat-hub/       # Chat UI for AI agents (A2A protocol)
+├── output/              # Generated output (gitignored)
 ├── README.md
 └── HOW_TO_USE.md
 ```
 
 ## Browsing and Learning
 
-- **Projects** (like `agentchat-hub/`) are standalone front-end experiments. Open the HTML files in a browser to see them in action, or read the source to learn the patterns used.
 - **Skills** (`skills/`) are reference files — read them to learn design principles like typography, color, spacing, motion, and accessibility even if you never use them with an AI tool.
+- **Output** (`output/`) is gitignored and holds generated artifacts from experiments.
 
 ## Using the Design Skills with AI Tools
 
