@@ -6,11 +6,11 @@
   <title>AgentChat Hub — The Universal Messenger for the Open AI Web</title>
   <meta name="description" content="Connect to any A2A-compatible AI agent via URL. Stream responses in real time. No account, no tracking, no subscriptions. Free on iOS, iPad, Mac, and Vision Pro.">
 
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..125,400;12..96,75..125,500;12..96,75..125,700;12..96,75..125,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -18,24 +18,24 @@
       theme: {
         extend: {
           colors: {
-            /* Light warm palette — off-white + brick orange, neutrals tinted toward hue 28° */
-            bg: '#FDFAF6',
-            surface: '#F4EDE3',
-            elevated: '#EDE4D7',
-            border: '#DDD0C2',
-            'border-subtle': '#E8E0D4',
-            accent: '#C05830',           /* brick orange — oklch(55% 0.17 38) */
-            'accent-dim': 'rgba(192,88,48,0.09)',
-            'accent-mid': 'rgba(192,88,48,0.16)',
+            /* All values live in CSS custom properties — dark mode flips them via @media */
+            bg:             'rgb(var(--color-bg)       / <alpha-value>)',
+            surface:        'rgb(var(--color-surface)  / <alpha-value>)',
+            elevated:       'rgb(var(--color-elevated) / <alpha-value>)',
+            border:         'rgb(var(--color-border)   / <alpha-value>)',
+            'border-subtle':'rgb(var(--color-bsub)     / <alpha-value>)',
+            accent:         'rgb(var(--color-accent)   / <alpha-value>)',
+            'accent-dim':   'var(--accent-dim)',
+            'accent-mid':   'var(--accent-mid)',
             text: {
-              DEFAULT: '#1A1208',        /* warm near-black */
-              secondary: '#5C4E40',     /* warm medium-dark brown-gray */
-              tertiary: '#8A7464',      /* warm mid gray */
+              DEFAULT:   'rgb(var(--color-text)    / <alpha-value>)',
+              secondary: 'rgb(var(--color-text-sec)/ <alpha-value>)',
+              tertiary:  'rgb(var(--color-text-ter)/ <alpha-value>)',
             },
           },
           fontFamily: {
-            sans: ['Satoshi', 'system-ui', 'sans-serif'],
-            display: ['"Clash Display"', 'system-ui', 'sans-serif'],
+            sans: ['"General Sans"', 'system-ui', 'sans-serif'],
+            display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
           },
         }
@@ -44,56 +44,191 @@
   </script>
 
   <style>
+    /* ══ Color tokens — light mode (default) ════════════════════════════════ */
+    :root {
+      --color-bg:       255 255 255;   /* pure white */
+      --color-surface:  246 246 246;
+      --color-elevated: 238 238 238;
+      --color-border:   222 222 222;
+      --color-bsub:     232 232 232;
+      --color-accent:   229  80  20;   /* #E55014 — bright brick orange */
+      --color-text:      10  10  10;   /* near-black */
+      --color-text-sec:  70  70  70;
+      --color-text-ter: 130 130 130;
+      --accent-raw:      #E55014;
+      --accent-dim:      rgba(229,80,20,0.09);
+      --accent-mid:      rgba(229,80,20,0.16);
+      --dot-color:       #DEDEDE;
+      --card-border-hov: rgba(229,80,20,0.28);
+      --card-spotlight:  rgba(229,80,20,0.07);
+      --card-hover-bg:   #F2F2F2;
+      --card-shadow:     rgba(0,0,0,0.08);
+      --card-ring:       rgba(229,80,20,0.10);
+      --term-bg:         rgb(246 246 246);
+      --term-border:     rgb(222 222 222);
+      --term-bar-bg:     rgb(236 236 236);
+    }
+    /* ══ Dark mode — toggled via html[data-theme="dark"] ════════════════════ */
+    html[data-theme="dark"] {
+      --color-bg:         8   8   8;   /* essentially black */
+      --color-surface:   16  16  16;
+      --color-elevated:  26  26  26;
+      --color-border:    42  42  42;
+      --color-bsub:      32  32  32;
+      --color-accent:   229  80  20;   /* same bright orange — great contrast on black */
+      --color-text:     248 248 248;   /* near-white */
+      --color-text-sec: 175 175 175;
+      --color-text-ter: 100 100 100;
+      --accent-raw:      #E55014;
+      --accent-dim:      rgba(229,80,20,0.10);
+      --accent-mid:      rgba(229,80,20,0.18);
+      --dot-color:       #222222;
+      --card-border-hov: rgba(229,80,20,0.32);
+      --card-spotlight:  rgba(229,80,20,0.09);
+      --card-hover-bg:   #161616;
+      --card-shadow:     rgba(0,0,0,0.55);
+      --card-ring:       rgba(229,80,20,0.08);
+      --term-bg:         rgb(12 12 12);
+      --term-border:     rgb(38 38 38);
+      --term-bar-bg:     rgb(20 20 20);
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
+    /* ── Theme toggle button ── */
+    .theme-btn {
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      color: rgb(var(--color-text-ter));
+      transition: color 0.15s ease, background 0.15s ease;
+      cursor: pointer; background: none; border: none; padding: 0;
+    }
+    .theme-btn:hover { color: rgb(var(--color-text)); background: rgb(var(--color-surface)); }
+    /* Sun = visible in dark mode; Moon = visible in light mode */
+    .theme-btn .icon-sun  { display: none; }
+    .theme-btn .icon-moon { display: block; }
+    html[data-theme="dark"] .theme-btn .icon-sun  { display: block; }
+    html[data-theme="dark"] .theme-btn .icon-moon { display: none; }
+
     body {
-      font-family: 'Satoshi', system-ui, sans-serif;
-      background: #FDFAF6;
-      color: #1A1208;
+      font-family: 'General Sans', system-ui, sans-serif;
+      background: rgb(var(--color-bg));
+      color: rgb(var(--color-text));
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
     /* ── Dot grid ── */
     .dot-grid {
-      background-image: radial-gradient(circle, #DDD0C2 1px, transparent 1px);
+      background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
       background-size: 24px 24px;
     }
 
     /* ── Animated sweep line ── */
     .glow-line {
       height: 1px;
-      background: linear-gradient(90deg, transparent 0%, transparent 30%, #C05830 50%, transparent 70%, transparent 100%);
+      background: linear-gradient(90deg, transparent 0%, transparent 20%, var(--accent-raw) 50%, transparent 80%, transparent 100%);
       background-size: 200% 100%;
-      animation: glow-sweep 3s ease-in-out infinite;
-      opacity: 0.5;
+      animation: glow-sweep 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      opacity: 0.6;
     }
     @keyframes glow-sweep {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
+      0%   { background-position: 220% 0; }
+      100% { background-position: -220% 0; }
     }
 
-    /* ── Hero cascade ── */
+    /* ── Hero cascade (non-headline elements) ── */
     @keyframes hero-in {
-      from { opacity: 0; transform: translateY(32px) scale(0.98); filter: blur(4px); }
-      to   { opacity: 1; transform: translateY(0)    scale(1);    filter: blur(0);   }
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    .hero-anim { opacity: 0; animation: hero-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .hero-anim { opacity: 0; animation: hero-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     .hero-d1 { animation-delay: 0.10s; }
-    .hero-d2 { animation-delay: 0.25s; }
-    .hero-d3 { animation-delay: 0.40s; }
-    .hero-d4 { animation-delay: 0.55s; }
-    .hero-d5 { animation-delay: 0.70s; }
-    .hero-d6 { animation-delay: 0.85s; }
+    .hero-d2 { animation-delay: 0.22s; }
+    .hero-d4 { animation-delay: 0.36s; }
+    .hero-d5 { animation-delay: 0.50s; }
+    .hero-d6 { animation-delay: 0.65s; }
 
-    /* ── Scroll reveal ── */
-    .reveal {
-      opacity: 0; transform: translateY(40px) scale(0.97); filter: blur(3px);
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                  filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    /* ── Word-mask reveal (hero headline) ── */
+    .word-mask {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+      /* Extra bottom padding so descenders aren't clipped */
+      padding-bottom: 0.08em;
+      margin-bottom: -0.08em;
     }
-    .reveal.visible { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    .word {
+      display: inline-block;
+      transform: translateY(108%) skewY(4deg);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+    .word.in {
+      transform: translateY(0) skewY(0deg);
+      opacity: 1;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity   0.5s ease;
+    }
+    /* Per-word stagger */
+    .wd0 { transition-delay: 0.28s; }
+    .wd1 { transition-delay: 0.35s; }
+    .wd2 { transition-delay: 0.42s; }
+    .wd3 { transition-delay: 0.49s; }
+    .wd4 { transition-delay: 0.56s; }
+    .wd5 { transition-delay: 0.66s; }
+    .wd6 { transition-delay: 0.73s; }
+    .wd7 { transition-delay: 0.80s; }
+
+    /* ── Scroll reveal — clip-path wipe (more cinematic than blur-fade) ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      clip-path: inset(0 0 16px 0);
+      transition:
+        opacity    0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        transform  0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        clip-path  0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+      clip-path: inset(0 0 0px 0);
+    }
+
+    /* ── Animated background orbs ── */
+    .orb {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      background: rgb(var(--color-accent));
+      filter: blur(90px);
+    }
+    .orb-1 {
+      width: 700px; height: 700px; top: -280px; left: 50%; margin-left: -350px;
+      opacity: 0.07;
+      animation: orb-drift-a 20s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: 380px; height: 380px; top: 30%; left: 8%;
+      opacity: 0.05;
+      animation: orb-drift-b 27s ease-in-out infinite;
+    }
+    .orb-3 {
+      width: 500px; height: 500px; top: 5%; right: 5%;
+      opacity: 0.04;
+      animation: orb-drift-a 33s ease-in-out infinite reverse;
+    }
+    @keyframes orb-drift-a {
+      0%,100% { transform: translate(0,   0)   scale(1);    }
+      33%      { transform: translate(60px,-70px) scale(1.08); }
+      66%      { transform: translate(-50px,50px) scale(0.94); }
+    }
+    @keyframes orb-drift-b {
+      0%,100% { transform: translate(0,   0)   scale(1);    }
+      40%      { transform: translate(-80px,60px) scale(1.12); }
+      70%      { transform: translate(50px,-40px) scale(0.92); }
+    }
 
     /* ── Terminal typing ── */
     .term-line { opacity: 0; transform: translateX(-8px); }
@@ -122,37 +257,39 @@
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.12),
-                  0 8px 20px -8px rgba(192,88,48,0.18);
+                  0 8px 20px -8px rgb(var(--color-accent) / 0.22);
     }
     .btn-primary:active { transform: translateY(0) scale(0.97); }
 
-    /* ── Feature card: spotlight ── */
+    /* ── Feature card: spotlight + 3D tilt ── */
     .feat-card {
       position: relative;
-      border: 1px solid #DDD0C2;
-      transition: border-color 0.3s ease,
-                  background 0.3s ease,
-                  transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                  box-shadow 0.3s ease;
+      border: 1px solid rgb(var(--color-border));
+      transform-style: preserve-3d;
+      perspective: 800px;
+      transition: border-color 0.35s ease,
+                  background 0.35s ease,
+                  transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.35s ease;
     }
     .feat-card::before {
       content: ''; position: absolute; inset: -1px; border-radius: inherit;
-      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(192,88,48,0.08), transparent 40%);
+      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--card-spotlight), transparent 40%);
       opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 0;
     }
     .feat-card:hover::before { opacity: 1; }
     .feat-card:hover {
-      border-color: rgba(192,88,48,0.30);
-      background: #EDE8DE;
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px -12px rgba(0,0,0,0.12), 0 0 0 1px rgba(192,88,48,0.10);
+      border-color: var(--card-border-hov);
+      background: var(--card-hover-bg);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px -16px var(--card-shadow), 0 0 0 1px var(--card-ring);
     }
     .feat-card > * { position: relative; z-index: 1; }
 
     /* ── Terminal window ── */
     .terminal {
-      background: #F4EDE3;
-      border: 1px solid #DDD0C2;
+      background: var(--term-bg);
+      border: 1px solid var(--term-border);
       border-radius: 12px;
       overflow: hidden;
       transition: box-shadow 0.5s ease;
@@ -162,8 +299,8 @@
       box-shadow: 0 24px 48px -24px rgba(0,0,0,0.5);
     }
     .terminal-bar {
-      background: #EDE4D7;
-      border-bottom: 1px solid #DDD0C2;
+      background: var(--term-bar-bg);
+      border-bottom: 1px solid var(--term-border);
       padding: 12px 16px;
       display: flex; align-items: center; gap: 8px;
     }
@@ -181,8 +318,14 @@
     .feat-card:hover .feat-icon { animation: icon-float 1.5s ease-in-out infinite; }
 
     /* ── Step number pop ── */
-    @keyframes count-pop { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .step-num.visible { animation: count-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    @keyframes count-pop {
+      0%   { transform: scale(0.3) rotate(-8deg); opacity: 0; }
+      55%  { transform: scale(1.18) rotate(2deg); opacity: 1; }
+      75%  { transform: scale(0.94) rotate(-1deg); }
+      90%  { transform: scale(1.04); }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    .step-num.visible { animation: count-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
 
     /* ── Live stream dots (anchor feature card) ── */
     @keyframes stream-dot {
@@ -206,6 +349,59 @@
     details .faq-body > div { overflow: hidden; }
     details .faq-icon { transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1); }
     details[open] .faq-icon { transform: rotate(45deg); }
+
+    /* ── Screenshots marquee ── */
+    .marquee-track { overflow: hidden; position: relative; }
+    /* Edge fade masks */
+    .marquee-track::before,
+    .marquee-track::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none;
+    }
+    .marquee-track::before { left: 0;  background: linear-gradient(90deg, rgb(var(--color-bg)), transparent); }
+    .marquee-track::after  { right: 0; background: linear-gradient(-90deg, rgb(var(--color-bg)), transparent); }
+
+    .marquee-row {
+      display: flex; gap: 16px; width: max-content;
+      will-change: transform;
+    }
+    .marquee-row-left  { animation: mq-left  38s linear infinite; }
+    .marquee-row-right { animation: mq-right 45s linear infinite; }
+    @keyframes mq-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+    @keyframes mq-right { from { transform: translateX(-50%); } to { transform: translateX(0); }    }
+
+    /* Pause on hover */
+    .marquee-track:hover .marquee-row { animation-play-state: paused; }
+
+    /* Phone frame */
+    .phone-shot {
+      flex-shrink: 0;
+      width: 160px;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.06),
+        0 0 0 6px rgb(var(--color-elevated)),
+        0 0 0 7px rgba(0,0,0,0.08),
+        0 16px 40px -12px rgba(0,0,0,0.22);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease;
+    }
+    .phone-shot:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.08),
+        0 0 0 6px rgb(var(--color-elevated)),
+        0 0 0 7px rgba(0,0,0,0.08),
+        0 28px 56px -16px rgba(0,0,0,0.32);
+    }
+    .phone-shot img { display: block; width: 100%; height: auto; }
+
+    /* ── Accent-colored SVG icons ── */
+    .stroke-accent { color: var(--accent-raw); }
+
+    /* ── Terminal semantic colors (theme-aware, used in JS-injected spans) ── */
+    .tc-accent    { color: var(--accent-raw); }
+    .tc-secondary { color: rgb(var(--color-text-sec)); }
+    .tc-muted     { color: rgb(var(--color-text-ter)); }
 
     /* ── Logo: ambient neon halo from its own colors ── */
     .logo-icon {
@@ -258,11 +454,13 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
-      .reveal { opacity: 1; transform: none; filter: none; }
-      .hero-anim { opacity: 1; transform: none; filter: none; }
+      .reveal { opacity: 1; transform: none; clip-path: none; }
+      .hero-anim { opacity: 1; transform: none; }
+      .word { transform: none; opacity: 1; }
       .term-line { opacity: 1; transform: none; }
       details .faq-body { grid-template-rows: 1fr; }
-      .hero-logo { animation: none; }
+      .hero-logo, .orb, .marquee-row { animation: none; }
+      .marquee-row { flex-wrap: wrap; width: 100%; }
     }
   </style>
 </head>
@@ -279,6 +477,19 @@
         <a href="#features" class="text-xs font-medium text-text-tertiary hover:text-text transition-colors hidden sm:block">Features</a>
         <a href="#protocol" class="text-xs font-medium text-text-tertiary hover:text-text transition-colors hidden sm:block">Protocol</a>
         <a href="#privacy" class="text-xs font-medium text-text-tertiary hover:text-text transition-colors hidden sm:block">Privacy</a>
+        <button class="theme-btn" id="theme-toggle" aria-label="Toggle light/dark mode">
+          <!-- Moon: shown in light mode (click to go dark) -->
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <!-- Sun: shown in dark mode (click to go light) -->
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
         <a href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener"
            class="btn-primary inline-flex items-center gap-2 bg-accent text-bg text-xs font-semibold px-4 py-2 rounded-lg border border-accent/80">
           Download
@@ -291,7 +502,9 @@
   <!-- ═══ HERO ═══ -->
   <section class="min-h-[100dvh] pt-14 relative overflow-hidden">
     <div class="dot-grid absolute inset-0 opacity-30" id="hero-grid"></div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full bg-accent/5 blur-[120px] pointer-events-none"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
     <div class="max-w-[1200px] mx-auto px-6 relative z-10">
       <div class="pt-24 md:pt-36 pb-20">
@@ -307,9 +520,9 @@
           </span>
         </div>
 
-        <h1 class="hero-anim hero-d3 font-display font-bold text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] text-text max-w-4xl mb-8">
-          Talk to any AI agent<br>
-          <span class="text-text-tertiary">with a URL.</span>
+        <h1 class="font-display font-bold text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.9] text-text max-w-4xl mb-8" style="font-variation-settings:'wdth' 112,'wght' 800">
+          <span class="word-mask"><span class="word wd0">Talk</span></span>&nbsp;<span class="word-mask"><span class="word wd1">to</span></span>&nbsp;<span class="word-mask"><span class="word wd2">any</span></span>&nbsp;<span class="word-mask"><span class="word wd3">AI</span></span>&nbsp;<span class="word-mask"><span class="word wd4">agent</span></span><br>
+          <span class="word-mask"><span class="word wd5 text-text-tertiary">with</span></span>&nbsp;<span class="word-mask"><span class="word wd6 text-text-tertiary">a</span></span>&nbsp;<span class="word-mask"><span class="word wd7 text-text-tertiary">URL.</span></span>
         </h1>
 
         <p class="hero-anim hero-d4 text-base md:text-lg font-medium text-text-secondary leading-relaxed max-w-xl mb-10">
@@ -388,7 +601,7 @@
         <div class="feat-card md:col-span-7 rounded-xl bg-surface p-8 reveal">
           <div class="flex items-center gap-3 mb-5">
             <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C05830" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             </div>
             <h3 class="font-medium text-base tracking-tight text-text">Live Streaming</h3>
           </div>
@@ -410,7 +623,7 @@
           <div class="feat-card rounded-xl bg-surface p-8 reveal flex-1">
             <div class="flex items-center gap-3 mb-4">
               <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C05830" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
               </div>
               <h3 class="font-medium text-base tracking-tight text-text">Connect by URL</h3>
             </div>
@@ -422,7 +635,7 @@
           <div class="feat-card rounded-xl bg-surface p-8 reveal flex-1">
             <div class="flex items-center gap-3 mb-4">
               <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C05830" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               </div>
               <h3 class="font-medium text-base tracking-tight text-text">Multi-Agent Roster</h3>
             </div>
@@ -438,7 +651,7 @@
         <div class="feat-card md:col-span-5 rounded-xl bg-surface p-8 reveal">
           <div class="flex items-center gap-3 mb-4">
             <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C05830" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
             </div>
             <h3 class="font-medium text-base tracking-tight text-text">Rich Attachments</h3>
           </div>
@@ -450,7 +663,7 @@
         <div class="feat-card md:col-span-7 rounded-xl bg-surface p-8 reveal">
           <div class="flex items-center gap-3 mb-4">
             <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C05830" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
             </div>
             <h3 class="font-medium text-base tracking-tight text-text">Native Everywhere</h3>
           </div>
@@ -460,6 +673,71 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ═══ SCREENSHOTS ═══ -->
+  <section class="py-24 md:py-32 border-t border-border-subtle overflow-hidden">
+    <div class="max-w-[1200px] mx-auto px-6 mb-14 reveal">
+      <p class="text-xs font-mono font-medium text-accent uppercase tracking-widest mb-4">The App</p>
+      <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight text-text mb-4" style="font-variation-settings:'wdth' 108,'wght' 800">
+        Every screen, natively built.
+      </h2>
+      <p class="text-text-secondary text-base max-w-xl">
+        Light and dark modes. iPhone, iPad, Mac, Vision Pro. One app that feels at home everywhere Apple is.
+      </p>
+    </div>
+
+    <!-- Row 1: light mode screenshots, scroll left -->
+    <div class="marquee-track mb-4">
+      <div class="marquee-row marquee-row-left px-4">
+        <!-- set A -->
+        <div class="phone-shot"><img src="screens/s01.png" alt="Messages — empty state" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s02.png" alt="Conversation list" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s03.png" alt="Settings" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s04.png" alt="Add Agent" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s05.png" alt="Agent card" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s06.png" alt="Agent details" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s07.png" alt="Chat view" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s08.png" alt="Discover agents" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s09.png" alt="Settings menu" loading="lazy"></div>
+        <!-- set B (duplicate for seamless loop) -->
+        <div class="phone-shot"><img src="screens/s01.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s02.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s03.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s04.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s05.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s06.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s07.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s08.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s09.png" alt="" loading="lazy" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- Row 2: dark mode screenshots, scroll right -->
+    <div class="marquee-track">
+      <div class="marquee-row marquee-row-right px-4">
+        <!-- set A -->
+        <div class="phone-shot"><img src="screens/s10.png" alt="Settings — dark mode" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s11.png" alt="Session settings" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s12.png" alt="Chat — dark mode" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s13.png" alt="Messages list — dark" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s14.png" alt="Messages — dark mode" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s15.png" alt="Chat session" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s16.png" alt="Discover — dark mode" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s17.png" alt="Agent discovery" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s18.png" alt="iPhone Air view" loading="lazy"></div>
+        <!-- set B (duplicate for seamless loop) -->
+        <div class="phone-shot"><img src="screens/s10.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s11.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s12.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s13.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s14.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s15.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s16.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s17.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s18.png" alt="" loading="lazy" aria-hidden="true"></div>
+      </div>
     </div>
   </section>
 
@@ -707,6 +985,25 @@
   </footer>
 
   <script>
+    // ── Theme toggle ──────────────────────────────────────────────────────────
+    (function () {
+      // Initialise on first paint: respect saved preference, then system pref
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = saved || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme');
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+        });
+      }
+    })();
+
     // ── Scroll reveal with stagger ──
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -750,24 +1047,43 @@
     const privacyTerminal = document.getElementById('privacy-terminal');
     if (privacyTerminal) privacyObserver.observe(privacyTerminal);
 
-    // ── Feature card spotlight cursor tracking ──
+    // ── Hero word-mask reveal ──
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setTimeout(() => {
+        document.querySelectorAll('.word').forEach(w => w.classList.add('in'));
+      }, 120);
+    } else {
+      document.querySelectorAll('.word').forEach(w => w.classList.add('in'));
+    }
+
+    // ── Feature card spotlight + 3D tilt ──
     document.querySelectorAll('.feat-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
-        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+        // 3D tilt: max ±6deg
+        const cx = rect.width / 2, cy = rect.height / 2;
+        const rx = ((y - cy) / cy) * -5;
+        const ry = ((x - cx) / cx) * 5;
+        card.style.transform = `translateY(-6px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
       });
     });
 
     // ── Terminal typing animation ──
     const terminalLines = [
-      { type: 'cmd',   text: '$ <span class="text-[#C05830]">connect</span> <span class="text-[#5C4E40]">https://research.example.com</span>' },
-      { type: 'info',  text: '<span class="text-[#C05830]">&#10003;</span> Agent Card discovered at /.well-known/agent.json' },
-      { type: 'info',  text: '<span class="text-[#C05830]">&#10003;</span> Capabilities: streaming, multimodal, push-notifications' },
-      { type: 'info',  text: '<span class="text-[#C05830]">&#10003;</span> Session established <span class="text-[#706959]">(anonymous, on-device)</span>' },
+      { type: 'cmd',   text: '$ <span class="tc-accent">connect</span> <span class="tc-secondary">https://research.example.com</span>' },
+      { type: 'info',  text: '<span class="tc-accent">&#10003;</span> Agent Card discovered at /.well-known/agent.json' },
+      { type: 'info',  text: '<span class="tc-accent">&#10003;</span> Capabilities: streaming, multimodal, push-notifications' },
+      { type: 'info',  text: '<span class="tc-accent">&#10003;</span> Session established <span class="tc-muted">(anonymous, on-device)</span>' },
       { type: 'sep',   text: '' },
-      { type: 'user',  text: '<span class="text-[#C05830]">you</span>  Summarize the latest A2A protocol spec changes' },
-      { type: 'agent', text: '<span class="text-[#706959]">agent</span> ', words: 'The March revision added three changes: streaming task updates via SSE, a new parts array for multi-modal responses, and push notification support for long-running tasks.' },
+      { type: 'user',  text: '<span class="tc-accent">you</span>  Summarize the latest A2A protocol spec changes' },
+      { type: 'agent', text: '<span class="tc-muted">agent</span> ', words: 'The March revision added three changes: streaming task updates via SSE, a new parts array for multi-modal responses, and push notification support for long-running tasks.' },
     ];
 
     const termBody = document.getElementById('terminal-body');
@@ -781,7 +1097,7 @@
         div.className += ' flex items-start gap-3';
         div.innerHTML = line.text;
       } else if (line.type === 'info') {
-        div.className += ' pl-6 text-[#706959] text-xs';
+        div.className += ' pl-6 tc-muted text-xs font-mono';
         div.innerHTML = line.text;
       } else if (line.type === 'sep') {
         div.className = 'term-line glow-line my-4';
@@ -789,7 +1105,7 @@
         div.className += ' flex items-start gap-3';
         div.innerHTML = line.text;
         const span = document.createElement('span');
-        span.className = 'text-[#5C4E40] leading-relaxed';
+        span.className = 'tc-secondary leading-relaxed';
         span.id = 'agent-response';
         div.appendChild(span);
       }
@@ -812,7 +1128,7 @@
             responseEl.textContent += (w > 0 ? ' ' : '') + words[w];
           }
           const cursor = document.createElement('span');
-          cursor.className = 'cursor-blink text-[#C05830] ml-0.5';
+          cursor.className = 'cursor-blink tc-accent ml-1';
           cursor.textContent = '|';
           responseEl.appendChild(cursor);
           terminal.classList.add('active-glow');
