@@ -16,18 +16,19 @@
       theme: {
         extend: {
           colors: {
-            bg: '#09090B',
-            surface: '#111113',
-            elevated: '#18181B',
-            border: '#27272A',
-            'border-subtle': '#1E1E21',
-            accent: '#2DD4A8',
-            'accent-dim': 'rgba(45,212,168,0.1)',
-            'accent-mid': 'rgba(45,212,168,0.15)',
+            /* Warm amber palette — neutrals tinted toward oklch hue 68° */
+            bg: '#0D0A07',
+            surface: '#141108',
+            elevated: '#1C170E',
+            border: '#2B2210',
+            'border-subtle': '#201A0C',
+            accent: '#D4A52A',           /* oklch(74% 0.165 68) — warm amber-gold */
+            'accent-dim': 'rgba(212,165,42,0.09)',
+            'accent-mid': 'rgba(212,165,42,0.16)',
             text: {
-              DEFAULT: '#FAFAFA',
-              secondary: '#A1A1AA',
-              tertiary: '#71717A',
+              DEFAULT: '#FAF7EC',        /* warm near-white */
+              secondary: '#A8A18C',     /* warm medium gray */
+              tertiary: '#706959',      /* warm dark gray */
             },
           },
           fontFamily: {
@@ -44,22 +45,22 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Geist', system-ui, sans-serif;
-      background: #09090B;
-      color: #FAFAFA;
+      background: #0D0A07;
+      color: #FAF7EC;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
     /* ── Dot grid ── */
     .dot-grid {
-      background-image: radial-gradient(circle, #27272A 1px, transparent 1px);
+      background-image: radial-gradient(circle, #2B2210 1px, transparent 1px);
       background-size: 24px 24px;
     }
 
-    /* ── Animated glow line ── */
+    /* ── Animated sweep line ── */
     .glow-line {
       height: 1px;
-      background: linear-gradient(90deg, transparent 0%, transparent 30%, #2DD4A8 50%, transparent 70%, transparent 100%);
+      background: linear-gradient(90deg, transparent 0%, transparent 30%, #D4A52A 50%, transparent 70%, transparent 100%);
       background-size: 200% 100%;
       animation: glow-sweep 3s ease-in-out infinite;
       opacity: 0.5;
@@ -69,17 +70,18 @@
       100% { background-position: -200% 0; }
     }
 
-    /* ── Hero fade-up cascade ── */
+    /* ── Hero cascade ── */
     @keyframes hero-in {
       from { opacity: 0; transform: translateY(32px) scale(0.98); filter: blur(4px); }
-      to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+      to   { opacity: 1; transform: translateY(0)    scale(1);    filter: blur(0);   }
     }
     .hero-anim { opacity: 0; animation: hero-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    .hero-d1 { animation-delay: 0.1s; }
+    .hero-d1 { animation-delay: 0.10s; }
     .hero-d2 { animation-delay: 0.25s; }
-    .hero-d3 { animation-delay: 0.4s; }
+    .hero-d3 { animation-delay: 0.40s; }
     .hero-d4 { animation-delay: 0.55s; }
-    .hero-d5 { animation-delay: 0.75s; }
+    .hero-d5 { animation-delay: 0.70s; }
+    .hero-d6 { animation-delay: 0.85s; }
 
     /* ── Scroll reveal ── */
     .reveal {
@@ -93,112 +95,114 @@
     /* ── Terminal typing ── */
     .term-line { opacity: 0; transform: translateX(-8px); }
     .term-line.typed { opacity: 1; transform: translateX(0); transition: opacity 0.3s ease, transform 0.3s ease; }
-
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     .cursor-blink { animation: blink 1s step-end infinite; }
 
-    /* ── A2A badge pulse ── */
-    @keyframes badge-pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(45,212,168,0.4); }
-      50% { box-shadow: 0 0 0 6px rgba(45,212,168,0); }
-    }
-    .badge-dot {
-      animation: badge-pulse 2s ease-in-out infinite;
-    }
+    /* ── Badge dot: opacity pulse, no outer glow ── */
+    @keyframes badge-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+    .badge-dot { animation: badge-pulse 2s ease-in-out infinite; }
 
-    /* ── Button ── */
+    /* ── Button: inner refraction, no outer glow ── */
     .btn-primary {
       position: relative; overflow: hidden;
-      transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease;
+      transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.15s ease,
+                  border-color 0.15s ease;
     }
     .btn-primary::after {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
       transform: translateX(-100%);
       transition: transform 0.5s ease;
     }
     .btn-primary:hover::after { transform: translateX(100%); }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 32px -4px rgba(45,212,168,0.35);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12),
+                  0 8px 20px -8px rgba(212,165,42,0.12);
     }
     .btn-primary:active { transform: translateY(0) scale(0.97); }
 
-    /* ── Feature card: spotlight border glow ── */
+    /* ── Feature card: spotlight ── */
     .feat-card {
       position: relative;
-      border: 1px solid #27272A;
-      transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+      border: 1px solid #2B2210;
+      transition: border-color 0.3s ease,
+                  background 0.3s ease,
+                  transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s ease;
     }
     .feat-card::before {
       content: ''; position: absolute; inset: -1px; border-radius: inherit;
-      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(45,212,168,0.12), transparent 40%);
+      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212,165,42,0.10), transparent 40%);
       opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 0;
     }
     .feat-card:hover::before { opacity: 1; }
     .feat-card:hover {
-      border-color: rgba(45,212,168,0.25);
-      background: #151517;
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px -16px rgba(0,0,0,0.5), 0 0 0 1px rgba(45,212,168,0.1);
+      border-color: rgba(212,165,42,0.22);
+      background: #19140A;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px -12px rgba(0,0,0,0.45), 0 0 0 1px rgba(212,165,42,0.08);
     }
     .feat-card > * { position: relative; z-index: 1; }
 
     /* ── Terminal window ── */
     .terminal {
-      background: #111113;
-      border: 1px solid #27272A;
+      background: #141108;
+      border: 1px solid #2B2210;
       border-radius: 12px;
       overflow: hidden;
       transition: box-shadow 0.5s ease;
     }
-    .terminal.glow {
-      box-shadow: 0 0 60px -20px rgba(45,212,168,0.15), 0 24px 48px -24px rgba(0,0,0,0.4);
+    .terminal.active-glow {
+      /* tinted depth shadow — no neon blast */
+      box-shadow: 0 24px 48px -24px rgba(0,0,0,0.5);
     }
     .terminal-bar {
-      background: #18181B;
-      border-bottom: 1px solid #27272A;
+      background: #1C170E;
+      border-bottom: 1px solid #2B2210;
       padding: 12px 16px;
       display: flex; align-items: center; gap: 8px;
     }
     .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
 
-    /* ── Privacy table row stagger ── */
+    /* ── Privacy row stagger ── */
     .privacy-row {
       opacity: 0; transform: translateX(-12px);
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
-    .privacy-row.visible {
-      opacity: 1; transform: translateX(0);
-    }
+    .privacy-row.visible { opacity: 1; transform: translateX(0); }
 
-    /* ── Accent icon float ── */
-    @keyframes icon-float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-3px); }
-    }
-    .feat-card:hover .feat-icon {
-      animation: icon-float 1.5s ease-in-out infinite;
-    }
+    /* ── Icon float on card hover ── */
+    @keyframes icon-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+    .feat-card:hover .feat-icon { animation: icon-float 1.5s ease-in-out infinite; }
 
-    /* ── Step number counter animation ── */
-    @keyframes count-pop {
-      from { transform: scale(0.5); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    .step-num.visible {
-      animation: count-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
+    /* ── Step number pop ── */
+    @keyframes count-pop { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .step-num.visible { animation: count-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
 
-    /* ── Marquee for CTA section ── */
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    /* ── Live stream dots (anchor feature card) ── */
+    @keyframes stream-dot {
+      0%, 80%, 100% { transform: scale(0); opacity: 0; }
+      40% { transform: scale(1); opacity: 1; }
     }
-    .marquee-track {
-      animation: marquee 20s linear infinite;
-      display: flex; gap: 64px; width: max-content;
+    .stream-dot { animation: stream-dot 1.4s ease-in-out infinite; }
+    .stream-dot:nth-child(1) { animation-delay: 0s; }
+    .stream-dot:nth-child(2) { animation-delay: 0.2s; }
+    .stream-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    /* ── FAQ accordion ── */
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    details .faq-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.32s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    details[open] .faq-body { grid-template-rows: 1fr; }
+    details .faq-body > div { overflow: hidden; }
+    details .faq-icon { transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1); }
+    details[open] .faq-icon { transform: rotate(45deg); }
 
     /* ── Reduced motion ── */
     @media (prefers-reduced-motion: reduce) {
@@ -210,6 +214,7 @@
       .reveal { opacity: 1; transform: none; filter: none; }
       .hero-anim { opacity: 1; transform: none; filter: none; }
       .term-line { opacity: 1; transform: none; }
+      details .faq-body { grid-template-rows: 1fr; }
     }
   </style>
 </head>
@@ -220,7 +225,7 @@
     <div class="max-w-[1200px] mx-auto px-6 h-14 flex items-center justify-between">
       <a href="#" class="font-semibold text-sm tracking-tight text-text flex items-center gap-2">
         <span class="w-6 h-6 rounded-md bg-accent flex items-center justify-center">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#09090B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0D0A07" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </span>
         AgentChat Hub
       </a>
@@ -229,7 +234,7 @@
         <a href="#protocol" class="text-xs font-medium text-text-tertiary hover:text-text transition-colors hidden sm:block">Protocol</a>
         <a href="#privacy" class="text-xs font-medium text-text-tertiary hover:text-text transition-colors hidden sm:block">Privacy</a>
         <a href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener"
-           class="btn-primary inline-flex items-center gap-2 bg-accent text-bg text-xs font-semibold px-4 py-2 rounded-lg">
+           class="btn-primary inline-flex items-center gap-2 bg-accent text-bg text-xs font-semibold px-4 py-2 rounded-lg border border-accent/80">
           Download
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
         </a>
@@ -237,15 +242,14 @@
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- ═══ HERO ═══ -->
   <section class="min-h-[100dvh] pt-14 relative overflow-hidden">
     <div class="dot-grid absolute inset-0 opacity-30" id="hero-grid"></div>
-    <!-- Radial gradient glow behind hero -->
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full bg-accent/5 blur-[120px] pointer-events-none"></div>
 
     <div class="max-w-[1200px] mx-auto px-6 relative z-10">
       <div class="pt-24 md:pt-36 pb-20">
-        <!-- Badge -->
+
         <div class="hero-anim hero-d1 mb-8">
           <span class="inline-flex items-center gap-2 text-xs font-mono font-medium text-accent bg-accent-dim border border-accent/20 px-3 py-1.5 rounded-md">
             <span class="w-1.5 h-1.5 rounded-full bg-accent badge-dot"></span>
@@ -253,7 +257,6 @@
           </span>
         </div>
 
-        <!-- Headline -->
         <h1 class="hero-anim hero-d2 font-black text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-[0.9] text-text max-w-4xl mb-8">
           Talk to any AI agent<br>
           <span class="text-text-tertiary">with a URL.</span>
@@ -263,18 +266,28 @@
           The universal A2A client for iOS, Mac, and Vision Pro. Paste an endpoint, stream responses in real time. No account. No tracking. Free.
         </p>
 
-        <!-- CTAs -->
-        <div class="hero-anim hero-d4 flex flex-wrap items-center gap-4 mb-20">
+        <div class="hero-anim hero-d4 flex flex-wrap items-center gap-4 mb-6">
           <a href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener"
-             class="btn-primary inline-flex items-center gap-3 bg-accent text-bg font-semibold px-6 py-3.5 rounded-xl text-sm">
+             class="btn-primary inline-flex items-center gap-3 bg-accent text-bg font-semibold px-6 py-3.5 rounded-xl text-sm border border-accent/80">
             <svg width="18" height="18" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.2-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.28 2.13-9.54 3.25-12.8 3.35-4.92.21-9.84-1.96-14.75-6.52-3.13-2.73-7.05-7.41-11.76-14.04-5.05-7.14-9.2-15.42-12.44-24.86C18.63 110.62 17 101.02 17 91.71c0-10.67 2.3-19.87 6.92-27.58 3.62-6.18 8.44-11.06 14.48-14.66 6.04-3.6 12.56-5.43 19.6-5.58 3.92 0 9.06 1.21 15.43 3.6 6.35 2.4 10.43 3.62 12.22 3.62 1.34 0 5.87-1.43 13.56-4.28 7.27-2.64 13.41-3.74 18.44-3.32 13.62 1.1 23.85 6.47 30.63 16.15-12.19 7.39-18.22 17.73-18.1 31 .11 10.34 3.86 18.94 11.23 25.77 3.34 3.17 7.07 5.62 11.22 7.36-.9 2.61-1.85 5.11-2.86 7.51zM119.11 7.24c0 8.1-2.96 15.67-8.86 22.67-7.12 8.32-15.73 13.13-25.07 12.37a25.2 25.2 0 0 1-.19-3.07c0-7.78 3.39-16.09 9.4-22.89 3-3.44 6.82-6.31 11.45-8.6 4.62-2.26 8.99-3.51 13.1-3.72.12 1.1.17 2.2.17 3.24z"/></svg>
             Download on the App Store
           </a>
-          <span class="font-mono text-xs text-text-tertiary">v1.1 / iOS 15.1+ / macOS 12+ / visionOS</span>
+          <span class="font-mono text-xs text-text-tertiary">v1.1 · Free · No account required</span>
         </div>
 
-        <!-- Terminal mockup with typing animation -->
-        <div class="hero-anim hero-d5 max-w-3xl" id="terminal-wrap">
+        <!-- Proof signal: platform trust, no fabricated numbers -->
+        <div class="hero-anim hero-d5 flex flex-wrap items-center gap-x-6 gap-y-2 mb-20 text-xs font-mono text-text-tertiary">
+          <span class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+            Native on iPhone, iPad, Mac, Vision Pro
+          </span>
+          <span>iOS 15.1+</span>
+          <span>macOS 12+</span>
+          <span>visionOS 1.0+</span>
+        </div>
+
+        <!-- Terminal mockup -->
+        <div class="hero-anim hero-d6 max-w-3xl" id="terminal-wrap">
           <div class="terminal" id="terminal">
             <div class="terminal-bar">
               <div class="terminal-dot bg-[#FF5F57]"></div>
@@ -282,20 +295,35 @@
               <div class="terminal-dot bg-[#28C840]"></div>
               <span class="ml-3 text-xs font-mono text-text-tertiary">AgentChat Hub</span>
             </div>
-            <div class="p-6 font-mono text-sm space-y-4" id="terminal-body">
-              <!-- Lines injected by JS typing animation -->
-            </div>
+            <div class="p-6 font-mono text-sm space-y-4" id="terminal-body"></div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
   <div class="glow-line max-w-[1200px] mx-auto"></div>
 
-  <!-- Features -->
+  <!-- Platform strip -->
+  <div class="border-b border-border-subtle bg-surface/40">
+    <div class="max-w-[1200px] mx-auto px-6 py-3.5 flex flex-wrap items-center gap-x-8 gap-y-2">
+      <span class="font-mono text-xs text-text-tertiary flex items-center gap-2">
+        <svg width="13" height="13" viewBox="0 0 170 170" fill="#706959"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.2-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.28 2.13-9.54 3.25-12.8 3.35-4.92.21-9.84-1.96-14.75-6.52-3.13-2.73-7.05-7.41-11.76-14.04-5.05-7.14-9.2-15.42-12.44-24.86C18.63 110.62 17 101.02 17 91.71c0-10.67 2.3-19.87 6.92-27.58 3.62-6.18 8.44-11.06 14.48-14.66 6.04-3.6 12.56-5.43 19.6-5.58 3.92 0 9.06 1.21 15.43 3.6 6.35 2.4 10.43 3.62 12.22 3.62 1.34 0 5.87-1.43 13.56-4.28 7.27-2.64 13.41-3.74 18.44-3.32 13.62 1.1 23.85 6.47 30.63 16.15-12.19 7.39-18.22 17.73-18.1 31 .11 10.34 3.86 18.94 11.23 25.77 3.34 3.17 7.07 5.62 11.22 7.36-.9 2.61-1.85 5.11-2.86 7.51zM119.11 7.24c0 8.1-2.96 15.67-8.86 22.67-7.12 8.32-15.73 13.13-25.07 12.37a25.2 25.2 0 0 1-.19-3.07c0-7.78 3.39-16.09 9.4-22.89 3-3.44 6.82-6.31 11.45-8.6 4.62-2.26 8.99-3.51 13.1-3.72.12 1.1.17 2.2.17 3.24z"/></svg>
+        iPhone · iPad · Mac · Vision Pro
+      </span>
+      <span class="font-mono text-xs text-text-tertiary">One native binary per platform</span>
+      <span class="font-mono text-xs text-text-tertiary flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+        A2A Open Protocol compatible
+      </span>
+    </div>
+  </div>
+
+  <!-- ═══ FEATURES ═══ -->
   <section id="features" class="py-24 md:py-32">
     <div class="max-w-[1200px] mx-auto px-6">
+
       <div class="mb-16 reveal">
         <p class="font-mono text-xs font-medium text-accent mb-3 tracking-wide uppercase">Features</p>
         <h2 class="font-extrabold text-3xl md:text-5xl tracking-tighter leading-tight text-text max-w-2xl">
@@ -303,49 +331,64 @@
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-        <div class="feat-card rounded-xl bg-surface p-8 reveal">
+      <!-- Row 1: 7 / 5 asymmetric -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-3 mb-3">
+
+        <!-- Anchor card: Live Streaming — wider, richer -->
+        <div class="feat-card md:col-span-7 rounded-xl bg-surface p-8 reveal">
           <div class="flex items-center gap-3 mb-5">
             <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2DD4A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4A52A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             </div>
             <h3 class="font-bold text-base tracking-tight text-text">Live Streaming</h3>
           </div>
-          <p class="text-sm text-text-secondary leading-relaxed max-w-sm">
-            Responses arrive token-by-token over SSE. You see the agent think in real time, not a loading spinner followed by a wall of text.
+          <p class="text-sm text-text-secondary leading-relaxed mb-6 max-w-md">
+            Every response arrives token-by-token over SSE. You watch the agent reason in real time — not a loading spinner followed by a wall of text. Latency becomes visible instead of hidden.
           </p>
+          <div class="flex items-center gap-2.5">
+            <span class="font-mono text-xs text-text-tertiary">streaming</span>
+            <span class="flex items-center gap-1">
+              <span class="stream-dot w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+              <span class="stream-dot w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+              <span class="stream-dot w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+            </span>
+          </div>
         </div>
 
-        <div class="feat-card rounded-xl bg-surface p-8 reveal">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2DD4A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <!-- Right stack: two lean cards -->
+        <div class="md:col-span-5 flex flex-col gap-3">
+          <div class="feat-card rounded-xl bg-surface p-8 reveal flex-1">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4A52A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              </div>
+              <h3 class="font-bold text-base tracking-tight text-text">Connect by URL</h3>
             </div>
-            <h3 class="font-bold text-base tracking-tight text-text">Multi-Agent Roster</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">
+              No marketplace. Paste the endpoint, the app reads the Agent Card. The open web is the platform.
+            </p>
           </div>
-          <p class="text-sm text-text-secondary leading-relaxed max-w-sm">
-            Add unlimited agents. Organize them into groups and custom tabs. Switch between them like contacts in a messenger.
-          </p>
+
+          <div class="feat-card rounded-xl bg-surface p-8 reveal flex-1">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4A52A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3 class="font-bold text-base tracking-tight text-text">Multi-Agent Roster</h3>
+            </div>
+            <p class="text-sm text-text-secondary leading-relaxed">
+              Add unlimited agents. Organize into groups and tabs. Switch between them like contacts in a messenger.
+            </p>
+          </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <div class="feat-card rounded-xl bg-surface p-8 reveal">
-          <div class="flex items-center gap-3 mb-5">
+      <!-- Row 2: 5 / 7 flipped -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+        <div class="feat-card md:col-span-5 rounded-xl bg-surface p-8 reveal">
+          <div class="flex items-center gap-3 mb-4">
             <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2DD4A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            </div>
-            <h3 class="font-bold text-base tracking-tight text-text">Connect by URL</h3>
-          </div>
-          <p class="text-sm text-text-secondary leading-relaxed">
-            No marketplace. Paste the endpoint, the app reads the Agent Card. The open web is the platform.
-          </p>
-        </div>
-
-        <div class="feat-card rounded-xl bg-surface p-8 reveal">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2DD4A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4A52A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
             </div>
             <h3 class="font-bold text-base tracking-tight text-text">Rich Attachments</h3>
           </div>
@@ -354,25 +397,27 @@
           </p>
         </div>
 
-        <div class="feat-card rounded-xl bg-surface p-8 reveal">
-          <div class="flex items-center gap-3 mb-5">
+        <div class="feat-card md:col-span-7 rounded-xl bg-surface p-8 reveal">
+          <div class="flex items-center gap-3 mb-4">
             <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2DD4A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4A52A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
             </div>
             <h3 class="font-bold text-base tracking-tight text-text">Native Everywhere</h3>
           </div>
-          <p class="text-sm text-text-secondary leading-relaxed">
-            iPhone, iPad, Mac, Vision Pro. One native binary per platform, not a web view.
+          <p class="text-sm text-text-secondary leading-relaxed max-w-md">
+            iPhone, iPad, Mac, Vision Pro. One native binary per platform, not a web view. Platform idioms, system fonts, keyboard shortcuts — it all works because it was built to.
           </p>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- Protocol -->
+  <!-- ═══ PROTOCOL ═══ -->
   <section id="protocol" class="py-24 md:py-32 border-t border-border-subtle">
     <div class="max-w-[1200px] mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
+
         <div class="lg:col-span-4 reveal">
           <p class="font-mono text-xs font-medium text-accent mb-3 tracking-wide uppercase">Protocol</p>
           <h2 class="font-extrabold text-3xl md:text-4xl tracking-tighter leading-tight text-text mb-5">
@@ -409,14 +454,16 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Privacy -->
+  <!-- ═══ PRIVACY ═══ -->
   <section id="privacy" class="py-24 md:py-32 border-t border-border-subtle">
     <div class="max-w-[1200px] mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
+
         <div class="lg:col-span-5 reveal">
           <p class="font-mono text-xs font-medium text-accent mb-3 tracking-wide uppercase">Privacy</p>
           <h2 class="font-extrabold text-3xl md:text-4xl tracking-tighter leading-tight text-text mb-5">
@@ -446,13 +493,15 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Audience -->
+  <!-- ═══ USE CASES — definition list, no cards ═══ -->
   <section class="py-24 md:py-32 border-t border-border-subtle">
     <div class="max-w-[1200px] mx-auto px-6">
+
       <div class="mb-16 reveal">
         <p class="font-mono text-xs font-medium text-accent mb-3 tracking-wide uppercase">Use cases</p>
         <h2 class="font-extrabold text-3xl md:text-4xl tracking-tighter leading-tight text-text">
@@ -460,47 +509,125 @@
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div class="feat-card rounded-xl bg-surface p-7 reveal">
-          <p class="font-mono text-xs text-accent mb-2">developers</p>
-          <h3 class="font-bold text-sm tracking-tight text-text mb-2">Building A2A agents</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">Test and demo your agent instantly. No frontend to build — point AgentChat at your endpoint and go.</p>
+      <div class="divide-y divide-border-subtle">
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 reveal">
+          <div class="md:col-span-3">
+            <span class="font-mono text-xs text-accent">developers</span>
+          </div>
+          <div class="md:col-span-5">
+            <h3 class="font-semibold text-sm text-text mb-2">Building A2A agents</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">Test and demo your agent instantly. No frontend to build — point AgentChat at your endpoint and go.</p>
+          </div>
         </div>
-        <div class="feat-card rounded-xl bg-surface p-7 reveal">
-          <p class="font-mono text-xs text-accent mb-2">teams</p>
-          <h3 class="font-bold text-sm tracking-tight text-text mb-2">Internal AI assistants</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">Give your team a native mobile client for internal agents without building one from scratch.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 reveal">
+          <div class="md:col-span-3">
+            <span class="font-mono text-xs text-accent">teams</span>
+          </div>
+          <div class="md:col-span-5">
+            <h3 class="font-semibold text-sm text-text mb-2">Internal AI assistants</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">Give your team a native mobile client for internal agents without building one from scratch.</p>
+          </div>
         </div>
-        <div class="feat-card rounded-xl bg-surface p-7 reveal">
-          <p class="font-mono text-xs text-accent mb-2">self-hosters</p>
-          <h3 class="font-bold text-sm tracking-tight text-text mb-2">Local models</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">Wrap your local LLM in an A2A endpoint and chat with it from your phone. No port forwarding theatrics.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 reveal">
+          <div class="md:col-span-3">
+            <span class="font-mono text-xs text-accent">self-hosters</span>
+          </div>
+          <div class="md:col-span-5">
+            <h3 class="font-semibold text-sm text-text mb-2">Local models</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">Wrap your local LLM in an A2A endpoint and chat with it from your phone. No port forwarding theatrics.</p>
+          </div>
         </div>
-        <div class="feat-card rounded-xl bg-surface p-7 reveal">
-          <p class="font-mono text-xs text-accent mb-2">everyone</p>
-          <h3 class="font-bold text-sm tracking-tight text-text mb-2">Private chat client</h3>
-          <p class="text-sm text-text-secondary leading-relaxed">No logins, no data collection, no subscription walls. A clean messenger for the agents you choose.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 reveal">
+          <div class="md:col-span-3">
+            <span class="font-mono text-xs text-accent">everyone</span>
+          </div>
+          <div class="md:col-span-5">
+            <h3 class="font-semibold text-sm text-text mb-2">Private chat client</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">No logins, no data collection, no subscription walls. A clean messenger for the agents you choose.</p>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- CTA with marquee -->
+  <!-- ═══ FAQ ═══ -->
+  <section class="py-24 md:py-32 border-t border-border-subtle">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+        <div class="lg:col-span-4 reveal">
+          <p class="font-mono text-xs font-medium text-accent mb-3 tracking-wide uppercase">FAQ</p>
+          <h2 class="font-extrabold text-3xl md:text-4xl tracking-tighter leading-tight text-text">
+            Questions<br>answered.
+          </h2>
+        </div>
+
+        <div class="lg:col-span-8 reveal">
+
+          <details class="border-t border-border-subtle group">
+            <summary class="py-5 flex items-center justify-between gap-4 text-sm font-semibold text-text hover:text-text-secondary transition-colors select-none">
+              What is the A2A protocol?
+              <span class="faq-icon w-5 h-5 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-sm leading-none">+</span>
+            </summary>
+            <div class="faq-body">
+              <div class="pb-5 text-sm text-text-secondary leading-relaxed pr-10">
+                A2A (Agent-to-Agent) is an open interoperability protocol that lets AI agents communicate across platforms using a standard HTTP interface. Any service that exposes an A2A endpoint and publishes a discovery file at <code class="font-mono text-xs text-accent bg-accent-dim px-1.5 py-0.5 rounded">/.well-known/agent.json</code> is automatically compatible with AgentChat Hub.
+              </div>
+            </div>
+          </details>
+
+          <details class="border-t border-border-subtle group">
+            <summary class="py-5 flex items-center justify-between gap-4 text-sm font-semibold text-text hover:text-text-secondary transition-colors select-none">
+              Which agents can I connect to?
+              <span class="faq-icon w-5 h-5 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-sm leading-none">+</span>
+            </summary>
+            <div class="faq-body">
+              <div class="pb-5 text-sm text-text-secondary leading-relaxed pr-10">
+                Any agent that implements the A2A specification — ones you build yourself, internal company agents, or any third-party service exposing a standard A2A endpoint. There is no curated marketplace. The open web is the directory.
+              </div>
+            </div>
+          </details>
+
+          <details class="border-t border-border-subtle group">
+            <summary class="py-5 flex items-center justify-between gap-4 text-sm font-semibold text-text hover:text-text-secondary transition-colors select-none">
+              Is AgentChat Hub really free?
+              <span class="faq-icon w-5 h-5 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-sm leading-none">+</span>
+            </summary>
+            <div class="faq-body">
+              <div class="pb-5 text-sm text-text-secondary leading-relaxed pr-10">
+                Yes. No subscription, no in-app purchases, no freemium gate. The app is free on the App Store. You pay the agent providers you connect to directly — that's between you and them.
+              </div>
+            </div>
+          </details>
+
+          <details class="border-t border-border-subtle group">
+            <summary class="py-5 flex items-center justify-between gap-4 text-sm font-semibold text-text hover:text-text-secondary transition-colors select-none">
+              Does AgentChat see my conversation data?
+              <span class="faq-icon w-5 h-5 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-sm leading-none">+</span>
+            </summary>
+            <div class="faq-body">
+              <div class="pb-5 text-sm text-text-secondary leading-relaxed pr-10">
+                No. AgentChat Hub has no backend, no telemetry, and no analytics. Messages travel directly from your device to your chosen agent — we are not in that path. Conversations are stored on-device and nowhere else.
+              </div>
+            </div>
+          </details>
+
+          <div class="border-t border-border-subtle"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FINAL CTA ═══ -->
   <section class="py-24 md:py-32 border-t border-border-subtle relative overflow-hidden">
     <div class="dot-grid absolute inset-0 opacity-20"></div>
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-accent/5 blur-[100px] pointer-events-none"></div>
-
-    <!-- Marquee band -->
-    <div class="overflow-hidden mb-16 opacity-10 select-none pointer-events-none">
-      <div class="marquee-track font-black text-7xl md:text-9xl tracking-tighter text-text whitespace-nowrap">
-        <span>AGENTCHAT HUB</span>
-        <span>AGENTCHAT HUB</span>
-        <span>AGENTCHAT HUB</span>
-        <span>AGENTCHAT HUB</span>
-        <span>AGENTCHAT HUB</span>
-        <span>AGENTCHAT HUB</span>
-      </div>
-    </div>
 
     <div class="max-w-[1200px] mx-auto px-6 text-center relative z-10 reveal">
       <h2 class="font-black text-4xl md:text-6xl tracking-tighter leading-[0.9] text-text max-w-2xl mx-auto mb-6">
@@ -510,7 +637,7 @@
         Free. No account. No tracking. Available now.
       </p>
       <a href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener"
-         class="btn-primary inline-flex items-center gap-3 bg-accent text-bg font-semibold px-8 py-4 rounded-xl text-sm">
+         class="btn-primary inline-flex items-center gap-3 bg-accent text-bg font-semibold px-8 py-4 rounded-xl text-sm border border-accent/80">
         <svg width="18" height="18" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.2-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.28 2.13-9.54 3.25-12.8 3.35-4.92.21-9.84-1.96-14.75-6.52-3.13-2.73-7.05-7.41-11.76-14.04-5.05-7.14-9.2-15.42-12.44-24.86C18.63 110.62 17 101.02 17 91.71c0-10.67 2.3-19.87 6.92-27.58 3.62-6.18 8.44-11.06 14.48-14.66 6.04-3.6 12.56-5.43 19.6-5.58 3.92 0 9.06 1.21 15.43 3.6 6.35 2.4 10.43 3.62 12.22 3.62 1.34 0 5.87-1.43 13.56-4.28 7.27-2.64 13.41-3.74 18.44-3.32 13.62 1.1 23.85 6.47 30.63 16.15-12.19 7.39-18.22 17.73-18.1 31 .11 10.34 3.86 18.94 11.23 25.77 3.34 3.17 7.07 5.62 11.22 7.36-.9 2.61-1.85 5.11-2.86 7.51zM119.11 7.24c0 8.1-2.96 15.67-8.86 22.67-7.12 8.32-15.73 13.13-25.07 12.37a25.2 25.2 0 0 1-.19-3.07c0-7.78 3.39-16.09 9.4-22.89 3-3.44 6.82-6.31 11.45-8.6 4.62-2.26 8.99-3.51 13.1-3.72.12 1.1.17 2.2.17 3.24z"/></svg>
         Download on the App Store
       </a>
@@ -532,9 +659,8 @@
   <script>
     // ── Scroll reveal with stagger ──
     const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Stagger siblings: find index among siblings with .reveal
           const parent = entry.target.parentElement;
           const siblings = [...parent.querySelectorAll(':scope > .reveal')];
           const idx = siblings.indexOf(entry.target);
@@ -546,12 +672,11 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ── Step number pop animation ──
+    // ── Step number pop ──
     const stepObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const nums = entry.target.querySelectorAll('.step-num');
-          nums.forEach((n, i) => {
+          entry.target.querySelectorAll('.step-num').forEach((n, i) => {
             setTimeout(() => n.classList.add('visible'), i * 200);
           });
           stepObserver.unobserve(entry.target);
@@ -565,8 +690,7 @@
     const privacyObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const rows = entry.target.querySelectorAll('.privacy-row');
-          rows.forEach((row, i) => {
+          entry.target.querySelectorAll('.privacy-row').forEach((row, i) => {
             setTimeout(() => row.classList.add('visible'), i * 100);
           });
           privacyObserver.unobserve(entry.target);
@@ -587,13 +711,13 @@
 
     // ── Terminal typing animation ──
     const terminalLines = [
-      { type: 'cmd',   text: '$ <span class="text-[#2DD4A8]">connect</span> <span class="text-[#A1A1AA]">https://research.example.com</span>' },
-      { type: 'info',  text: '<span class="text-[#2DD4A8]">&#10003;</span> Agent Card discovered at /.well-known/agent.json' },
-      { type: 'info',  text: '<span class="text-[#2DD4A8]">&#10003;</span> Capabilities: streaming, multimodal, push-notifications' },
-      { type: 'info',  text: '<span class="text-[#2DD4A8]">&#10003;</span> Session established <span class="text-[#71717A]">(anonymous, on-device)</span>' },
+      { type: 'cmd',   text: '$ <span class="text-[#D4A52A]">connect</span> <span class="text-[#A8A18C]">https://research.example.com</span>' },
+      { type: 'info',  text: '<span class="text-[#D4A52A]">&#10003;</span> Agent Card discovered at /.well-known/agent.json' },
+      { type: 'info',  text: '<span class="text-[#D4A52A]">&#10003;</span> Capabilities: streaming, multimodal, push-notifications' },
+      { type: 'info',  text: '<span class="text-[#D4A52A]">&#10003;</span> Session established <span class="text-[#706959]">(anonymous, on-device)</span>' },
       { type: 'sep',   text: '' },
-      { type: 'user',  text: '<span class="text-[#2DD4A8]">you</span>  Summarize the latest A2A protocol spec changes' },
-      { type: 'agent', text: '<span class="text-[#71717A]">agent</span> ', words: 'The March revision added three changes: streaming task updates via SSE, a new parts array for multi-modal responses, and push notification support for long-running tasks.' },
+      { type: 'user',  text: '<span class="text-[#D4A52A]">you</span>  Summarize the latest A2A protocol spec changes' },
+      { type: 'agent', text: '<span class="text-[#706959]">agent</span> ', words: 'The March revision added three changes: streaming task updates via SSE, a new parts array for multi-modal responses, and push notification support for long-running tasks.' },
     ];
 
     const termBody = document.getElementById('terminal-body');
@@ -603,22 +727,19 @@
     function createLine(line) {
       const div = document.createElement('div');
       div.className = 'term-line';
-      if (line.type === 'cmd') {
+      if (line.type === 'cmd' || line.type === 'user') {
         div.className += ' flex items-start gap-3';
         div.innerHTML = line.text;
       } else if (line.type === 'info') {
-        div.className += ' pl-6 text-[#71717A] text-xs';
+        div.className += ' pl-6 text-[#706959] text-xs';
         div.innerHTML = line.text;
       } else if (line.type === 'sep') {
         div.className = 'term-line glow-line my-4';
-      } else if (line.type === 'user') {
-        div.className += ' flex items-start gap-3';
-        div.innerHTML = line.text;
       } else if (line.type === 'agent') {
         div.className += ' flex items-start gap-3';
         div.innerHTML = line.text;
         const span = document.createElement('span');
-        span.className = 'text-[#A1A1AA] leading-relaxed';
+        span.className = 'text-[#A8A18C] leading-relaxed';
         span.id = 'agent-response';
         div.appendChild(span);
       }
@@ -630,36 +751,31 @@
         const line = terminalLines[i];
         const el = createLine(line);
         termBody.appendChild(el);
-
         await new Promise(r => setTimeout(r, 80));
         el.classList.add('typed');
 
         if (line.type === 'agent') {
-          // Word-by-word typing
           const responseEl = el.querySelector('#agent-response');
           const words = line.words.split(' ');
           for (let w = 0; w < words.length; w++) {
             await new Promise(r => setTimeout(r, 40 + Math.random() * 30));
             responseEl.textContent += (w > 0 ? ' ' : '') + words[w];
           }
-          // Add blinking cursor
           const cursor = document.createElement('span');
-          cursor.className = 'cursor-blink text-[#2DD4A8] ml-0.5';
+          cursor.className = 'cursor-blink text-[#D4A52A] ml-0.5';
           cursor.textContent = '|';
           responseEl.appendChild(cursor);
-          terminal.classList.add('glow');
+          terminal.classList.add('active-glow');
         } else {
           await new Promise(r => setTimeout(r, line.type === 'sep' ? 300 : 150));
         }
       }
     }
 
-    // Trigger terminal animation when visible
     const termObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !termStarted) {
           termStarted = true;
-          // Wait for hero fade-in to complete
           setTimeout(typeTerminal, 900);
           termObserver.unobserve(entry.target);
         }
@@ -672,8 +788,7 @@
     const heroGrid = document.getElementById('hero-grid');
     if (heroGrid && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       window.addEventListener('scroll', () => {
-        const y = window.scrollY;
-        heroGrid.style.transform = `translateY(${y * 0.15}px)`;
+        heroGrid.style.transform = `translateY(${window.scrollY * 0.15}px)`;
       }, { passive: true });
     }
   </script>
