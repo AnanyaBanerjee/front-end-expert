@@ -12,7 +12,8 @@ front-end-tech/
 │   ├── minimalist-skill/# Editorial, Notion/Linear-inspired
 │   ├── brutalist-skill/ # Swiss typographic / CRT terminal
 │   ├── impeccable/      # Design quality, anti-patterns, a11y
-│   └── emil-design-eng/ # Animation craft, transforms, gestures
+│   ├── emil-design-eng/ # Animation craft, transforms, gestures
+│   └── landing-page-design/ # Page structure, hero formulas, conversion patterns
 ├── output/              # Generated landing pages and websites
 ├── README.md
 └── HOW_TO_USE.md
@@ -63,6 +64,7 @@ cp ../../skills/taste-skill/SKILL.md ./SKILL.md
 
 | Skill | Best for |
 |-------|----------|
+| **landing-page-design** | Always use — page structure, hero formulas, conversion patterns |
 | **taste-skill** | General-purpose modern UI (SaaS, apps, landing pages) |
 | **soft-skill** | Premium, high-end feel (agency sites, luxury products) |
 | **minimalist-skill** | Content-heavy, editorial (docs, blogs, dashboards) |
@@ -90,6 +92,7 @@ But the skills in this repo fall into **three layers** that serve different purp
 
 | Layer | Skills | Role |
 |-------|--------|------|
+| **Structure** (always use) | landing-page-design | What goes on the page and why — sections, hero formulas, conversion patterns |
 | **Style** (pick ONE) | taste-skill, soft-skill, minimalist-skill, brutalist-skill | Visual direction — what things look like |
 | **Quality** (layer on top) | impeccable | What to avoid, anti-patterns, accessibility |
 | **Engineering** (layer on top) | emil-design-eng | How to implement motion, transforms, gestures |

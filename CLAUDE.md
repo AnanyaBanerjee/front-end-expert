@@ -24,4 +24,8 @@ skills/my-project/index.html         # WRONG — skills/ is for SKILL.md files o
 
 ## Skill Evaluation
 
-When asked to evaluate or add a new skill, judge it from this perspective: "Does this help build better landing pages and websites?" Focus on skills that improve: visual design, hero sections, CTAs, typography, color, responsive layouts, motion that converts, page performance. Reject skills focused on app internals (state management, routing, testing) that don't improve the final shipped page.
+When asked to evaluate or add a new skill, judge it from two angles:
+1. "Does this help build better landing pages and websites?"
+2. "Does a non-developer benefit from this, or does it require frontend knowledge to use?"
+
+Focus on skills that improve: page structure, visual design, hero sections, CTAs, conversion patterns, motion, and accessibility. Reject skills about app internals (state management, routing, testing) or framework-specific guides (shadcn/ui, Tailwind, React patterns) that require frontend knowledge to use.
