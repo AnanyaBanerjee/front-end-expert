@@ -57,6 +57,9 @@ This project uses layered design skills:
 - **.impeccable.md** — Design quality, anti-patterns, and accessibility
 - **Structure**: follow `../../skills/landing-page-design/patterns.md`, `../../skills/landing-page-design/anti-patterns.md`, and `../../skills/landing-page-design/decisions.md`
 - **Engineering**: follow `../../skills/emil-design-eng/SKILL.md` for animation and interaction
+- **SEO**: follow `../../skills/seo/SKILL.md` — apply full SEO checklist to every page by default
+- **AEO**: follow `../../skills/llms-txt/SKILL.md` — generate llms.txt and apply AI search optimization to every project
+- **Copy**: follow `../../skills/copywriting/patterns.md` for headlines, CTAs, and page copy
 
 ## Output
 

@@ -18,6 +18,9 @@ Design instruction files that guide AI tools to generate polished frontend UI:
 | **branding** | Logo systems, color architecture, brand identity patterns and anti-patterns | [vibeship-spawner-skills](https://github.com/vibeforge1111/vibeship-spawner-skills) |
 | **logo** | Ask for logo, place it correctly, or create a clean SVG wordmark if none exists | custom |
 | **product-images** | Browser frames, phone mockups, perspective tilts, floating compositions, scroll reveals | custom |
+| **seo** | Meta tags, Open Graph, JSON-LD structured data, semantic HTML, page speed — applied to every page | custom |
+| **llms-txt** | llms.txt generation, AEO, AI search optimization for Perplexity/ChatGPT/Claude/Gemini | custom |
+| **copywriting** | PAS/AIDA frameworks, headline formulas, CTA copy, conversion writing | [vibeship-spawner-skills](https://github.com/vibeforge1111/vibeship-spawner-skills) |
 
 ### Start a new landing page
 
@@ -70,4 +73,5 @@ All generated output goes in `output/`, organized by project. See [HOW_TO_USE.md
 - **impeccable** — by [pbakaus](https://github.com/pbakaus), sourced from [impeccable](https://github.com/pbakaus/impeccable). Licensed under Apache 2.0.
 - **emil-design-eng** — by [Emil Kowalski](https://github.com/emilkowalski), sourced from [skill](https://github.com/emilkowalski/skill). Licensed under the original repository's terms.
 - **landing-page-design**, **branding** — sourced from [vibeship-spawner-skills](https://github.com/vibeforge1111/vibeship-spawner-skills). Licensed under the original repository's terms.
-- **logo**, **product-images** — custom skills written for this repo.
+- **logo**, **product-images**, **seo**, **llms-txt** — custom skills written for this repo.
+- **copywriting** — sourced from [vibeship-spawner-skills](https://github.com/vibeforge1111/vibeship-spawner-skills). Licensed under the original repository's terms.

@@ -16,7 +16,10 @@ front-end-tech/
 │   ├── landing-page-design/ # Page structure, hero formulas, conversion patterns
 │   ├── branding/            # Logo systems, color architecture, brand identity
 │   ├── logo/                # Logo handling, placement, SVG wordmark creation
-│   └── product-images/      # Browser frames, phone mockups, tilts, compositions
+│   ├── product-images/      # Browser frames, phone mockups, tilts, compositions
+│   ├── seo/                 # Meta tags, structured data, semantic HTML, page speed
+│   ├── llms-txt/            # llms.txt, AEO, AI search optimization
+│   └── copywriting/         # PAS/AIDA frameworks, headlines, CTAs
 ├── output/              # Generated landing pages and websites
 ├── README.md
 └── HOW_TO_USE.md
@@ -97,6 +100,9 @@ But the skills in this repo fall into **three layers** that serve different purp
 |-------|--------|------|
 | **Logo** (always use) | logo + branding | Ask for logo, place it correctly, or create one |
 | **Product images** (always use) | product-images | Ask for screenshots, present them beautifully |
+| **SEO** (always apply) | seo | Meta tags, structured data, page speed — on every page |
+| **AEO** (always apply) | llms-txt | llms.txt and AI search optimization — on every project |
+| **Copy** (always apply) | copywriting | PAS/AIDA frameworks, headlines, CTAs |
 | **Structure** (always use) | landing-page-design | What goes on the page and why — sections, hero formulas, conversion patterns |
 | **Style** (pick ONE) | taste-skill, soft-skill, minimalist-skill, brutalist-skill | Visual direction — what things look like |
 | **Quality** (layer on top) | impeccable | What to avoid, anti-patterns, accessibility |

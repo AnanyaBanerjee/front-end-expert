@@ -22,6 +22,37 @@ index.html                           # WRONG — not inside output/
 skills/my-project/index.html         # WRONG — skills/ is for SKILL.md files only
 ```
 
+## SEO — Apply to Every Page
+
+**Every page built must include full SEO implementation without being asked.** Follow `skills/seo/SKILL.md` for the complete checklist.
+
+Required on every page:
+- Optimized `<title>` (under 60 chars, includes product name)
+- `<meta name="description">` (120–160 chars, factual and specific)
+- Full Open Graph tags (`og:title`, `og:description`, `og:url`, `og:image`)
+- Twitter card tags
+- JSON-LD structured data (SoftwareApplication, WebSite, or FAQPage as appropriate)
+- Semantic HTML (`<header>`, `<main>`, `<nav>`, `<footer>`, correct heading hierarchy)
+- Image `alt` attributes and `width`/`height` on all images
+- `loading="lazy"` on below-fold images
+- `robots.txt` and `sitemap.xml` stubs
+
+Ask the user for their domain URL and OG image if not provided. Mark as TODO if unavailable.
+
+## Agent Engine Optimization (AEO) — Apply to Every Page
+
+**Every page built must include AEO implementation without being asked.** Follow `skills/llms-txt/SKILL.md` for the complete checklist.
+
+Required on every project:
+- `/llms.txt` file at the project root with product name, one-sentence summary, key pages, and factual capabilities
+- Speakable JSON-LD schema marking the `product-summary` paragraph
+- All headlines state what things ARE — not how they feel
+- Feature copy leads with specific capability, not vague benefit
+- At least one FAQ section with direct, citable answers
+- Meta description uses factual language — no marketing speak
+
+Ask the user for a factual one-sentence product description and 3–5 capability bullet points if not clear from context.
+
 ## Product Images
 
 **Always ask for product screenshots before building any landing page.**
