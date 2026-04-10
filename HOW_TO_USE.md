@@ -67,8 +67,8 @@ The `skills/` folder contains `SKILL.md` files that AI coding tools (Claude Code
 
 ```bash
 # Clone the repo
-git clone https://github.com/AnanyaBanerjee/front-end-tech.git
-cd front-end-tech
+git clone https://github.com/AnanyaBanerjee/front-end-expert.git
+cd front-end-expert
 
 # Scaffold a new project with ALL skill layers wired up automatically
 ./setup.sh my-landing-page taste-skill
@@ -97,7 +97,7 @@ The setup script creates your project with every layer active: logo, product ima
 Replace the `SKILL.md` in your project root:
 
 ```bash
-cp ../front-end-tech/skills/minimalist-skill/SKILL.md ./SKILL.md
+cp ../front-end-expert/skills/minimalist-skill/SKILL.md ./SKILL.md
 ```
 
 ### How skill loading works

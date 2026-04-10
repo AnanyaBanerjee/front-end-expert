@@ -60,7 +60,7 @@ If you want to push updates by committing to this repo:
 
 1. **Go to** [pages.cloudflare.com](https://pages.cloudflare.com) → "Create a project" → "Connect to Git"
 
-2. **Connect your GitHub account** and select the `front-end-tech` repo
+2. **Connect your GitHub account** and select the `front-end-expert` repo
 
 3. **Configure the build:**
    - **Framework preset**: None

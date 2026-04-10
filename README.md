@@ -155,7 +155,7 @@ output/my-product/
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/AnanyaBanerjee/front-end-tech.git
+git clone https://github.com/AnanyaBanerjee/front-end-expert.git
 cd front-end-tech
 
 # 2. Scaffold a new project with ALL layers wired up automatically
