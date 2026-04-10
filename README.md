@@ -2,6 +2,8 @@
 
 A toolkit for building landing pages and websites for apps, ideas, and concepts — powered by AI design skills.
 
+Every page Claude builds is automatically **SEO-optimized** (meta tags, Open Graph, JSON-LD structured data, semantic HTML) and **AEO-optimized** (llms.txt, speakable schema, factual copy) for AI search engines like Perplexity, ChatGPT, and Gemini — without you having to ask.
+
 ## Skills
 
 Design instruction files that guide AI tools to generate polished frontend UI:
@@ -38,22 +40,30 @@ cd output/my-landing-page
 Add skill layers to any existing project folder:
 
 ```bash
+# Use the setup script — it wires up all layers automatically
+./setup.sh your-project taste-skill
+```
+
+Or manually for an existing folder:
+
+```bash
 cd output/your-project
 
-# 1. Copy a style skill
 cp ../../skills/taste-skill/SKILL.md ./SKILL.md
-
-# 2. Copy the quality layer
 cp ../../skills/impeccable/SKILL.md ./.impeccable.md
 
-# 3. Create CLAUDE.md to reference structure + engineering layers
 cat > CLAUDE.md << 'EOF'
 # Project Rules
 ## Design Skills
-- **SKILL.md** — taste-skill (visual direction)
+- **Logo**: follow `../../skills/logo/SKILL.md` — ask for logo first
+- **Product images**: follow `../../skills/product-images/SKILL.md` — ask for screenshots first
+- **SKILL.md** — active style skill (visual direction)
 - **.impeccable.md** — design quality and anti-patterns
-- For page structure and conversion patterns: `../../skills/landing-page-design/`
-- For animation craft: `../../skills/emil-design-eng/SKILL.md`
+- **Structure**: follow `../../skills/landing-page-design/`
+- **Engineering**: follow `../../skills/emil-design-eng/SKILL.md`
+- **SEO**: follow `../../skills/seo/SKILL.md` — apply to every page automatically
+- **AEO**: follow `../../skills/llms-txt/SKILL.md` — generate llms.txt for every project
+- **Copy**: follow `../../skills/copywriting/patterns.md`
 EOF
 ```
 

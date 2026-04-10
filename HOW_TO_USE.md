@@ -2,17 +2,19 @@
 
 This repo is a toolkit for building landing pages and websites for your apps, ideas, and concepts. It uses AI design skills to go from idea to polished page fast.
 
+**Every page Claude builds is automatically SEO and AEO optimized** — meta tags, Open Graph, JSON-LD structured data, `llms.txt`, and AI-search-ready copy are included on every single page without you having to ask. Read [how_to_improve_SEO.md](how_to_improve_SEO.md) and [how_to_improve_agent_engine_optimization.md](how_to_improve_agent_engine_optimization.md) to understand what's included and why. When you're ready to go live, see [how_to_deploy.md](how_to_deploy.md) for Cloudflare Pages deployment.
+
 ## Repo Structure
 
 ```
 front-end-tech/
-├── skills/              # AI design instruction files (SKILL.md)
-│   ├── taste-skill/     # Core modern UI design
-│   ├── soft-skill/      # Premium, agency-level aesthetics
-│   ├── minimalist-skill/# Editorial, Notion/Linear-inspired
-│   ├── brutalist-skill/ # Swiss typographic / CRT terminal
-│   ├── impeccable/      # Design quality, anti-patterns, a11y
-│   ├── emil-design-eng/ # Animation craft, transforms, gestures
+├── skills/
+│   ├── taste-skill/         # Core modern UI design
+│   ├── soft-skill/          # Premium, agency-level aesthetics
+│   ├── minimalist-skill/    # Editorial, Notion/Linear-inspired
+│   ├── brutalist-skill/     # Swiss typographic / CRT terminal
+│   ├── impeccable/          # Design quality, anti-patterns, a11y + 17 commands
+│   ├── emil-design-eng/     # Animation craft, transforms, gestures
 │   ├── landing-page-design/ # Page structure, hero formulas, conversion patterns
 │   ├── branding/            # Logo systems, color architecture, brand identity
 │   ├── logo/                # Logo handling, placement, SVG wordmark creation
@@ -20,9 +22,13 @@ front-end-tech/
 │   ├── seo/                 # Meta tags, structured data, semantic HTML, page speed
 │   ├── llms-txt/            # llms.txt, AEO, AI search optimization
 │   └── copywriting/         # PAS/AIDA frameworks, headlines, CTAs
-├── output/              # Generated landing pages and websites
+├── output/                  # Generated landing pages and websites
+├── setup.sh                 # Scaffold a new project with all layers
 ├── README.md
-└── HOW_TO_USE.md
+├── HOW_TO_USE.md
+├── how_to_improve_SEO.md            # SEO knowledge guide
+├── how_to_improve_agent_engine_optimization.md  # AEO knowledge guide
+└── how_to_deploy.md                 # Cloudflare Pages deployment guide
 ```
 
 ## Important: Where Output Goes
@@ -56,15 +62,15 @@ The `skills/` folder contains `SKILL.md` files that AI coding tools (Claude Code
 git clone https://github.com/AnanyaBanerjee/front-end-tech.git
 cd front-end-tech
 
-# Create a project folder inside output/
-mkdir -p output/my-app && cd output/my-app
+# Scaffold a new project with ALL skill layers wired up automatically
+./setup.sh my-landing-page taste-skill
+# Options: taste-skill, soft-skill, minimalist-skill, brutalist-skill
 
-# Copy a skill into your project root
-cp ../../skills/taste-skill/SKILL.md ./SKILL.md
-
-# Open your AI coding tool and start building — it picks up the SKILL.md automatically
-# Everything you generate stays in output/ and won't be committed to GitHub
+# Open Claude Code in that folder and start building
+cd output/my-landing-page
 ```
+
+The setup script creates your project with every layer active: logo, product images, structure, style, quality, engineering, SEO, AEO, and copywriting. Claude will ask you for your logo, screenshots, and product description before building.
 
 ### Picking a skill
 
@@ -140,27 +146,27 @@ cp ../../skills/taste-skill/SKILL.md ./SKILL.md
 # 2. Copy impeccable as a secondary context file
 cp ../../skills/impeccable/SKILL.md ./.impeccable.md
 
-# 3. Create a CLAUDE.md that references emil-design-eng
+# 3. Create CLAUDE.md referencing all layers
 cat > CLAUDE.md << 'EOF'
 # Project Rules
 
 ## Design Skills
-
-This project uses layered design skills:
-- **SKILL.md** — Active style skill (visual direction)
-- **.impeccable.md** — Design quality, anti-patterns, and accessibility
-- For animation and interaction implementation, also follow the rules in `../../skills/emil-design-eng/SKILL.md`
+- **Logo**: follow `../../skills/logo/SKILL.md` — ask for logo before building
+- **Product images**: follow `../../skills/product-images/SKILL.md` — ask for screenshots before building
+- **SKILL.md** — active style skill (visual direction)
+- **.impeccable.md** — design quality, anti-patterns, accessibility
+- **Structure**: follow `../../skills/landing-page-design/patterns.md`, `anti-patterns.md`, `decisions.md`
+- **Engineering**: follow `../../skills/emil-design-eng/SKILL.md`
+- **SEO**: follow `../../skills/seo/SKILL.md` — apply full checklist to every page
+- **AEO**: follow `../../skills/llms-txt/SKILL.md` — generate llms.txt for every project
+- **Copy**: follow `../../skills/copywriting/patterns.md`
 
 ## Output
-
 All generated files must stay in this folder.
 EOF
 ```
 
-Now when Claude Code works in this folder, it reads all three layers:
-1. `SKILL.md` → style direction (e.g., taste-skill)
-2. `.impeccable.md` → quality checks and anti-patterns
-3. `CLAUDE.md` → points to emil-design-eng for animation craft
+Now when Claude Code works in this folder, all layers are active.
 
 #### Option 3: Ask in chat
 
@@ -180,6 +186,37 @@ Cherry-pick sections from multiple skills into a single `SKILL.md`:
 - Animation decision framework from emil-design-eng
 
 This gives the strongest results since everything is in one file the AI definitely reads, but takes more effort to set up.
+
+---
+
+## What Every Page Includes Automatically
+
+Claude applies all of these to every page without you having to ask:
+
+**SEO**
+- `<title>` tag optimized for search (under 60 chars)
+- `<meta name="description">` (factual, 120–160 chars)
+- Open Graph tags for link previews on social/messaging
+- Twitter card tags
+- JSON-LD structured data (product type, FAQ if applicable)
+- Semantic HTML (`<header>`, `<main>`, `<nav>`, `<footer>`)
+- Image `alt` attributes, `width`/`height`, and `loading="lazy"`
+- `robots.txt` and `sitemap.xml`
+
+**AEO (AI Search)**
+- `llms.txt` at the project root — briefing file for Perplexity, ChatGPT, Gemini, Claude
+- Speakable JSON-LD marking the most citable paragraph
+- Headlines that state what things ARE (not how they feel)
+- Feature copy that leads with specific capabilities
+- FAQ section with direct, citable answers
+- Meta description with no marketing speak
+
+**What you need to provide:**
+- Your real domain URL (for canonical tags and llms.txt links)
+- A factual one-sentence description of your product
+- An OG image at 1200×630px (Claude will mark as TODO if you don't have one yet)
+
+Read [how_to_improve_SEO.md](how_to_improve_SEO.md) and [how_to_improve_agent_engine_optimization.md](how_to_improve_agent_engine_optimization.md) for a full explanation of what each item does and why it matters.
 
 ---
 
@@ -454,17 +491,23 @@ components with motion.
 
 ### Combining Commands in a Workflow
 
-You can chain commands for a complete design review cycle:
+You can chain commands for a complete build-and-ship cycle:
 
 ```
-Step 1: /impeccable teach          — Set up design context (once per project)
+Step 1: /impeccable teach           — Set up design context (once per project)
 Step 2: /impeccable craft [feature] — Build with full context
 Step 3: /critique                   — Get honest feedback on what was built
-Step 4: /typeset                    — Fix typography issues from the critique
-Step 5: /colorize                   — Fix color issues from the critique
+Step 4: /typeset                    — Fix typography issues
+Step 5: /colorize                   — Fix color issues
 Step 6: /polish                     — Final pass on spacing and alignment
 Step 7: /harden                     — Make it accessible and robust
-Step 8: /audit                      — Final quality check before shipping
+Step 8: /audit                      — Final design quality check
+
+Then verify SEO + AEO:
+Step 9:  Check <title>, meta description, and Open Graph tags are filled in
+Step 10: Confirm llms.txt exists and has factual product description
+Step 11: Verify robots.txt and sitemap.xml are present
+Step 12: Deploy to Cloudflare Pages (see how_to_deploy.md)
 ```
 
 You don't need to run every command every time. Pick the ones relevant to what needs improvement.
@@ -483,7 +526,11 @@ You don't need to run every command every time. Pick the ones relevant to what n
 
 5. **Override parameters when needed.** The skill defaults are a starting point. If you're building a dense data dashboard, say "visual density 9" upfront instead of fighting the default airy spacing.
 
-6. **Layer all three skill types.** Use the project template (`./setup.sh`) or manual setup to get style + quality + engineering in every project. One skill alone is good; all three together is significantly better.
+6. **Use the setup script.** `./setup.sh` wires up all skill layers — style, quality, engineering, SEO, AEO, logo, product images, and copywriting — in one command.
+
+7. **SEO and AEO are automatic.** Claude applies the full SEO and AEO checklist to every page without being asked. What you need to provide: your real domain URL, a factual one-sentence product description, and an OG image (1200×630px). Read [how_to_improve_SEO.md](how_to_improve_SEO.md) and [how_to_improve_agent_engine_optimization.md](how_to_improve_agent_engine_optimization.md) to understand what's included.
+
+8. **Deploy to Cloudflare Pages.** Take everything in your `output/project-name/` folder and upload it. Free, unlimited bandwidth, custom domains available. See [how_to_deploy.md](how_to_deploy.md).
 
 ---
 
