@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — AgentChat Hub</title>
+  <meta name="description" content="Get help with AgentChat Hub. Common questions, how-tos, and contact information.">
+  <meta name="robots" content="noindex, follow" />
+  <meta name="author" content="Ananya Banerjee" />
+  <link rel="canonical" href="https://agent-chat-hub.com/support.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..125,400;12..96,75..125,500;12..96,75..125,700;12..96,75..125,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: 'rgb(var(--color-bg) / <alpha-value>)', surface: 'rgb(var(--color-surface) / <alpha-value>)',
+            elevated: 'rgb(var(--color-elevated) / <alpha-value>)', border: 'rgb(var(--color-border) / <alpha-value>)',
+            'border-subtle': 'rgb(var(--color-bsub) / <alpha-value>)', accent: 'rgb(var(--color-accent) / <alpha-value>)',
+            'accent-dim': 'var(--accent-dim)', accent2: 'rgb(var(--color-accent2) / <alpha-value>)',
+            text: { DEFAULT: 'rgb(var(--color-text) / <alpha-value>)', secondary: 'rgb(var(--color-text-sec) / <alpha-value>)', tertiary: 'rgb(var(--color-text-ter) / <alpha-value>)' },
+          },
+          fontFamily: { sans: ['"General Sans"', 'system-ui', 'sans-serif'], display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'], mono: ['"JetBrains Mono"', 'monospace'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    :root { --color-bg:255 255 255;--color-surface:245 245 245;--color-elevated:236 236 236;--color-border:218 218 218;--color-bsub:228 228 228;--color-accent:0 184 106;--color-accent2:10 184 212;--color-text:8 8 8;--color-text-sec:60 60 60;--color-text-ter:128 128 128;--accent-raw:#00B86A;--accent2-raw:#0AB8D4;--accent-dim:rgba(0,184,106,0.09);--accent-mid:rgba(0,184,106,0.16); }
+    html[data-theme="dark"] { --color-bg:0 0 0;--color-surface:10 10 10;--color-elevated:20 20 20;--color-border:38 38 38;--color-bsub:28 28 28;--color-accent:0 232 122;--color-accent2:34 211 238;--color-text:248 248 248;--color-text-sec:168 168 168;--color-text-ter:90 90 90;--accent-raw:#00E87A;--accent2-raw:#22D3EE;--accent-dim:rgba(0,232,122,0.10);--accent-mid:rgba(0,232,122,0.18); }
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{font-family:'General Sans',system-ui,sans-serif;background:rgb(var(--color-bg));color:rgb(var(--color-text));-webkit-font-smoothing:antialiased;}
+    .theme-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;color:rgb(var(--color-text-ter));transition:color .15s ease,background .15s ease;cursor:pointer;background:none;border:none;padding:0;}
+    .theme-btn:hover{color:rgb(var(--color-text));background:rgb(var(--color-surface));}
+    .theme-btn .icon-sun{display:none;}.theme-btn .icon-moon{display:block;}
+    html[data-theme="dark"] .theme-btn .icon-sun{display:block;}html[data-theme="dark"] .theme-btn .icon-moon{display:none;}
+    .logo-icon{border-radius:14px;box-shadow:0 0 0 1px rgba(0,0,0,0.08),0 6px 20px -6px rgba(0,180,255,0.22),0 3px 10px -3px rgba(200,0,255,0.14);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s ease;}
+    .btn-primary{position:relative;overflow:hidden;transition:transform .15s cubic-bezier(.16,1,.3,1);}
+    .btn-primary:hover{transform:translateY(-2px);}
+    .reveal{opacity:0;transform:translateY(20px);clip-path:inset(0 0 16px 0);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1),clip-path .65s cubic-bezier(.16,1,.3,1);}
+    .reveal.visible{opacity:1;transform:translateY(0);clip-path:inset(0 0 0px 0);}
+    /* FAQ accordion */
+    details > summary{list-style:none;cursor:pointer;}
+    details > summary::-webkit-details-marker{display:none;}
+    details .faq-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.32s cubic-bezier(.16,1,.3,1);}
+    details[open] .faq-body{grid-template-rows:1fr;}
+    details .faq-body > div{overflow:hidden;}
+    details .faq-icon{transition:transform 0.32s cubic-bezier(.16,1,.3,1);}
+    details[open] .faq-icon{transform:rotate(45deg);}
+    .faq-q{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-variation-settings:'wdth' 105,'wght' 700;font-size:clamp(1rem,2vw,1.2rem);line-height:1.3;color:rgb(var(--color-text));}
+    /* Orbs */
+    .orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(90px);}
+    .orb-1{width:700px;height:700px;top:-280px;left:50%;margin-left:-350px;background:rgb(var(--color-accent));opacity:0.08;}
+    .orb-2{width:400px;height:400px;top:25%;left:5%;background:rgb(var(--color-accent2));opacity:0.07;}
+    .orb-3{width:500px;height:500px;top:5%;right:5%;background:rgb(var(--color-accent));opacity:0.05;}
+    @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;clip-path:none;}details .faq-body{grid-template-rows:1fr;}}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-bg focus:rounded-md focus:text-sm focus:font-semibold">Skip to main content</a>
+  <header role="banner">
+  <nav aria-label="Main navigation" class="fixed top-0 left-0 right-0 z-40 bg-bg/80 backdrop-blur-xl border-b border-border-subtle">
+    <div class="max-w-[1200px] mx-auto px-6 h-14 flex items-center justify-between">
+      <a href="index_v2.html" class="font-semibold text-sm tracking-tight text-text flex items-center gap-2.5">
+        <img src="logo.png" alt="AgentChat Hub" class="logo-icon h-8 w-auto" />AgentChat Hub
+      </a>
+      <div class="flex items-center gap-6">
+        <a href="index_v2.html#features" class="text-xs font-medium text-text-tertiary hover:text-text transition-colors hidden sm:block">Features</a>
+        <a href="index_v2.html#protocol" class="text-xs font-medium text-text-tertiary hover:text-text transition-colors hidden sm:block">Protocol</a>
+        <a href="index_v2.html#privacy" class="text-xs font-medium text-text-tertiary hover:text-text transition-colors hidden sm:block">Privacy</a>
+        <button class="theme-btn" id="theme-toggle" aria-label="Toggle light/dark mode">
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <a href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener" class="btn-primary inline-flex items-center gap-2 bg-accent text-bg text-xs font-semibold px-4 py-2 rounded-lg border border-accent/80">
+          Download <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7.8"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+  </header>
+
+  <main id="main-content" class="pt-14">
+
+    <!-- ═══ HERO ═══ -->
+    <section aria-label="Support hero" class="relative overflow-hidden pt-24 pb-16 md:pt-36 md:pb-20">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+
+      <div class="max-w-[800px] mx-auto px-6 relative z-10 text-center">
+        <div class="mb-4">
+          <span class="inline-flex items-center gap-2 text-xs font-mono font-medium text-accent bg-accent-dim border border-accent/20 px-3 py-1.5 rounded-md">
+            Support
+          </span>
+        </div>
+        <h1 class="font-display font-bold text-5xl md:text-6xl tracking-tight leading-[1.05] text-text mb-5" style="font-variation-settings:'wdth' 112,'wght' 800">
+          We're here to help.
+        </h1>
+        <p class="text-base md:text-lg font-medium text-text-secondary leading-relaxed max-w-xl mx-auto">
+          Answers to common questions and ways to reach us.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══ COMMON QUESTIONS ═══ -->
+    <section aria-labelledby="faq-heading" class="max-w-[800px] mx-auto px-6 py-16">
+
+      <div class="reveal mb-10">
+        <span class="inline-flex items-center gap-2 text-xs font-mono font-medium text-accent2 bg-[var(--accent-dim)] border border-accent2/20 px-3 py-1.5 rounded-md">Common Questions</span>
+      </div>
+
+      <!-- Q1 -->
+      <details class="group border-t border-border-subtle reveal">
+        <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+          <div class="flex items-start gap-5">
+            <span class="font-mono text-xs text-accent shrink-0 mt-1.5">01</span>
+            <span class="faq-q">How do I add a new agent?</span>
+          </div>
+          <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+        </summary>
+        <div class="faq-body">
+          <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+            Go to the Discover tab, enter an agent's URL in the search field, and tap Add. AgentChat Hub reads the agent's public metadata automatically — no configuration required.
+          </div>
+        </div>
+      </details>
+
+      <!-- Q2 -->
+      <details class="group border-t border-border-subtle reveal">
+        <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+          <div class="flex items-start gap-5">
+            <span class="font-mono text-xs text-accent2 shrink-0 mt-1.5">02</span>
+            <span class="faq-q">An agent shows as offline or unavailable — what should I do?</span>
+          </div>
+          <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+        </summary>
+        <div class="faq-body">
+          <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+            Pull to refresh the agent list. If the issue continues, the agent's server may be temporarily unavailable. This is outside AgentChat Hub's control — contact the agent's operator directly.
+          </div>
+        </div>
+      </details>
+
+      <!-- Q3 -->
+      <details class="group border-t border-border-subtle reveal">
+        <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+          <div class="flex items-start gap-5">
+            <span class="font-mono text-xs text-accent shrink-0 mt-1.5">03</span>
+            <span class="faq-q">How do I start a new conversation?</span>
+          </div>
+          <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+        </summary>
+        <div class="faq-body">
+          <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+            Select any agent from the Agents tab. A new conversation begins automatically. Your history is saved locally on your device.
+          </div>
+        </div>
+      </details>
+
+      <!-- Q4 -->
+      <details class="group border-t border-border-subtle reveal">
+        <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+          <div class="flex items-start gap-5">
+            <span class="font-mono text-xs text-accent2 shrink-0 mt-1.5">04</span>
+            <span class="faq-q">How do I send a photo or file?</span>
+          </div>
+          <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+        </summary>
+        <div class="faq-body">
+          <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+            Tap the paperclip icon in the chat input bar to attach a photo, file, or URL. The attachment is sent directly to the agent — AgentChat Hub does not store it.
+          </div>
+        </div>
+      </details>
+
+      <!-- Q5 -->
+      <details class="group border-t border-border-subtle reveal">
+        <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+          <div class="flex items-start gap-5">
+            <span class="font-mono text-xs text-accent shrink-0 mt-1.5">05</span>
+            <span class="faq-q">How do I clear a conversation?</span>
+          </div>
+          <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+        </summary>
+        <div class="faq-body">
+          <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+            Go to the agent's detail screen and select "Clear Conversation." This removes the conversation from your device only.
+          </div>
+        </div>
+      </details>
+
+      <!-- Q6 -->
+      <details class="group border-t border-border-subtle reveal">
+        <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+          <div class="flex items-start gap-5">
+            <span class="font-mono text-xs text-accent2 shrink-0 mt-1.5">06</span>
+            <span class="faq-q">How do I remove an agent?</span>
+          </div>
+          <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+        </summary>
+        <div class="faq-body">
+          <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+            Open the agent's detail screen and tap "Remove Agent."
+          </div>
+        </div>
+      </details>
+
+      <!-- Q7 -->
+      <details class="group border-t border-border-subtle reveal">
+        <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+          <div class="flex items-start gap-5">
+            <span class="font-mono text-xs text-accent shrink-0 mt-1.5">07</span>
+            <span class="faq-q">Does AgentChat Hub require an account or sign-in?</span>
+          </div>
+          <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+        </summary>
+        <div class="faq-body">
+          <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+            No. AgentChat Hub works without any account or sign-in. Your session is stored anonymously on your device.
+          </div>
+        </div>
+      </details>
+
+      <!-- Q8 -->
+      <details class="group border-t border-border-subtle reveal">
+        <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+          <div class="flex items-start gap-5">
+            <span class="font-mono text-xs text-accent2 shrink-0 mt-1.5">08</span>
+            <span class="faq-q">Are my conversations stored in the cloud?</span>
+          </div>
+          <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+        </summary>
+        <div class="faq-body">
+          <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+            No. All conversations are stored locally on your device and are never transmitted to AgentChat Hub's servers. We have no servers.
+          </div>
+        </div>
+      </details>
+
+      <!-- Q9 -->
+      <details class="group border-t border-border-subtle reveal">
+        <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+          <div class="flex items-start gap-5">
+            <span class="font-mono text-xs text-accent shrink-0 mt-1.5">09</span>
+            <span class="faq-q">Can I use AgentChat Hub offline?</span>
+          </div>
+          <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+        </summary>
+        <div class="faq-body">
+          <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+            Past conversations are readable offline. Sending messages requires an active internet connection to reach the agent's server.
+          </div>
+        </div>
+      </details>
+
+      <!-- Q10 -->
+      <details class="group border-t border-border-subtle border-b border-b-border-subtle reveal">
+        <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+          <div class="flex items-start gap-5">
+            <span class="font-mono text-xs text-accent2 shrink-0 mt-1.5">10</span>
+            <span class="faq-q">Is Android supported?</span>
+          </div>
+          <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+        </summary>
+        <div class="faq-body">
+          <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+            Not yet — Android is coming soon. AgentChat Hub is currently available on iPhone, iPad, Mac, and Apple Vision Pro.
+          </div>
+        </div>
+      </details>
+
+    </section>
+
+    <!-- ═══ STILL NEED HELP? ═══ -->
+    <section aria-labelledby="contact-heading" class="max-w-[800px] mx-auto px-6 pb-24">
+      <div class="reveal bg-surface rounded-2xl p-10 border border-border-subtle text-center">
+        <h2 id="contact-heading" class="font-display font-bold text-3xl md:text-4xl tracking-tight text-text mb-4" style="font-variation-settings:'wdth' 112,'wght' 800">
+          Still need help?
+        </h2>
+        <p class="text-sm md:text-base text-text-secondary leading-relaxed max-w-sm mx-auto mb-8">
+          Send us an email and we'll get back to you within 1–2 business days.
+        </p>
+        <a href="mailto:ananyabilbanerjee@gmail.com"
+           class="btn-primary inline-flex items-center gap-2.5 bg-accent text-bg font-semibold px-6 py-3.5 rounded-xl text-sm border border-accent/80 mb-8">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email Support
+        </a>
+        <p class="text-xs text-text-tertiary">
+          AgentChat Hub is an independent app by Ananya Banerjee.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo" class="border-t border-border-subtle py-8 mt-20">
+    <div class="max-w-[1200px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <img src="logo.png" alt="AgentChat Hub" class="logo-icon h-6 w-auto opacity-70" />
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-text-tertiary justify-center sm:justify-end">
+        <span>© <span id="year"></span> Ananya Banerjee. All rights reserved.</span>
+        <a href="terms.html" class="hover:text-accent transition-colors">Terms of Use</a>
+        <a href="privacy-policy.html" class="hover:text-accent transition-colors">Privacy Policy</a>
+        <a href="support.html" class="hover:text-accent transition-colors">Support</a>
+        <a href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener" class="hover:text-accent transition-colors">App Store</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function () {
+      const saved = localStorage.getItem('theme');
+      const theme = saved || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme');
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+        });
+      }
+    })();
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>

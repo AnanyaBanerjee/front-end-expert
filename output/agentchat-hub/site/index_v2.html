@@ -7,7 +7,7 @@
   <meta name="description" content="Connect to any A2A-compatible AI agent via URL. Stream responses in real time. No account, no tracking, no subscriptions. Free on iOS, iPad, Mac, and Vision Pro.">
 
   <!-- SEO essentials -->
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow, noai, noimageai" />
   <meta name="author" content="Ananya Banerjee" />
   <meta name="application-name" content="AgentChat Hub" />
   <!-- Update the canonical URL to match your live domain -->
@@ -1321,14 +1321,18 @@
   <footer role="contentinfo" class="border-t border-border-subtle py-8">
     <div class="max-w-[1200px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <img src="logo.png" alt="AgentChat Hub" class="logo-icon h-6 w-auto opacity-70" />
-      <div class="flex items-center gap-6 text-xs text-text-tertiary">
-        <span>© 2026 Ananya Banerjee. All rights reserved.</span>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-text-tertiary justify-center sm:justify-end">
+        <span>© <span id="year"></span> Ananya Banerjee. All rights reserved.</span>
+        <a href="terms.html" class="hover:text-accent transition-colors">Terms of Use</a>
+        <a href="privacy-policy.html" class="hover:text-accent transition-colors">Privacy Policy</a>
+        <a href="support.html" class="hover:text-accent transition-colors">Support</a>
         <a href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener" class="hover:text-accent transition-colors">App Store</a>
       </div>
     </div>
   </footer>
 
   <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
     // ── Theme toggle ──────────────────────────────────────────────────────────
     (function () {
       // Initialise on first paint: respect saved preference, then system pref
