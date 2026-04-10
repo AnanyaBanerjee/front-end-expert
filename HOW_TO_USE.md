@@ -13,7 +13,9 @@ front-end-tech/
 │   ├── brutalist-skill/ # Swiss typographic / CRT terminal
 │   ├── impeccable/      # Design quality, anti-patterns, a11y
 │   ├── emil-design-eng/ # Animation craft, transforms, gestures
-│   └── landing-page-design/ # Page structure, hero formulas, conversion patterns
+│   ├── landing-page-design/ # Page structure, hero formulas, conversion patterns
+│   ├── branding/            # Logo systems, color architecture, brand identity
+│   └── logo/                # Logo handling, placement, SVG wordmark creation
 ├── output/              # Generated landing pages and websites
 ├── README.md
 └── HOW_TO_USE.md
@@ -92,6 +94,7 @@ But the skills in this repo fall into **three layers** that serve different purp
 
 | Layer | Skills | Role |
 |-------|--------|------|
+| **Logo** (always use) | logo + branding | Ask for logo, place it correctly, or create one |
 | **Structure** (always use) | landing-page-design | What goes on the page and why — sections, hero formulas, conversion patterns |
 | **Style** (pick ONE) | taste-skill, soft-skill, minimalist-skill, brutalist-skill | Visual direction — what things look like |
 | **Quality** (layer on top) | impeccable | What to avoid, anti-patterns, accessibility |

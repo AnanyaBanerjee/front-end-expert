@@ -12,10 +12,12 @@
 ## Design Skills
 
 This project uses layered design skills:
+- **Logo**: follow `../../skills/logo/SKILL.md` — always ask for a logo before building
+- **Branding**: follow `../../skills/branding/patterns.md` and `../../skills/branding/anti-patterns.md`
 - **SKILL.md** — taste-skill (visual direction)
 - **.impeccable.md** — design quality, anti-patterns, and accessibility
-- For page structure, hero formulas, and conversion patterns, also follow `../../skills/landing-page-design/patterns.md`, `../../skills/landing-page-design/anti-patterns.md`, and `../../skills/landing-page-design/decisions.md`
-- For animation and interaction implementation, also follow `../../skills/emil-design-eng/SKILL.md`
+- **Structure**: follow `../../skills/landing-page-design/patterns.md`, `../../skills/landing-page-design/anti-patterns.md`, and `../../skills/landing-page-design/decisions.md`
+- **Engineering**: follow `../../skills/emil-design-eng/SKILL.md` for animation and interaction
 
 ## Output
 
