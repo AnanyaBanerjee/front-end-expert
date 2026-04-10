@@ -184,6 +184,24 @@ When starting a new project, ask:
 - **Footer**: bottom-left or centered, smaller (20–24px), muted opacity (`opacity-60`)
 - Never use a logo as a giant hero image unless the brand specifically calls for it
 
+## Sync — Run After Every Change
+
+**After completing any edit to any file in a project, automatically check if other files need updating.** Follow `skills/sync/SKILL.md` for the full cascade map.
+
+Do this proactively — do not wait for the user to ask. After every change:
+1. Identify what changed
+2. Check the cascade map for what else needs updating
+3. Present the sync plan to the user
+4. Apply all changes after confirmation
+
+Common triggers:
+- Navbar or footer edited in `index.html` → update all other `.html` pages
+- Product name changed anywhere → update titles, llms.txt, legal pages, OG tags
+- Domain URL changed → update robots.txt, sitemap.xml, llms.txt, canonical tags
+- New CDN script added → update `_headers` CSP + add `integrity` hash
+- New page added → update sitemap.xml
+- Analytics added → update privacy-policy.html + `_headers` CSP
+
 ## Deployment Guidance
 
 When a project is complete, always remind the user:

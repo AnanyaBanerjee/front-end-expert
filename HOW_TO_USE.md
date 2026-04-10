@@ -23,6 +23,7 @@ front-end-tech/
 │   ├── aeo/                 # Agent Engine Optimization — llms.txt, AI search
 │   ├── security/            # _headers, SRI, no-secrets, safe links, form hardening
 │   ├── legal/               # Copyright, Privacy Policy, Terms of Use, DMCA, NoAI
+│   └── sync/                # Change propagation — keeps all files in sync
 │   └── copywriting/         # PAS/AIDA frameworks, headlines, CTAs
 ├── output/                  # Generated landing pages and websites
 ├── setup.sh                 # Scaffold a new project with all layers
@@ -117,6 +118,7 @@ But the skills in this repo fall into **three layers** that serve different purp
 | **SEO** (always apply) | seo | Meta tags, structured data, page speed — on every page |
 | **AEO** (always apply) | aeo | llms.txt and AI search optimization — on every project |
 | **Legal** (always apply) | legal | Copyright, Privacy Policy, Terms of Use, DMCA, NoAI — every project |
+| **Sync** (after every change) | sync | Detect cascade impact + update all affected files |
 | **Security** (always apply) | security | Cloudflare headers, SRI, no secrets, safe links — on every page |
 | **Copy** (always apply) | copywriting | PAS/AIDA frameworks, headlines, CTAs |
 | **Structure** (always use) | landing-page-design | What goes on the page and why — sections, hero formulas, conversion patterns |

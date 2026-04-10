@@ -32,6 +32,7 @@ This project uses layered design skills:
 - **.impeccable.md** — design quality, anti-patterns, and accessibility
 - **Structure**: follow `../../skills/landing-page-design/patterns.md`, `../../skills/landing-page-design/anti-patterns.md`, and `../../skills/landing-page-design/decisions.md`
 - **Engineering**: follow `../../skills/emil-design-eng/SKILL.md` for animation and interaction
+- **Sync**: follow `../../skills/sync/SKILL.md` — after every change, check cascade map and update all affected files
 - **Legal**: follow `../../skills/legal/SKILL.md` — ask for existing Privacy Policy and Terms of Use first, improve or generate
 - **Security**: follow `../../skills/security/SKILL.md` — create site/_headers, no secrets in HTML, SRI on CDN scripts, rel="noopener noreferrer" on all external links
 - **SEO**: follow `../../skills/seo/SKILL.md` — apply full SEO checklist to every page by default
