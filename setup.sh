@@ -15,6 +15,7 @@ STYLE_SKILL="${2:?Usage: ./setup.sh <project-name> <style-skill>}"
 
 REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$REPO_ROOT/output/$PROJECT_NAME"
+SITE_DIR="$PROJECT_DIR/site"
 
 # Validate style skill exists
 if [ ! -f "$REPO_ROOT/skills/$STYLE_SKILL/SKILL.md" ]; then
@@ -23,57 +24,136 @@ if [ ! -f "$REPO_ROOT/skills/$STYLE_SKILL/SKILL.md" ]; then
   exit 1
 fi
 
-# Create project folder
-mkdir -p "$PROJECT_DIR"
+# Create project folder structure
+mkdir -p "$SITE_DIR/images"
+echo "Created output/$PROJECT_NAME/site/images/"
 
-# 1. Copy style skill as active SKILL.md
+# 1. Copy style skill as active SKILL.md (project root, not site/)
 cp "$REPO_ROOT/skills/$STYLE_SKILL/SKILL.md" "$PROJECT_DIR/SKILL.md"
 echo "Copied $STYLE_SKILL as SKILL.md"
 
-# 2. Copy impeccable as secondary context
+# 2. Copy impeccable as secondary context (project root, not site/)
 cp "$REPO_ROOT/skills/impeccable/SKILL.md" "$PROJECT_DIR/.impeccable.md"
 echo "Copied impeccable as .impeccable.md"
 
-# 3. Create CLAUDE.md that references all other layers
+# 3. Create CLAUDE.md at project root
 cat > "$PROJECT_DIR/CLAUDE.md" << 'EOF'
 # Project Rules
+
+## Folder Structure
+
+All deployable files go inside `site/`. Skill files stay at the project root.
+
+```
+output/<project-name>/
+├── SKILL.md          ← style skill (do not deploy)
+├── .impeccable.md    ← quality layer (do not deploy)
+├── CLAUDE.md         ← these rules (do not deploy)
+└── site/             ← DEPLOY THIS to Cloudflare Pages
+    ├── index.html
+    ├── logo.svg
+    ├── llms.txt
+    ├── robots.txt
+    ├── sitemap.xml
+    └── images/
+        └── screenshot-1.png
+```
+
+Never create HTML, images, or assets outside of `site/`. Never put SKILL.md or CLAUDE.md inside `site/`.
 
 ## Logo
 
 **Always ask for a logo before building.** Ask:
-> "Do you have a logo for this product/app/idea? If yes, share the file (PNG, SVG, JPG) or describe it. If no, I'll create a text-based or SVG logo using the product name and brand colors."
+> "Do you have a logo for this product/app/idea? If yes, share the file (PNG, SVG, JPG). If no, I'll create a clean SVG wordmark."
 
-- If provided: place in this folder, use in navbar (top-left, 28–36px), hero (optional), and footer (muted, 20–24px)
-- If not provided: create a clean SVG wordmark using the product name, brand color, and a premium font from the active SKILL.md
-- Never stretch or distort the logo — always preserve aspect ratio
+- Save logo as `site/logo.svg` (and `site/logo-light.svg` for dark backgrounds)
+- Use in navbar (top-left, 28–36px), footer (muted, 20–24px)
+- Never stretch or distort — preserve aspect ratio
+
+## Product Images
+
+**Always ask for screenshots before building.** Ask:
+> "Do you have screenshots or images of your product? If yes, share them and I'll present them beautifully. If no, I'll create a placeholder."
+
+- Save all images inside `site/images/`
+- Reference in HTML as `images/filename.png` (relative path, no leading slash)
 
 ## Design Skills
 
-This project uses layered design skills:
-- **Logo**: follow `../../skills/logo/SKILL.md` — always ask for a logo before building
-- **Branding**: follow `../../skills/branding/patterns.md` and `../../skills/branding/anti-patterns.md`
-- **Product images**: follow `../../skills/product-images/SKILL.md` — always ask for screenshots before building
-- **SKILL.md** — Active style skill (visual direction)
-- **.impeccable.md** — Design quality, anti-patterns, and accessibility
-- **Structure**: follow `../../skills/landing-page-design/patterns.md`, `../../skills/landing-page-design/anti-patterns.md`, and `../../skills/landing-page-design/decisions.md`
-- **Engineering**: follow `../../skills/emil-design-eng/SKILL.md` for animation and interaction
-- **SEO**: follow `../../skills/seo/SKILL.md` — apply full SEO checklist to every page by default
-- **AEO**: follow `../../skills/llms-txt/SKILL.md` — generate llms.txt and apply AI search optimization to every project
-- **Copy**: follow `../../skills/copywriting/patterns.md` for headlines, CTAs, and page copy
+- **Logo**: follow `../../skills/logo/SKILL.md`
+- **Branding**: follow `../../skills/branding/patterns.md` and `anti-patterns.md`
+- **Product images**: follow `../../skills/product-images/SKILL.md`
+- **SKILL.md** — active style skill (visual direction)
+- **.impeccable.md** — design quality, anti-patterns, accessibility
+- **Structure**: follow `../../skills/landing-page-design/patterns.md`, `anti-patterns.md`, `decisions.md`
+- **Engineering**: follow `../../skills/emil-design-eng/SKILL.md`
+- **SEO**: follow `../../skills/seo/SKILL.md` — apply full checklist to every page
+- **AEO**: follow `../../skills/llms-txt/SKILL.md` — generate `site/llms.txt` for every project
+- **Copy**: follow `../../skills/copywriting/patterns.md`
 
-## Output
+## Deployment
 
-All generated files must stay in this folder.
+When the project is ready, remind the user:
+> "To deploy: go to pages.cloudflare.com, create a project, and upload the `site/` folder. See `how_to_deploy.md` at the repo root for full instructions including custom domain setup."
 EOF
-echo "Created CLAUDE.md with all skill layer references"
+echo "Created CLAUDE.md"
+
+# 4. Create stub files inside site/
+cat > "$SITE_DIR/robots.txt" << EOF
+User-agent: *
+Allow: /
+Sitemap: https://yoursite.com/sitemap.xml
+EOF
+echo "Created site/robots.txt stub"
+
+cat > "$SITE_DIR/sitemap.xml" << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://yoursite.com/</loc>
+    <lastmod>$(date +%Y-%m-%d)</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
+EOF
+echo "Created site/sitemap.xml stub"
+
+cat > "$SITE_DIR/llms.txt" << EOF
+# Product Name
+
+> One sentence: what this product does and who it's for.
+
+Additional context: key features, platform, pricing model, and differentiator.
+
+## Key Pages
+
+- [Home](https://yoursite.com/): Overview and main value proposition
+
+## What This Product Does
+
+- [Factual capability 1]
+- [Factual capability 2]
+- [Factual capability 3]
+EOF
+echo "Created site/llms.txt stub"
 
 echo ""
 echo "Project ready at: output/$PROJECT_NAME/"
 echo ""
-echo "Active layers:"
-echo "  Structure:   landing-page-design (via CLAUDE.md)"
-echo "  Style:       $STYLE_SKILL (SKILL.md)"
-echo "  Quality:     impeccable (.impeccable.md)"
-echo "  Engineering: emil-design-eng (via CLAUDE.md)"
+echo "Structure:"
+echo "  output/$PROJECT_NAME/"
+echo "  ├── SKILL.md          ($STYLE_SKILL)"
+echo "  ├── .impeccable.md    (quality layer)"
+echo "  ├── CLAUDE.md         (project rules)"
+echo "  └── site/             ← deploy this folder to Cloudflare"
+echo "      ├── images/       (put screenshots here)"
+echo "      ├── robots.txt    (stub — update domain)"
+echo "      ├── sitemap.xml   (stub — update domain)"
+echo "      └── llms.txt      (stub — fill in product details)"
 echo ""
-echo "cd output/$PROJECT_NAME and start building!"
+echo "Active skill layers:"
+echo "  Logo + branding, product images, structure, style ($STYLE_SKILL),"
+echo "  quality (impeccable), engineering, SEO, AEO, copywriting"
+echo ""
+echo "Next: cd output/$PROJECT_NAME and open Claude Code"

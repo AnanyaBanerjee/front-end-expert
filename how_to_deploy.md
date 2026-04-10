@@ -4,24 +4,28 @@ This guide covers deploying your landing page to the internet using **Cloudflare
 
 ---
 
-## What Files to Take from Your Output Folder
+## What to Deploy
 
-When Claude builds your landing page, everything goes into a subfolder inside `output/`. For example:
+Every project has this structure:
 
 ```
 output/my-product/
-├── index.html          ← Your main page
-├── logo.svg            ← Your logo (if created)
-├── logo-light.svg      ← Light version of logo (if created)
-├── llms.txt            ← AI search optimization file
-├── robots.txt          ← Tells crawlers what to index
-├── sitemap.xml         ← Site map for search engines
-└── images/             ← Any product screenshots or assets
-    ├── screenshot-1.png
-    └── screenshot-2.png
+├── SKILL.md            ← skill file — DO NOT deploy
+├── .impeccable.md      ← skill file — DO NOT deploy
+├── CLAUDE.md           ← instructions — DO NOT deploy
+└── site/               ← DEPLOY THIS FOLDER
+    ├── index.html
+    ├── logo.svg
+    ├── logo-light.svg
+    ├── llms.txt
+    ├── robots.txt
+    ├── sitemap.xml
+    └── images/
+        ├── screenshot-1.png
+        └── screenshot-2.png
 ```
 
-**Take the entire subfolder.** Every file inside `output/my-product/` needs to be deployed — not just `index.html`. Cloudflare needs all assets (images, logo, llms.txt, robots.txt) to serve them alongside your page.
+**Deploy only the `site/` folder.** The skill files (`SKILL.md`, `.impeccable.md`, `CLAUDE.md`) are instructions for Claude — they should never be uploaded to your live website.
 
 ---
 
@@ -38,10 +42,10 @@ Cloudflare Pages is free for unlimited sites with unlimited bandwidth. No credit
 3. **Name your project** — this becomes your free subdomain:
    `your-project-name.pages.dev`
 
-4. **Upload your files:**
+4. **Upload the `site/` folder:**
    - Click "Upload assets"
-   - Select all files inside your `output/my-product/` folder
-   - Make sure `index.html` is at the root level of what you upload (not inside a subfolder)
+   - Drag and drop the entire `site/` folder from `output/my-product/site/`
+   - Cloudflare accepts the whole folder — no need to select files individually
 
 5. **Click Deploy** — your site is live in seconds at `your-project-name.pages.dev`
 
@@ -60,7 +64,7 @@ If you want to push updates by committing to this repo:
 3. **Configure the build:**
    - **Framework preset**: None
    - **Build command**: *(leave empty)*
-   - **Build output directory**: `output/my-product` ← the specific subfolder for your project
+   - **Build output directory**: `output/my-product/site` ← the site subfolder for your project
 
 4. **Click Save and Deploy**
 
@@ -136,12 +140,12 @@ If you bought your domain on GoDaddy, Namecheap, Google Domains, etc.:
 
 ---
 
-## File Structure Reminder for Deployment
+## What Cloudflare Receives
 
-When you upload to Cloudflare, the files should be structured like this — with `index.html` at the top level:
+When you drag the `site/` folder to Cloudflare, this is what it sees:
 
 ```
-✅ Correct — what Cloudflare receives:
+✅ Correct — drag output/my-product/site/ folder:
 index.html
 logo.svg
 llms.txt
@@ -151,14 +155,14 @@ images/
   screenshot-1.png
   screenshot-2.png
 
-❌ Wrong — don't upload the parent folder:
-my-product/
-  index.html       ← Cloudflare won't find this as the homepage
-  logo.svg
+❌ Wrong — don't drag the whole output/my-product/ folder:
+SKILL.md            ← this would become public on your website
+CLAUDE.md           ← this would become public on your website
+.impeccable.md      ← this would become public on your website
+site/
+  index.html
   ...
 ```
-
-When using Direct Upload, select all files *inside* the output subfolder, not the folder itself.
 
 ---
 

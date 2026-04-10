@@ -31,20 +31,26 @@ front-end-tech/
 └── how_to_deploy.md                 # Cloudflare Pages deployment guide
 ```
 
-## Important: Where Output Goes
+## Important: Folder Structure
 
-**All generated output must go in the `output/` folder.**
-
-- When you use a skill to build something, save the result in `output/`.
-- Create subfolders to organize your work (e.g., `output/landing-page/`, `output/dashboard-v2/`).
+Every project in `output/` follows the same structure:
 
 ```
-output/
-├── landing-page/        # Your first landing page experiment
-├── dashboard-v2/        # Second iteration of a dashboard
-├── portfolio-dark/      # Dark theme portfolio attempt
-└── pricing-page/        # Pricing page built with impeccable craft
+output/my-product/
+├── SKILL.md            ← style skill (do not deploy)
+├── .impeccable.md      ← quality layer (do not deploy)
+├── CLAUDE.md           ← project rules (do not deploy)
+└── site/               ← DEPLOY THIS to Cloudflare Pages
+    ├── index.html      ← your main page
+    ├── logo.svg        ← logo
+    ├── llms.txt        ← AI search optimization
+    ├── robots.txt      ← crawler instructions
+    ├── sitemap.xml     ← site map
+    └── images/         ← screenshots and assets
+        └── screenshot-1.png
 ```
+
+The `setup.sh` script creates this structure automatically. Claude always puts all HTML, images, and deployable files inside `site/`. When you're ready to go live, just drag the `site/` folder to Cloudflare Pages — nothing else.
 
 ## Browsing and Learning
 

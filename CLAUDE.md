@@ -6,21 +6,31 @@ This repo is a toolkit for building landing pages and websites for apps, ideas, 
 
 ## Output Policy
 
-**All files generated for user tasks MUST be created inside a subfolder within `output/`.**
+**All files generated for user tasks MUST follow this exact structure:**
 
-- Never create generated files (HTML, CSS, JS, images, etc.) in the repo root or inside `skills/`.
-- For each task, create a descriptively named subfolder: `output/<project-name>/`.
-- The `output/` directory holds all generated work. Each project gets its own subfolder.
-- The `skills/` folder is for design instruction files only — never write generated code there.
+```
+output/<project-name>/           ← project root (skill files live here)
+├── SKILL.md                     ← active style skill (never deploy)
+├── .impeccable.md               ← quality layer (never deploy)
+├── CLAUDE.md                    ← project rules (never deploy)
+└── site/                        ← DEPLOY THIS FOLDER to Cloudflare
+    ├── index.html               ← main page
+    ├── logo.svg                 ← logo (or logo.png)
+    ├── logo-light.svg           ← light variant for dark backgrounds
+    ├── llms.txt                 ← AEO / AI search optimization
+    ├── robots.txt               ← crawler instructions
+    ├── sitemap.xml              ← site map for search engines
+    └── images/                  ← product screenshots and assets
+        ├── screenshot-1.png
+        └── screenshot-2.png
+```
 
-Examples:
-```
-output/landing-page/index.html       # Correct
-output/dashboard-v2/src/App.tsx      # Correct
-landing-page/index.html              # WRONG — not inside output/
-index.html                           # WRONG — not inside output/
-skills/my-project/index.html         # WRONG — skills/ is for SKILL.md files only
-```
+Rules:
+- All HTML, CSS, JS, images, and deployable files go inside `site/`
+- `SKILL.md`, `.impeccable.md`, and `CLAUDE.md` stay at the project root — never inside `site/`
+- Never create files at the repo root or in `skills/`
+- When referencing images or assets in HTML, use relative paths: `images/screenshot-1.png`, `logo.svg`
+- `site/` is what gets uploaded to Cloudflare Pages — nothing else
 
 ## SEO — Apply to Every Page
 
