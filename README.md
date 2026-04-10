@@ -17,6 +17,7 @@ Design instruction files that guide AI tools to generate polished frontend UI:
 | **landing-page-design** | Page structure, hero formulas, section stacks, conversion patterns, anti-patterns | [vibeship-spawner-skills](https://github.com/vibeforge1111/vibeship-spawner-skills) |
 | **branding** | Logo systems, color architecture, brand identity patterns and anti-patterns | [vibeship-spawner-skills](https://github.com/vibeforge1111/vibeship-spawner-skills) |
 | **logo** | Ask for logo, place it correctly, or create a clean SVG wordmark if none exists | custom |
+| **product-images** | Browser frames, phone mockups, perspective tilts, floating compositions, scroll reveals | custom |
 
 ### Start a new landing page
 
@@ -69,4 +70,4 @@ All generated output goes in `output/`, organized by project. See [HOW_TO_USE.md
 - **impeccable** — by [pbakaus](https://github.com/pbakaus), sourced from [impeccable](https://github.com/pbakaus/impeccable). Licensed under Apache 2.0.
 - **emil-design-eng** — by [Emil Kowalski](https://github.com/emilkowalski), sourced from [skill](https://github.com/emilkowalski/skill). Licensed under the original repository's terms.
 - **landing-page-design**, **branding** — sourced from [vibeship-spawner-skills](https://github.com/vibeforge1111/vibeship-spawner-skills). Licensed under the original repository's terms.
-- **logo** — custom skill written for this repo.
+- **logo**, **product-images** — custom skills written for this repo.

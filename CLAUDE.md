@@ -22,6 +22,15 @@ index.html                           # WRONG — not inside output/
 skills/my-project/index.html         # WRONG — skills/ is for SKILL.md files only
 ```
 
+## Product Images
+
+**Always ask for product screenshots before building any landing page.**
+
+Ask:
+> "Do you have screenshots or images of your product/app? If yes, share the files and I'll present them beautifully. If no, I'll create a realistic placeholder you can swap out later."
+
+Follow `skills/product-images/SKILL.md` for all screenshot presentation decisions — browser frames, phone mockups, perspective tilts, floating compositions, and scroll reveals.
+
 ## Logo Handling
 
 **Always ask for a logo before building any landing page or website.**

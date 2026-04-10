@@ -52,6 +52,7 @@ cat > "$PROJECT_DIR/CLAUDE.md" << 'EOF'
 This project uses layered design skills:
 - **Logo**: follow `../../skills/logo/SKILL.md` — always ask for a logo before building
 - **Branding**: follow `../../skills/branding/patterns.md` and `../../skills/branding/anti-patterns.md`
+- **Product images**: follow `../../skills/product-images/SKILL.md` — always ask for screenshots before building
 - **SKILL.md** — Active style skill (visual direction)
 - **.impeccable.md** — Design quality, anti-patterns, and accessibility
 - **Structure**: follow `../../skills/landing-page-design/patterns.md`, `../../skills/landing-page-design/anti-patterns.md`, and `../../skills/landing-page-design/decisions.md`
