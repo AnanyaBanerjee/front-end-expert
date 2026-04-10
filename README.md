@@ -48,38 +48,88 @@ flowchart TD
 
 Every `.html` file Claude creates — including legal pages — gets all 11 layers applied automatically.
 
-```mermaid
-flowchart TD
-    START(["📥 You provide  ·  idea  ·  logo  ·  screenshots  ·  product description"])
+<br/>
 
-    L1["🎨 Style\nFonts · colors · spacing · layout · visual direction\n#taste-skill  #soft-skill  #minimalist-skill  #brutalist-skill"]
-    L2["📐 Structure\nHero formula · section ordering · CTAs · conversion patterns\n#landing-page-design"]
-    L3["✨ Quality\nAnti-pattern detection · polish · accessibility · 17 review commands\n#impeccable"]
-    L4["⚡ Motion\nEasing curves · entrance animations · transforms · gesture interactions\n#emil-design-eng"]
-    L5["🏷️ Brand + Content\nLogo · color system · headlines · CTA copy · product screenshots\n#logo  #branding  #copywriting  #product-images"]
-    L6["🔍 SEO\nTitle · meta description · Open Graph · JSON-LD · semantic HTML · page speed\n#seo"]
-    L7["🤖 AEO\nllms.txt · speakable schema · factual copy · FAQ section · AI-ready descriptions\n#aeo"]
-    L8["🔒 Security\nCloudflare _headers · SRI integrity on CDN · no secrets in source · safe links\n#security"]
-    L9["⚖️ Legal\nCopyright ™ · Privacy Policy · Terms of Use · DMCA notice · NoAI directives\n#legal"]
-    L10["🔄 Sync\nChange detection · cascade updates · all files stay consistent automatically\n#sync"]
+> **📥 You provide** — idea &nbsp;·&nbsp; logo &nbsp;·&nbsp; screenshots &nbsp;·&nbsp; product description
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ Claude applies all layers below ↓
+>
+> **📤 You get** — `site/` folder, ready to drag to Cloudflare Pages
 
-    END(["📤 site/  —  drag this folder to Cloudflare Pages  →  live in minutes"])
+<br/>
 
-    START --> L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7 --> L8 --> L9 --> L10 --> END
-
-    style START fill:#1e1b4b,color:#c7d2fe,stroke:#4338ca
-    style L1  fill:#312e81,color:#c7d2fe,stroke:#4338ca
-    style L2  fill:#1e3a5f,color:#bfdbfe,stroke:#3b82f6
-    style L3  fill:#134e4a,color:#99f6e4,stroke:#0d9488
-    style L4  fill:#0c4a6e,color:#bae6fd,stroke:#0284c7
-    style L5  fill:#1e3a5f,color:#bfdbfe,stroke:#3b82f6
-    style L6  fill:#14532d,color:#bbf7d0,stroke:#16a34a
-    style L7  fill:#0c4a6e,color:#bae6fd,stroke:#0ea5e9
-    style L8  fill:#450a0a,color:#fca5a5,stroke:#dc2626
-    style L9  fill:#4a044e,color:#f5d0fe,stroke:#a21caf
-    style L10 fill:#1c1917,color:#e7e5e4,stroke:#57534e
-    style END fill:#7c2d12,color:#fed7aa,stroke:#ea580c
-```
+<table>
+<thead>
+<tr>
+<th width="5%">#</th>
+<th width="18%">Layer</th>
+<th width="52%">What it builds</th>
+<th width="25%">Skill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">01</td>
+<td><strong>🎨 Style</strong></td>
+<td>Fonts · colors · spacing · layout · visual direction — the look and feel of your site</td>
+<td><code>taste-skill</code> <code>soft-skill</code> <code>minimalist-skill</code> <code>brutalist-skill</code></td>
+</tr>
+<tr>
+<td align="center">02</td>
+<td><strong>📐 Structure</strong></td>
+<td>Hero formula · section ordering · feature layout · CTAs · conversion patterns</td>
+<td><code>landing-page-design</code></td>
+</tr>
+<tr>
+<td align="center">03</td>
+<td><strong>✨ Quality</strong></td>
+<td>Anti-pattern detection · polish · accessibility · 17 design review commands</td>
+<td><code>impeccable</code></td>
+</tr>
+<tr>
+<td align="center">04</td>
+<td><strong>⚡ Motion</strong></td>
+<td>Easing curves · entrance animations · scroll reveals · transforms · gestures</td>
+<td><code>emil-design-eng</code></td>
+</tr>
+<tr>
+<td align="center">05</td>
+<td><strong>🏷️ Brand + Content</strong></td>
+<td>Logo · color system · headlines · CTA copy · product screenshots with frames</td>
+<td><code>logo</code> <code>branding</code> <code>copywriting</code> <code>product-images</code></td>
+</tr>
+<tr>
+<td align="center">06</td>
+<td><strong>🔍 SEO</strong></td>
+<td>Title · meta description · Open Graph · JSON-LD structured data · semantic HTML · page speed</td>
+<td><code>seo</code></td>
+</tr>
+<tr>
+<td align="center">07</td>
+<td><strong>🤖 AEO</strong></td>
+<td>llms.txt · speakable schema · factual copy · FAQ · AI-ready descriptions for Perplexity, ChatGPT</td>
+<td><code>aeo</code></td>
+</tr>
+<tr>
+<td align="center">08</td>
+<td><strong>🔒 Security</strong></td>
+<td>Cloudflare <code>_headers</code> · SRI integrity on all CDN scripts · no secrets in source · safe links</td>
+<td><code>security</code></td>
+</tr>
+<tr>
+<td align="center">09</td>
+<td><strong>⚖️ Legal</strong></td>
+<td>Copyright ™ · Privacy Policy · Terms of Use · DMCA notice · NoAI directives · footer links</td>
+<td><code>legal</code></td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td><strong>🔄 Sync</strong></td>
+<td>Detects changes · cascades updates to all affected files · keeps everything consistent</td>
+<td><code>sync</code></td>
+</tr>
+</tbody>
+</table>
 
 ---
 
