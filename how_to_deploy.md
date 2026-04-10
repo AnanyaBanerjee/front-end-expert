@@ -17,6 +17,7 @@ output/my-product/
     ├── index.html
     ├── logo.svg
     ├── logo-light.svg
+    ├── _headers        ← Cloudflare security headers (critical — must be included)
     ├── llms.txt
     ├── robots.txt
     ├── sitemap.xml
@@ -79,10 +80,27 @@ Now every time you push changes to that subfolder, Cloudflare automatically rede
 Check these after your first deploy:
 
 1. **Open your site** at `your-project.pages.dev` — does it look correct?
-2. **Check your llms.txt** — visit `your-project.pages.dev/llms.txt` — it should show your AI briefing file
-3. **Check robots.txt** — visit `your-project.pages.dev/robots.txt`
-4. **Check images** — do all logos and screenshots load? If not, check that image filenames in the HTML match the actual filenames exactly (case-sensitive)
-5. **Check on mobile** — open on your phone and verify the layout looks right
+2. **Check security headers** — visit [securityheaders.com](https://securityheaders.com) and paste your URL. You should get an A or B grade. If you get lower, check that `_headers` was included in your upload.
+3. **Check your llms.txt** — visit `your-project.pages.dev/llms.txt` — it should show your AI briefing file
+4. **Check robots.txt** — visit `your-project.pages.dev/robots.txt`
+5. **Check images** — do all logos and screenshots load? If not, check that image filenames in HTML match actual filenames exactly (case-sensitive)
+6. **Check on mobile** — open on your phone and verify the layout looks right
+
+## After Deploying: Cloudflare Security Settings
+
+These are free settings in your Cloudflare dashboard that take under 5 minutes to enable:
+
+| Setting | Where to find it | What it does |
+|---------|-----------------|-------------|
+| **Always Use HTTPS** | SSL/TLS → Edge Certificates | Forces HTTPS, blocks http:// access |
+| **Minimum TLS 1.2** | SSL/TLS → Edge Certificates | Blocks old, vulnerable TLS versions |
+| **Bot Fight Mode** | Security → Bots | Blocks known malicious bots automatically |
+| **Browser Integrity Check** | Security → Settings | Blocks requests from suspicious clients |
+| **Hotlink Protection** | Scrape Shield | Stops others from embedding your images on their sites |
+| **Email Address Obfuscation** | Scrape Shield | Cloudflare hides emails from harvesting bots |
+| **Security Level: Medium** | Security → Settings | Challenges suspicious visitors |
+
+Enable all of these for every site. They're all free and add meaningful protection.
 
 ---
 

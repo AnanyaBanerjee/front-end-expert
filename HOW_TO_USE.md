@@ -21,6 +21,7 @@ front-end-tech/
 │   ├── product-images/      # Browser frames, phone mockups, tilts, compositions
 │   ├── seo/                 # Meta tags, structured data, semantic HTML, page speed
 │   ├── llms-txt/            # llms.txt, AEO, AI search optimization
+│   ├── security/            # _headers, SRI, no-secrets, safe links, form hardening
 │   └── copywriting/         # PAS/AIDA frameworks, headlines, CTAs
 ├── output/                  # Generated landing pages and websites
 ├── setup.sh                 # Scaffold a new project with all layers
@@ -114,6 +115,7 @@ But the skills in this repo fall into **three layers** that serve different purp
 | **Product images** (always use) | product-images | Ask for screenshots, present them beautifully |
 | **SEO** (always apply) | seo | Meta tags, structured data, page speed — on every page |
 | **AEO** (always apply) | llms-txt | llms.txt and AI search optimization — on every project |
+| **Security** (always apply) | security | Cloudflare headers, SRI, no secrets, safe links — on every page |
 | **Copy** (always apply) | copywriting | PAS/AIDA frameworks, headlines, CTAs |
 | **Structure** (always use) | landing-page-design | What goes on the page and why — sections, hero formulas, conversion patterns |
 | **Style** (pick ONE) | taste-skill, soft-skill, minimalist-skill, brutalist-skill | Visual direction — what things look like |
@@ -167,6 +169,7 @@ Never create HTML or assets outside of site/.
 - **.impeccable.md** — design quality, anti-patterns, accessibility
 - **Structure**: follow `../../skills/landing-page-design/patterns.md`, `anti-patterns.md`, `decisions.md`
 - **Engineering**: follow `../../skills/emil-design-eng/SKILL.md`
+- **Security**: follow `../../skills/security/SKILL.md` — create site/_headers, SRI on CDN scripts, no secrets in HTML, safe external links
 - **SEO**: follow `../../skills/seo/SKILL.md` — apply full checklist to site/index.html
 - **AEO**: follow `../../skills/llms-txt/SKILL.md` — generate site/llms.txt
 - **Copy**: follow `../../skills/copywriting/patterns.md`
@@ -218,10 +221,18 @@ Claude applies all of these to every page without you having to ask:
 - FAQ section with direct, citable answers
 - Meta description with no marketing speak
 
+**Security**
+- `site/_headers` with Cloudflare security headers (CSP, X-Frame-Options, HSTS, Permissions-Policy)
+- `integrity` + `crossorigin="anonymous"` on every CDN script and stylesheet
+- No API keys, email addresses, or sensitive data in HTML source
+- `rel="noopener noreferrer"` on every external link
+- Honeypot field on any contact or signup form
+
 **What you need to provide:**
 - Your real domain URL (for canonical tags and llms.txt links)
 - A factual one-sentence description of your product
 - An OG image at 1200×630px (Claude will mark as TODO if you don't have one yet)
+- After deploying: enable Bot Fight Mode, Always Use HTTPS, and Hotlink Protection in your Cloudflare dashboard (free, takes 5 minutes)
 
 Read [how_to_improve_SEO.md](how_to_improve_SEO.md) and [how_to_improve_agent_engine_optimization.md](how_to_improve_agent_engine_optimization.md) for a full explanation of what each item does and why it matters.
 
@@ -510,11 +521,15 @@ Step 6: /polish                     — Final pass on spacing and alignment
 Step 7: /harden                     — Make it accessible and robust
 Step 8: /audit                      — Final design quality check
 
-Then verify SEO + AEO:
-Step 9:  Check <title>, meta description, and Open Graph tags are filled in
-Step 10: Confirm llms.txt exists and has factual product description
-Step 11: Verify robots.txt and sitemap.xml are present
-Step 12: Deploy to Cloudflare Pages (see how_to_deploy.md)
+Then verify security, SEO + AEO:
+Step 9:  Confirm site/_headers exists with CSP tailored to your CDN domains
+Step 10: Check every CDN script has integrity + crossorigin attributes
+Step 11: Confirm no email addresses or API keys in HTML source
+Step 12: Check <title>, meta description, and Open Graph tags are filled in
+Step 13: Confirm site/llms.txt exists with factual product description
+Step 14: Verify site/robots.txt and site/sitemap.xml are present
+Step 15: Deploy site/ folder to Cloudflare Pages (see how_to_deploy.md)
+Step 16: Enable Bot Fight Mode + Always Use HTTPS in Cloudflare dashboard
 ```
 
 You don't need to run every command every time. Pick the ones relevant to what needs improvement.

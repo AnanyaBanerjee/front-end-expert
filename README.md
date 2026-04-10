@@ -2,7 +2,7 @@
 
 A toolkit for building landing pages and websites for apps, ideas, and concepts — powered by AI design skills.
 
-Every page Claude builds is automatically **SEO-optimized** (meta tags, Open Graph, JSON-LD structured data, semantic HTML) and **AEO-optimized** (`llms.txt`, speakable schema, factual copy) for AI search engines like Perplexity, ChatGPT, and Gemini — without you having to ask.
+Every page Claude builds is automatically **secured** (Cloudflare security headers, SRI on CDN scripts, no secrets in source, safe external links), **SEO-optimized** (meta tags, Open Graph, JSON-LD structured data), and **AEO-optimized** (`llms.txt`, speakable schema) for AI search engines like Perplexity and ChatGPT — without you having to ask.
 
 ---
 
@@ -38,9 +38,12 @@ Every page Claude builds is automatically **SEO-optimized** (meta tags, Open Gra
 │   │   ├── copywriting                                               │
 │   │   └── product-images                                            │
 │   │                                                                  │
-│   └── DISCOVERABILITY                                               │
-│       ├── seo                                                        │
-│       └── llms-txt                                                   │
+│   ├── DISCOVERABILITY                                               │
+│   │   ├── seo                                                        │
+│   │   └── llms-txt                                                   │
+│   │                                                                  │
+│   └── SECURITY                                                       │
+│       └── security                                                   │
 │                                                                      │
 ├─────────────────────────────────────────────────────────────────────┤
 │   GUIDES                           TOOLING                          │
@@ -71,6 +74,8 @@ Every project uses all layers simultaneously. The layers never conflict — they
 │                 product-images                               │
 │  SEO        →   seo                   meta, structured data │
 │  AEO        →   llms-txt              llms.txt, AI search   │
+│  Security   →   security              headers, SRI, no      │
+│                                       secrets, safe links   │
 └─────────────────────────────────────────────────────────────┘
           All wired automatically by setup.sh + CLAUDE.md
 ```
@@ -90,6 +95,7 @@ output/my-product/
 └── site/              ← drag this folder to Cloudflare Pages
     ├── index.html     ← your page
     ├── logo.svg       ← logo (logo-light.svg for dark backgrounds)
+    ├── _headers       ← Cloudflare security headers (auto-created)
     ├── llms.txt       ← AI search optimization
     ├── robots.txt     ← crawler instructions
     ├── sitemap.xml    ← site map
@@ -116,6 +122,7 @@ output/my-product/
 | **Content** | product-images | Browser frames, phone mockups, perspective tilts, compositions | custom |
 | **SEO** | seo | Meta tags, Open Graph, JSON-LD, semantic HTML, page speed | custom |
 | **AEO** | llms-txt | llms.txt, speakable schema, AI search optimization | custom |
+| **Security** | security | Cloudflare `_headers`, SRI, no-secrets policy, safe links, form hardening | custom |
 
 ---
 
@@ -197,4 +204,4 @@ Take the `site/` folder from your project and drag it to [Cloudflare Pages](http
 - **impeccable** — by [pbakaus](https://github.com/pbakaus), sourced from [impeccable](https://github.com/pbakaus/impeccable). Licensed under Apache 2.0.
 - **emil-design-eng** — by [Emil Kowalski](https://github.com/emilkowalski), sourced from [skill](https://github.com/emilkowalski/skill). Licensed under the original repository's terms.
 - **landing-page-design**, **branding**, **copywriting** — sourced from [vibeship-spawner-skills](https://github.com/vibeforge1111/vibeship-spawner-skills). Licensed under the original repository's terms.
-- **logo**, **product-images**, **seo**, **llms-txt** — custom skills written for this repo.
+- **logo**, **product-images**, **seo**, **llms-txt**, **security** — custom skills written for this repo.

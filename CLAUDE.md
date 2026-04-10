@@ -32,6 +32,20 @@ Rules:
 - When referencing images or assets in HTML, use relative paths: `images/screenshot-1.png`, `logo.svg`
 - `site/` is what gets uploaded to Cloudflare Pages — nothing else
 
+## Security — Apply to Every Page
+
+**Every page built must include full security implementation without being asked.** Follow `skills/security/SKILL.md` for the complete checklist.
+
+Required on every project:
+- `site/_headers` file with all Cloudflare security headers (CSP, X-Frame-Options, HSTS, Permissions-Policy, etc.)
+- `integrity` and `crossorigin="anonymous"` on every CDN `<script>` and `<link>`
+- No API keys, email addresses, or sensitive data in HTML source
+- `rel="noopener noreferrer"` on every `target="_blank"` link
+- Honeypot field on any contact or signup form
+- Forms use a third-party service (Formspree, Web3Forms) — never custom handlers
+
+After completing a project, remind the user to enable Bot Fight Mode, Always Use HTTPS, and Hotlink Protection in their Cloudflare dashboard.
+
 ## SEO — Apply to Every Page
 
 **Every page built must include full SEO implementation without being asked.** Follow `skills/seo/SKILL.md` for the complete checklist.

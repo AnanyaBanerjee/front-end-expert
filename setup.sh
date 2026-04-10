@@ -87,6 +87,7 @@ Never create HTML, images, or assets outside of `site/`. Never put SKILL.md or C
 - **.impeccable.md** — design quality, anti-patterns, accessibility
 - **Structure**: follow `../../skills/landing-page-design/patterns.md`, `anti-patterns.md`, `decisions.md`
 - **Engineering**: follow `../../skills/emil-design-eng/SKILL.md`
+- **Security**: follow `../../skills/security/SKILL.md` — apply to every page; site/_headers already stubbed
 - **SEO**: follow `../../skills/seo/SKILL.md` — apply full checklist to every page
 - **AEO**: follow `../../skills/llms-txt/SKILL.md` — generate `site/llms.txt` for every project
 - **Copy**: follow `../../skills/copywriting/patterns.md`
@@ -99,6 +100,18 @@ EOF
 echo "Created CLAUDE.md"
 
 # 4. Create stub files inside site/
+cat > "$SITE_DIR/_headers" << 'EOF'
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-XSS-Protection: 1; mode=block
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com; font-src 'self' https://fonts.gstatic.com https://api.fontshare.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';
+EOF
+echo "Created site/_headers with security headers"
+
 cat > "$SITE_DIR/robots.txt" << EOF
 User-agent: *
 Allow: /
@@ -148,6 +161,7 @@ echo "  ├── .impeccable.md    (quality layer)"
 echo "  ├── CLAUDE.md         (project rules)"
 echo "  └── site/             ← deploy this folder to Cloudflare"
 echo "      ├── images/       (put screenshots here)"
+echo "      ├── _headers      (security headers — customise CSP domains)"
 echo "      ├── robots.txt    (stub — update domain)"
 echo "      ├── sitemap.xml   (stub — update domain)"
 echo "      └── llms.txt      (stub — fill in product details)"
