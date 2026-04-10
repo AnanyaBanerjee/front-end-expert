@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentChat Hub — Connect Any AI Agent, Anywhere</title>
+  <meta name="description" content="Connect to any A2A-compatible AI agent via URL. Stream responses in real time. No account, no tracking, no subscriptions. Free on iOS, iPad, Mac, and Vision Pro.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..125,400;12..96,75..125,500;12..96,75..125,700;12..96,75..125,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            /* All values live in CSS custom properties — dark mode flips them via @media */
+            bg:             'rgb(var(--color-bg)       / <alpha-value>)',
+            surface:        'rgb(var(--color-surface)  / <alpha-value>)',
+            elevated:       'rgb(var(--color-elevated) / <alpha-value>)',
+            border:         'rgb(var(--color-border)   / <alpha-value>)',
+            'border-subtle':'rgb(var(--color-bsub)     / <alpha-value>)',
+            accent:         'rgb(var(--color-accent)   / <alpha-value>)',
+            'accent-dim':   'var(--accent-dim)',
+            'accent-mid':   'var(--accent-mid)',
+            accent2:        'rgb(var(--color-accent2)  / <alpha-value>)',
+            'accent2-dim':  'var(--accent2-dim)',
+            text: {
+              DEFAULT:   'rgb(var(--color-text)    / <alpha-value>)',
+              secondary: 'rgb(var(--color-text-sec)/ <alpha-value>)',
+              tertiary:  'rgb(var(--color-text-ter)/ <alpha-value>)',
+            },
+          },
+          fontFamily: {
+            sans: ['"General Sans"', 'system-ui', 'sans-serif'],
+            display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ══ Color tokens — light mode ══════════════════════════════════════════ */
+    :root {
+      --color-bg:         255 255 255;
+      --color-surface:    245 245 245;
+      --color-elevated:   236 236 236;
+      --color-border:     218 218 218;
+      --color-bsub:       228 228 228;
+      /* Primary accent: vivid green — oklch(68% 0.20 152) */
+      --color-accent:       0 184 106;   /* #00B86A */
+      --color-accent2:     10 184 212;   /* #0AB8D4 cyan */
+      --color-text:         8   8   8;
+      --color-text-sec:    60  60  60;
+      --color-text-ter:   128 128 128;
+      --accent-raw:        #00B86A;
+      --accent2-raw:       #0AB8D4;
+      --accent-dim:        rgba(0,184,106,0.09);
+      --accent-mid:        rgba(0,184,106,0.16);
+      --accent2-dim:       rgba(10,184,212,0.09);
+      --grid-line:         rgba(0,184,106,0.07);
+      --card-border-hov:   rgba(0,184,106,0.30);
+      --card-spotlight:    rgba(0,184,106,0.07);
+      --card-hover-bg:     #F0F8F4;
+      --card-shadow:       rgba(0,0,0,0.08);
+      --card-ring:         rgba(0,184,106,0.12);
+      --term-bg:           rgb(245 250 247);
+      --term-border:       rgb(210 228 218);
+      --term-bar-bg:       rgb(232 244 238);
+    }
+    /* ══ Dark mode ══════════════════════════════════════════════════════════ */
+    html[data-theme="dark"] {
+      --color-bg:           0   0   0;   /* pure black */
+      --color-surface:     10  10  10;
+      --color-elevated:    20  20  20;
+      --color-border:      38  38  38;
+      --color-bsub:        28  28  28;
+      /* Neon green + neon purple — vivid on black */
+      --color-accent:       0 232 122;   /* #00E87A */
+      --color-accent2:     34 211 238;   /* #22D3EE cyan */
+      --color-text:       248 248 248;
+      --color-text-sec:   168 168 168;
+      --color-text-ter:    90  90  90;
+      --accent-raw:        #00E87A;
+      --accent2-raw:       #22D3EE;
+      --accent-dim:        rgba(0,232,122,0.10);
+      --accent-mid:        rgba(0,232,122,0.18);
+      --accent2-dim:       rgba(34,211,238,0.10);
+      --grid-line:         rgba(0,232,122,0.10);
+      --card-border-hov:   rgba(0,232,122,0.28);
+      --card-spotlight:    rgba(0,232,122,0.08);
+      --card-hover-bg:     #0A100D;
+      --card-shadow:       rgba(0,0,0,0.60);
+      --card-ring:         rgba(0,232,122,0.08);
+      --term-bg:           rgb(4 10 7);
+      --term-border:       rgb(30 50 38);
+      --term-bar-bg:       rgb(10 18 12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    /* ── Theme toggle button ── */
+    .theme-btn {
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      color: rgb(var(--color-text-ter));
+      transition: color 0.15s ease, background 0.15s ease;
+      cursor: pointer; background: none; border: none; padding: 0;
+    }
+    .theme-btn:hover { color: rgb(var(--color-text)); background: rgb(var(--color-surface)); }
+    /* Sun = visible in dark mode; Moon = visible in light mode */
+    .theme-btn .icon-sun  { display: none; }
+    .theme-btn .icon-moon { display: block; }
+    html[data-theme="dark"] .theme-btn .icon-sun  { display: block; }
+    html[data-theme="dark"] .theme-btn .icon-moon { display: none; }
+
+    body {
+      font-family: 'General Sans', system-ui, sans-serif;
+      background: rgb(var(--color-bg));
+      color: rgb(var(--color-text));
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Circuit mesh grid ── */
+    .dot-grid {
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+
+    /* ── Animated sweep line ── */
+    .glow-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent-raw) 30%, var(--accent2-raw) 70%, transparent 100%);
+      background-size: 200% 100%;
+      animation: glow-sweep 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      opacity: 0.6;
+    }
+    @keyframes glow-sweep {
+      0%   { background-position: 220% 0; }
+      100% { background-position: -220% 0; }
+    }
+
+    /* ── Hero cascade (non-headline elements) ── */
+    @keyframes hero-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-anim { opacity: 0; animation: hero-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .hero-d1 { animation-delay: 0.10s; }
+    .hero-d2 { animation-delay: 0.22s; }
+    .hero-d4 { animation-delay: 0.36s; }
+    .hero-d5 { animation-delay: 0.50s; }
+    .hero-d6 { animation-delay: 0.65s; }
+
+    /* ── Word-mask reveal (hero headline) ── */
+    .word-mask {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+      /* Extra bottom padding so descenders aren't clipped */
+      padding-bottom: 0.08em;
+      margin-bottom: -0.08em;
+    }
+    .word {
+      display: inline-block;
+      transform: translateY(108%) skewY(4deg);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+    .word.in {
+      transform: translateY(0) skewY(0deg);
+      opacity: 1;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity   0.5s ease;
+    }
+    /* Per-word stagger */
+    .wd0 { transition-delay: 0.28s; }
+    .wd1 { transition-delay: 0.35s; }
+    .wd2 { transition-delay: 0.42s; }
+    .wd3 { transition-delay: 0.49s; }
+    .wd4 { transition-delay: 0.56s; }
+    .wd5 { transition-delay: 0.66s; }
+    .wd6 { transition-delay: 0.73s; }
+    .wd7 { transition-delay: 0.80s; }
+
+    /* ── Scroll reveal — clip-path wipe (more cinematic than blur-fade) ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      clip-path: inset(0 0 16px 0);
+      transition:
+        opacity    0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        transform  0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        clip-path  0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+      clip-path: inset(0 0 0px 0);
+    }
+
+    /* ── Animated background orbs — green + purple ── */
+    .orb {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      filter: blur(90px);
+    }
+    .orb-1 {
+      width: 700px; height: 700px; top: -280px; left: 50%; margin-left: -350px;
+      background: rgb(var(--color-accent));
+      opacity: 0.08;
+      animation: orb-drift-a 20s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: 400px; height: 400px; top: 25%; left: 5%;
+      background: rgb(var(--color-accent2));
+      opacity: 0.07;
+      animation: orb-drift-b 27s ease-in-out infinite;
+    }
+    .orb-3 {
+      width: 500px; height: 500px; top: 5%; right: 5%;
+      background: rgb(var(--color-accent));
+      opacity: 0.05;
+      animation: orb-drift-a 33s ease-in-out infinite reverse;
+    }
+    @keyframes orb-drift-a {
+      0%,100% { transform: translate(0,   0)   scale(1);    }
+      33%      { transform: translate(60px,-70px) scale(1.08); }
+      66%      { transform: translate(-50px,50px) scale(0.94); }
+    }
+    @keyframes orb-drift-b {
+      0%,100% { transform: translate(0,   0)   scale(1);    }
+      40%      { transform: translate(-80px,60px) scale(1.12); }
+      70%      { transform: translate(50px,-40px) scale(0.92); }
+    }
+
+    /* ── Terminal typing ── */
+    .term-line { opacity: 0; transform: translateX(-8px); }
+    .term-line.typed { opacity: 1; transform: translateX(0); transition: opacity 0.3s ease, transform 0.3s ease; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    .cursor-blink { animation: blink 1s step-end infinite; }
+
+    /* ── Badge dot: opacity pulse, no outer glow ── */
+    @keyframes badge-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+    .badge-dot { animation: badge-pulse 2s ease-in-out infinite; }
+
+    /* ── Button: inner refraction, no outer glow ── */
+    .btn-primary {
+      position: relative; overflow: hidden;
+      transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.15s ease,
+                  border-color 0.15s ease;
+    }
+    .btn-primary::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+    .btn-primary:hover::after { transform: translateX(100%); }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12),
+                  0 8px 20px -8px rgb(var(--color-accent) / 0.22);
+    }
+    .btn-primary:active { transform: translateY(0) scale(0.97); }
+
+    /* ── Feature card: spotlight + 3D tilt ── */
+    .feat-card {
+      position: relative;
+      border: 1px solid rgb(var(--color-border));
+      transform-style: preserve-3d;
+      perspective: 800px;
+      transition: border-color 0.35s ease,
+                  background 0.35s ease,
+                  transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.35s ease;
+    }
+    .feat-card::before {
+      content: ''; position: absolute; inset: -1px; border-radius: inherit;
+      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--card-spotlight), transparent 40%);
+      opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 0;
+    }
+    .feat-card:hover::before { opacity: 1; }
+    .feat-card:hover {
+      border-color: var(--card-border-hov);
+      background: var(--card-hover-bg);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px -16px var(--card-shadow), 0 0 0 1px var(--card-ring);
+    }
+    .feat-card > * { position: relative; z-index: 1; }
+
+    /* ── Terminal window ── */
+    .terminal {
+      background: var(--term-bg);
+      border: 1px solid var(--term-border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: box-shadow 0.5s ease;
+    }
+    .terminal.active-glow {
+      /* tinted depth shadow — no neon blast */
+      box-shadow: 0 24px 48px -24px rgba(0,0,0,0.5);
+    }
+    .terminal-bar {
+      background: var(--term-bar-bg);
+      border-bottom: 1px solid var(--term-border);
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+    /* ── Privacy row stagger ── */
+    .privacy-row {
+      opacity: 0; transform: translateX(-12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .privacy-row.visible { opacity: 1; transform: translateX(0); }
+
+    /* ── Icon float on card hover ── */
+    @keyframes icon-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+    .feat-card:hover .feat-icon { animation: icon-float 1.5s ease-in-out infinite; }
+
+    /* ── Step number pop ── */
+    @keyframes count-pop {
+      0%   { transform: scale(0.3) rotate(-8deg); opacity: 0; }
+      55%  { transform: scale(1.18) rotate(2deg); opacity: 1; }
+      75%  { transform: scale(0.94) rotate(-1deg); }
+      90%  { transform: scale(1.04); }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    .step-num.visible { animation: count-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+    /* ── Live stream dots (anchor feature card) ── */
+    @keyframes stream-dot {
+      0%, 80%, 100% { transform: scale(0); opacity: 0; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+    .stream-dot { animation: stream-dot 1.4s ease-in-out infinite; }
+    .stream-dot:nth-child(1) { animation-delay: 0s; }
+    .stream-dot:nth-child(2) { animation-delay: 0.2s; }
+    .stream-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    /* ── FAQ accordion ── */
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    details .faq-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    details[open] .faq-body { grid-template-rows: 1fr; }
+    details .faq-body > div { overflow: hidden; }
+    details .faq-icon { transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1); }
+    details[open] .faq-icon { transform: rotate(45deg); }
+
+    /* ── Screenshots marquee ── */
+    .marquee-track { overflow: hidden; position: relative; }
+    /* Edge fade masks */
+    .marquee-track::before,
+    .marquee-track::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none;
+    }
+    .marquee-track::before { left: 0;  background: linear-gradient(90deg, rgb(var(--color-bg)), transparent); }
+    .marquee-track::after  { right: 0; background: linear-gradient(-90deg, rgb(var(--color-bg)), transparent); }
+
+    .marquee-row {
+      display: flex; gap: 16px; width: max-content;
+      will-change: transform;
+    }
+    .marquee-row-left  { animation: mq-left  38s linear infinite; }
+    .marquee-row-right { animation: mq-right 45s linear infinite; }
+    @keyframes mq-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+    @keyframes mq-right { from { transform: translateX(-50%); } to { transform: translateX(0); }    }
+
+    /* Pause on hover */
+    .marquee-track:hover .marquee-row { animation-play-state: paused; }
+
+    /* Phone frame */
+    .phone-shot {
+      flex-shrink: 0;
+      width: 160px;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.06),
+        0 0 0 6px rgb(var(--color-elevated)),
+        0 0 0 7px rgba(0,0,0,0.08),
+        0 16px 40px -12px rgba(0,0,0,0.22);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease;
+    }
+    .phone-shot:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.08),
+        0 0 0 6px rgb(var(--color-elevated)),
+        0 0 0 7px rgba(0,0,0,0.08),
+        0 28px 56px -16px rgba(0,0,0,0.32);
+    }
+    .phone-shot img { display: block; width: 100%; height: auto; }
+
+    /* ── Protocol: horizontal step nodes ── */
+    .step-node {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid rgb(var(--color-accent) / 0.25);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 2;
+      transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+    .step-col:hover .step-node {
+      background: var(--accent-mid);
+      border-color: rgb(var(--color-accent) / 0.5);
+      transform: scale(1.1);
+    }
+    /* The horizontal connector line lives as a pseudo on the wrapper */
+    .steps-flow {
+      position: relative;
+    }
+    .steps-flow::before {
+      content: '';
+      position: absolute;
+      top: 22px; /* center of the 44px node */
+      left: calc(33.333% - 0px);
+      right: calc(33.333% - 0px);
+      height: 1px;
+      background: rgb(var(--color-border));
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .steps-flow::before { display: block; }
+    }
+
+    /* ── Privacy: giant stat values ── */
+    .stat-val {
+      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+      font-variation-settings: 'wdth' 112, 'wght' 800;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      line-height: 1;
+      color: rgb(var(--color-text));
+      letter-spacing: -0.03em;
+    }
+    .stat-accent { color: var(--accent-raw); }
+
+    /* ── Bento grid ── */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 2px;
+    }
+    @media (min-width: 1024px) {
+      .bento-grid { grid-template-columns: 5fr 4fr 4fr; }
+    }
+    .bento-cell {
+      background: rgb(var(--color-surface));
+      padding: 2.5rem;
+      transition: background 0.25s ease;
+    }
+    .bento-cell:hover { background: rgb(var(--color-elevated)); }
+    /* First cell spans 2 rows on desktop */
+    @media (min-width: 1024px) {
+      .bento-wide { grid-row: span 2; }
+    }
+
+    /* ── FAQ full-width ── */
+    .faq-q {
+      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+      font-variation-settings: 'wdth' 105, 'wght' 700;
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      line-height: 1.3;
+      color: rgb(var(--color-text));
+    }
+
+    /* ── Accent-colored SVG icons ── */
+    .stroke-accent { color: var(--accent-raw); }
+
+    /* ── Terminal semantic colors (theme-aware, used in JS-injected spans) ── */
+    .tc-accent    { color: var(--accent-raw); }
+    .tc-accent2   { color: var(--accent2-raw); }
+    .tc-secondary { color: rgb(var(--color-text-sec)); }
+    .tc-muted     { color: rgb(var(--color-text-ter)); }
+    /* Stat values */
+    .stat-accent2 { color: var(--accent2-raw); }
+    /* Purple step node variant */
+    .step-node-2 {
+      background: var(--accent2-dim);
+      border-color: rgb(var(--color-accent2) / 0.25);
+    }
+    .step-col:hover .step-node-2 {
+      background: rgba(10,184,212,0.16);
+      border-color: rgb(var(--color-accent2) / 0.5);
+    }
+    html[data-theme="dark"] .step-col:hover .step-node-2 {
+      background: rgba(34,211,238,0.16);
+      border-color: rgb(var(--color-accent2) / 0.5);
+    }
+
+    /* ── Logo: ambient neon halo from its own colors ── */
+    .logo-icon {
+      border-radius: 14px;
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.08),
+        0 6px 20px -6px rgba(0,180,255,0.22),
+        0 3px 10px -3px rgba(200,0,255,0.14);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s ease;
+    }
+    .logo-icon:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.08),
+        0 12px 32px -8px rgba(0,200,255,0.32),
+        0 6px 18px -6px rgba(200,0,255,0.24);
+    }
+    /* Hero logo — larger with breathing glow */
+    .hero-logo {
+      border-radius: 22px;
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.10),
+        0 16px 48px -12px rgba(0,200,255,0.28),
+        0 8px 24px -8px rgba(200,0,255,0.22),
+        0 4px 12px rgba(0,0,0,0.14);
+      animation: logo-breathe 5s ease-in-out infinite;
+    }
+    @keyframes logo-breathe {
+      0%, 100% {
+        box-shadow:
+          0 0 0 1px rgba(0,0,0,0.10),
+          0 16px 48px -12px rgba(0,200,120,0.35),
+          0 8px 24px -8px rgba(150,0,255,0.28),
+          0 4px 12px rgba(0,0,0,0.14);
+      }
+      50% {
+        box-shadow:
+          0 0 0 1px rgba(0,0,0,0.10),
+          0 20px 56px -12px rgba(0,232,122,0.50),
+          0 10px 32px -8px rgba(34,211,238,0.40),
+          0 4px 12px rgba(0,0,0,0.14);
+      }
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; clip-path: none; }
+      .hero-anim { opacity: 1; transform: none; }
+      .word { transform: none; opacity: 1; }
+      .term-line { opacity: 1; transform: none; }
+      details .faq-body { grid-template-rows: 1fr; }
+      .hero-logo, .orb, .marquee-row { animation: none; }
+      .marquee-row { flex-wrap: wrap; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-40 bg-bg/80 backdrop-blur-xl border-b border-border-subtle">
+    <div class="max-w-[1200px] mx-auto px-6 h-14 flex items-center justify-between">
+      <a href="#" class="font-semibold text-sm tracking-tight text-text flex items-center gap-2.5">
+        <img src="logo.png" alt="AgentChat Hub" class="logo-icon h-8 w-auto" />
+        AgentChat Hub
+      </a>
+      <div class="flex items-center gap-6">
+        <a href="#features" class="text-xs font-medium text-text-tertiary hover:text-text transition-colors hidden sm:block">Features</a>
+        <a href="#protocol" class="text-xs font-medium text-text-tertiary hover:text-text transition-colors hidden sm:block">Protocol</a>
+        <a href="#privacy" class="text-xs font-medium text-text-tertiary hover:text-text transition-colors hidden sm:block">Privacy</a>
+        <button class="theme-btn" id="theme-toggle" aria-label="Toggle light/dark mode">
+          <!-- Moon: shown in light mode (click to go dark) -->
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <!-- Sun: shown in dark mode (click to go light) -->
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+        <a href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener"
+           class="btn-primary inline-flex items-center gap-2 bg-accent text-bg text-xs font-semibold px-4 py-2 rounded-lg border border-accent/80">
+          Download
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="min-h-[100dvh] pt-14 relative overflow-hidden">
+    <div class="dot-grid absolute inset-0 opacity-30" id="hero-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+      <div class="pt-24 md:pt-36 pb-20">
+
+        <div class="hero-anim hero-d1 mb-6">
+          <img src="logo.png" alt="AgentChat Hub" class="hero-logo h-20 w-auto" />
+        </div>
+
+        <div class="hero-anim hero-d2 mb-8">
+          <span class="inline-flex items-center gap-2 text-xs font-mono font-medium text-accent bg-accent-dim border border-accent/20 px-3 py-1.5 rounded-md">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent badge-dot"></span>
+            A2A Open Protocol
+          </span>
+        </div>
+
+        <h1 class="font-display font-bold text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.9] text-text max-w-4xl mb-8" style="font-variation-settings:'wdth' 112,'wght' 800">
+          <span class="word-mask"><span class="word wd0">Talk</span></span>&nbsp;<span class="word-mask"><span class="word wd1">to</span></span>&nbsp;<span class="word-mask"><span class="word wd2">any</span></span>&nbsp;<span class="word-mask"><span class="word wd3">AI</span></span>&nbsp;<span class="word-mask"><span class="word wd4">agent</span></span><br>
+          <span class="word-mask"><span class="word wd5 text-accent2">with</span></span>&nbsp;<span class="word-mask"><span class="word wd6 text-accent2">a</span></span>&nbsp;<span class="word-mask"><span class="word wd7 text-accent2">URL.</span></span>
+        </h1>
+
+        <p class="hero-anim hero-d4 text-base md:text-lg font-medium text-text-secondary leading-relaxed max-w-xl mb-10">
+          The universal A2A client for iOS, Mac, and Vision Pro. Paste an endpoint, stream responses in real time. No account. No tracking. Free.
+        </p>
+
+        <div class="hero-anim hero-d5 flex flex-wrap items-center gap-4 mb-6">
+          <a href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener"
+             class="btn-primary inline-flex items-center gap-3 bg-accent text-bg font-semibold px-6 py-3.5 rounded-xl text-sm border border-accent/80">
+            <svg width="18" height="18" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.2-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.28 2.13-9.54 3.25-12.8 3.35-4.92.21-9.84-1.96-14.75-6.52-3.13-2.73-7.05-7.41-11.76-14.04-5.05-7.14-9.2-15.42-12.44-24.86C18.63 110.62 17 101.02 17 91.71c0-10.67 2.3-19.87 6.92-27.58 3.62-6.18 8.44-11.06 14.48-14.66 6.04-3.6 12.56-5.43 19.6-5.58 3.92 0 9.06 1.21 15.43 3.6 6.35 2.4 10.43 3.62 12.22 3.62 1.34 0 5.87-1.43 13.56-4.28 7.27-2.64 13.41-3.74 18.44-3.32 13.62 1.1 23.85 6.47 30.63 16.15-12.19 7.39-18.22 17.73-18.1 31 .11 10.34 3.86 18.94 11.23 25.77 3.34 3.17 7.07 5.62 11.22 7.36-.9 2.61-1.85 5.11-2.86 7.51zM119.11 7.24c0 8.1-2.96 15.67-8.86 22.67-7.12 8.32-15.73 13.13-25.07 12.37a25.2 25.2 0 0 1-.19-3.07c0-7.78 3.39-16.09 9.4-22.89 3-3.44 6.82-6.31 11.45-8.6 4.62-2.26 8.99-3.51 13.1-3.72.12 1.1.17 2.2.17 3.24z"/></svg>
+            Download on the App Store
+          </a>
+          <span class="font-mono text-xs text-text-tertiary">v1.1 · Free · No account required</span>
+        </div>
+
+        <!-- Proof signal: platform trust, no fabricated numbers -->
+        <div class="hero-anim hero-d6 flex flex-wrap items-center gap-x-6 gap-y-2 mb-20 text-xs font-mono text-text-tertiary">
+          <span class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+            Native on iPhone, iPad, Mac, Vision Pro
+          </span>
+          <span>iOS 15.1+</span>
+          <span>macOS 12+</span>
+          <span>visionOS 1.0+</span>
+        </div>
+
+        <!-- Terminal mockup -->
+        <div class="hero-anim hero-d6 max-w-3xl" id="terminal-wrap">
+          <div class="terminal" id="terminal">
+            <div class="terminal-bar">
+              <div class="terminal-dot bg-[#FF5F57]"></div>
+              <div class="terminal-dot bg-[#FEBC2E]"></div>
+              <div class="terminal-dot bg-[#28C840]"></div>
+              <span class="ml-3 text-xs font-mono text-text-tertiary">AgentChat Hub</span>
+            </div>
+            <div class="p-6 font-mono text-sm space-y-4" id="terminal-body"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-line max-w-[1200px] mx-auto"></div>
+
+  <!-- Platform strip -->
+  <div class="border-b border-border-subtle bg-surface/40">
+    <div class="max-w-[1200px] mx-auto px-6 py-3.5 flex flex-wrap items-center gap-x-8 gap-y-2">
+      <span class="font-mono text-xs text-text-tertiary flex items-center gap-2">
+        <svg width="13" height="13" viewBox="0 0 170 170" fill="#706959"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.2-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.28 2.13-9.54 3.25-12.8 3.35-4.92.21-9.84-1.96-14.75-6.52-3.13-2.73-7.05-7.41-11.76-14.04-5.05-7.14-9.2-15.42-12.44-24.86C18.63 110.62 17 101.02 17 91.71c0-10.67 2.3-19.87 6.92-27.58 3.62-6.18 8.44-11.06 14.48-14.66 6.04-3.6 12.56-5.43 19.6-5.58 3.92 0 9.06 1.21 15.43 3.6 6.35 2.4 10.43 3.62 12.22 3.62 1.34 0 5.87-1.43 13.56-4.28 7.27-2.64 13.41-3.74 18.44-3.32 13.62 1.1 23.85 6.47 30.63 16.15-12.19 7.39-18.22 17.73-18.1 31 .11 10.34 3.86 18.94 11.23 25.77 3.34 3.17 7.07 5.62 11.22 7.36-.9 2.61-1.85 5.11-2.86 7.51zM119.11 7.24c0 8.1-2.96 15.67-8.86 22.67-7.12 8.32-15.73 13.13-25.07 12.37a25.2 25.2 0 0 1-.19-3.07c0-7.78 3.39-16.09 9.4-22.89 3-3.44 6.82-6.31 11.45-8.6 4.62-2.26 8.99-3.51 13.1-3.72.12 1.1.17 2.2.17 3.24z"/></svg>
+        iPhone · iPad · Mac · Vision Pro
+      </span>
+      <span class="font-mono text-xs text-text-tertiary">One native binary per platform</span>
+      <span class="font-mono text-xs text-text-tertiary flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+        A2A Open Protocol compatible
+      </span>
+    </div>
+  </div>
+
+  <!-- ═══ FEATURES ═══ -->
+  <section id="features" class="py-24 md:py-32">
+    <div class="max-w-[1200px] mx-auto px-6">
+
+      <div class="mb-16 reveal">
+        <p class="font-mono text-xs font-medium text-accent mb-3 tracking-wide uppercase">Features</p>
+        <h2 class="font-display font-semibold text-3xl md:text-5xl tracking-tight leading-tight text-text max-w-2xl">
+          A native client that speaks<br>the open protocol.
+        </h2>
+      </div>
+
+      <!-- Row 1: 7 / 5 asymmetric -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-3 mb-3">
+
+        <!-- Anchor card: Live Streaming — wider, richer -->
+        <div class="feat-card md:col-span-7 rounded-xl bg-surface p-8 reveal">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3 class="font-medium text-base tracking-tight text-text">Live Streaming</h3>
+          </div>
+          <p class="text-sm text-text-secondary leading-relaxed mb-6 max-w-md">
+            Every response arrives token-by-token over SSE. You watch the agent reason in real time — not a loading spinner followed by a wall of text. Latency becomes visible instead of hidden.
+          </p>
+          <div class="flex items-center gap-2.5">
+            <span class="font-mono text-xs text-text-tertiary">streaming</span>
+            <span class="flex items-center gap-1">
+              <span class="stream-dot w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+              <span class="stream-dot w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+              <span class="stream-dot w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Right stack: two lean cards -->
+        <div class="md:col-span-5 flex flex-col gap-3">
+          <div class="feat-card rounded-xl bg-surface p-8 reveal flex-1">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              </div>
+              <h3 class="font-medium text-base tracking-tight text-text">Connect by URL</h3>
+            </div>
+            <p class="text-sm text-text-secondary leading-relaxed">
+              No marketplace. Paste the endpoint, the app reads the Agent Card. The open web is the platform.
+            </p>
+          </div>
+
+          <div class="feat-card rounded-xl bg-surface p-8 reveal flex-1">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3 class="font-medium text-base tracking-tight text-text">Multi-Agent Roster</h3>
+            </div>
+            <p class="text-sm text-text-secondary leading-relaxed">
+              Add unlimited agents. Organize into groups and tabs. Switch between them like contacts in a messenger.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: 5 / 7 flipped -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+        <div class="feat-card md:col-span-5 rounded-xl bg-surface p-8 reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+            </div>
+            <h3 class="font-medium text-base tracking-tight text-text">Rich Attachments</h3>
+          </div>
+          <p class="text-sm text-text-secondary leading-relaxed">
+            Send photos, images, and files inline. Multi-modal from day one.
+          </p>
+        </div>
+
+        <div class="feat-card md:col-span-7 rounded-xl bg-surface p-8 reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <h3 class="font-medium text-base tracking-tight text-text">Native Everywhere</h3>
+          </div>
+          <p class="text-sm text-text-secondary leading-relaxed max-w-md">
+            iPhone, iPad, Mac, Vision Pro. One native binary per platform, not a web view. Platform idioms, system fonts, keyboard shortcuts — it all works because it was built to.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ SCREENSHOTS ═══ -->
+  <section class="py-24 md:py-32 border-t border-border-subtle overflow-hidden">
+    <div class="max-w-[1200px] mx-auto px-6 mb-14 reveal">
+      <p class="text-xs font-mono font-medium text-accent uppercase tracking-widest mb-4">The App</p>
+      <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight text-text mb-4" style="font-variation-settings:'wdth' 108,'wght' 800">
+        Every screen, natively built.
+      </h2>
+      <p class="text-text-secondary text-base max-w-xl">
+        Light and dark modes. iPhone, iPad, Mac, Vision Pro. One app that feels at home everywhere Apple is.
+      </p>
+    </div>
+
+    <!-- Row 1: light mode screenshots, scroll left -->
+    <div class="marquee-track mb-4">
+      <div class="marquee-row marquee-row-left px-4">
+        <!-- set A -->
+        <div class="phone-shot"><img src="screens/s01.png" alt="Messages — empty state" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s02.png" alt="Conversation list" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s03.png" alt="Settings" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s04.png" alt="Add Agent" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s05.png" alt="Agent card" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s06.png" alt="Agent details" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s07.png" alt="Chat view" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s08.png" alt="Discover agents" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s09.png" alt="Settings menu" loading="lazy"></div>
+        <!-- set B (duplicate for seamless loop) -->
+        <div class="phone-shot"><img src="screens/s01.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s02.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s03.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s04.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s05.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s06.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s07.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s08.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s09.png" alt="" loading="lazy" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- Row 2: dark mode screenshots, scroll right -->
+    <div class="marquee-track">
+      <div class="marquee-row marquee-row-right px-4">
+        <!-- set A -->
+        <div class="phone-shot"><img src="screens/s10.png" alt="Settings — dark mode" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s11.png" alt="Session settings" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s12.png" alt="Chat — dark mode" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s13.png" alt="Messages list — dark" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s14.png" alt="Messages — dark mode" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s15.png" alt="Chat session" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s16.png" alt="Discover — dark mode" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s17.png" alt="Agent discovery" loading="lazy"></div>
+        <div class="phone-shot"><img src="screens/s18.png" alt="iPhone Air view" loading="lazy"></div>
+        <!-- set B (duplicate for seamless loop) -->
+        <div class="phone-shot"><img src="screens/s10.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s11.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s12.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s13.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s14.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s15.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s16.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s17.png" alt="" loading="lazy" aria-hidden="true"></div>
+        <div class="phone-shot"><img src="screens/s18.png" alt="" loading="lazy" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROTOCOL — centered header + open horizontal 3-node flow ═══ -->
+  <section id="protocol" class="py-24 md:py-32 border-t border-border-subtle overflow-hidden">
+    <div class="max-w-[1200px] mx-auto px-6">
+
+      <div class="text-center max-w-xl mx-auto mb-20 reveal">
+        <p class="font-mono text-xs font-medium text-accent mb-4 tracking-widest uppercase">Protocol</p>
+        <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-text mb-5" style="font-variation-settings:'wdth' 108,'wght' 800">
+          Three steps.<br>Zero ceremony.
+        </h2>
+        <p class="text-text-secondary text-sm leading-relaxed">
+          If it publishes A2A metadata, AgentChat can talk to it. That is the entire integration surface.
+        </p>
+      </div>
+
+      <div class="steps-flow grid grid-cols-1 md:grid-cols-3" id="steps-container">
+
+        <div class="step-col reveal flex flex-col px-0 md:pr-10 pb-12 md:pb-0">
+          <div class="step-node mb-7 shrink-0">
+            <span class="step-num font-mono text-xs font-bold text-accent opacity-0">01</span>
+          </div>
+          <p class="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">Step one</p>
+          <h3 class="font-display font-bold text-xl tracking-tight text-text mb-3" style="font-variation-settings:'wdth' 105,'wght' 700">Publish agent metadata</h3>
+          <p class="text-sm text-text-secondary leading-relaxed mb-5 flex-1">Host an Agent Card so any client can discover your capabilities without manual configuration.</p>
+          <code class="font-mono text-xs text-accent bg-accent-dim px-3 py-2 rounded-lg border border-accent/15 self-start">/.well-known/agent.json</code>
+        </div>
+
+        <div class="step-col reveal flex flex-col px-0 md:px-10 pb-12 md:pb-0 border-t md:border-t-0 md:border-l border-border-subtle pt-12 md:pt-0">
+          <div class="step-node step-node-2 mb-7 shrink-0">
+            <span class="step-num font-mono text-xs font-bold text-accent2 opacity-0">02</span>
+          </div>
+          <p class="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">Step two</p>
+          <h3 class="font-display font-bold text-xl tracking-tight text-text mb-3" style="font-variation-settings:'wdth' 105,'wght' 700">Paste the URL</h3>
+          <p class="text-sm text-text-secondary leading-relaxed flex-1">AgentChat reads the Agent Card, discovers the endpoint, and establishes a session. No SDK. No API key. No setup ritual.</p>
+        </div>
+
+        <div class="step-col reveal flex flex-col px-0 md:pl-10 border-t md:border-t-0 md:border-l border-border-subtle pt-12 md:pt-0">
+          <div class="step-node mb-7 shrink-0">
+            <span class="step-num font-mono text-xs font-bold text-accent opacity-0">03</span>
+          </div>
+          <p class="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">Step three</p>
+          <h3 class="font-display font-bold text-xl tracking-tight text-text mb-3" style="font-variation-settings:'wdth' 105,'wght' 700">Start chatting</h3>
+          <p class="text-sm text-text-secondary leading-relaxed flex-1">Stream responses, send files, manage conversations. Everything stays on your device — no cloud in the middle.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRIVACY — four oversized stat blocks + centered terminal ═══ -->
+  <section id="privacy" class="border-t border-border-subtle bg-surface">
+    <div class="max-w-[1200px] mx-auto px-6 py-24 md:py-32">
+
+      <div class="text-center mb-16 reveal">
+        <p class="font-mono text-xs font-medium text-accent2 mb-4 tracking-widest uppercase">Privacy</p>
+        <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-text" style="font-variation-settings:'wdth' 108,'wght' 800">
+          Zero data collection.<br>By design.
+        </h2>
+      </div>
+
+      <!-- Stat grid -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border-subtle mb-16 reveal">
+        <div class="bg-surface p-8 md:p-12 text-center">
+          <div class="stat-val stat-accent mb-2">0</div>
+          <p class="text-xs font-mono text-text-tertiary uppercase tracking-widest">bytes collected</p>
+        </div>
+        <div class="bg-surface p-8 md:p-12 text-center">
+          <div class="stat-val stat-accent2 mb-2">0</div>
+          <p class="text-xs font-mono text-text-tertiary uppercase tracking-widest">accounts needed</p>
+        </div>
+        <div class="bg-surface p-8 md:p-12 text-center">
+          <div class="stat-val stat-accent2 mb-2">∞</div>
+          <p class="text-xs font-mono text-text-tertiary uppercase tracking-widest">devices you own</p>
+        </div>
+        <div class="bg-surface p-8 md:p-12 text-center">
+          <div class="stat-val stat-accent mb-2">$0</div>
+          <p class="text-xs font-mono text-text-tertiary uppercase tracking-widest">price forever</p>
+        </div>
+      </div>
+
+      <!-- Terminal — centered, narrower, supporting detail -->
+      <div class="max-w-2xl mx-auto reveal">
+        <div class="terminal" id="privacy-terminal">
+          <div class="terminal-bar">
+            <div class="terminal-dot bg-[#FF5F57]"></div>
+            <div class="terminal-dot bg-[#FEBC2E]"></div>
+            <div class="terminal-dot bg-[#28C840]"></div>
+            <span class="ml-3 text-xs font-mono text-text-tertiary">privacy audit</span>
+          </div>
+          <div class="p-6 font-mono text-sm">
+            <table class="w-full">
+              <tbody>
+                <tr class="privacy-row border-b border-border-subtle"><td class="py-3 text-text-secondary pr-8">data_collected</td><td class="py-3 text-right text-accent font-semibold">none</td></tr>
+                <tr class="privacy-row border-b border-border-subtle"><td class="py-3 text-text-secondary pr-8">data_shared</td><td class="py-3 text-right text-accent font-semibold">none</td></tr>
+                <tr class="privacy-row border-b border-border-subtle"><td class="py-3 text-text-secondary pr-8">account_required</td><td class="py-3 text-right text-accent font-semibold">false</td></tr>
+                <tr class="privacy-row border-b border-border-subtle"><td class="py-3 text-text-secondary pr-8">cloud_sync</td><td class="py-3 text-right text-accent font-semibold">false</td></tr>
+                <tr class="privacy-row border-b border-border-subtle"><td class="py-3 text-text-secondary pr-8">advertising</td><td class="py-3 text-right text-accent font-semibold">false</td></tr>
+                <tr class="privacy-row"><td class="py-3 text-text-secondary pr-8">price</td><td class="py-3 text-right text-accent font-semibold">0.00</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ USE CASES — asymmetric bento grid ═══ -->
+  <section class="border-t border-border-subtle py-24 md:py-32">
+    <div class="max-w-[1200px] mx-auto px-6">
+
+      <div class="mb-12 reveal">
+        <p class="font-mono text-xs font-medium text-accent2 mb-4 tracking-widest uppercase">Use cases</p>
+        <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-text" style="font-variation-settings:'wdth' 108,'wght' 800">
+          Built for anyone<br>with an agent.
+        </h2>
+      </div>
+
+      <div class="bento-grid reveal">
+
+        <!-- Wide cell: developers (spans 2 rows on desktop) -->
+        <div class="bento-cell bento-wide rounded-none flex flex-col justify-between min-h-[280px]">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-accent-dim flex items-center justify-center mb-6">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <p class="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">Developers</p>
+            <h3 class="font-display font-bold text-2xl tracking-tight text-text mb-3" style="font-variation-settings:'wdth' 105,'wght' 700">Building A2A agents</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">Test and demo your agent instantly. No frontend to build — point AgentChat at your endpoint and go. Ship faster, iterate in real time.</p>
+          </div>
+          <span class="font-mono text-[80px] font-black text-text-tertiary/10 leading-none select-none mt-6">01</span>
+        </div>
+
+        <!-- Narrow cell: teams -->
+        <div class="bento-cell rounded-none flex flex-col justify-between min-h-[200px]">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-accent-dim flex items-center justify-center mb-6">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <p class="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">Teams</p>
+            <h3 class="font-display font-bold text-xl tracking-tight text-text mb-3" style="font-variation-settings:'wdth' 105,'wght' 700">Internal AI assistants</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">Give your team a native mobile client for internal agents — no bespoke frontend required.</p>
+          </div>
+          <span class="font-mono text-[80px] font-black text-text-tertiary/10 leading-none select-none mt-4">02</span>
+        </div>
+
+        <!-- Narrow cell: self-hosters -->
+        <div class="bento-cell rounded-none flex flex-col justify-between min-h-[200px]">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-accent-dim flex items-center justify-center mb-6">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <p class="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">Self-hosters</p>
+            <h3 class="font-display font-bold text-xl tracking-tight text-text mb-3" style="font-variation-settings:'wdth' 105,'wght' 700">Local models</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">Wrap your local LLM in an A2A endpoint and chat from your phone. No port forwarding theatrics.</p>
+          </div>
+          <span class="font-mono text-[80px] font-black text-text-tertiary/10 leading-none select-none mt-4">03</span>
+        </div>
+
+        <!-- Bottom wide cell: everyone -->
+        <div class="bento-cell rounded-none col-span-2 lg:col-span-2 flex flex-col sm:flex-row sm:items-center gap-8">
+          <div class="w-10 h-10 rounded-xl bg-accent-dim flex items-center justify-center shrink-0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div class="flex-1">
+            <p class="font-mono text-[10px] text-accent tracking-widest uppercase mb-2">Everyone</p>
+            <h3 class="font-display font-bold text-xl tracking-tight text-text mb-2" style="font-variation-settings:'wdth' 105,'wght' 700">Private chat client</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">No logins, no data collection, no subscription walls. A clean messenger for the agents you actually choose.</p>
+          </div>
+          <span class="font-mono text-[80px] font-black text-text-tertiary/10 leading-none select-none hidden sm:block">04</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ — full-width, large questions, numbered ═══ -->
+  <section class="border-t border-border-subtle py-24 md:py-32">
+    <div class="max-w-[800px] mx-auto px-6">
+
+      <div class="mb-16 reveal">
+        <p class="font-mono text-xs font-medium text-accent2 mb-4 tracking-widest uppercase">FAQ</p>
+        <h2 class="font-display font-bold text-4xl md:text-5xl tracking-tight text-text" style="font-variation-settings:'wdth' 108,'wght' 800">
+          Good questions.
+        </h2>
+      </div>
+
+      <div class="space-y-0 reveal">
+
+        <details class="group border-t border-border-subtle">
+          <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+            <div class="flex items-start gap-5">
+              <span class="font-mono text-xs text-accent shrink-0 mt-1.5">01</span>
+              <span class="faq-q">What is the A2A protocol?</span>
+            </div>
+            <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+          </summary>
+          <div class="faq-body">
+            <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+              A2A (Agent-to-Agent) is an open interoperability protocol that lets AI agents communicate across platforms using a standard HTTP interface. Any service that exposes an A2A endpoint and publishes a discovery file at <code class="font-mono text-xs text-accent bg-accent-dim px-1.5 py-0.5 rounded">/.well-known/agent.json</code> is automatically compatible with AgentChat Hub.
+            </div>
+          </div>
+        </details>
+
+        <details class="group border-t border-border-subtle">
+          <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+            <div class="flex items-start gap-5">
+              <span class="font-mono text-xs text-accent2 shrink-0 mt-1.5">02</span>
+              <span class="faq-q">Which agents can I connect to?</span>
+            </div>
+            <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+          </summary>
+          <div class="faq-body">
+            <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+              Any agent that implements the A2A specification — ones you build yourself, internal company agents, or any third-party service exposing a standard A2A endpoint. There is no curated marketplace. The open web is the directory.
+            </div>
+          </div>
+        </details>
+
+        <details class="group border-t border-border-subtle">
+          <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+            <div class="flex items-start gap-5">
+              <span class="font-mono text-xs text-accent shrink-0 mt-1.5">03</span>
+              <span class="faq-q">Is AgentChat Hub really free?</span>
+            </div>
+            <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+          </summary>
+          <div class="faq-body">
+            <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+              Yes. No subscription, no in-app purchases, no freemium gate. The app is free on the App Store. You pay the agent providers you connect to directly — that's between you and them.
+            </div>
+          </div>
+        </details>
+
+        <details class="group border-t border-border-subtle">
+          <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+            <div class="flex items-start gap-5">
+              <span class="font-mono text-xs text-accent2 shrink-0 mt-1.5">04</span>
+              <span class="faq-q">Does AgentChat see my conversation data?</span>
+            </div>
+            <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+          </summary>
+          <div class="faq-body">
+            <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+              No. AgentChat Hub has no backend, no telemetry, and no analytics. Messages travel directly from your device to your chosen agent — we are not in that path. Conversations are stored on-device and nowhere else.
+            </div>
+          </div>
+        </details>
+
+        <div class="border-t border-border-subtle"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ FINAL CTA ═══ -->
+  <section class="py-24 md:py-32 border-t border-border-subtle relative overflow-hidden">
+    <div class="dot-grid absolute inset-0 opacity-20"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-accent/5 blur-[100px] pointer-events-none"></div>
+
+    <div class="max-w-[1200px] mx-auto px-6 text-center relative z-10 reveal">
+      <h2 class="font-display font-bold text-4xl md:text-6xl tracking-tight leading-[0.95] text-text max-w-2xl mx-auto mb-6">
+        The open AI web needs<br>an open client.
+      </h2>
+      <p class="text-base font-medium text-text-secondary leading-relaxed max-w-md mx-auto mb-10">
+        Free. No account. No tracking. Available now.
+      </p>
+      <a href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener"
+         class="btn-primary inline-flex items-center gap-3 bg-accent text-bg font-semibold px-8 py-4 rounded-xl text-sm border border-accent/80">
+        <svg width="18" height="18" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.2-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.28 2.13-9.54 3.25-12.8 3.35-4.92.21-9.84-1.96-14.75-6.52-3.13-2.73-7.05-7.41-11.76-14.04-5.05-7.14-9.2-15.42-12.44-24.86C18.63 110.62 17 101.02 17 91.71c0-10.67 2.3-19.87 6.92-27.58 3.62-6.18 8.44-11.06 14.48-14.66 6.04-3.6 12.56-5.43 19.6-5.58 3.92 0 9.06 1.21 15.43 3.6 6.35 2.4 10.43 3.62 12.22 3.62 1.34 0 5.87-1.43 13.56-4.28 7.27-2.64 13.41-3.74 18.44-3.32 13.62 1.1 23.85 6.47 30.63 16.15-12.19 7.39-18.22 17.73-18.1 31 .11 10.34 3.86 18.94 11.23 25.77 3.34 3.17 7.07 5.62 11.22 7.36-.9 2.61-1.85 5.11-2.86 7.51zM119.11 7.24c0 8.1-2.96 15.67-8.86 22.67-7.12 8.32-15.73 13.13-25.07 12.37a25.2 25.2 0 0 1-.19-3.07c0-7.78 3.39-16.09 9.4-22.89 3-3.44 6.82-6.31 11.45-8.6 4.62-2.26 8.99-3.51 13.1-3.72.12 1.1.17 2.2.17 3.24z"/></svg>
+        Download on the App Store
+      </a>
+      <p class="mt-5 font-mono text-xs text-text-tertiary">v1.1 / iOS 15.1+ / macOS 12+ / visionOS 1.0+</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-border-subtle py-8">
+    <div class="max-w-[1200px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <img src="logo.png" alt="AgentChat Hub" class="logo-icon h-6 w-auto opacity-70" />
+      <div class="flex items-center gap-6 text-xs text-text-tertiary">
+        <span>Built by Ananya Banerjee</span>
+        <a href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener" class="hover:text-accent transition-colors">App Store</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Theme toggle ──────────────────────────────────────────────────────────
+    (function () {
+      // Initialise on first paint: respect saved preference, then system pref
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = saved || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme');
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+        });
+      }
+    })();
+
+    // ── Scroll reveal with stagger ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const parent = entry.target.parentElement;
+          const siblings = [...parent.querySelectorAll(':scope > .reveal')];
+          const idx = siblings.indexOf(entry.target);
+          entry.target.style.transitionDelay = `${idx * 0.08}s`;
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Step number pop ──
+    const stepObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.step-num').forEach((n, i) => {
+            setTimeout(() => n.classList.add('visible'), i * 200);
+          });
+          stepObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    const stepsContainer = document.getElementById('steps-container');
+    if (stepsContainer) stepObserver.observe(stepsContainer);
+
+    // ── Privacy table row stagger ──
+    const privacyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.privacy-row').forEach((row, i) => {
+            setTimeout(() => row.classList.add('visible'), i * 100);
+          });
+          privacyObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    const privacyTerminal = document.getElementById('privacy-terminal');
+    if (privacyTerminal) privacyObserver.observe(privacyTerminal);
+
+    // ── Hero word-mask reveal ──
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setTimeout(() => {
+        document.querySelectorAll('.word').forEach(w => w.classList.add('in'));
+      }, 120);
+    } else {
+      document.querySelectorAll('.word').forEach(w => w.classList.add('in'));
+    }
+
+    // ── Feature card spotlight + 3D tilt ──
+    document.querySelectorAll('.feat-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+        // 3D tilt: max ±6deg
+        const cx = rect.width / 2, cy = rect.height / 2;
+        const rx = ((y - cy) / cy) * -5;
+        const ry = ((x - cx) / cx) * 5;
+        card.style.transform = `translateY(-6px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // ── Terminal typing animation ──
+    const terminalLines = [
+      { type: 'cmd',   text: '$ <span class="tc-accent">connect</span> <span class="tc-secondary">https://research.example.com</span>' },
+      { type: 'info',  text: '<span class="tc-accent">&#10003;</span> Agent Card discovered at /.well-known/agent.json' },
+      { type: 'info',  text: '<span class="tc-accent">&#10003;</span> Capabilities: streaming, multimodal, push-notifications' },
+      { type: 'info',  text: '<span class="tc-accent">&#10003;</span> Session established <span class="tc-muted">(anonymous, on-device)</span>' },
+      { type: 'sep',   text: '' },
+      { type: 'user',  text: '<span class="tc-accent">you</span>  Summarize the latest A2A protocol spec changes' },
+      { type: 'agent', text: '<span class="tc-muted">agent</span> ', words: 'The March revision added three changes: streaming task updates via SSE, a new parts array for multi-modal responses, and push notification support for long-running tasks.' },
+    ];
+
+    const termBody = document.getElementById('terminal-body');
+    const terminal = document.getElementById('terminal');
+    let termStarted = false;
+
+    function createLine(line) {
+      const div = document.createElement('div');
+      div.className = 'term-line';
+      if (line.type === 'cmd' || line.type === 'user') {
+        div.className += ' flex items-start gap-3';
+        div.innerHTML = line.text;
+      } else if (line.type === 'info') {
+        div.className += ' pl-6 tc-muted text-xs font-mono';
+        div.innerHTML = line.text;
+      } else if (line.type === 'sep') {
+        div.className = 'term-line glow-line my-4';
+      } else if (line.type === 'agent') {
+        div.className += ' flex items-start gap-3';
+        div.innerHTML = line.text;
+        const span = document.createElement('span');
+        span.className = 'tc-secondary leading-relaxed';
+        span.id = 'agent-response';
+        div.appendChild(span);
+      }
+      return div;
+    }
+
+    async function typeTerminal() {
+      for (let i = 0; i < terminalLines.length; i++) {
+        const line = terminalLines[i];
+        const el = createLine(line);
+        termBody.appendChild(el);
+        await new Promise(r => setTimeout(r, 80));
+        el.classList.add('typed');
+
+        if (line.type === 'agent') {
+          const responseEl = el.querySelector('#agent-response');
+          const words = line.words.split(' ');
+          for (let w = 0; w < words.length; w++) {
+            await new Promise(r => setTimeout(r, 40 + Math.random() * 30));
+            responseEl.textContent += (w > 0 ? ' ' : '') + words[w];
+          }
+          const cursor = document.createElement('span');
+          cursor.className = 'cursor-blink tc-accent ml-1';
+          cursor.textContent = '|';
+          responseEl.appendChild(cursor);
+          terminal.classList.add('active-glow');
+        } else {
+          await new Promise(r => setTimeout(r, line.type === 'sep' ? 300 : 150));
+        }
+      }
+    }
+
+    const termObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !termStarted) {
+          termStarted = true;
+          setTimeout(typeTerminal, 900);
+          termObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    const termWrap = document.getElementById('terminal-wrap');
+    if (termWrap) termObserver.observe(termWrap);
+
+    // ── Subtle parallax on dot grid ──
+    const heroGrid = document.getElementById('hero-grid');
+    if (heroGrid && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.addEventListener('scroll', () => {
+        heroGrid.style.transform = `translateY(${window.scrollY * 0.15}px)`;
+      }, { passive: true });
+    }
+  </script>
+</body>
+</html>
