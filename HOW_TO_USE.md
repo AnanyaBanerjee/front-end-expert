@@ -1,103 +1,75 @@
-# How to Use These Skills
+# How to Use This Repo
 
-## What are SKILL.md files?
+This repo is a collection of front-end projects, experiments, and AI design skills. Here's how to get the most out of it.
 
-SKILL.md files are design instruction files that AI coding tools (Claude Code, Cursor, Copilot, etc.) automatically detect and follow when generating frontend code. Instead of getting generic-looking UI, you get polished, opinionated designs.
+## Repo Structure
 
-## How does the AI choose which skill to use?
+```
+front-end-tech/
+├── skills/              # AI design instruction files (SKILL.md)
+│   ├── taste-skill/     # Core modern UI design
+│   ├── soft-skill/      # Premium, agency-level aesthetics
+│   ├── minimalist-skill/# Editorial, Notion/Linear-inspired
+│   ├── brutalist-skill/ # Swiss typographic / CRT terminal
+│   └── impeccable/      # Design quality, anti-patterns, a11y
+├── agentchat-hub/       # Chat UI for AI agents (A2A protocol)
+├── README.md
+└── HOW_TO_USE.md
+```
 
-**It doesn't choose — you do.** AI tools look for a single `SKILL.md` file in your project root. To use a skill:
+## Browsing and Learning
 
-1. Copy the one you want into your project root:
-   ```bash
-   cp skills/taste-skill/SKILL.md /path/to/your-project/SKILL.md
-   ```
-2. Start prompting your AI tool as usual — it will follow the design instructions automatically.
+- **Projects** (like `agentchat-hub/`) are standalone front-end experiments. Open the HTML files in a browser to see them in action, or read the source to learn the patterns used.
+- **Skills** (`skills/`) are reference files — read them to learn design principles like typography, color, spacing, motion, and accessibility even if you never use them with an AI tool.
 
-## Can I combine multiple skills?
+## Using the Design Skills with AI Tools
 
-Not out of the box. Each `SKILL.md` is a standalone set of instructions. But here's how to think about combining them:
+The `skills/` folder contains `SKILL.md` files that AI coding tools (Claude Code, Cursor, Copilot, etc.) automatically detect and follow when generating UI code.
 
-### Option A: Layer impeccable on top of a style skill (recommended)
+### Quick start
 
-**impeccable** focuses on design process and quality (auditing, anti-patterns, accessibility). The taste-skill variants focus on a specific visual style. They complement each other well.
+```bash
+# Clone the repo
+git clone https://github.com/AnanyaBanerjee/front-end-tech.git
 
-To combine them:
-1. Use a style skill (`taste-skill`, `soft-skill`, `minimalist-skill`, or `brutalist-skill`) as your base `SKILL.md`.
-2. Copy `.impeccable.md` into your project root alongside it — impeccable is designed to work as a secondary context file that AI tools can also pick up.
-3. Or, simply ask your AI tool in chat: "Also follow the impeccable design principles for accessibility and anti-patterns."
+# Start a new project
+mkdir my-app && cd my-app
 
-### Option B: Pick one and stick with it
+# Copy a skill into your project root
+cp ../front-end-tech/skills/taste-skill/SKILL.md ./SKILL.md
 
-If you want a single cohesive style, just pick the one that matches your project:
+# Open your AI coding tool and start building — it picks up the SKILL.md automatically
+```
+
+### Picking a skill
 
 | Skill | Best for |
 |-------|----------|
 | **taste-skill** | General-purpose modern UI (SaaS, apps, landing pages) |
 | **soft-skill** | Premium, high-end feel (agency sites, luxury products) |
-| **minimalist-skill** | Content-heavy, editorial (docs, blogs, dashboards like Notion/Linear) |
+| **minimalist-skill** | Content-heavy, editorial (docs, blogs, dashboards) |
 | **brutalist-skill** | Bold, data-heavy (portfolios, dashboards, experimental) |
 | **impeccable** | Design quality layer — audits, anti-patterns, accessibility |
 
-### Option C: Merge manually
+### Switching skills
 
-Create your own `SKILL.md` by cherry-picking sections from multiple skills. For example:
-- Typography rules from `minimalist-skill`
-- Motion/animation from `taste-skill`
-- Anti-patterns from `impeccable`
-
-## Quick start
+Replace the `SKILL.md` in your project root:
 
 ```bash
-# 1. Clone this repo
-git clone https://github.com/AnanyaBanerjee/front-end-tech.git
-
-# 2. Start a new project
-mkdir my-app && cd my-app && npm init -y
-
-# 3. Copy a skill into your project root
-cp ../front-end-tech/skills/taste-skill/SKILL.md ./SKILL.md
-
-# 4. Open your AI coding tool and start building
-#    The AI will automatically follow the design instructions
-```
-
-## Switching skills
-
-Just replace the `SKILL.md` in your project root:
-
-```bash
-# Switch from taste-skill to minimalist
 cp ../front-end-tech/skills/minimalist-skill/SKILL.md ./SKILL.md
 ```
 
-## Tuning parameters (taste-skill variants only)
+### Combining skills
 
-The taste-skill, soft-skill, minimalist-skill, and brutalist-skill files have three tunable parameters at the top:
+Each `SKILL.md` is standalone — AI tools read one at a time. To combine:
 
-- **DESIGN_VARIANCE** (1-10): How creative/asymmetric the layouts are
-- **MOTION_INTENSITY** (1-10): How much animation and movement
-- **VISUAL_DENSITY** (1-10): How packed or airy the layout feels
+1. **Layer impeccable + a style skill (recommended):** Use a style skill as your `SKILL.md` and copy impeccable as `.impeccable.md` alongside it. Impeccable handles quality/a11y while the style skill handles the visual direction.
+2. **Merge manually:** Cherry-pick sections from multiple skills into a single `SKILL.md` (e.g., typography from minimalist + motion from taste + anti-patterns from impeccable).
+3. **Ask in chat:** Tell your AI tool to follow specific principles from another skill alongside the active one.
 
-You can edit these directly in the `SKILL.md` or override them in chat:
-> "Use design variance 5, motion intensity 8, and visual density 3"
+## Contributing
 
-## impeccable commands
+This is an evolving collection. To add a new project or skill:
 
-If you're using the impeccable skill, you get 21 steering commands you can use in chat:
-
-| Command | What it does |
-|---------|-------------|
-| `/audit` | Full design quality check |
-| `/critique` | Get honest feedback on current design |
-| `/polish` | Refine spacing, alignment, consistency |
-| `/animate` | Add or improve motion design |
-| `/typeset` | Fix typography issues |
-| `/colorize` | Improve color palette and contrast |
-| `/arrange` | Fix layout and spatial hierarchy |
-| `/harden` | Improve accessibility and robustness |
-| `/optimize` | Performance and loading improvements |
-| `/distill` | Simplify and remove visual noise |
-| `/normalize` | Align with design system conventions |
-
-See the [impeccable repo](https://github.com/pbakaus/impeccable) for the full list.
+- **New project:** Create a folder at the root with a descriptive name. Keep it self-contained.
+- **New skill:** Add a folder under `skills/` with a `SKILL.md` inside. Update `README.md` with credits and source.
