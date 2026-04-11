@@ -6,7 +6,7 @@
 
   <!-- Primary SEO -->
   <title>Daily Vibes For You — Motivational Quotes App for iPhone</title>
-  <meta name="description" content="460 curated quotes from history's greatest minds. Free iPhone app with a home screen widget, daily notifications, and zero data collection." />
+  <meta name="description" content="460 curated quotes from history's greatest minds. Free iPhone app with daily notifications, curated quote cards, and zero data collection." />
   <meta name="robots" content="index, follow, noai, noimageai" />
   <link rel="canonical" href="https://dailyvibesforyou.com/" />
 
@@ -18,7 +18,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Daily Vibes For You — Motivational Quotes App for iPhone" />
-  <meta property="og:description" content="460 curated quotes from history's greatest minds. Free iPhone app with a home screen widget, daily notifications, and zero data collection." />
+  <meta property="og:description" content="460 curated quotes from history's greatest minds. Free iPhone app with daily notifications, curated quote cards, and zero data collection." />
   <meta property="og:url" content="https://dailyvibesforyou.com/" />
   <meta property="og:image" content="https://dailyvibesforyou.com/images/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -28,7 +28,7 @@
   <!-- Twitter/X Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Daily Vibes For You — Motivational Quotes App for iPhone" />
-  <meta name="twitter:description" content="460 curated quotes from history's greatest minds. Free iPhone app with a home screen widget, daily notifications, and zero data collection." />
+  <meta name="twitter:description" content="460 curated quotes from history's greatest minds. Free iPhone app with daily notifications, curated quote cards, and zero data collection." />
   <meta name="twitter:image" content="https://dailyvibesforyou.com/images/og-image.png" />
 
   <!-- Favicon -->
@@ -46,7 +46,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Daily Vibes For You",
-    "description": "A free iOS app delivering 460+ curated motivational quotes from history's greatest thinkers, with a home screen widget, custom daily notifications, and no data collection.",
+    "description": "A free iOS app delivering 460+ curated motivational quotes from history's greatest thinkers, with daily notifications, curated quote cards, and no data collection.",
     "applicationCategory": "LifestyleApplication",
     "operatingSystem": "iOS 15.1, iPadOS 15.1, macOS 12.0, visionOS 1.0",
     "url": "https://dailyvibesforyou.com",
@@ -78,7 +78,7 @@
       "cssSelector": ["h1", ".hero-description", ".product-summary"]
     },
     "name": "Daily Vibes For You",
-    "description": "Free motivational quotes app for iPhone with 460+ curated quotes, home screen widget, and daily notifications.",
+    "description": "Free motivational quotes app for iPhone with 460+ curated quotes, daily notifications and quote cards.",
     "url": "https://dailyvibesforyou.com"
   }
   </script>
@@ -115,14 +115,6 @@
       },
       {
         "@type": "Question",
-        "name": "How does the home screen widget work?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The widget displays a new quote each day on your iPhone home screen automatically. Tap the widget at any time to manually refresh to a new quote."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "Does the app collect any personal data?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -148,14 +140,15 @@
     :root {
       --bg:           #FDFAF6;
       --surface:      #FFFFFF;
-      --surface-2:    #F9F6F1;
-      --text:         #1C1917;
+      --surface-2:    #FFFFFF;
+      --featured-bg:  #111111;
+      --text:         #111111;
       --text-muted:   #78716C;
       --text-faint:   #A8A29E;
-      --accent:       #C44B35;
-      --accent-hover: #A83B27;
-      --accent-bg:    #FEF2EE;
-      --border:       rgba(28, 25, 23, 0.08);
+      --accent:       #C4622A;
+      --accent-hover: #B0541E;
+      --accent-bg:    rgba(196,98,42,0.1);
+      --border:       rgba(28,25,23,0.08);
       --border-solid: #E7E2DC;
       --radius:       12px;
       --radius-sm:    8px;
@@ -253,15 +246,15 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--text);
-      color: #FFF;
+      background: var(--accent);
+      color: var(--bg);
       font-size: 13px;
       font-weight: 500;
       padding: 9px 18px;
       border-radius: 6px;
       transition: background 0.2s, transform 0.15s;
     }
-    .nav-cta:hover { background: #2C2A27; }
+    .nav-cta:hover { background: var(--accent-hover); }
     .nav-cta:active { transform: scale(0.97); }
     .nav-cta svg { width: 15px; height: 15px; flex-shrink: 0; }
 
@@ -380,7 +373,7 @@
       position: absolute;
       width: 280px;
       height: 280px;
-      background: radial-gradient(ellipse, #FDE8C0 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(196,98,42,0.16) 0%, transparent 70%);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -393,7 +386,7 @@
       border: 2.5px solid rgba(28, 25, 23, 0.14);
       border-radius: 42px;
       overflow: hidden;
-      background: #F5DFB0;
+      background: #111111;
       box-shadow: 0 4px 32px rgba(28, 25, 23, 0.10);
       position: relative;
     }
@@ -461,8 +454,8 @@
        Features Bento Grid
     ============================================= */
     .features { padding: 96px 0; }
-    .section-header { margin-bottom: 56px; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
-    .section-header-sub { font-size: 15px; color: var(--text-muted); max-width: 280px; line-height: 1.65; }
+    .section-header { margin-bottom: 56px; }
+    .section-header-sub { font-size: 15px; color: var(--text-muted); max-width: 480px; line-height: 1.65; margin-top: 10px; }
     .section-label {
       font-size: 11px; font-weight: 500; text-transform: uppercase;
       letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: 12px;
@@ -475,7 +468,7 @@
 
     .bento-grid {
       display: grid;
-      grid-template-columns: 1.55fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
 
@@ -513,9 +506,9 @@
 
     /* ── Featured (dark) card ── */
     .bento-featured {
-      grid-row: span 2;
-      background: var(--text);
-      border-color: var(--text);
+      grid-column: span 2;
+      background: var(--featured-bg);
+      border-color: var(--featured-bg);
       color: #FFF;
     }
     .bento-featured:hover { transform: none; box-shadow: none; }
@@ -530,13 +523,13 @@
     .bento-featured.bento-visible .bento-ambient { opacity: 1; }
     .bento-ambient-1 {
       width: 320px; height: 320px;
-      background: radial-gradient(ellipse, rgba(196,75,53,0.28) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(196,98,42,0.2) 0%, transparent 70%);
       top: -100px; right: -60px;
       animation: blobDrift1 13s ease-in-out infinite;
     }
     .bento-ambient-2 {
       width: 260px; height: 260px;
-      background: radial-gradient(ellipse, rgba(253,186,153,0.18) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(17,17,17,0.18) 0%, transparent 70%);
       bottom: -60px; left: 15%;
       animation: blobDrift2 16s ease-in-out infinite;
     }
@@ -605,7 +598,7 @@
       transition: text-shadow 1s ease;
     }
     .bento-featured.bento-visible .stat-number {
-      text-shadow: 0 0 48px rgba(253,186,153,0.35);
+      text-shadow: 0 0 48px rgba(196,98,42,0.2);
     }
     .stat-label { font-size: 14px; color: rgba(255,255,255,0.5); }
 
@@ -742,7 +735,7 @@
     /* ── Responsive bento ── */
     @media (max-width: 760px) {
       .bento-grid { grid-template-columns: 1fr; }
-      .bento-featured { grid-row: span 1; }
+      .bento-featured { grid-column: span 1; }
     }
 
     /* =============================================
@@ -860,7 +853,7 @@
     ============================================= */
     .privacy-section {
       padding: 96px 0;
-      background: var(--text);
+      background: var(--featured-bg);
       color: #FFF;
       overflow: hidden;
       position: relative;
@@ -1189,7 +1182,7 @@
     .cta-section {
       padding: 96px 0;
       border-top: 1px solid var(--border-solid);
-      background: var(--text);
+      background: var(--featured-bg);
     }
     .cta-inner {
       text-align: center;
@@ -1246,7 +1239,7 @@
     .footer {
       border-top: 1px solid rgba(255,255,255,0.08);
       padding: 36px 0;
-      background: var(--text);
+      background: var(--featured-bg);
     }
     .footer-inner {
       display: flex;
@@ -1269,7 +1262,7 @@
       color: rgba(255,255,255,0.35);
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: rgba(255,255,255,0.65); }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
 
     /* =============================================
        Responsive
@@ -1437,10 +1430,8 @@
     <section class="features" aria-labelledby="features-heading">
       <div class="container">
         <header class="section-header reveal">
-          <div>
-            <p class="section-label">Features</p>
-            <h2 id="features-heading" class="section-title">Built with intention.</h2>
-          </div>
+          <p class="section-label">Features</p>
+          <h2 id="features-heading" class="section-title">Built with intention.</h2>
           <p class="section-header-sub">Everything crafted intentionally. Nothing added for the sake of it.</p>
         </header>
 
@@ -1500,8 +1491,8 @@
             <div class="bento-icon">
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="7" height="7" rx="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5"/></svg>
             </div>
-            <h3 class="bento-title">Home Screen Widget</h3>
-            <p class="bento-desc">New quote on your lock screen before you unlock your phone. Tap to refresh.</p>
+            <h3 class="bento-title">Quote Card</h3>
+            <p class="bento-desc">A new quote surfaces in the app each day — tap to save it or explore more.</p>
             <div class="widget-mini" aria-hidden="true">
               <div class="widget-mini-body">
                 <p class="widget-mini-label">Today's vibe</p>
@@ -1623,7 +1614,7 @@
               <span class="pv-line"><em>absolutely nothing.</em></span>
             </h2>
             <p class="privacy-desc">
-              Daily Vibes For You was built without any data infrastructure. There are no servers storing your information, no accounts, and no analytics pipeline — because none of it was ever built. Your phone is the only place your data lives.
+              Privacy isn't a setting — it's the foundation. No servers, no accounts, no analytics. Everything stays exactly where it belongs: on your device.
             </p>
             <div class="privacy-badge" aria-label="GDPR and CCPA compliant">
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10 2l6 2v5c0 4.5-2.5 7.5-6 9-3.5-1.5-6-4.5-6-9V4l6-2z"/><path d="M7 10l2 2 4-4"/></svg>
@@ -1787,7 +1778,7 @@
                 <span class="faq-toggle" aria-hidden="true">+</span>
               </button>
               <div class="faq-answer" id="faq-a2" role="region">
-                Yes. All 460+ quotes are stored locally on your device the moment you download the app. No internet connection is needed to read quotes, use the widget, or receive notifications.
+                Yes. All 460+ quotes are stored locally on your device the moment you download the app. No internet connection is needed to read quotes or receive notifications.
               </div>
             </div>
 
@@ -1798,16 +1789,6 @@
               </button>
               <div class="faq-answer" id="faq-a3" role="region">
                 Tap the bell icon at the top of the app to open the Daily Vibe Reminder screen. Use the time picker to choose your preferred hour and minute, then tap "Update Time." This feature was added in version 1.1.
-              </div>
-            </div>
-
-            <div class="faq-item" role="listitem">
-              <button class="faq-question" aria-expanded="false" aria-controls="faq-a4">
-                How does the home screen widget work?
-                <span class="faq-toggle" aria-hidden="true">+</span>
-              </button>
-              <div class="faq-answer" id="faq-a4" role="region">
-                Add the Daily Vibes widget to your iPhone home screen from the widget gallery. It shows a new quote automatically each day. Tap the widget at any time to refresh it manually to a different quote.
               </div>
             </div>
 
@@ -1873,6 +1854,7 @@
           © <span id="year"></span> Ananya Banerjee. All rights reserved. Daily Vibes For You™
         </p>
         <nav class="footer-links" aria-label="Legal">
+          <a href="support.html">Support</a>
           <a href="privacy-policy.html">Privacy Policy</a>
           <a href="terms.html">Terms of Use</a>
           <a href="https://apps.apple.com/us/app/daily-vibes-for-you/id6759209446"
