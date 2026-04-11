@@ -225,6 +225,31 @@ See **[how_to_deploy.md](how_to_deploy.md)** for step-by-step instructions, cust
 
 ---
 
+## 💰 Token Cost Estimator
+
+Wondering what a build will cost before you start? Run `/token-cost` inside Claude Code:
+
+```
+/token-cost                   → full landing page build (default)
+/token-cost add-page          → adding one new page
+/token-cost edit-navbar       → navbar change + propagation
+/token-cost full-audit        → /sync all consistency check
+/token-cost sizes             → raw token size of every skill file
+/token-cost all               → all task types at once
+```
+
+Claude reads the **current state of every skill file in the repo** — no hardcoded numbers — then shows a line-by-line breakdown of which files get loaded, input and output token counts, and USD cost for both Sonnet 4.6 and Opus 4.6.
+
+Example output for a full landing page build on Sonnet 4.6:
+
+| | Tokens | Cost |
+|---|---|---|
+| Input (skill files + conversation overhead) | ~55,000 | ~$0.17 |
+| Output (index + 3 legal pages + configs) | ~8,000 | ~$0.12 |
+| **Total** | **~63,000** | **~$0.29** |
+
+---
+
 ## 📚 Guides
 
 | | Guide | What it covers |

@@ -27,6 +27,8 @@ front-end-tech/
 │   └── copywriting/         # PAS/AIDA frameworks, headlines, CTAs
 ├── output/                  # Generated landing pages and websites
 ├── setup.sh                 # Scaffold a new project with all layers
+├── calculate-token-usage.sh # Estimate token cost for any task type
+├── SKILLS_INDEX.md          # Routing guide: which skills to use when
 ├── README.md
 ├── HOW_TO_USE.md
 ├── how_to_improve_SEO.md            # SEO knowledge guide
@@ -80,6 +82,34 @@ cd output/my-landing-page
 ```
 
 The setup script creates your project with every layer active: logo, product images, structure, style, quality, engineering, SEO, AEO, and copywriting. Claude will ask you for your logo, screenshots, and product description before building.
+
+### Estimating token cost before you build
+
+Run `/token-cost` inside Claude Code at any time to get a live cost estimate based on the **current state of the repo**. It measures actual skill file sizes, calculates which files would be loaded for your task, applies a conversation overhead factor, and returns USD cost for both Sonnet and Opus.
+
+```
+/token-cost                   → full landing page build (default)
+/token-cost add-page          → adding one new page to an existing project
+/token-cost edit-navbar       → navbar change + propagation to all pages
+/token-cost full-audit        → /sync all consistency check across the project
+/token-cost sizes             → raw token size of every skill file in the repo
+/token-cost all               → all task types at once
+```
+
+Unlike a static calculator, this command always reflects the latest skill files — so if a skill grows or shrinks, the estimate updates automatically.
+
+Typical costs on **Claude Sonnet 4.6**:
+
+| Task | Approx. tokens | Approx. cost |
+|---|---|---|
+| Build landing page (first time) | ~63,000 | ~$0.29 |
+| Add a new page | ~23,000 | ~$0.09 |
+| Edit navbar + sync | ~9,000 | ~$0.04 |
+| Full project audit | ~33,000 | ~$0.15 |
+
+On **Claude Opus 4.6** multiply the cost by roughly 5×.
+
+---
 
 ### Picking a skill
 
