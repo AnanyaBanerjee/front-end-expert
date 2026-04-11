@@ -892,25 +892,18 @@
       <!-- Row 1: 7 / 5 asymmetric -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-3 mb-3">
 
-        <!-- Anchor card: Live Streaming — wider, richer -->
+        <!-- Anchor card: Any endpoint, instantly — wider, richer -->
         <div class="feat-card md:col-span-7 rounded-xl bg-surface p-8 reveal">
           <div class="flex items-center gap-3 mb-5">
             <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
             </div>
-            <h3 class="font-medium text-base tracking-tight text-text">Watch your agent think</h3>
+            <h3 class="font-medium text-base tracking-tight text-text">Any endpoint, instantly</h3>
           </div>
           <p class="text-sm text-text-secondary leading-relaxed mb-6 max-w-md">
-            Responses stream token by token. You see the agent working in real time — catch a wrong turn early, redirect mid-thought, or just watch it reason through a hard problem. No spinner. No waiting for a wall of text.
+            Paste your agent's URL. The app fetches the Agent Card and you're chatting. No approval process, no marketplace, no waiting — just your URL. Railway, Vercel, Fly, Render, Cloudflare — it doesn't matter where your agent lives.
           </p>
-          <div class="flex items-center gap-2.5">
-            <span class="font-mono text-xs text-text-tertiary">streaming</span>
-            <span class="flex items-center gap-1">
-              <span class="stream-dot w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
-              <span class="stream-dot w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
-              <span class="stream-dot w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
-            </span>
-          </div>
+          <code class="font-mono text-xs text-accent bg-accent-dim px-3 py-2 rounded-lg border border-accent/15 self-start">my-agent.up.railway.app/.well-known/agent.json</code>
         </div>
 
         <!-- Right stack: two lean cards -->
@@ -918,26 +911,20 @@
           <div class="feat-card rounded-xl bg-surface p-8 reveal flex-1">
             <div class="flex items-center gap-3 mb-4">
               <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
               </div>
-              <h3 class="font-medium text-base tracking-tight text-text">Any endpoint, instantly</h3>
+              <h3 class="font-medium text-base tracking-tight text-text">Watch your agent think</h3>
             </div>
-            <p class="text-sm text-text-secondary leading-relaxed">
-              Paste your agent's URL. The app fetches the Agent Card and you're chatting. No approval process, no marketplace, no waiting — just your URL.
+            <p class="text-sm text-text-secondary leading-relaxed mb-4">
+              Responses stream token by token. Catch a wrong turn early, redirect mid-thought, or just watch it reason. No spinner. No wall of text.
             </p>
+            <span class="flex items-center gap-1">
+              <span class="stream-dot w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+              <span class="stream-dot w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+              <span class="stream-dot w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+            </span>
           </div>
 
-          <div class="feat-card rounded-xl bg-surface p-8 reveal flex-1">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              </div>
-              <h3 class="font-medium text-base tracking-tight text-text">All your agents, one place</h3>
-            </div>
-            <p class="text-sm text-text-secondary leading-relaxed">
-              Add as many agents as you run. Group them, tab them, switch between them. Your research agent, your code agent, your finance agent — all one tap away, none of them losing context.
-            </p>
-          </div>
         </div>
       </div>
 
@@ -958,13 +945,28 @@
         <div class="feat-card md:col-span-7 rounded-xl bg-surface p-8 reveal">
           <div class="flex items-center gap-3 mb-4">
             <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
             </div>
-            <h3 class="font-medium text-base tracking-tight text-text">Native on every Apple platform</h3>
+            <h3 class="font-medium text-base tracking-tight text-text">Organized around how you work</h3>
           </div>
           <p class="text-sm text-text-secondary leading-relaxed max-w-md">
-            iPhone, iPad, Mac, Vision Pro. Not a web view, not a port — each platform gets the real thing. System fonts, keyboard shortcuts, platform gestures. It works because it belongs.
+            Create custom groups for any workflow. Work. Marketing. Content Creation. Data Extraction. Research. Name them anything — then drop your agents in. The right agent is always one tap away, never buried in a list.
           </p>
+        </div>
+      </div>
+
+      <!-- Row 3: full-width -->
+      <div class="grid grid-cols-1 gap-3 mt-3">
+        <div class="feat-card rounded-xl bg-surface p-8 reveal flex flex-col sm:flex-row sm:items-center gap-8">
+          <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center shrink-0">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-medium text-base tracking-tight text-text mb-2">All your agents, one place</h3>
+            <p class="text-sm text-text-secondary leading-relaxed max-w-2xl">
+              Every agent you build, discover, or run — all in one app. No juggling tabs, no hunting through bookmarks. AgentChat Hub is the single place you go to talk to any agent, for any purpose, on any hosting platform.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -979,7 +981,7 @@
         The app your agents have been missing.
       </h2>
       <p class="text-text-secondary text-base max-w-xl">
-        Light and dark. iPhone, iPad, Mac, Vision Pro. Each screen built for the platform it runs on — not ported, not wrapped, not shimmed.
+        Light or dark — it follows your lead. Built natively for iPhone, iPad, Mac, and Vision Pro. Every screen designed for the device it runs on.
       </p>
     </div>
 
