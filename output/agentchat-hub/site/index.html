@@ -672,6 +672,280 @@
       .hero-logo, .orb, .marquee-row { animation: none; }
       .marquee-row { flex-wrap: wrap; width: 100%; }
     }
+
+    /* ══ Demo section ═══════════════════════════════════════════════════════ */
+    .demo-window {
+      border: 1px solid rgb(var(--color-border));
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.06);
+    }
+    html[data-theme="dark"] .demo-window {
+      box-shadow: 0 24px 80px rgba(0,0,0,0.50), 0 4px 16px rgba(0,0,0,0.30);
+    }
+    .demo-chrome {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 11px 16px;
+      background: rgb(var(--color-elevated));
+      border-bottom: 1px solid rgb(var(--color-border));
+    }
+    .traffic-lights { display: flex; gap: 6px; }
+    .tl { width: 11px; height: 11px; border-radius: 50%; }
+    .tl-red    { background: #FF5F57; }
+    .tl-yellow { background: #FEBC2E; }
+    .tl-green  { background: #28C840; }
+    .demo-window-title {
+      font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      color: rgb(var(--color-text-ter));
+    }
+    .demo-body { display: flex; height: 440px; }
+    @media (max-width: 600px) { .demo-body { height: auto; flex-direction: column; } }
+    .demo-sidebar {
+      width: 215px; flex-shrink: 0;
+      border-right: 1px solid rgb(var(--color-border));
+      background: rgb(var(--color-surface));
+      padding: 14px 10px; overflow-y: auto;
+    }
+    @media (max-width: 600px) {
+      .demo-sidebar {
+        width: 100%; max-height: 110px; overflow-x: auto; overflow-y: hidden;
+        border-right: none; border-bottom: 1px solid rgb(var(--color-border));
+        padding: 10px 12px; display: flex; gap: 6px; align-items: center;
+      }
+      .sidebar-lbl { display: none; }
+      .add-agent-row { flex-shrink: 0; margin-top: 0; white-space: nowrap; }
+      .demo-agent-item { flex-direction: row; align-items: center; flex-shrink: 0; margin-bottom: 0; }
+    }
+    .sidebar-lbl {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.12em; color: rgb(var(--color-text-ter));
+      padding: 0 8px; margin-bottom: 6px;
+    }
+    .demo-agent-item {
+      display: flex; align-items: flex-start; gap: 8px;
+      padding: 7px 9px; border-radius: 8px; cursor: pointer; margin-bottom: 1px;
+      transition: background 0.15s ease;
+    }
+    .demo-agent-item:hover { background: rgb(var(--color-elevated)); }
+    .demo-agent-item.active { background: var(--accent-dim); }
+    .agent-sdot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent-raw); flex-shrink: 0; margin-top: 5px;
+    }
+    .agent-meta-col { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .agent-dname {
+      font-size: 12.5px; font-weight: 500; color: rgb(var(--color-text));
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .demo-agent-item.active .agent-dname { color: var(--accent-raw); }
+    .agent-durl {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      color: rgb(var(--color-text-ter));
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .add-agent-row {
+      display: flex; align-items: center; gap: 6px;
+      padding: 7px 9px; border-radius: 8px; font-size: 12px;
+      color: rgb(var(--color-text-ter)); cursor: pointer; margin-top: 10px;
+      border: 1px dashed rgb(var(--color-border));
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .add-agent-row:hover { color: var(--accent-raw); border-color: var(--accent-raw); }
+    .demo-chat-panel {
+      flex: 1; display: flex; flex-direction: column;
+      overflow: hidden; background: rgb(var(--color-bg));
+    }
+    .demo-chat-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 11px 16px; border-bottom: 1px solid rgb(var(--color-border));
+      background: rgb(var(--color-surface));
+    }
+    .conn-indicator { display: flex; align-items: center; gap: 8px; }
+    .conn-dot-pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent-raw); box-shadow: 0 0 6px var(--accent-raw);
+      animation: conn-pulse 2s ease-in-out infinite;
+    }
+    @keyframes conn-pulse { 0%,100%{opacity:1} 50%{opacity:.45} }
+    .conn-url { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgb(var(--color-text-sec)); }
+    .conn-badge {
+      font-size: 10.5px; font-weight: 500; padding: 2px 8px; border-radius: 99px;
+      background: var(--accent-dim); color: var(--accent-raw);
+    }
+    .demo-replay-btn {
+      display: flex; align-items: center; gap: 5px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      color: rgb(var(--color-text-ter)); background: none;
+      border: 1px solid rgb(var(--color-border)); border-radius: 6px;
+      padding: 4px 10px; cursor: pointer; transition: color 0.15s, border-color 0.15s;
+    }
+    .demo-replay-btn:hover { color: var(--accent-raw); border-color: var(--accent-raw); }
+    .demo-msgs {
+      flex: 1; overflow-y: auto; padding: 18px 16px;
+      display: flex; flex-direction: column; gap: 14px; scroll-behavior: smooth;
+    }
+    @media (max-width: 600px) { .demo-msgs { min-height: 260px; } }
+    .demo-msgs::-webkit-scrollbar { width: 3px; }
+    .demo-msgs::-webkit-scrollbar-thumb { background: rgb(var(--color-border)); border-radius: 2px; }
+    .dmsg-row {
+      display: flex; flex-direction: column; gap: 3px;
+      animation: dmsg-in 0.28s cubic-bezier(.16,1,.3,1) both;
+    }
+    @keyframes dmsg-in { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    .dmsg-row.user { align-items: flex-end; }
+    .dmsg-row.agent { align-items: flex-start; }
+    .dmsg-lbl {
+      font-size: 10px; font-family: 'JetBrains Mono', monospace;
+      color: rgb(var(--color-text-ter)); padding: 0 4px;
+    }
+    .dmsg-bubble {
+      max-width: 78%; padding: 9px 13px; border-radius: 11px;
+      font-size: 13px; line-height: 1.55;
+    }
+    .dmsg-row.user .dmsg-bubble {
+      background: var(--accent-raw); color: #fff; border-bottom-right-radius: 4px;
+    }
+    .dmsg-row.agent .dmsg-bubble {
+      background: rgb(var(--color-surface)); color: rgb(var(--color-text));
+      border: 1px solid rgb(var(--color-border)); border-bottom-left-radius: 4px;
+    }
+    .dmsg-code {
+      margin-top: 8px; padding: 10px 12px;
+      background: rgb(var(--color-bg)); border: 1px solid rgb(var(--color-border));
+      border-radius: 6px; font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px; line-height: 1.65; color: var(--accent-raw);
+      overflow-x: auto; white-space: pre;
+    }
+    html[data-theme="dark"] .dmsg-code { background: rgb(4 10 7); }
+    .dmsg-cursor {
+      display: inline-block; width: 1.5px; height: 0.9em;
+      background: currentColor; vertical-align: text-bottom;
+      animation: dmsg-blink 0.75s step-end infinite; margin-left: 1px;
+    }
+    @keyframes dmsg-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .file-chip-msg {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 12px; border: 1px solid rgb(var(--color-border));
+      border-radius: 8px; background: rgb(var(--color-surface)); width: fit-content;
+      animation: dmsg-in 0.28s cubic-bezier(.16,1,.3,1) both;
+    }
+    .file-chip-name { font-size: 12.5px; font-weight: 500; color: rgb(var(--color-text)); }
+    .file-chip-sz { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgb(var(--color-text-ter)); }
+    .thinking-dots {
+      display: flex; align-items: center; gap: 4px;
+      padding: 10px 13px; background: rgb(var(--color-surface));
+      border: 1px solid rgb(var(--color-border));
+      border-radius: 11px; border-bottom-left-radius: 4px; width: fit-content;
+    }
+    .t-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: rgb(var(--color-text-ter));
+      animation: t-bounce 1.1s ease-in-out infinite;
+    }
+    .t-dot:nth-child(2){animation-delay:.18s} .t-dot:nth-child(3){animation-delay:.36s}
+    @keyframes t-bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-5px)} }
+    .tool-card {
+      border: 1px solid rgba(251,191,36,0.28); border-radius: 10px;
+      background: rgba(251,191,36,0.05); overflow: hidden;
+      max-width: 84%; animation: dmsg-in 0.28s cubic-bezier(.16,1,.3,1) both;
+    }
+    .tool-card-hdr {
+      display: flex; align-items: center; gap: 7px;
+      padding: 8px 13px; background: rgba(251,191,36,0.10);
+      border-bottom: 1px solid rgba(251,191,36,0.18);
+      font-size: 11.5px; font-weight: 600; color: #B45309;
+    }
+    html[data-theme="dark"] .tool-card-hdr { color: #FCD34D; }
+    .tool-card-body { padding: 10px 13px; }
+    .tool-fn {
+      font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
+      font-weight: 600; color: rgb(var(--color-text)); margin-bottom: 3px;
+    }
+    .tool-params {
+      font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+      color: rgb(var(--color-text-ter)); margin-bottom: 11px;
+    }
+    .tool-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tc-btn {
+      font-size: 11.5px; font-weight: 500; padding: 5px 12px;
+      border-radius: 6px; cursor: pointer; border: none; transition: opacity 0.15s;
+    }
+    .tc-btn:hover { opacity: 0.82; }
+    .tc-deny { background: rgb(var(--color-elevated)); color: rgb(var(--color-text-sec)); border: 1px solid rgb(var(--color-border)) !important; }
+    .tc-once { background: var(--accent-raw); color: #fff; }
+    .tc-always { background: none; color: var(--accent-raw); border: 1px solid var(--accent-raw) !important; }
+    .tool-card.tc-approved { border-color: rgba(0,184,106,0.28); background: rgba(0,184,106,0.05); }
+    html[data-theme="dark"] .tool-card.tc-approved { border-color: rgba(0,232,122,0.22); }
+    .tool-card.tc-approved .tool-card-hdr {
+      background: rgba(0,184,106,0.10); border-color: rgba(0,184,106,0.18); color: var(--accent-raw);
+    }
+    html[data-theme="dark"] .tool-card.tc-approved .tool-card-hdr { color: var(--accent-raw); }
+    .tc-approved-badge {
+      font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+      color: var(--accent-raw); padding-top: 4px;
+    }
+    .demo-composer-bar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 14px; border-top: 1px solid rgb(var(--color-border));
+      background: rgb(var(--color-surface));
+    }
+    .demo-composer-input {
+      flex: 1; min-height: 34px; display: flex; align-items: center;
+      padding: 0 11px; border: 1px solid rgb(var(--color-border));
+      border-radius: 7px; background: rgb(var(--color-bg));
+      font-size: 12.5px; overflow: hidden; white-space: nowrap;
+    }
+    .dc-placeholder { color: rgb(var(--color-text-ter)); }
+    .dc-typing { color: rgb(var(--color-text)); }
+    .dc-attach, .dc-send {
+      width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; cursor: pointer; border: none; transition: opacity 0.15s;
+    }
+    .dc-attach { background: rgb(var(--color-elevated)); color: rgb(var(--color-text-ter)); }
+    .dc-send { background: var(--accent-raw); color: #fff; }
+    .dc-attach:hover, .dc-send:hover { opacity: 0.80; }
+    .demo-tab {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 7px; font-size: 13px; font-weight: 500;
+      cursor: pointer; border: 1px solid rgb(var(--color-border));
+      background: rgb(var(--color-bg)); color: rgb(var(--color-text-sec));
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+    }
+    .demo-tab:hover { color: rgb(var(--color-text)); border-color: rgb(var(--color-text-ter)); }
+    .demo-tab.active { background: var(--accent-dim); border-color: var(--accent-raw); color: var(--accent-raw); }
+    .demo-tab-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+    .demo-idle-hint {
+      font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      color: rgb(var(--color-text-ter)); text-align: center;
+      padding: 48px 24px; width: 100%;
+    }
+    .demo-prompts {
+      display: flex; flex-direction: column; gap: 8px;
+      padding: 20px 16px; width: 100%;
+      animation: dmsg-in 0.25s cubic-bezier(.16,1,.3,1) both;
+    }
+    .demo-prompts-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+      color: rgb(var(--color-text-ter)); margin-bottom: 6px;
+    }
+    .demo-prompt-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 11px 14px; border-radius: 9px;
+      border: 1px solid rgb(var(--color-border));
+      background: rgb(var(--color-surface));
+      color: rgb(var(--color-text)); font-size: 13px; font-family: inherit;
+      text-align: left; cursor: pointer; width: 100%;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+    .demo-prompt-btn:hover {
+      border-color: var(--accent-raw);
+      background: var(--accent-dim);
+      color: var(--accent-raw);
+    }
+    .demo-prompt-btn:hover .prompt-arrow { transform: translateX(3px); }
+    .prompt-arrow {
+      color: var(--accent-raw); font-size: 14px; flex-shrink: 0;
+      transition: transform 0.15s ease;
+    }
   </style>
 
   <!-- ═══ Structured data — SEO + Agent Engine Optimization ═══════════════ -->
@@ -1050,6 +1324,118 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ═══ DEMO ═══ -->
+  <section id="demo" aria-label="Interactive product demo" class="py-24 md:py-32 border-t border-border-subtle overflow-hidden">
+    <div class="max-w-[1200px] mx-auto px-6">
+
+      <div class="reveal mb-10">
+        <p class="text-xs font-mono font-medium text-accent uppercase tracking-widest mb-4">Live Preview</p>
+        <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight text-text mb-4" style="font-variation-settings:'wdth' 108,'wght' 800">
+          See it in action.
+        </h2>
+        <p class="text-text-secondary text-base max-w-xl">
+          Pick a scenario. AgentChat Hub connects to any A2A agent instantly — coding assistant, research helper, or a personal assistant running on your own hardware.
+        </p>
+      </div>
+
+      <!-- Scenario tabs -->
+      <div class="flex gap-2 mb-6 flex-wrap reveal" role="tablist" aria-label="Demo scenarios">
+        <button class="demo-tab" data-scenario="assistant" role="tab" aria-selected="false" aria-controls="demo-window">
+          <span class="demo-tab-dot" aria-hidden="true"></span> Personal Assistant
+        </button>
+        <button class="demo-tab" data-scenario="research" role="tab" aria-selected="false" aria-controls="demo-window">
+          <span class="demo-tab-dot" aria-hidden="true"></span> Research Agent
+        </button>
+        <button class="demo-tab" data-scenario="code" role="tab" aria-selected="false" aria-controls="demo-window">
+          <span class="demo-tab-dot" aria-hidden="true"></span> Coding Agent
+        </button>
+      </div>
+
+      <!-- App window mockup -->
+      <div class="demo-window reveal" id="demo-window" role="tabpanel">
+        <!-- macOS window chrome -->
+        <div class="demo-chrome">
+          <div class="traffic-lights" aria-hidden="true">
+            <span class="tl tl-red"></span>
+            <span class="tl tl-yellow"></span>
+            <span class="tl tl-green"></span>
+          </div>
+          <span class="demo-window-title">AgentChat Hub</span>
+          <div style="width:52px" aria-hidden="true"></div>
+        </div>
+
+        <!-- Two-panel body -->
+        <div class="demo-body">
+          <!-- Sidebar -->
+          <div class="demo-sidebar" aria-label="Connected agents">
+            <div class="sidebar-lbl">AGENTS</div>
+            <div class="demo-agent-item" data-agent="0" role="button" tabindex="0" aria-label="Switch to Personal Assistant">
+              <span class="agent-sdot" aria-hidden="true"></span>
+              <div class="agent-meta-col">
+                <span class="agent-dname">Personal Assistant</span>
+                <span class="agent-durl">assistant.local:8080</span>
+              </div>
+            </div>
+            <div class="demo-agent-item" data-agent="1" role="button" tabindex="0" aria-label="Switch to Research Agent">
+              <span class="agent-sdot" aria-hidden="true"></span>
+              <div class="agent-meta-col">
+                <span class="agent-dname">Research Agent</span>
+                <span class="agent-durl">research.my-server.com</span>
+              </div>
+            </div>
+            <div class="demo-agent-item" data-agent="2" role="button" tabindex="0" aria-label="Switch to Coding Agent">
+              <span class="agent-sdot" aria-hidden="true"></span>
+              <div class="agent-meta-col">
+                <span class="agent-dname">Coding Agent</span>
+                <span class="agent-durl">code-agent.fly.dev</span>
+              </div>
+            </div>
+            <div class="add-agent-row" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="5.5" y1="1" x2="5.5" y2="10"/><line x1="1" y1="5.5" x2="10" y2="5.5"/></svg>
+              Add agent
+            </div>
+          </div>
+
+          <!-- Chat panel -->
+          <div class="demo-chat-panel">
+            <!-- Header -->
+            <div class="demo-chat-hdr">
+              <div class="conn-indicator">
+                <span class="conn-dot-pulse" aria-hidden="true"></span>
+                <span class="conn-url" id="demo-conn-url">code-agent.fly.dev</span>
+                <span class="conn-badge">Connected</span>
+              </div>
+              <button class="demo-replay-btn" id="demo-replay-btn" aria-label="Replay demo">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1,4 1,1 4,1"/><path d="M1,1 C3,1 11,1 11,6 C11,9 8.5,11 6,11 C3.5,11 1,9 1,6"/></svg>
+                Replay
+              </button>
+            </div>
+
+            <!-- Messages -->
+            <div class="demo-msgs" id="demo-msgs" aria-live="polite" aria-label="Demo conversation"></div>
+
+            <!-- Composer (decorative) -->
+            <div class="demo-composer-bar" aria-hidden="true">
+              <div class="demo-composer-input">
+                <span id="demo-composer-text" class="dc-placeholder">Send a message…</span>
+              </div>
+              <button class="dc-attach" tabindex="-1">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 6.5L6.5 12.5C5.1 13.9 2.9 13.9 1.5 12.5C0.1 11.1 0.1 8.9 1.5 7.5L7.5 1.5C8.5 0.5 10.1 0.5 11.1 1.5C12.1 2.5 12.1 4.1 11.1 5.1L5.1 11.1C4.6 11.6 3.8 11.6 3.3 11.1C2.8 10.6 2.8 9.8 3.3 9.3L8.5 4"/></svg>
+              </button>
+              <button class="dc-send" tabindex="-1">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="1" y1="7" x2="13" y2="7"/><polyline points="7,1 13,7 7,13"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-text-tertiary text-xs font-mono mt-4 text-center reveal">
+        Click a tab or sidebar agent to run a scenario · Tool call prompts pause for your approval · Click Replay to restart
+      </p>
     </div>
   </section>
 
