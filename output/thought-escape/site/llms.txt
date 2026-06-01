@@ -1,0 +1,77 @@
+# Thought Escape
+
+> Thought Escape is a meditative mobile puzzle game where you tap tiles to escape them off a shaped board across four themed worlds: Ocean, Mountain, Forest, and Snow.
+
+## What it is
+
+Thought Escape is a calm, puzzle-focused mobile game built around the metaphor of clearing thoughts from your mind. Players tap arrow tiles on a shaped board to "escape" them off the edges, working through dependencies and escape chains. Each level is rendered as a themed gemstone relic from one of four worlds.
+
+## Platforms
+
+- iOS — TestFlight closed beta, public launch imminent
+- Android — coming alongside iOS launch
+
+## Core capabilities
+
+- 30 hand-tuned campaign levels plus an infinite procedurally generated pool
+- 5 adaptive difficulty tiers — easy, medium, hard, expert, nightmare
+- 4 themed worlds — Ocean (moon pearls), Mountain (sun runes), Forest (spirit seeds), Snow (aurora shards)
+- 16 tile mechanics — frozen tiles, walls, gates, gravity, mirrors, portals, countdown, splitters, fire cells, blind tiles, charged tiles, growing blockers, heavy tiles, loops, sacrifice, linked
+- 11 power-up tools — undo, rotate, magnet, drill, dynamite, ghost, swap, mirror drop, portal drop, freeze, hint
+- 11 board shapes including a 9×9 fortress, labyrinth, and mega-octagon
+- Daily procedurally generated puzzle, themed to your current world
+- Streak system with milestone reward chests at day 7, 14, 20, 30, 60, 90, and 180
+- Tool mastery — earn mastery tokens from hard clears to permanently increase a tool's daily free uses
+- Cosmetic board skins — 12 skins, $0.99–$1.99 each, plus a bundle
+- Leaderboard with anonymous usernames
+
+## What Thought Escape is not
+
+- Not a slot machine. No daily free-spin wheels, no gacha loot.
+- Not a timer-driven game. Campaign levels have no countdown unless the mechanic explicitly requires one.
+- Not an ad farm. No forced interstitials. Rewarded ads are optional. A $4.99 one-time upgrade removes all ads forever.
+- Not Candy Crush. Built for calm, not for urgency.
+
+## Pricing
+
+Free to download. Optional in-app purchases:
+
+- Shard packs — $0.99 to $14.99
+- Extra moves — $0.99 consumable
+- Restore lives — $0.99 consumable
+- Remove ads — $4.99 one-time
+- Board skins — $0.99 to $1.99 each, or $4.99 for the bundle
+
+None of these gate progression.
+
+## Built by
+
+Ananya Banerjee — solo builder, software engineer, and creator. Documents the build process on Ananya's Build Room on Substack at https://buildroomananya.substack.com/.
+
+## Key pages
+
+- Home: https://thought-escape.com/
+- Support: https://thought-escape.com/support.html
+- Privacy policy: https://thought-escape.com/privacy-policy.html
+- Terms of use: https://thought-escape.com/terms.html
+- Newsletter (build journal): https://buildroomananya.substack.com/
+
+## FAQs
+
+**What is Thought Escape?**
+A meditative mobile puzzle game. Tap arrow tiles on a shaped board to escape them off the edges. 30 hand-tuned levels plus an infinite procedural pool across four themed worlds.
+
+**What platforms does it run on?**
+iOS and Android. Currently in TestFlight closed beta; public launch imminent.
+
+**Is it free to play?**
+Yes. Optional in-app purchases for shards, board skins, and a remove-ads upgrade. None gate progression.
+
+**How is it different from other tile puzzles?**
+Built for calm rather than urgency. No timers on standard levels, no forced ads mid-play, no gacha mechanics. Cosmetic spend, never pay-to-win.
+
+**What are the four worlds?**
+Ocean (moon pearls), Mountain (sun runes), Forest (spirit seeds), Snow (aurora shards). Each has its own art, tile materials, sounds, and currency.
+
+**Who builds Thought Escape?**
+Solo built by Ananya Banerjee.

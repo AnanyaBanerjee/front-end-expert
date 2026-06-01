@@ -1,0 +1,2472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thought Escape — A Meditative Tile Puzzle Across Four Worlds</title>
+<meta name="description" content="A meditative tile puzzle for iOS and Android. 30 hand-tuned levels across four worlds. No timers. No gacha. No forced ads. Just arrows, four worlds, and the quiet between them.">
+<meta name="author" content="Ananya Banerjee">
+<meta name="copyright" content="© 2026 Ananya Banerjee. All rights reserved.">
+<meta name="theme-color" content="#0a1f12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+
+<!-- AI training opt-out -->
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="noai" content="1">
+<meta name="noimageai" content="1">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thought-escape.com/">
+<meta property="og:title" content="Thought Escape — A Meditative Tile Puzzle Across Four Worlds">
+<meta property="og:description" content="30 hand-tuned puzzles. Four worlds. No timers. No gacha. No forced ads. A puzzle that waits for you.">
+<meta property="og:image" content="https://thought-escape.com/logo.png">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:site_name" content="Thought Escape">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Thought Escape — A Meditative Tile Puzzle Across Four Worlds">
+<meta name="twitter:description" content="30 hand-tuned puzzles. Four worlds. No timers. No gacha. No forced ads. A puzzle that waits for you.">
+<meta name="twitter:image" content="https://thought-escape.com/logo.png">
+
+<link rel="canonical" href="https://thought-escape.com/">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+
+<!-- JSON-LD: SoftwareApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Thought Escape",
+  "operatingSystem": "iOS, Android",
+  "applicationCategory": "GameApplication",
+  "applicationSubCategory": "Puzzle",
+  "description": "A meditative tile puzzle. Tap tiles to escape them off a shaped board across four themed worlds: Ocean, Mountain, Forest, and Snow.",
+  "url": "https://thought-escape.com/",
+  "image": "https://thought-escape.com/logo.png",
+  "author": {
+    "@type": "Person",
+    "name": "Ananya Banerjee"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+<!-- JSON-LD: WebSite -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Thought Escape",
+  "url": "https://thought-escape.com/",
+  "description": "A meditative tile puzzle game across four themed worlds.",
+  "publisher": {
+    "@type": "Person",
+    "name": "Ananya Banerjee"
+  }
+}
+</script>
+
+<!-- JSON-LD: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Thought Escape?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Thought Escape is a meditative mobile puzzle game. You tap tiles on a shaped board to escape them off the edges, working through dependencies and escape chains across 30 hand-tuned levels in four themed worlds: Ocean, Mountain, Forest, and Snow."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What platforms is Thought Escape on?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Thought Escape is built for iOS and Android. It is currently in TestFlight closed beta and launching publicly soon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many levels does Thought Escape have?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There are 30 hand-tuned campaign levels plus an infinite procedurally generated pool that adapts to five difficulty tiers: easy, medium, hard, expert, and nightmare."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Thought Escape free to play?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Thought Escape is free to download. Optional in-app purchases include shard packs, a remove-ads upgrade, and cosmetic board skins. None of them gate progression."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What makes Thought Escape different from other tile puzzles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Thought Escape is built for calm rather than urgency. Each level is rendered as a themed gemstone relic. There are no timers on standard levels, no forced ads mid-play, and a daily-limited tool system that rewards returning without punishing replays."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the four worlds in Thought Escape?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The four worlds are Ocean (moon pearls), Mountain (sun runes), Forest (spirit seeds), and Snow (aurora shards). Each world has its own art, tile materials, sounds, and currency. Levels unlock progressively along a single linear journey."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Speakable schema for AEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "url": "https://thought-escape.com/",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["#product-summary", ".faq-answer"]
+  }
+}
+</script>
+
+<!-- JSON-LD: MobileApplication (alongside SoftwareApplication) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Thought Escape",
+  "operatingSystem": "iOS 16 or later, Android 10 or later",
+  "applicationCategory": "GameApplication",
+  "applicationSubCategory": "PuzzleGame",
+  "genre": "Puzzle",
+  "description": "A meditative tile puzzle. Tap arrow tiles to escape them off a shaped board across four themed worlds: Ocean, Mountain, Forest, and Snow.",
+  "url": "https://thought-escape.com/",
+  "image": "https://thought-escape.com/logo.png",
+  "author": { "@type": "Person", "name": "Ananya Banerjee" },
+  "contentRating": "4+",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "featureList": [
+    "30 hand-tuned campaign levels plus an infinite procedural pool",
+    "4 themed worlds with unique art, sound, and currency",
+    "5 adaptive difficulty tiers from easy to nightmare",
+    "16 tile mechanics including frozen, mirrors, portals, countdown, and fire",
+    "11 power-up tools with permanent mastery progression",
+    "Daily procedurally generated puzzle with streak rewards",
+    "Cosmetic board skins, no pay-to-win"
+  ]
+}
+</script>
+
+<!-- JSON-LD: ItemList (the four worlds) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "The four worlds of Thought Escape",
+  "description": "Four themed worlds, each with its own art, currency, and tile materials.",
+  "itemListOrder": "ItemListOrderAscending",
+  "numberOfItems": 4,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Ocean", "description": "Tide-blue tiles carved from sapphire and seafoam. Eight opening levels. World currency: moon pearls." },
+    { "@type": "ListItem", "position": 2, "name": "Mountain", "description": "Molten amber tiles with obsidian walls and iron-bound rune gates. Eight levels. World currency: sun runes." },
+    { "@type": "ListItem", "position": 3, "name": "Forest", "description": "Living vines frame every modal. Gravity, mirrors, and portals enter the game. Eight levels. World currency: spirit seeds." },
+    { "@type": "ListItem", "position": 4, "name": "Snow", "description": "Ice crystal arches and aurora-lit shards. Countdown, splitters, and blind tiles converge. Six finale levels. World currency: aurora shards." }
+  ]
+}
+</script>
+
+<!-- JSON-LD: HowTo (how to play a Thought Escape level) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to play a Thought Escape level",
+  "description": "Clear every arrow tile off the board by chaining escape paths in the right order.",
+  "totalTime": "PT1M",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Tap a tile", "text": "Each tile points in one of eight compass directions. Tap a tile to start its escape ray traveling along its arrow." },
+    { "@type": "HowToStep", "position": 2, "name": "Clear path escapes", "text": "If no other tile is in the ray's path to the edge of the board, the tile slides off and escapes." },
+    { "@type": "HowToStep", "position": 3, "name": "Blocked path rejects", "text": "If another tile is in the way, the tap is rejected, the board shakes, and the tile stays in place. Pick a different tile." },
+    { "@type": "HowToStep", "position": 4, "name": "Chain it out", "text": "Each tile that escapes opens the path for tiles that were blocked. Clear the whole board to finish the level." }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --gold: #d4af37;
+    --gold-soft: #f0c97c;
+    --gold-deep: #c8a020;
+    --bg-base: #050d08;
+    --bg-deep: #020806;
+
+    --forest-bg: #0a1f12;
+    --forest-mid: #1a5d3a;
+    --forest-accent: #6ee7a7;
+    --forest-glow: rgba(110, 231, 167, 0.18);
+
+    --mountain-bg: #1a1208;
+    --mountain-mid: #92400e;
+    --mountain-accent: #f59e0b;
+    --mountain-glow: rgba(245, 158, 11, 0.18);
+
+    --snow-bg: #0e1230;
+    --snow-mid: #312e81;
+    --snow-accent: #93c5fd;
+    --snow-glow: rgba(147, 197, 253, 0.18);
+
+    --ocean-bg: #061a2b;
+    --ocean-mid: #1e3a8a;
+    --ocean-accent: #38bdf8;
+    --ocean-glow: rgba(56, 189, 248, 0.18);
+
+    /* Site-wide theme tokens — overridden by body[data-theme="..."] below */
+    --page-bg: var(--forest-bg);
+    --page-bg-deep: #050d08;
+    --page-mid: var(--forest-mid);
+    --page-accent: var(--forest-accent);
+    --page-accent-rgb: 110, 231, 167;
+    --page-glow: var(--forest-glow);
+    --page-glow-strong: rgba(110, 231, 167, 0.34);
+
+    --text: #f4ecd6;
+    --text-soft: rgba(244, 236, 214, 0.78);
+    --text-mute: rgba(244, 236, 214, 0.56);
+    --line: rgba(244, 236, 214, 0.10);
+
+    --serif: ui-serif, Georgia, "Times New Roman", Cambria, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+    --pad-x: clamp(20px, 5vw, 56px);
+    --section-y: clamp(72px, 10vw, 132px);
+    --container: 1180px;
+
+    --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg-deep);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    min-height: 100vh;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    transition: background-color 0.6s var(--ease);
+  }
+
+  /* Theme overrides — applied to body[data-theme="..."] via JS */
+  body[data-theme="ocean"] {
+    --page-bg: var(--ocean-bg);
+    --page-mid: var(--ocean-mid);
+    --page-accent: var(--ocean-accent);
+    --page-accent-rgb: 56, 189, 248;
+    --page-glow: var(--ocean-glow);
+    --page-glow-strong: rgba(56, 189, 248, 0.34);
+  }
+  body[data-theme="mountain"] {
+    --page-bg: var(--mountain-bg);
+    --page-mid: var(--mountain-mid);
+    --page-accent: var(--mountain-accent);
+    --page-accent-rgb: 245, 158, 11;
+    --page-glow: var(--mountain-glow);
+    --page-glow-strong: rgba(245, 158, 11, 0.34);
+  }
+  body[data-theme="snow"] {
+    --page-bg: var(--snow-bg);
+    --page-mid: var(--snow-mid);
+    --page-accent: var(--snow-accent);
+    --page-accent-rgb: 147, 197, 253;
+    --page-glow: var(--snow-glow);
+    --page-glow-strong: rgba(147, 197, 253, 0.34);
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; }
+
+  /* ─────────────── NAVBAR ─────────────── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px var(--pad-x);
+    padding-top: calc(14px + env(safe-area-inset-top));
+    background: rgba(5, 13, 8, 0.72);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+    transition: background 0.3s var(--ease);
+  }
+  .nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--gold-soft);
+  }
+  .nav__logo {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35), 0 6px 22px rgba(212, 175, 55, 0.18);
+  }
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: clamp(18px, 2.4vw, 32px);
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--text-soft);
+  }
+  .nav__links a {
+    transition: color 0.2s var(--ease);
+    padding: 6px 0;
+  }
+  .nav__links a:hover { color: var(--gold-soft); }
+  .nav__cta {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 60%, var(--gold-deep) 100%);
+    color: #1a1208;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 6px 24px rgba(212, 175, 55, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: transform 0.2s var(--spring), box-shadow 0.2s var(--ease);
+    min-height: 44px;
+  }
+  .nav__cta:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4); }
+
+  .nav__burger {
+    display: none;
+    width: 44px; height: 44px;
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.24);
+    border-radius: 10px;
+    color: var(--gold-soft);
+    align-items: center;
+    justify-content: center;
+  }
+  .nav__burger svg { width: 22px; height: 22px; }
+
+  @media (max-width: 820px) {
+    .nav__links { display: none; }
+    .nav__burger { display: inline-flex; }
+    .nav__cta { display: none; }
+  }
+
+  .drawer {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    width: min(82vw, 320px);
+    background: linear-gradient(180deg, #06140c 0%, #050d08 100%);
+    border-left: 1px solid rgba(212, 175, 55, 0.16);
+    z-index: 110;
+    transform: translateX(100%);
+    transition: transform 0.4s var(--ease);
+    padding: calc(28px + env(safe-area-inset-top)) 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .drawer.open { transform: translateX(0); }
+  .drawer__close {
+    align-self: flex-end;
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.24);
+    border-radius: 10px;
+    width: 40px; height: 40px;
+    color: var(--gold-soft);
+    font-size: 22px;
+    line-height: 1;
+  }
+  .drawer a {
+    padding: 14px 0;
+    font-size: 17px;
+    color: var(--text);
+    border-bottom: 1px solid rgba(244, 236, 214, 0.06);
+    font-family: var(--serif);
+    letter-spacing: 0.03em;
+  }
+  .drawer__cta {
+    margin-top: auto;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 100%);
+    color: #1a1208;
+    padding: 14px 22px;
+    border-radius: 999px;
+    border: none;
+    font-weight: 700;
+    text-align: center;
+    min-height: 50px;
+  }
+  .drawer-scrim {
+    position: fixed; inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 105;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease);
+  }
+  .drawer-scrim.open { opacity: 1; pointer-events: auto; }
+
+  /* ─────────────── SECTION CHROME ─────────────── */
+  .section {
+    position: relative;
+    padding: var(--section-y) var(--pad-x);
+    overflow: hidden;
+  }
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .kicker {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 18px;
+    display: inline-block;
+  }
+  .kicker::before {
+    content: '✦';
+    margin-right: 10px;
+    color: var(--gold);
+    font-size: 10px;
+  }
+  h1, h2, h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    color: var(--text);
+  }
+  h1 { font-size: clamp(40px, 6.4vw, 84px); }
+  h2 { font-size: clamp(30px, 4.2vw, 52px); }
+  h3 { font-size: clamp(20px, 2.2vw, 26px); }
+  p.lede {
+    font-size: clamp(17px, 1.4vw, 21px);
+    color: var(--text-soft);
+    max-width: 620px;
+    margin-top: 22px;
+    line-height: 1.55;
+  }
+
+  /* ─────────────── HERO (themed) ─────────────── */
+  .hero {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, var(--page-glow-strong) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(212, 175, 55, 0.06) 0%, transparent 70%),
+      linear-gradient(180deg, var(--page-bg) 0%, #050d08 100%);
+    padding-top: calc(132px + env(safe-area-inset-top));
+    padding-bottom: clamp(80px, 12vw, 140px);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    transition: background 0.6s var(--ease);
+  }
+  .hero__bg-flourish {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image:
+      radial-gradient(circle at 14% 22%, var(--page-glow) 0, transparent 22%),
+      radial-gradient(circle at 86% 70%, rgba(212, 175, 55, 0.05) 0, transparent 24%);
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(40px, 6vw, 90px);
+    align-items: center;
+  }
+  @media (max-width: 940px) {
+    .hero__grid { grid-template-columns: 1fr; gap: 56px; }
+  }
+  .hero__logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .hero__logo-emblem {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 1.5px rgba(212, 175, 55, 0.55),
+      0 0 40px rgba(212, 175, 55, 0.22),
+      0 14px 50px rgba(0, 0, 0, 0.6);
+    animation: gentle-float 7s ease-in-out infinite;
+  }
+  @keyframes gentle-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .hero__brand {
+    font-family: var(--serif);
+    font-size: 14px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+  }
+  .hero h1 {
+    background: linear-gradient(180deg, #fff8e6 0%, #f0c97c 70%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 22px;
+  }
+  .hero__sub {
+    font-size: clamp(18px, 1.5vw, 22px);
+    color: var(--text-soft);
+    max-width: 540px;
+    line-height: 1.55;
+    margin-bottom: 36px;
+  }
+  .hero__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(var(--page-accent-rgb), 0.10);
+    border: 1px solid rgba(var(--page-accent-rgb), 0.34);
+    color: var(--page-accent);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    transition: background 0.6s var(--ease), border-color 0.6s var(--ease), color 0.6s var(--ease);
+  }
+  .hero__chip::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--page-accent);
+    box-shadow: 0 0 10px var(--page-accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+  .hero__form {
+    display: flex;
+    gap: 8px;
+    max-width: 460px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.20);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+  }
+  .hero__form input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    padding: 0 16px;
+    font-size: 16px;
+    font-family: var(--sans);
+    min-height: 48px;
+  }
+  .hero__form input::placeholder { color: var(--text-mute); }
+  .hero__form button {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 60%, var(--gold-deep) 100%);
+    color: #1a1208;
+    border: none;
+    padding: 0 22px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    min-height: 48px;
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: transform 0.2s var(--spring);
+  }
+  .hero__form button:hover { transform: translateY(-1px); }
+  .hero__form-note {
+    font-size: 12px;
+    color: var(--text-mute);
+    margin-top: 12px;
+    letter-spacing: 0.02em;
+  }
+  .form-success {
+    display: none;
+    margin-top: 18px;
+    padding: 14px 18px;
+    background: rgba(var(--page-accent-rgb), 0.10);
+    border: 1px solid rgba(var(--page-accent-rgb), 0.34);
+    border-radius: 12px;
+    color: var(--page-accent);
+    font-size: 14px;
+  }
+  .form-success.show { display: block; }
+
+  /* Phone mockup */
+  .phone {
+    position: relative;
+    width: clamp(260px, 28vw, 340px);
+    margin: 0 auto;
+    aspect-ratio: 9 / 19.5;
+    border-radius: 44px;
+    background: #060606;
+    padding: 11px;
+    box-shadow:
+      0 0 0 2px #1c1e22,
+      0 30px 80px rgba(0, 0, 0, 0.65),
+      0 0 60px rgba(212, 175, 55, 0.10);
+    transform: rotate(-2deg);
+    transition: transform 0.6s var(--ease);
+  }
+  .phone:hover { transform: rotate(0deg) translateY(-6px); }
+  .phone__screen {
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    overflow: hidden;
+    background: #000;
+    position: relative;
+  }
+  .phone__screen img { width: 100%; height: 100%; object-fit: cover; }
+  .phone__notch {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28%;
+    height: 28px;
+    background: #060606;
+    border-radius: 18px;
+    z-index: 2;
+  }
+  .phone__shine {
+    position: absolute;
+    inset: 0;
+    border-radius: 44px;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, transparent 30%, transparent 70%, rgba(255, 255, 255, 0.04) 100%);
+  }
+
+  /* ─────────────── WORLDS (Feature Spotlight) ─────────────── */
+  .worlds {
+    background: linear-gradient(180deg, #050d08 0%, #060a14 100%);
+    position: relative;
+  }
+  .worlds__header { text-align: center; max-width: 760px; margin: 0 auto 64px; }
+  .worlds__header p { color: var(--text-soft); margin-top: 22px; font-size: 18px; }
+
+  .world-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+  .world-tab {
+    padding: 12px 22px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    color: var(--text-soft);
+    border-radius: 999px;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    font-family: var(--serif);
+    transition: all 0.3s var(--ease);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .world-tab__dot { width: 9px; height: 9px; border-radius: 50%; }
+  .world-tab[data-world="ocean"] .world-tab__dot { background: var(--ocean-accent); box-shadow: 0 0 10px var(--ocean-accent); }
+  .world-tab[data-world="mountain"] .world-tab__dot { background: var(--mountain-accent); box-shadow: 0 0 10px var(--mountain-accent); }
+  .world-tab[data-world="forest"] .world-tab__dot { background: var(--forest-accent); box-shadow: 0 0 10px var(--forest-accent); }
+  .world-tab[data-world="snow"] .world-tab__dot { background: var(--snow-accent); box-shadow: 0 0 10px var(--snow-accent); }
+  .world-tab.active {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    border-color: rgba(212, 175, 55, 0.40);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.10);
+  }
+
+  .world-panel {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(36px, 5vw, 80px);
+    align-items: center;
+    min-height: 420px;
+    animation: fade-up 0.6s var(--ease);
+  }
+  .world-panel.active { display: grid; }
+  @media (max-width: 880px) {
+    .world-panel { grid-template-columns: 1fr; gap: 40px; }
+    .world-panel__media { order: 2; }
+    .world-panel__copy { order: 1; }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .world-panel__copy h3 {
+    font-size: clamp(28px, 3.4vw, 42px);
+    margin-bottom: 18px;
+    line-height: 1.1;
+  }
+  .world-panel__lede { color: var(--text-soft); font-size: 17px; margin-bottom: 28px; line-height: 1.6; }
+  .world-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .world-stat {
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 12px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--text-soft);
+  }
+  .world-stat strong { color: var(--text); font-family: var(--serif); margin-right: 6px; }
+  .world-panel__media {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .world-panel__bg {
+    position: absolute;
+    inset: -40px;
+    border-radius: 32px;
+    z-index: 0;
+    filter: blur(40px);
+    opacity: 0.55;
+  }
+  .world-panel[data-world="ocean"] .world-panel__bg { background: radial-gradient(circle, rgba(56, 189, 248, 0.30) 0%, transparent 70%); }
+  .world-panel[data-world="mountain"] .world-panel__bg { background: radial-gradient(circle, rgba(245, 158, 11, 0.28) 0%, transparent 70%); }
+  .world-panel[data-world="forest"] .world-panel__bg { background: radial-gradient(circle, rgba(110, 231, 167, 0.28) 0%, transparent 70%); }
+  .world-panel[data-world="snow"] .world-panel__bg { background: radial-gradient(circle, rgba(147, 197, 253, 0.28) 0%, transparent 70%); }
+
+  .world-phone {
+    position: relative;
+    width: clamp(220px, 26vw, 300px);
+    aspect-ratio: 9 / 19.5;
+    border-radius: 38px;
+    background: #060606;
+    padding: 9px;
+    box-shadow:
+      0 0 0 2px #1c1e22,
+      0 30px 70px rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
+  .world-phone__screen {
+    width: 100%; height: 100%;
+    border-radius: 28px; overflow: hidden;
+    background: linear-gradient(180deg, var(--forest-bg) 0%, #050d08 100%);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold-soft);
+    font-family: var(--serif);
+    font-size: 14px;
+    text-align: center;
+    padding: 30px 20px;
+  }
+  .world-phone__screen img { width: 100%; height: 100%; object-fit: cover; }
+  .world-phone__notch {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26%;
+    height: 24px;
+    background: #060606;
+    border-radius: 16px;
+    z-index: 2;
+  }
+
+  /* ─────────────── MECHANICS (themed) ─────────────── */
+  .mechanics {
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, var(--page-glow-strong) 0%, transparent 60%),
+      linear-gradient(180deg, var(--page-bg) 0%, #050d08 100%);
+    transition: background 0.6s var(--ease);
+  }
+  .mech-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(36px, 6vw, 90px);
+    align-items: center;
+  }
+  @media (max-width: 940px) { .mech-grid { grid-template-columns: 1fr; } }
+  .mech-grid h2 {
+    background: linear-gradient(180deg, #fff5e0 0%, var(--page-accent) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .mech-list {
+    list-style: none;
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .mech-list li {
+    display: flex;
+    gap: 18px;
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(var(--page-accent-rgb), 0.18);
+    border-radius: 16px;
+    transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+  .mech-list li:hover {
+    transform: translateY(-2px);
+    border-color: rgba(var(--page-accent-rgb), 0.44);
+  }
+  .mech-list__icon {
+    width: 44px; height: 44px;
+    min-width: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(var(--page-accent-rgb), 0.22) 0%, rgba(var(--page-accent-rgb), 0.06) 100%);
+    border: 1px solid rgba(var(--page-accent-rgb), 0.30);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--page-accent);
+  }
+  .mech-list__icon svg { width: 22px; height: 22px; }
+  .mech-list__title {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+  }
+  .mech-list__body {
+    color: var(--text-soft);
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+
+  /* ─────────────── DAILY / STREAK (themed) ─────────────── */
+  .daily {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, var(--page-glow-strong) 0%, transparent 60%),
+      linear-gradient(180deg, var(--page-bg) 0%, #050d08 100%);
+    transition: background 0.6s var(--ease);
+  }
+  .daily__grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: center;
+  }
+  @media (max-width: 940px) {
+    .daily__grid { grid-template-columns: 1fr; }
+    .daily__media { order: 2; }
+  }
+  .daily h2 {
+    background: linear-gradient(180deg, #f4ecd6 0%, var(--page-accent) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .daily__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 36px;
+  }
+  .stat-card {
+    padding: 22px;
+    background: rgba(var(--page-accent-rgb), 0.05);
+    border: 1px solid rgba(var(--page-accent-rgb), 0.20);
+    border-radius: 16px;
+  }
+  .stat-card__num {
+    font-family: var(--serif);
+    font-size: clamp(32px, 3.5vw, 44px);
+    color: var(--page-accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-card__label {
+    color: var(--text-soft);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ─────────────── SHOP / SCREENSHOTS (deep) ─────────────── */
+  .shop-section {
+    background: linear-gradient(180deg, #06081e 0%, #050d08 60%, #050d08 100%);
+  }
+  .shop-section__header { text-align: center; max-width: 720px; margin: 0 auto 60px; }
+  .shop-section__header p { color: var(--text-soft); margin-top: 22px; font-size: 17px; }
+
+  .shop-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 40px);
+    align-items: end;
+  }
+  @media (max-width: 880px) {
+    .shop-gallery { grid-template-columns: 1fr; gap: 36px; max-width: 360px; margin: 0 auto; }
+  }
+  .shop-gallery__item {
+    text-align: center;
+    transition: transform 0.5s var(--ease);
+  }
+  .shop-gallery__item:hover { transform: translateY(-6px); }
+  .shop-gallery__phone {
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto 22px;
+    aspect-ratio: 9 / 19.5;
+    border-radius: 32px;
+    background: #060606;
+    padding: 8px;
+    position: relative;
+    box-shadow:
+      0 0 0 2px #1c1e22,
+      0 28px 60px rgba(0, 0, 0, 0.55);
+  }
+  .shop-gallery__phone img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+  }
+  .shop-gallery__phone::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26%;
+    height: 22px;
+    background: #060606;
+    border-radius: 14px;
+    z-index: 2;
+  }
+  .shop-gallery__title {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--gold-soft);
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+  .shop-gallery__body {
+    color: var(--text-soft);
+    font-size: 14px;
+    max-width: 280px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  /* ─────────────── PRINCIPLES STRIP ─────────────── */
+  .principles {
+    background: linear-gradient(180deg, #050d08 0%, var(--page-bg) 100%);
+    padding-top: clamp(60px, 7vw, 80px);
+    padding-bottom: clamp(60px, 7vw, 80px);
+    transition: background 0.6s var(--ease);
+  }
+  .principles__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 3vw, 48px);
+  }
+  @media (max-width: 760px) { .principles__grid { grid-template-columns: 1fr; } }
+  .principle {
+    border-left: 2px solid rgba(212, 175, 55, 0.40);
+    padding-left: 22px;
+  }
+  .principle h4 {
+    font-family: var(--serif);
+    font-size: 19px;
+    color: var(--gold-soft);
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+  .principle p { color: var(--text-soft); font-size: 14.5px; line-height: 1.6; }
+
+  /* ─────────────── FAQ (themed) ─────────────── */
+  .faq {
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, var(--page-glow) 0%, transparent 60%),
+      linear-gradient(180deg, var(--page-bg) 0%, #030c18 100%);
+    transition: background 0.6s var(--ease);
+  }
+  .faq__header { text-align: center; max-width: 680px; margin: 0 auto 56px; }
+  .faq__header h2 {
+    background: linear-gradient(180deg, #f4ecd6 0%, var(--page-accent) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item {
+    border: 1px solid rgba(var(--page-accent-rgb), 0.20);
+    background: rgba(var(--page-accent-rgb), 0.03);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.3s var(--ease);
+  }
+  .faq-item[open] { border-color: rgba(var(--page-accent-rgb), 0.44); }
+  .faq-item summary {
+    list-style: none;
+    padding: 22px 26px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--text);
+    letter-spacing: 0.01em;
+    min-height: 44px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    color: var(--page-accent);
+    font-size: 24px;
+    line-height: 1;
+    transition: transform 0.3s var(--ease);
+    font-family: var(--sans);
+    font-weight: 300;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-answer {
+    padding: 0 26px 24px;
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ─────────────── FINAL CTA ─────────────── */
+  .final-cta {
+    background:
+      radial-gradient(ellipse 60% 80% at 50% 50%, rgba(212, 175, 55, 0.10) 0%, transparent 70%),
+      linear-gradient(180deg, #030c18 0%, #050d08 100%);
+    text-align: center;
+    padding-top: clamp(100px, 12vw, 160px);
+    padding-bottom: clamp(100px, 12vw, 160px);
+  }
+  .final-cta h2 {
+    max-width: 720px;
+    margin: 0 auto 26px;
+    background: linear-gradient(180deg, #fff8e6 0%, var(--gold-soft) 70%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .final-cta p {
+    color: var(--text-soft);
+    max-width: 540px;
+    margin: 0 auto 40px;
+    font-size: 17px;
+  }
+  .final-cta .hero__form {
+    margin: 0 auto;
+  }
+  .final-cta__divider {
+    margin: 50px auto 0;
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+  }
+  .final-cta__build {
+    margin-top: 26px;
+    font-size: 13px;
+    color: var(--text-mute);
+    letter-spacing: 0.04em;
+  }
+  .final-cta__build a { color: var(--gold-soft); text-decoration: underline; text-underline-offset: 4px; }
+
+  /* ─────────────── FOOTER ─────────────── */
+  footer {
+    background: linear-gradient(180deg, #050d08 0%, #02060b 100%);
+    padding: 60px var(--pad-x) 40px;
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(212, 175, 55, 0.10);
+  }
+  .footer__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 740px) {
+    .footer__inner { grid-template-columns: 1fr; gap: 32px; }
+  }
+  .footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .footer__brand img {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    opacity: 0.85;
+  }
+  .footer__brand span {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--gold-soft);
+    letter-spacing: 0.04em;
+  }
+  .footer__about {
+    color: var(--text-mute);
+    font-size: 14px;
+    max-width: 380px;
+    line-height: 1.6;
+  }
+  .footer__col h5 {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 0.20em;
+    color: var(--gold-soft);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .footer__col a {
+    display: block;
+    padding: 6px 0;
+    color: var(--text-mute);
+    font-size: 14px;
+    transition: color 0.2s var(--ease);
+  }
+  .footer__col a:hover { color: var(--text); }
+  .footer__bottom {
+    max-width: var(--container);
+    margin: 40px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(244, 236, 214, 0.06);
+    color: var(--text-mute);
+    font-size: 13px;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  /* ─────────────── REVEAL ANIMATIONS ─────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  /* ─────────────── PLAYABLE LEVEL — real game look ─────────────── */
+  .play {
+    background: linear-gradient(180deg, #050d08 0%, #07140d 100%);
+    position: relative;
+  }
+  .play__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(110, 231, 167, 0.05) 0, transparent 22%),
+      radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.05) 0, transparent 24%);
+  }
+  .play__intro {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 56px;
+  }
+  .play__intro p { color: var(--text-soft); font-size: 17px; margin-top: 22px; }
+
+  .play__stage {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.8fr) auto minmax(220px, 0.95fr);
+    gap: clamp(28px, 4vw, 60px);
+    align-items: center;
+    justify-content: center;
+  }
+  @media (max-width: 1080px) {
+    .play__stage { grid-template-columns: 1fr; justify-items: center; gap: 40px; }
+  }
+
+  /* ── Theme Wheel ── */
+  .theme-wheel-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .theme-wheel {
+    position: relative;
+    width: clamp(180px, 18vw, 220px);
+    height: clamp(180px, 18vw, 220px);
+  }
+  .theme-wheel svg { width: 100%; height: 100%; display: block; }
+  .theme-wheel .quad {
+    cursor: pointer;
+    transition: filter 0.4s var(--ease), opacity 0.4s var(--ease);
+    transform-box: fill-box;
+    transform-origin: 110px 110px;
+    outline: none;
+  }
+  .theme-wheel .quad[data-theme="ocean"] { fill: #1e3a8a; }
+  .theme-wheel .quad[data-theme="mountain"] { fill: #92400e; }
+  .theme-wheel .quad[data-theme="snow"] { fill: #312e81; }
+  .theme-wheel .quad[data-theme="forest"] { fill: #1a5d3a; }
+  .theme-wheel .quad:hover { filter: brightness(1.25); }
+  .theme-wheel .quad[aria-checked="false"] { opacity: 0.55; }
+  .theme-wheel .quad[aria-checked="true"] {
+    filter: brightness(1.35) drop-shadow(0 0 12px currentColor);
+  }
+  .theme-wheel .quad[data-theme="ocean"][aria-checked="true"] { color: #38bdf8; }
+  .theme-wheel .quad[data-theme="mountain"][aria-checked="true"] { color: #f59e0b; }
+  .theme-wheel .quad[data-theme="snow"][aria-checked="true"] { color: #93c5fd; }
+  .theme-wheel .quad[data-theme="forest"][aria-checked="true"] { color: #6ee7a7; }
+  .theme-wheel__label {
+    position: absolute;
+    font-family: var(--serif);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    pointer-events: none;
+  }
+  .theme-wheel__label[data-pos="nw"] { top: 8%; left: 8%; }
+  .theme-wheel__label[data-pos="ne"] { top: 8%; right: 8%; }
+  .theme-wheel__label[data-pos="sw"] { bottom: 8%; left: 8%; }
+  .theme-wheel__label[data-pos="se"] { bottom: 8%; right: 8%; }
+  .theme-wheel__hint {
+    color: var(--text-mute);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+  .theme-wheel__hint strong {
+    color: var(--gold-soft);
+    font-family: var(--serif);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin-right: 4px;
+  }
+
+  /* ── Phone device ── */
+  .play__device {
+    --th-accent: #6ee7a7;
+    --th-accent-deep: #1a5d3a;
+    --th-pill-bg: rgba(8, 22, 14, 0.65);
+    --th-pill-border: rgba(212, 175, 55, 0.40);
+    --th-arrow: #ffffff;
+    --th-arrow-glow: rgba(110, 231, 167, 0.55);
+    --th-text: #f4ecd6;
+    --th-empty-fill: #c9a878;
+    --th-empty-shadow: rgba(70, 40, 10, 0.5);
+
+    position: relative;
+    width: clamp(280px, 28vw, 360px);
+    aspect-ratio: 9 / 19.5;
+    border-radius: 44px;
+    background: #060606;
+    padding: 11px;
+    box-shadow:
+      0 0 0 2px #1c1e22,
+      0 40px 100px rgba(0, 0, 0, 0.75),
+      0 0 80px rgba(110, 231, 167, 0.10);
+    transition: box-shadow 0.6s var(--ease);
+  }
+  .play__device[data-theme="ocean"] {
+    --th-accent: #38bdf8;
+    --th-accent-deep: #1e3a8a;
+    --th-pill-bg: rgba(6, 22, 38, 0.65);
+    --th-arrow-glow: rgba(56, 189, 248, 0.55);
+    box-shadow: 0 0 0 2px #1c1e22, 0 40px 100px rgba(0,0,0,0.75), 0 0 80px rgba(56, 189, 248, 0.14);
+  }
+  .play__device[data-theme="mountain"] {
+    --th-accent: #f59e0b;
+    --th-accent-deep: #92400e;
+    --th-pill-bg: rgba(40, 24, 8, 0.65);
+    --th-arrow-glow: rgba(245, 158, 11, 0.55);
+    --th-empty-fill: #d4a060;
+    box-shadow: 0 0 0 2px #1c1e22, 0 40px 100px rgba(0,0,0,0.75), 0 0 80px rgba(245, 158, 11, 0.14);
+  }
+  .play__device[data-theme="snow"] {
+    --th-accent: #93c5fd;
+    --th-accent-deep: #312e81;
+    --th-pill-bg: rgba(14, 18, 48, 0.65);
+    --th-arrow-glow: rgba(147, 197, 253, 0.55);
+    --th-empty-fill: #d0d8e8;
+    box-shadow: 0 0 0 2px #1c1e22, 0 40px 100px rgba(0,0,0,0.75), 0 0 80px rgba(147, 197, 253, 0.14);
+  }
+  .play__device-frame {
+    width: 100%; height: 100%;
+    border-radius: 34px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+  }
+  .play__device-notch {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32%;
+    height: 28px;
+    background: #060606;
+    border-radius: 16px;
+    z-index: 10;
+  }
+  .play__device-screen {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .play__device-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 0.6s var(--ease), background-image 0.6s var(--ease);
+  }
+  .play__device[data-theme="forest"] .play__device-bg { background-image: url('game-assets/bg/forest.jpg'); }
+  .play__device[data-theme="ocean"]  .play__device-bg { background-image: url('game-assets/bg/ocean.jpg'); }
+  .play__device[data-theme="mountain"] .play__device-bg { background-image: url('game-assets/bg/mountains.jpg'); }
+  .play__device[data-theme="snow"]   .play__device-bg { background-image: url('game-assets/bg/snow.jpg'); }
+
+  /* Game header */
+  .play__game-header {
+    position: relative;
+    z-index: 3;
+    padding: 44px 12px 0;
+  }
+  .play__game-header-pill {
+    background: var(--th-pill-bg);
+    border: 1px solid var(--th-pill-border);
+    border-radius: 16px;
+    padding: 10px 14px 8px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+  .play__game-header-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .play__game-back {
+    color: var(--th-text);
+    font-size: 22px;
+    line-height: 1;
+    padding: 2px 6px;
+    opacity: 0.7;
+  }
+  .play__game-title {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--th-text);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    flex: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  }
+  .play__game-icons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .play__game-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.30);
+    border: none;
+    color: var(--th-accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+  }
+  .play__game-icon svg { width: 14px; height: 14px; }
+  .play__game-icon em {
+    position: absolute;
+    top: -2px; right: -2px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--th-accent);
+    color: #000;
+    font-size: 8px;
+    font-weight: 700;
+    font-style: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .play__game-reset:hover { background: rgba(212, 175, 55, 0.16); }
+  .play__game-stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6px;
+  }
+  .play__game-hearts { display: flex; gap: 4px; }
+  .play__game-hearts img {
+    width: 18px; height: 18px;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+  }
+  .play__game-moves {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--th-text);
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  }
+  .play__game-moves strong { font-weight: 700; }
+  .play__game-moves span { opacity: 0.7; }
+
+  /* Hint pill */
+  .play__game-hint {
+    position: relative;
+    z-index: 3;
+    margin: 14px 16px 0;
+    text-align: center;
+    font-family: var(--serif);
+    font-size: 11px;
+    color: var(--th-text);
+    letter-spacing: 0.06em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    line-height: 1.4;
+    transition: all 0.3s var(--ease);
+    opacity: 0.92;
+  }
+  .play__game-hint.is-warn { color: #fca5a5; }
+  .play__game-hint.is-win { color: var(--gold-soft); font-size: 13px; }
+
+  /* Board — absolutely centered in the phone screen */
+  .play__game-board-wrap {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    width: min(82%, 300px);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .play__game-board {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.18s var(--ease);
+    --cell-size: 25%;
+  }
+  .play__game-board.shake { animation: board-shake 0.42s var(--ease); }
+  @keyframes board-shake {
+    0%, 100% { transform: translateX(0); }
+    15% { transform: translateX(-6px); }
+    30% { transform: translateX(6px); }
+    45% { transform: translateX(-3px); }
+    60% { transform: translateX(3px); }
+    78% { transform: translateX(-1px); }
+  }
+
+  /* Octagon cells + tiles */
+  .play-cell, .play-tile {
+    position: absolute;
+    width: var(--cell-size, 25%);
+    height: var(--cell-size, 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .play-cell {
+    pointer-events: none;
+  }
+  .play-cell__shape {
+    width: 86%;
+    height: 86%;
+    clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+    background: var(--th-empty-fill);
+    opacity: 0.78;
+    box-shadow: 0 4px 8px var(--th-empty-shadow);
+  }
+  .play-tile {
+    cursor: pointer;
+    transition: transform 0.34s var(--ease), opacity 0.34s var(--ease);
+    will-change: transform, opacity;
+  }
+  .play-tile__img {
+    width: 100%; height: 100%;
+    pointer-events: none;
+    /* Hard-clip to the octagon shape so any remaining atmospheric pixels in the PNG are hidden. */
+    clip-path: polygon(30% 2%, 70% 2%, 98% 30%, 98% 70%, 70% 98%, 30% 98%, 2% 70%, 2% 30%);
+    -webkit-clip-path: polygon(30% 2%, 70% 2%, 98% 30%, 98% 70%, 70% 98%, 30% 98%, 2% 70%, 2% 30%);
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.55));
+    transition: filter 0.2s var(--ease);
+  }
+  .play-tile__arrow {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .play-tile__arrow svg {
+    width: 50%;
+    height: 50%;
+    transition: transform 0.35s var(--ease);
+    filter: drop-shadow(0 0 6px var(--th-arrow-glow)) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.7));
+  }
+  .play-tile.is-tappable .play-tile__img {
+    filter: drop-shadow(0 0 10px var(--th-arrow-glow)) drop-shadow(0 6px 10px rgba(0, 0, 0, 0.55));
+  }
+  .play-tile.is-tappable::before {
+    content: '';
+    position: absolute;
+    inset: 4%;
+    clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+    background: var(--th-arrow-glow);
+    opacity: 0;
+    animation: tile-tappable-pulse 2.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes tile-tappable-pulse {
+    0%, 100% { opacity: 0; transform: scale(1); }
+    50% { opacity: 0.42; transform: scale(1.07); }
+  }
+  .play-tile.is-blocked .play-tile__img { animation: tile-blocked-flash 0.42s var(--ease); }
+  @keyframes tile-blocked-flash {
+    0%, 100% { filter: drop-shadow(0 4px 10px rgba(0,0,0,0.55)); }
+    40% { filter: drop-shadow(0 0 16px #fca5a5) brightness(1.4); }
+  }
+  .play-tile.is-escaping { pointer-events: none; }
+
+  /* Toolbar — 2 functional tools */
+  .play__game-toolbar {
+    position: absolute;
+    bottom: 22px;
+    left: 0; right: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 18px;
+  }
+  .play__tool {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: var(--th-pill-bg);
+    border: 1px solid var(--th-pill-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s var(--spring), border-color 0.2s var(--ease), box-shadow 0.3s var(--ease), opacity 0.2s var(--ease);
+  }
+  .play__tool:hover:not(.is-depleted) {
+    transform: translateY(-2px);
+    border-color: var(--th-accent);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 16px var(--th-arrow-glow);
+  }
+  .play__tool.is-armed {
+    border-color: var(--th-accent);
+    box-shadow: 0 0 0 2px var(--th-accent), 0 0 24px var(--th-arrow-glow);
+    animation: tool-armed-pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes tool-armed-pulse {
+    0%, 100% { box-shadow: 0 0 0 2px var(--th-accent), 0 0 24px var(--th-arrow-glow); }
+    50% { box-shadow: 0 0 0 3px var(--th-accent), 0 0 36px var(--th-arrow-glow); }
+  }
+  .play__tool.is-depleted {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  .play__tool img {
+    width: 34px; height: 34px;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.6));
+    pointer-events: none;
+  }
+  .play__tool-pill {
+    position: absolute;
+    top: -8px;
+    right: -4px;
+    background: rgba(0, 0, 0, 0.85);
+    color: var(--th-accent);
+    font-size: 10px;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    border: 1px solid var(--th-pill-border);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+  .play__tool-label {
+    position: absolute;
+    bottom: -18px;
+    font-size: 10px;
+    color: var(--th-text);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    font-family: var(--serif);
+    pointer-events: none;
+  }
+  .play-tile.is-rotate-target {
+    cursor: crosshair !important;
+  }
+  .play-tile.is-rotate-target::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+    border: 2px dashed var(--th-accent);
+    pointer-events: none;
+    animation: rotate-target-pulse 1.2s ease-in-out infinite;
+  }
+  @keyframes rotate-target-pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+  .play-tile__rotating {
+    animation: tile-rotate-spin 0.4s var(--spring);
+  }
+  @keyframes tile-rotate-spin {
+    from { transform: rotate(-45deg) scale(0.85); }
+    to { transform: rotate(0) scale(1); }
+  }
+
+  /* Win overlay */
+  .play__win {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 30px;
+    width: clamp(280px, 28vw, 360px);
+    padding: 24px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212, 175, 55, 0.18) 0%, transparent 70%),
+      rgba(5, 13, 8, 0.92);
+    border: 1px solid rgba(212, 175, 55, 0.40);
+    border-radius: 18px;
+    text-align: center;
+    animation: fade-up 0.5s var(--ease);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    z-index: 5;
+  }
+  .play__win.show { display: block; }
+  .play__win-icon {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 100%);
+    color: #1a1208;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.34);
+  }
+  .play__win-icon svg { width: 26px; height: 26px; }
+  .play__win h4 {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 8px;
+    letter-spacing: 0.01em;
+  }
+  .play__win p { color: var(--text-soft); font-size: 14px; margin-bottom: 18px; line-height: 1.55; }
+  .play__cta {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 60%, var(--gold-deep) 100%);
+    color: #1a1208;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: transform 0.2s var(--spring);
+    min-height: 44px;
+  }
+  .play__cta:hover { transform: translateY(-1px); }
+
+  /* Rules side */
+  .play__rules-side h3 {
+    font-size: clamp(22px, 2.2vw, 28px);
+    margin-bottom: 22px;
+    color: var(--gold-soft);
+    font-family: var(--serif);
+    letter-spacing: 0.01em;
+  }
+  .play__rules {
+    list-style: none;
+    counter-reset: rule;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .play__rules li {
+    position: relative;
+    padding: 14px 18px 14px 52px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.14);
+    border-radius: 12px;
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.55;
+    counter-increment: rule;
+    transition: border-color 0.3s var(--ease);
+  }
+  .play__rules li::before {
+    content: counter(rule);
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px; height: 26px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 100%);
+    color: #1a1208;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .play__rules li:hover { border-color: rgba(212, 175, 55, 0.32); }
+  .play__rules strong { color: var(--text); }
+  .play__note { color: var(--text-mute); font-size: 13px; line-height: 1.55; font-style: italic; }
+
+  /* Confetti for win state */
+  .confetti {
+    position: absolute;
+    width: 8px; height: 12px;
+    pointer-events: none;
+    will-change: transform, opacity;
+    border-radius: 1px;
+  }
+
+  /* ─────────────── ENHANCED ANIMATIONS ─────────────── */
+  /* Floating glyph particles in hero */
+  .glyph-field {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .glyph {
+    position: absolute;
+    font-family: var(--serif);
+    color: rgba(212, 175, 55, 0.16);
+    font-size: 28px;
+    will-change: transform, opacity;
+    user-select: none;
+    animation: glyph-drift 18s linear infinite;
+  }
+  @keyframes glyph-drift {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    8% { opacity: 1; }
+    92% { opacity: 1; }
+    100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* Magnetic hover on primary CTAs */
+  .magnet {
+    transition: transform 0.4s var(--spring);
+    will-change: transform;
+  }
+
+  /* Counter card lift */
+  .stat-card {
+    transition: transform 0.4s var(--ease), border-color 0.3s var(--ease), background 0.3s var(--ease);
+    will-change: transform;
+  }
+  .stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(147, 197, 253, 0.40);
+    background: rgba(147, 197, 253, 0.07);
+  }
+
+  /* World-tab badge glow on hover */
+  .world-tab {
+    transition: all 0.3s var(--spring);
+  }
+  .world-tab:hover:not(.active) {
+    transform: translateY(-1px);
+    color: var(--text);
+  }
+
+  /* Subtle drift on phone shine */
+  .phone__shine {
+    animation: shine-drift 8s ease-in-out infinite;
+  }
+  @keyframes shine-drift {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Animated section divider */
+  .section-divider {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.32) 50%, transparent 100%);
+    margin: 0;
+    opacity: 0.6;
+  }
+
+  /* Scroll progress bar (top of page) */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--gold), var(--forest-accent));
+    width: 0%;
+    z-index: 200;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+  }
+
+  /* Number ticker */
+  .stat-card__num { will-change: contents; }
+</style>
+</head>
+<body>
+
+<!-- Scroll progress -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<!-- ─────────────── NAVBAR ─────────────── -->
+<nav class="nav" aria-label="Primary">
+  <a href="/" class="nav__brand" title="Thought Escape home">
+    <img src="logo.png" alt="Thought Escape compass logo" class="nav__logo" width="34" height="34">
+    <span>Thought Escape</span>
+  </a>
+  <div class="nav__links">
+    <a href="#play" title="Try a Thought Escape mini puzzle right here">Play</a>
+    <a href="#worlds" title="Explore the four worlds">Worlds</a>
+    <a href="#mechanics" title="How Thought Escape plays">Mechanics</a>
+    <a href="#daily" title="Daily puzzle and streak system">Daily</a>
+    <a href="#faq" title="Frequently asked questions">FAQ</a>
+  </div>
+  <button class="nav__cta" type="button" data-scroll="#notify" aria-label="Get notified when Thought Escape launches">Notify me</button>
+  <button class="nav__burger" type="button" id="burger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <line x1="3" y1="7" x2="21" y2="7"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="17" x2="21" y2="17"></line>
+    </svg>
+  </button>
+</nav>
+
+<div class="drawer-scrim" id="drawerScrim"></div>
+<aside class="drawer" id="drawer" aria-label="Mobile navigation">
+  <button class="drawer__close" id="drawerClose" aria-label="Close menu">×</button>
+  <a href="#play" data-drawer-close title="Try a Thought Escape mini puzzle">Play a level</a>
+  <a href="#worlds" data-drawer-close title="Explore the four worlds">Worlds</a>
+  <a href="#mechanics" data-drawer-close title="How Thought Escape plays">Mechanics</a>
+  <a href="#daily" data-drawer-close title="Daily puzzle and streak system">Daily</a>
+  <a href="#shop" data-drawer-close title="Shop and cosmetic boards">Shop</a>
+  <a href="#faq" data-drawer-close title="Frequently asked questions">FAQ</a>
+  <button class="drawer__cta" type="button" data-scroll="#notify" data-drawer-close>Notify me on launch</button>
+</aside>
+
+<!-- ─────────────── HERO ─────────────── -->
+<header class="section hero">
+  <div class="hero__bg-flourish" aria-hidden="true"></div>
+  <div class="glyph-field" id="glyphField" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero__grid">
+      <div>
+        <div class="hero__logo-wrap reveal">
+          <img src="logo.png" alt="Thought Escape four-world compass medallion" class="hero__logo-emblem" width="64" height="64">
+          <span class="hero__brand">Thought Escape</span>
+        </div>
+        <div class="hero__chip reveal">TestFlight beta · iOS first, Android next</div>
+        <h1 class="reveal">A puzzle that<br>waits for you.</h1>
+        <p id="product-summary" class="hero__sub reveal">Thirty hand-tuned levels. Eleven tools you keep forever. No timers, no gacha, no forced ads. Just arrows, four worlds, and the quiet between them.</p>
+
+        <form class="hero__form reveal" id="notify-hero" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_ACCESS_KEY">
+          <input type="hidden" name="subject" value="Thought Escape — new waitlist signup">
+          <input type="hidden" name="from_name" value="Thought Escape Landing">
+          <input type="text" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+          <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" inputmode="email" aria-label="Email address">
+          <button type="submit">Notify me</button>
+        </form>
+        <div class="form-success" id="hero-success" role="status">✦ You're on the list. We'll write the moment Thought Escape goes live.</div>
+        <p class="hero__form-note reveal">No spam. One email when the App Store link goes live.</p>
+      </div>
+
+      <div class="reveal">
+        <div class="phone" aria-hidden="true">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <img src="images/screen-home.png" alt="Thought Escape home screen showing the Forest world with continue level, streak count, and a glowing green play button" width="280" height="610" loading="eager" fetchpriority="high">
+          </div>
+          <div class="phone__shine"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ─────────────── PLAYABLE MINI-LEVEL ─────────────── -->
+<section class="section play" id="play" aria-labelledby="play-title">
+  <div class="play__bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="play__intro reveal">
+      <span class="kicker">Try it now</span>
+      <h2 id="play-title">Solve a real level. No download.</h2>
+      <p>Eight gemstone tiles. One clear escape path. Same logic as the full game. Pick a world from the compass — the whole page swaps with you.</p>
+    </div>
+
+    <div class="play__stage">
+      <!-- 4-theme compass wheel -->
+      <div class="theme-wheel-wrap reveal" role="group" aria-label="Choose a world to play in">
+        <div class="theme-wheel" id="themeWheel" role="radiogroup">
+          <svg viewBox="0 0 220 220" aria-hidden="true">
+            <defs>
+              <radialGradient id="wheelInner" cx="0.5" cy="0.5" r="0.6">
+                <stop offset="0%" stop-color="rgba(5,13,8,0.8)"/>
+                <stop offset="100%" stop-color="rgba(5,13,8,0)"/>
+              </radialGradient>
+            </defs>
+            <path class="quad" data-theme="ocean" d="M 110,110 L 110,16 A 94,94 0 0 0 16,110 Z" tabindex="0" role="radio" aria-label="Ocean world" aria-checked="false"/>
+            <path class="quad" data-theme="mountain" d="M 110,110 L 204,110 A 94,94 0 0 0 110,16 Z" tabindex="0" role="radio" aria-label="Mountain world" aria-checked="false"/>
+            <path class="quad" data-theme="snow" d="M 110,110 L 110,204 A 94,94 0 0 0 204,110 Z" tabindex="0" role="radio" aria-label="Snow world" aria-checked="false"/>
+            <path class="quad" data-theme="forest" d="M 110,110 L 16,110 A 94,94 0 0 0 110,204 Z" tabindex="0" role="radio" aria-label="Forest world" aria-checked="true"/>
+            <circle cx="110" cy="110" r="42" fill="url(#wheelInner)" pointer-events="none"/>
+            <circle cx="110" cy="110" r="42" fill="none" stroke="#d4af37" stroke-width="2" pointer-events="none"/>
+            <g pointer-events="none">
+              <polygon points="110,76 116,108 110,144 104,108" fill="#d4af37"/>
+              <polygon points="76,110 108,116 144,110 108,104" fill="#f0c97c"/>
+              <polygon points="110,76 116,108 110,144 104,108" fill="#fff8e6" opacity="0.3"/>
+              <circle cx="110" cy="110" r="5" fill="#1a1208"/>
+            </g>
+          </svg>
+          <span class="theme-wheel__label" data-pos="nw">Ocean</span>
+          <span class="theme-wheel__label" data-pos="ne">Mountain</span>
+          <span class="theme-wheel__label" data-pos="se">Snow</span>
+          <span class="theme-wheel__label" data-pos="sw">Forest</span>
+        </div>
+        <p class="theme-wheel__hint">Now playing: <strong id="themeName">Forest</strong> · Tap a quadrant</p>
+      </div>
+
+      <!-- Phone-mockup playable -->
+      <div class="play__device reveal" data-theme="forest" id="playDevice">
+        <div class="play__device-frame">
+          <div class="play__device-notch"></div>
+          <div class="play__device-screen">
+            <div class="play__device-bg" id="playDeviceBg"></div>
+
+            <!-- Game header -->
+            <div class="play__game-header">
+              <div class="play__game-header-pill">
+                <div class="play__game-header-row">
+                  <span class="play__game-back" aria-hidden="true">‹</span>
+                  <span class="play__game-title">Level&nbsp;1</span>
+                  <div class="play__game-icons">
+                    <span class="play__game-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.4 1 1 1 1.7v.6h6v-.6c0-.7.4-1.3 1-1.7A7 7 0 0 0 12 2z"/></svg>
+                      <em>1</em>
+                    </span>
+                    <span class="play__game-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2.5-2.5 4M12 17h.01"/></svg>
+                    </span>
+                    <button type="button" class="play__game-icon play__game-reset" id="playReset" aria-label="Reset puzzle">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="play__game-stats">
+                  <div class="play__game-hearts" aria-label="Lives">
+                    <img src="game-assets/life_heart.png" alt="" width="22" height="22" loading="lazy">
+                    <img src="game-assets/life_heart.png" alt="" width="22" height="22" loading="lazy">
+                    <img src="game-assets/life_heart.png" alt="" width="22" height="22" loading="lazy">
+                  </div>
+                  <div class="play__game-moves" aria-live="polite">Moves: <strong id="playTaps">0</strong>/<span>20</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hint -->
+            <div class="play__game-hint" id="playHint" aria-live="polite">Only one tile has a clear path. Find it.</div>
+
+            <!-- Board -->
+            <div class="play__game-board-wrap">
+              <div class="play__game-board" id="playBoard" role="application" aria-label="Mini Thought Escape level board"></div>
+            </div>
+
+            <!-- Toolbar — 2 working tools -->
+            <div class="play__game-toolbar">
+              <button type="button" class="play__tool" id="toolUndo" aria-label="Undo last move">
+                <span class="play__tool-pill" id="toolUndoPill">2</span>
+                <img src="game-assets/tools/undo.png" alt="" width="36" height="36" loading="lazy">
+                <span class="play__tool-label">Undo</span>
+              </button>
+              <button type="button" class="play__tool" id="toolRotate" aria-label="Rotate a tile 45° clockwise">
+                <span class="play__tool-pill" id="toolRotatePill">2</span>
+                <img src="game-assets/tools/rotate.png" alt="" width="36" height="36" loading="lazy">
+                <span class="play__tool-label">Rotate</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Win overlay floats next to the phone -->
+        <div class="play__win" id="playSuccess" role="status" aria-live="polite">
+          <div class="play__win-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Level cleared.</h4>
+          <p>That's the core mechanic. 30 hand-tuned levels and an infinite procedural pool wait in the full game.</p>
+          <button type="button" class="play__cta" data-scroll="#notify">Join the waitlist</button>
+        </div>
+      </div>
+
+      <!-- Rules sidebar -->
+      <div class="play__rules-side reveal">
+        <h3>The arrow rule</h3>
+        <ol class="play__rules">
+          <li><strong>Tap a tile.</strong> Its arrow shows where it travels.</li>
+          <li><strong>Clear path → escape.</strong> The tile slides off the board along its arrow.</li>
+          <li><strong>Blocked path → rejected.</strong> Another tile in the way? The board shakes.</li>
+          <li><strong>Chain it out.</strong> Each escape opens the next path.</li>
+        </ol>
+        <p class="play__note">Lives, tool counts, and hint icons are visual only here — the full game wires them all up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── WORLDS ─────────────── -->
+<section class="section worlds" id="worlds">
+  <div class="container">
+    <div class="worlds__header reveal">
+      <span class="kicker">Four Worlds</span>
+      <h2>Ocean. Mountain. Forest. Snow.</h2>
+      <p>Four palettes. Four currencies. Four ambient soundscapes. One linear journey from coral reef to aurora-lit ice — thirty levels in.</p>
+    </div>
+
+    <div class="world-tabs reveal" role="tablist">
+      <button class="world-tab active" type="button" role="tab" data-world="ocean" aria-selected="true">
+        <span class="world-tab__dot"></span> Ocean
+      </button>
+      <button class="world-tab" type="button" role="tab" data-world="mountain" aria-selected="false">
+        <span class="world-tab__dot"></span> Mountain
+      </button>
+      <button class="world-tab" type="button" role="tab" data-world="forest" aria-selected="false">
+        <span class="world-tab__dot"></span> Forest
+      </button>
+      <button class="world-tab" type="button" role="tab" data-world="snow" aria-selected="false">
+        <span class="world-tab__dot"></span> Snow
+      </button>
+    </div>
+
+    <div class="world-panel active" data-world="ocean" role="tabpanel" aria-label="Ocean world">
+      <div class="world-panel__bg" aria-hidden="true"></div>
+      <div class="world-panel__copy reveal">
+        <h3>Ocean — Moon Pearls</h3>
+        <p class="world-panel__lede">Tide-blue tiles carved from sapphire and seafoam. Calm waves drift behind the board. The first eight levels live here — the place where the rules of escape begin.</p>
+        <div class="world-stats">
+          <div class="world-stat"><strong>8</strong>opening levels</div>
+          <div class="world-stat"><strong>Moon pearls</strong>world currency</div>
+          <div class="world-stat"><strong>5</strong>tile materials</div>
+        </div>
+      </div>
+      <div class="world-panel__media">
+        <div class="world-phone" aria-hidden="true">
+          <div class="world-phone__notch"></div>
+          <div class="world-phone__screen">
+            <img src="images/ocean-home.png" alt="Ocean world home screen with coral reef background, moon pearl pearls counter, and a deep blue Continue button" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="world-panel" data-world="mountain" role="tabpanel" aria-label="Mountain world" hidden>
+      <div class="world-panel__bg" aria-hidden="true"></div>
+      <div class="world-panel__copy reveal">
+        <h3>Mountain — Sun Runes</h3>
+        <p class="world-panel__lede">Molten amber tiles, obsidian walls, and iron-bound rune gates. Mountain teaches you frozen tiles and locked-direction logic. Eight levels carved from heat and stone.</p>
+        <div class="world-stats">
+          <div class="world-stat"><strong>8</strong>levels</div>
+          <div class="world-stat"><strong>Sun runes</strong>world currency</div>
+          <div class="world-stat"><strong>Mechanics</strong>walls, gates, frozen</div>
+        </div>
+      </div>
+      <div class="world-panel__media">
+        <div class="world-phone" aria-hidden="true">
+          <div class="world-phone__notch"></div>
+          <div class="world-phone__screen">
+            <img src="images/mountain-home.png" alt="Mountain world home screen with golden peaks at sunset, gold currency counter, and an amber Continue button" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="world-panel" data-world="forest" role="tabpanel" aria-label="Forest world" hidden>
+      <div class="world-panel__bg" aria-hidden="true"></div>
+      <div class="world-panel__copy reveal">
+        <h3>Forest — Spirit Seeds</h3>
+        <p class="world-panel__lede">Living vines frame every modal. Tiles bloom as emerald and rose quartz. Forest is where gravity, mirrors, and portals enter the game — the world where the board starts thinking back.</p>
+        <div class="world-stats">
+          <div class="world-stat"><strong>8</strong>levels</div>
+          <div class="world-stat"><strong>Spirit seeds</strong>world currency</div>
+          <div class="world-stat"><strong>Mechanics</strong>gravity, mirrors, portals</div>
+        </div>
+      </div>
+      <div class="world-panel__media">
+        <div class="world-phone" aria-hidden="true">
+          <div class="world-phone__notch"></div>
+          <div class="world-phone__screen">
+            <img src="images/forest-journey.png" alt="Forest world journey screen at level 59 Nightmare difficulty with Chapter 3 The Infinite banner and ornate gold rank plaques" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="world-panel" data-world="snow" role="tabpanel" aria-label="Snow world" hidden>
+      <div class="world-panel__bg" aria-hidden="true"></div>
+      <div class="world-panel__copy reveal">
+        <h3>Snow — Aurora Shards</h3>
+        <p class="world-panel__lede">Ice crystal arches, frozen tiles, and aurora-lit shards. Snow is the endgame — six levels where countdown tiles, splitters, and blind tiles converge. The quiet finale.</p>
+        <div class="world-stats">
+          <div class="world-stat"><strong>6</strong>finale levels</div>
+          <div class="world-stat"><strong>Aurora shards</strong>world currency</div>
+          <div class="world-stat"><strong>Mechanics</strong>countdown, splitter, blind</div>
+        </div>
+      </div>
+      <div class="world-panel__media">
+        <div class="world-phone" aria-hidden="true">
+          <div class="world-phone__notch"></div>
+          <div class="world-phone__screen">
+            <img src="images/snow-home.png" alt="Snow world home screen with aurora-lit ice peaks, frozen castle, and an icy Continue button" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── MECHANICS ─────────────── -->
+<section class="section mechanics" id="mechanics">
+  <div class="container">
+    <div class="mech-grid">
+      <div class="reveal">
+        <span class="kicker">How it plays</span>
+        <h2>Tap an arrow. Watch it leave.</h2>
+        <p class="lede">Each tile points one of eight ways. Tap it and it travels along its arrow until something stops it — another tile, a wall, or the board edge. Reach the edge, escape. Hit a blocker, the tap is rejected. Find the order.</p>
+        <ul class="mech-list">
+          <li class="reveal">
+            <div class="mech-list__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+            <div>
+              <div class="mech-list__title">Arrow tiles, eight directions</div>
+              <div class="mech-list__body">Every tile faces one of eight compass directions. Plan the order and the board clears itself in one quiet cascade.</div>
+            </div>
+          </li>
+          <li class="reveal">
+            <div class="mech-list__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v8M12 14v8M2 12h8M14 12h8"/><circle cx="12" cy="12" r="2.5"/></svg>
+            </div>
+            <div>
+              <div class="mech-list__title">Sixteen mechanics, taught one at a time</div>
+              <div class="mech-list__body">Frozen tiles, gravity, mirrors, portals, countdown, splitters, fire cells, blind tiles. Every new rule arrives with a guided concept tour before you play it for real.</div>
+            </div>
+          </li>
+          <li class="reveal">
+            <div class="mech-list__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9"/></svg>
+            </div>
+            <div>
+              <div class="mech-list__title">Five difficulty tiers, adaptive</div>
+              <div class="mech-list__body">Easy, medium, hard, expert, nightmare. The infinite pool generates levels at the tier you've earned. After any hard level the next two are gentler — by design.</div>
+            </div>
+          </li>
+          <li class="reveal">
+            <div class="mech-list__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <div class="mech-list__title">Eleven power-up tools, owned forever</div>
+              <div class="mech-list__body">Undo, rotate, magnet, drill, dynamite, ghost, swap, mirror drop, portal drop, freeze, hint. Unlock once, keep forever. Daily free uses replenish at midnight.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="phone" aria-hidden="true">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <img src="images/snow-journey.png" alt="Snow world journey screen at level 51 with aurora-lit peaks, frozen path, and ornate ice crystal level nodes showing personal best times" loading="lazy">
+          </div>
+          <div class="phone__shine"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── DAILY ─────────────── -->
+<section class="section daily" id="daily">
+  <div class="container">
+    <div class="daily__grid">
+      <div class="daily__media reveal">
+        <div class="phone" aria-hidden="true">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <img src="images/ocean-journey.png" alt="Ocean world journey screen with coral reefs, kelp forests, starfish challenge plaques, and a chapter banner reading Mountain ahead" loading="lazy">
+          </div>
+          <div class="phone__shine"></div>
+        </div>
+      </div>
+      <div>
+        <span class="kicker reveal">Daily ritual</span>
+        <h2 class="reveal">A puzzle a day.<br>A streak that remembers you.</h2>
+        <p class="lede reveal">A fresh procedural puzzle drops every morning, themed to your current world. Clear it, your streak fills. Hit day 7, 14, 30, or 90 and a chest opens — board skins, tool mastery tokens, premium currencies. Real rewards for showing up.</p>
+        <div class="daily__stats">
+          <div class="stat-card reveal">
+            <div class="stat-card__num">1</div>
+            <div class="stat-card__label">Daily puzzle, every day</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-card__num">7</div>
+            <div class="stat-card__label">Streak milestones to chase</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-card__num">11/11</div>
+            <div class="stat-card__label">Tools to master, permanently</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-card__num">0</div>
+            <div class="stat-card__label">Forced ads mid-play</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── SHOP / SCREENSHOTS ─────────────── -->
+<section class="section shop-section" id="shop">
+  <div class="container">
+    <div class="shop-section__header reveal">
+      <span class="kicker">Shop &amp; identity</span>
+      <h2>Your board is your identity.</h2>
+      <p>Skins don't change the rules — they change how the rules feel. Twelve board skins from $0.99. Four world currencies. Permanent tool mastery. Zero pay-to-win.</p>
+    </div>
+    <div class="shop-gallery">
+      <div class="shop-gallery__item reveal">
+        <div class="shop-gallery__phone">
+          <img src="images/screen-shop.png" alt="Shard shop with five Escape Shard packs at varying prices and a Popular pack callout" loading="lazy">
+        </div>
+        <div class="shop-gallery__title">Shard packs</div>
+        <p class="shop-gallery__body">Five shard packs from $0.99. Spend them on hints, retries, or board skins.</p>
+      </div>
+      <div class="shop-gallery__item reveal">
+        <div class="shop-gallery__phone">
+          <img src="images/screen-shop-2.png" alt="Premium and board skin shop section with Remove Ads option and a row of cosmetic board skins" loading="lazy">
+        </div>
+        <div class="shop-gallery__title">Board skins</div>
+        <p class="shop-gallery__body">Classic, Obsidian, Coral Reef, Ember and more — cosmetic only, yours forever.</p>
+      </div>
+      <div class="shop-gallery__item reveal">
+        <div class="shop-gallery__phone">
+          <img src="images/screen-mastery.png" alt="Tool mastery screen showing Undo, Rotate, and Magnet tools with mastery tokens and level-up buttons" loading="lazy">
+        </div>
+        <div class="shop-gallery__title">Tool mastery</div>
+        <p class="shop-gallery__body">Earn mastery tokens from hard clears. Level up each tool to increase daily free uses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── PRINCIPLES ─────────────── -->
+<section class="section principles">
+  <div class="container">
+    <span class="kicker reveal" style="display:block; text-align:center; margin-bottom: 36px;">This is NOT Candy Crush</span>
+    <div class="principles__grid">
+      <div class="principle reveal">
+        <h4>No slot machines</h4>
+        <p>No daily spin wheel. No gacha boxes. No "limited offer" countdown timers. You earn it, you keep it. Forever.</p>
+      </div>
+      <div class="principle reveal">
+        <h4>No timers</h4>
+        <p>Campaign levels never run out the clock — unless a specific puzzle uses time as a mechanic. The board waits for you. Take a sip of tea.</p>
+      </div>
+      <div class="principle reveal">
+        <h4>No forced ads</h4>
+        <p>You'll never see an interstitial mid-puzzle. Rewarded ads are optional buttons you tap when you want extra moves. $4.99 removes them all forever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── FAQ ─────────────── -->
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="faq__header reveal">
+      <span class="kicker">FAQ</span>
+      <h2>Questions, answered.</h2>
+      <p style="color: var(--text-soft); font-size: 17px; margin-top: 22px;">Pricing, platforms, how it's different — the things people ask before downloading.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary>What is Thought Escape?</summary>
+        <div class="faq-answer">Thought Escape is a meditative mobile puzzle game. You tap tiles on a shaped board to escape them off the edges, working through dependencies and escape chains across 30 hand-tuned levels in four themed worlds: Ocean, Mountain, Forest, and Snow.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>What platforms is Thought Escape on?</summary>
+        <div class="faq-answer">Thought Escape is built for iOS and Android. It is currently in TestFlight closed beta and launching publicly soon. Join the waitlist above to get the App Store link the moment it goes live.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>How many levels does it have?</summary>
+        <div class="faq-answer">There are 30 hand-tuned campaign levels plus an infinite procedurally generated pool that adapts to five difficulty tiers: easy, medium, hard, expert, and nightmare. Plus a fresh daily puzzle every day.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Is Thought Escape free to play?</summary>
+        <div class="faq-answer">Yes. Thought Escape is free to download. Optional in-app purchases include shard packs ($0.99–$14.99), a one-time remove-ads upgrade ($4.99), and cosmetic board skins. None of them gate progression.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>How is this different from Arrowscapes or Arrows Puzzle Escape?</summary>
+        <div class="faq-answer">Three differences. First, no timers on standard levels — the board waits for you. Second, no gacha mechanics — every tool unlocks by playing, and once you have it you have it forever. Third, $4.99 removes all ads forever; there's no monthly subscription. The puzzle logic is the same arrow-cascade mechanic the genre is built on, just rendered as a luxury gemstone artifact instead of a flat UI.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>What are the four worlds?</summary>
+        <div class="faq-answer">Ocean (moon pearls), Mountain (sun runes), Forest (spirit seeds), and Snow (aurora shards). Each world has its own art, tile materials, sounds, and currency. Levels unlock progressively along a single linear journey.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Who builds Thought Escape?</summary>
+        <div class="faq-answer">Thought Escape is built by Ananya Banerjee — a solo builder shipping calm, useful apps. You can follow the build process on Ananya's Build Room on Substack.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── FINAL CTA ─────────────── -->
+<section class="section final-cta" id="notify">
+  <div class="container">
+    <span class="kicker reveal">Launching soon</span>
+    <h2 class="reveal">Be the first to play, the day it ships.</h2>
+    <p class="reveal">One email. No drip campaign. No newsletter. Just the App Store link, the moment Thought Escape goes live. Unsubscribe in one click if you change your mind.</p>
+    <form class="hero__form reveal" id="notify-final" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_ACCESS_KEY">
+      <input type="hidden" name="subject" value="Thought Escape — new waitlist signup">
+      <input type="hidden" name="from_name" value="Thought Escape Landing">
+      <input type="text" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" inputmode="email" aria-label="Email address">
+      <button type="submit">Notify me</button>
+    </form>
+    <div class="form-success" id="final-success" role="status">✦ You're on the list. We'll write the moment Thought Escape goes live.</div>
+    <div class="final-cta__divider"></div>
+    <p class="final-cta__build">Follow the build at <a href="https://buildroomananya.substack.com/" target="_blank" rel="noopener noreferrer" title="Ananya's Build Room on Substack">Ananya's Build Room</a></p>
+  </div>
+</section>
+
+<!-- ─────────────── FOOTER ─────────────── -->
+<footer>
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand">
+        <img src="logo.png" alt="Thought Escape four-world compass medallion" width="36" height="36" loading="lazy">
+        <span>Thought Escape</span>
+      </div>
+      <p class="footer__about">A meditative tile puzzle across Ocean, Mountain, Forest, and Snow. Built by Ananya Banerjee. Coming soon to iOS and Android.</p>
+    </div>
+    <div class="footer__col">
+      <h5>The Game</h5>
+      <a href="#worlds" title="The four worlds">Worlds</a>
+      <a href="#mechanics" title="How it plays">Mechanics</a>
+      <a href="#daily" title="Daily puzzle and streak">Daily</a>
+      <a href="#shop" title="Shop and cosmetics">Shop</a>
+      <a href="#faq" title="Frequently asked questions">FAQ</a>
+    </div>
+    <div class="footer__col">
+      <h5>Help &amp; legal</h5>
+      <a href="support.html" title="Support and troubleshooting">Support</a>
+      <a href="privacy-policy.html" title="Privacy policy">Privacy</a>
+      <a href="terms.html" title="Terms of use">Terms</a>
+      <a href="https://buildroomananya.substack.com/" target="_blank" rel="noopener noreferrer" title="Ananya's Build Room newsletter">Build Room</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    © <span id="year">2026</span> Ananya Banerjee. All rights reserved. Thought Escape™.
+  </div>
+</footer>
+
+<script src="main.js" defer data-cfasync="false"></script>
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Policy — Thought Escape</title>
+<meta name="description" content="Privacy policy for Thought Escape — what Ananya Banerjee collects, how it's used, and how to delete it.">
+<meta name="author" content="Ananya Banerjee">
+<meta name="copyright" content="© 2026 Ananya Banerjee. All rights reserved.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="noai" content="1">
+<meta name="noimageai" content="1">
+<meta name="theme-color" content="#0a1f12">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="canonical" href="https://thought-escape.com/privacy-policy.html">
+
+<style>
+  :root {
+    --gold: #d4af37;
+    --gold-soft: #f0c97c;
+    --gold-deep: #c8a020;
+    --bg-base: #050d08;
+    --bg-deep: #020806;
+    --forest-bg: #0a1f12;
+    --ocean-bg: #061a2b;
+    --mountain-bg: #1a1208;
+    --snow-bg: #0e1230;
+    --text: #f4ecd6;
+    --text-soft: rgba(244, 236, 214, 0.78);
+    --text-mute: rgba(244, 236, 214, 0.56);
+    --serif: ui-serif, Georgia, "Times New Roman", Cambria, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --pad-x: clamp(20px, 5vw, 56px);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --page-bg: var(--forest-bg);
+  }
+  body[data-theme="ocean"]    { --page-bg: var(--ocean-bg); }
+  body[data-theme="mountain"] { --page-bg: var(--mountain-bg); }
+  body[data-theme="snow"]     { --page-bg: var(--snow-bg); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: linear-gradient(180deg, var(--page-bg) 0%, var(--bg-deep) 100%);
+    transition: background 0.6s var(--ease);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.7;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--gold-soft); text-decoration: underline; text-underline-offset: 4px; }
+  a:hover { color: var(--gold); }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px var(--pad-x);
+    padding-top: calc(14px + env(safe-area-inset-top));
+    background: rgba(5, 13, 8, 0.85);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+  }
+  .nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--gold-soft);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .nav__logo {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35), 0 6px 22px rgba(212, 175, 55, 0.18);
+  }
+  .nav__back {
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    padding: 10px 16px;
+    border: 1px solid rgba(212, 175, 55, 0.20);
+    border-radius: 999px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s var(--ease);
+  }
+  .nav__back:hover {
+    color: var(--gold-soft);
+    border-color: rgba(212, 175, 55, 0.40);
+  }
+
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(56px, 8vw, 100px) var(--pad-x) clamp(80px, 10vw, 120px);
+  }
+  .meta {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.1;
+    margin-bottom: 22px;
+    background: linear-gradient(180deg, #fff8e6 0%, var(--gold-soft) 70%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(22px, 2.4vw, 28px);
+    color: var(--text);
+    margin-top: 44px;
+    margin-bottom: 14px;
+    letter-spacing: 0.01em;
+  }
+  .last-updated {
+    color: var(--text-mute);
+    font-size: 14px;
+    margin-bottom: 40px;
+    letter-spacing: 0.02em;
+  }
+  p, li { color: var(--text-soft); font-size: 16px; margin-bottom: 16px; }
+  ul, ol { padding-left: 22px; margin-bottom: 22px; }
+  li { margin-bottom: 8px; }
+  strong { color: var(--text); font-weight: 600; }
+
+  footer {
+    background: linear-gradient(180deg, var(--bg-deep) 0%, #02060b 100%);
+    padding: 36px var(--pad-x);
+    padding-bottom: calc(36px + env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(212, 175, 55, 0.10);
+    text-align: center;
+  }
+  footer .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  footer .brand img { width: 30px; height: 30px; border-radius: 50%; opacity: 0.85; }
+  footer .brand span {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--gold-soft);
+    letter-spacing: 0.04em;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .footer-links a {
+    color: var(--text-mute);
+    font-size: 13px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .footer-links a:hover { color: var(--text); }
+  .copy {
+    color: var(--text-mute);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary">
+  <a href="/" class="nav__brand" title="Thought Escape home">
+    <img src="logo.png" alt="Thought Escape compass logo" class="nav__logo" width="34" height="34">
+    <span>Thought Escape</span>
+  </a>
+  <a href="/" class="nav__back" title="Back to home">← Home</a>
+</nav>
+
+<main>
+  <div class="meta">Legal · Thought Escape</div>
+  <h1>Privacy Policy</h1>
+  <p class="last-updated">Last updated: 31 May 2026</p>
+
+  <p>This is the privacy policy for <strong>Thought Escape</strong>, a mobile puzzle game built and operated by Ananya Banerjee (the "Developer"). This policy describes what the Developer collects, how it is used, and how it is kept safe.</p>
+
+  <h2>What Thought Escape collects</h2>
+  <p>Thought Escape is designed to be private by default. Most of your game state — campaign progress, streak, currency balances, board skins, settings — lives on your device. The Developer does not require an account to play.</p>
+  <ul>
+    <li><strong>Local game data.</strong> Stored on your device using AsyncStorage. Includes level progress, streak, tool inventory, settings, and currency balances. This data never leaves your device unless you explicitly opt into cloud sync.</li>
+    <li><strong>Optional player profile.</strong> If you enter a username or email in Settings, that information is stored in Thought Escape's database (Supabase) so leaderboards and cross-device sync work. Email is optional. You can clear your local profile any time.</li>
+    <li><strong>Anonymous analytics.</strong> Thought Escape uses PostHog and Firebase Analytics to count anonymous events — what level you reached, which tools you used, whether you finished the daily puzzle. The analytics are not linked to your name or your email unless you explicitly enter one.</li>
+    <li><strong>Crash reports.</strong> Firebase Crashlytics records device model, OS version, and a stack trace when Thought Escape crashes. This is used to fix bugs.</li>
+    <li><strong>In-app purchases.</strong> Apple App Store or Google Play processes payment. RevenueCat verifies the receipt. The Developer never sees your card details.</li>
+    <li><strong>Advertising identifiers.</strong> If you watch a rewarded ad, AdMob may use the iOS advertising identifier (IDFA) to serve a relevant ad. iOS prompts you to allow or deny tracking on first launch — your choice is respected. Apple App Tracking Transparency (ATT) is honoured.</li>
+  </ul>
+
+  <h2>What Thought Escape does not collect</h2>
+  <ul>
+    <li>Your real name, postal address, or phone number.</li>
+    <li>Photos, microphone, or camera access. Thought Escape never asks for any of these.</li>
+    <li>Your contacts, location, or calendar.</li>
+    <li>Anything outside the game itself.</li>
+  </ul>
+
+  <h2>Third-party services used by Thought Escape</h2>
+  <p>Thought Escape uses a small number of third-party services to operate. Each has its own privacy policy:</p>
+  <ul>
+    <li><strong>Supabase</strong> — database for player profiles and leaderboards.</li>
+    <li><strong>PostHog</strong> — anonymous product analytics and session replay.</li>
+    <li><strong>Firebase Analytics &amp; Crashlytics</strong> — anonymous event analytics and crash reporting.</li>
+    <li><strong>Google AdMob</strong> — optional rewarded video ads.</li>
+    <li><strong>RevenueCat</strong> — in-app purchase verification.</li>
+    <li><strong>Apple App Store / Google Play</strong> — distribution and payment.</li>
+    <li><strong>Web3Forms</strong> — used only on this website if you submit your email to the waitlist.</li>
+  </ul>
+
+  <h2>How your data is used</h2>
+  <p>The data Thought Escape collects is used only to:</p>
+  <ul>
+    <li>Run the game and sync your progress across devices if you opt in.</li>
+    <li>Improve the game based on anonymous aggregated analytics.</li>
+    <li>Fix crashes.</li>
+    <li>Verify in-app purchases and restore them on a new device.</li>
+    <li>Serve optional rewarded ads if you choose to watch them.</li>
+  </ul>
+  <p>Your data is never sold. It is never shared with third parties for advertising or marketing beyond the rewarded ads you explicitly opt into.</p>
+
+  <h2>Children</h2>
+  <p>Thought Escape is rated for all ages and is suitable for children. It does not knowingly collect personal information from children under 13. If a parent or guardian believes a child has provided personal information, contact the Developer at the address below and it will be removed.</p>
+
+  <h2>Your rights</h2>
+  <p>You can:</p>
+  <ul>
+    <li><strong>Delete your local data</strong> at any time by deleting the app or using "Reset progress" in Settings.</li>
+    <li><strong>Delete your cloud profile</strong> by contacting the Developer at the address below. Your username and email will be removed from the leaderboard within 7 days.</li>
+    <li><strong>Disable advertising tracking</strong> in iOS Settings → Privacy → Tracking, or by tapping "Ask App not to Track" when prompted.</li>
+    <li><strong>Disable analytics</strong> by toggling Analytics off in Thought Escape's Settings screen (coming in a future build).</li>
+  </ul>
+  <p>If you are based in the EU or UK, you have additional rights under GDPR — including the right to a copy of your data, the right to correction, and the right to object to processing. Contact the Developer to exercise any of these rights.</p>
+  <p>If you are based in California, the CCPA gives you the right to know what is collected, the right to delete, and the right to opt out of sale of personal information. Thought Escape does not sell personal information.</p>
+
+  <h2>Data retention</h2>
+  <p>Local data is kept until you delete the app or reset progress. Cloud profile data is kept until you request deletion. Anonymous analytics events are kept for up to 24 months.</p>
+
+  <h2>Security</h2>
+  <p>Thought Escape uses HTTPS for every network request, and Supabase Row Level Security to make sure player records can only be modified by their owner. No system is perfectly secure — but the Developer takes reasonable measures to keep your data safe.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>This policy may be updated as Thought Escape evolves. Material changes will be announced in the app and on this page. The "Last updated" date at the top will always reflect the most recent revision.</p>
+
+  <h2>Contact</h2>
+  <p>For privacy questions, data requests, or anything else, contact Ananya Banerjee at <a href="mailto:ananyabilbanerjee@gmail.com" title="Email Ananya about Thought Escape privacy">ananyabilbanerjee@gmail.com</a>.</p>
+</main>
+
+<footer>
+  <div class="brand">
+    <img src="logo.png" alt="Thought Escape compass logo" width="30" height="30" loading="lazy">
+    <span>Thought Escape</span>
+  </div>
+  <div class="footer-links">
+    <a href="/" title="Back to Thought Escape home">Home</a>
+    <a href="privacy-policy.html" title="Privacy policy">Privacy</a>
+    <a href="terms.html" title="Terms of use">Terms</a>
+  </div>
+  <div class="copy">© <span id="year">2026</span> Ananya Banerjee. All rights reserved. Thought Escape™.</div>
+</footer>
+
+<script src="year.js" defer data-cfasync="false"></script>
+
+</body>
+</html>

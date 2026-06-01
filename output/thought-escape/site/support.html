@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Support — Thought Escape</title>
+<meta name="description" content="Get help with Thought Escape. Restore purchases, troubleshoot common issues, request a feature, or contact Ananya directly.">
+<meta name="author" content="Ananya Banerjee">
+<meta name="copyright" content="© 2026 Ananya Banerjee. All rights reserved.">
+<meta name="theme-color" content="#0a1f12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="robots" content="index, follow">
+<meta name="noai" content="1">
+<meta name="noimageai" content="1">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thought-escape.com/support.html">
+<meta property="og:title" content="Support — Thought Escape">
+<meta property="og:description" content="Get help with Thought Escape. Restore purchases, troubleshoot common issues, or contact Ananya directly.">
+<meta property="og:image" content="https://thought-escape.com/logo.png">
+<meta property="og:site_name" content="Thought Escape">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Support — Thought Escape">
+<meta name="twitter:description" content="Get help with Thought Escape. Restore purchases, troubleshoot common issues, or contact Ananya directly.">
+<meta name="twitter:image" content="https://thought-escape.com/logo.png">
+
+<link rel="canonical" href="https://thought-escape.com/support.html">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+
+<!-- JSON-LD: WebPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Support — Thought Escape",
+  "url": "https://thought-escape.com/support.html",
+  "description": "Get help with Thought Escape. Restore purchases, troubleshoot common issues, or contact Ananya directly.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Thought Escape",
+    "url": "https://thought-escape.com/"
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".support-answer"]
+  }
+}
+</script>
+
+<!-- JSON-LD: FAQPage (support topics) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I restore my in-app purchases on a new device?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open Thought Escape, go to Settings, scroll to In-App Purchases, and tap Restore Purchases. Sign in with the same Apple ID or Google account that made the original purchase. Non-consumable items like Remove Ads and Board Skins will return within seconds. Consumable shards do not restore by design — Apple and Google do not support consumable restores."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I bought Remove Ads but I still see ads. What do I do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "First, force-quit and reopen Thought Escape. If ads still appear, go to Settings and tap Restore Purchases. If the issue persists, email ananyabilbanerjee@gmail.com with your Apple ID or Google receipt and the build number from the Settings footer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My streak reset even though I played yesterday.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Streaks are local-time based. If your device timezone changed or your clock was off, the streak boundary can shift. Open Settings and check Daily Reset Time. If the date logic looks wrong, email a screenshot — most likely a small bug that gets fixed in the next build."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I delete my account or progress?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To delete local progress, go to Settings and tap Reset Progress. To delete your cloud profile (username and email used for the leaderboard), email ananyabilbanerjee@gmail.com from the email tied to the account. The cloud profile is removed within 7 days."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --gold: #d4af37;
+    --gold-soft: #f0c97c;
+    --gold-deep: #c8a020;
+    --bg-deep: #020806;
+    --forest-bg: #0a1f12;
+    --ocean-bg: #061a2b;
+    --mountain-bg: #1a1208;
+    --snow-bg: #0e1230;
+    --forest-accent: #6ee7a7;
+    --ocean-accent: #38bdf8;
+    --mountain-accent: #f59e0b;
+    --snow-accent: #93c5fd;
+    --text: #f4ecd6;
+    --text-soft: rgba(244, 236, 214, 0.78);
+    --text-mute: rgba(244, 236, 214, 0.56);
+    --serif: ui-serif, Georgia, "Times New Roman", Cambria, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --pad-x: clamp(20px, 5vw, 56px);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --page-bg: var(--forest-bg);
+    --page-accent: var(--forest-accent);
+    --page-accent-rgb: 110, 231, 167;
+  }
+  body[data-theme="ocean"]    { --page-bg: var(--ocean-bg);    --page-accent: var(--ocean-accent);    --page-accent-rgb: 56, 189, 248; }
+  body[data-theme="mountain"] { --page-bg: var(--mountain-bg); --page-accent: var(--mountain-accent); --page-accent-rgb: 245, 158, 11; }
+  body[data-theme="snow"]     { --page-bg: var(--snow-bg);     --page-accent: var(--snow-accent);     --page-accent-rgb: 147, 197, 253; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: linear-gradient(180deg, var(--page-bg) 0%, var(--bg-deep) 100%);
+    transition: background 0.6s var(--ease);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.7;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--gold-soft); text-decoration: underline; text-underline-offset: 4px; }
+  a:hover { color: var(--gold); }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px var(--pad-x);
+    padding-top: calc(14px + env(safe-area-inset-top));
+    background: rgba(5, 13, 8, 0.85);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+  }
+  .nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--gold-soft);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .nav__logo {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35), 0 6px 22px rgba(212, 175, 55, 0.18);
+  }
+  .nav__back {
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    padding: 10px 16px;
+    border: 1px solid rgba(212, 175, 55, 0.20);
+    border-radius: 999px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s var(--ease);
+  }
+  .nav__back:hover { color: var(--gold-soft); border-color: rgba(212, 175, 55, 0.40); }
+
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: clamp(56px, 8vw, 100px) var(--pad-x) clamp(80px, 10vw, 120px);
+  }
+  .meta {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 22px;
+  }
+  .meta::before {
+    content: '✦';
+    margin-right: 10px;
+    color: var(--gold);
+    font-size: 10px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(36px, 5.4vw, 60px);
+    line-height: 1.1;
+    margin-bottom: 22px;
+    background: linear-gradient(180deg, #fff8e6 0%, var(--gold-soft) 70%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(22px, 2.6vw, 30px);
+    color: var(--text);
+    margin-top: 48px;
+    margin-bottom: 16px;
+    letter-spacing: 0.01em;
+  }
+  h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--text);
+    margin: 22px 0 8px;
+    letter-spacing: 0.01em;
+  }
+  .lede {
+    color: var(--text-soft);
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+    max-width: 620px;
+  }
+  p, li { color: var(--text-soft); font-size: 16px; margin-bottom: 14px; }
+  ul, ol { padding-left: 22px; margin-bottom: 22px; }
+  li { margin-bottom: 8px; }
+  strong { color: var(--text); font-weight: 600; }
+  code {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(212, 175, 55, 0.16);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.92em;
+    color: var(--gold-soft);
+  }
+
+  /* Contact card */
+  .contact-card {
+    margin: 36px 0 48px;
+    padding: clamp(24px, 3.4vw, 36px);
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(var(--page-accent-rgb), 0.10) 0%, transparent 60%),
+      rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.32);
+    transition: background 0.6s var(--ease);
+  }
+  .contact-card__kicker {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--page-accent);
+    margin-bottom: 14px;
+    transition: color 0.6s var(--ease);
+  }
+  .contact-card h2 {
+    margin: 0 0 14px;
+    font-size: clamp(22px, 2.6vw, 28px);
+  }
+  .contact-card p {
+    margin-bottom: 20px;
+    max-width: 540px;
+  }
+  .contact-card__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 60%, var(--gold-deep) 100%);
+    color: #1a1208;
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: none;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    min-height: 48px;
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: transform 0.2s var(--spring), box-shadow 0.2s var(--ease);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 30px rgba(212, 175, 55, 0.4); color: #1a1208; }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(212, 175, 55, 0.30);
+    background: transparent;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    min-height: 48px;
+    transition: all 0.2s var(--ease);
+  }
+  .btn-ghost:hover { border-color: rgba(212, 175, 55, 0.60); color: var(--gold-soft); }
+  .response-hint {
+    color: var(--text-mute);
+    font-size: 13px;
+    margin-top: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Issue list */
+  .issue {
+    border: 1px solid rgba(var(--page-accent-rgb), 0.18);
+    background: rgba(var(--page-accent-rgb), 0.04);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.3s var(--ease), background 0.6s var(--ease);
+  }
+  .issue[open] { border-color: rgba(var(--page-accent-rgb), 0.44); }
+  .issue summary {
+    list-style: none;
+    padding: 20px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: var(--serif);
+    font-size: 16.5px;
+    color: var(--text);
+    letter-spacing: 0.01em;
+    min-height: 44px;
+  }
+  .issue summary::-webkit-details-marker { display: none; }
+  .issue summary::after {
+    content: '+';
+    color: var(--page-accent);
+    font-size: 24px;
+    line-height: 1;
+    transition: transform 0.3s var(--ease), color 0.6s var(--ease);
+    font-weight: 300;
+  }
+  .issue[open] summary::after { transform: rotate(45deg); }
+  .support-answer {
+    padding: 0 24px 22px;
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .support-answer p { margin-bottom: 12px; font-size: 15px; }
+  .support-answer ol, .support-answer ul { margin-bottom: 12px; padding-left: 22px; }
+  .support-answer li { font-size: 15px; margin-bottom: 6px; }
+
+  /* Build info strip */
+  .build-strip {
+    margin-top: 56px;
+    padding: 22px 24px;
+    background: rgba(212, 175, 55, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.14);
+    border-radius: 14px;
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .build-strip strong { color: var(--gold-soft); }
+
+  footer {
+    background: linear-gradient(180deg, var(--bg-deep) 0%, #02060b 100%);
+    padding: 36px var(--pad-x);
+    padding-bottom: calc(36px + env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(212, 175, 55, 0.10);
+    text-align: center;
+  }
+  footer .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  footer .brand img { width: 30px; height: 30px; border-radius: 50%; opacity: 0.85; }
+  footer .brand span {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--gold-soft);
+    letter-spacing: 0.04em;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .footer-links a {
+    color: var(--text-mute);
+    font-size: 13px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .footer-links a:hover { color: var(--text); }
+  .copy {
+    color: var(--text-mute);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary">
+  <a href="/" class="nav__brand" title="Thought Escape home">
+    <img src="logo.png" alt="Thought Escape compass logo" class="nav__logo" width="34" height="34">
+    <span>Thought Escape</span>
+  </a>
+  <a href="/" class="nav__back" title="Back to home">← Home</a>
+</nav>
+
+<main>
+  <div class="meta">Support · Thought Escape</div>
+  <h1>How can we help?</h1>
+  <p class="lede">Most things solve in under two minutes — restore purchases, missing lives, streak resets, or a stuck level. If you don't see your issue below, write directly. Every email is read by Ananya.</p>
+
+  <!-- Contact card -->
+  <div class="contact-card">
+    <div class="contact-card__kicker">Fastest way</div>
+    <h2>Email Ananya</h2>
+    <p>Send a short note describing what happened, the device you're on (iPhone model + iOS version), and the build number from the Settings footer. A screenshot helps.</p>
+    <div class="contact-card__row">
+      <a class="btn-primary" href="mailto:ananyabilbanerjee@gmail.com?subject=Thought%20Escape%20support" title="Email support for Thought Escape">
+        ananyabilbanerjee@gmail.com
+      </a>
+      <a class="btn-ghost" href="https://buildroomananya.substack.com/" target="_blank" rel="noopener noreferrer" title="Follow the build journal on Substack">
+        Follow the build
+      </a>
+    </div>
+    <p class="response-hint">Replies usually go out within 24 hours, often the same day.</p>
+  </div>
+
+  <!-- Common issues -->
+  <h2>Common issues</h2>
+
+  <details class="issue">
+    <summary>How do I restore my in-app purchases on a new device?</summary>
+    <div class="support-answer">
+      <ol>
+        <li>Open Thought Escape on the new device.</li>
+        <li>Sign in to the App Store or Google Play with the <strong>same account</strong> that made the original purchase.</li>
+        <li>Go to <strong>Settings → In-App Purchases → Restore Purchases</strong>.</li>
+        <li>Non-consumable items (Remove Ads, Board Skins) return within seconds.</li>
+      </ol>
+      <p>Consumable items (Escape Shards, Extra Moves, Restore Lives) do not restore by design — Apple and Google don't support consumable restores. If your shards didn't credit the first time, email the receipt and they will be granted manually.</p>
+    </div>
+  </details>
+
+  <details class="issue">
+    <summary>I bought Remove Ads but I still see ads.</summary>
+    <div class="support-answer">
+      <ol>
+        <li>Force-quit Thought Escape and reopen it.</li>
+        <li>If ads still appear, go to <strong>Settings → Restore Purchases</strong>.</li>
+        <li>If the issue persists, email Ananya with your Apple ID or Google receipt and the build number from the Settings footer.</li>
+      </ol>
+      <p>Note: Remove Ads removes all <em>forced</em> interstitial and banner ads. The optional rewarded ads (Watch Ad for +5 shards, +3 moves, etc.) still appear as buttons — you can tap them or ignore them.</p>
+    </div>
+  </details>
+
+  <details class="issue">
+    <summary>My streak reset even though I played yesterday.</summary>
+    <div class="support-answer">
+      <p>Streaks are local-time based and roll over at midnight in your device's timezone. The most common causes:</p>
+      <ul>
+        <li><strong>Travel across timezones.</strong> If you played late at night in one timezone and then your phone moved to a timezone where the day already rolled over, the boundary can skip.</li>
+        <li><strong>Manual clock changes.</strong> Resetting your device's date or time can break the streak window.</li>
+        <li><strong>App not opened on a given day.</strong> Streaks reset if a full local day passes without you opening the app.</li>
+      </ul>
+      <p>If none of these explain it, email a screenshot of the streak screen plus your timezone — most likely a small bug that gets fixed in the next build.</p>
+    </div>
+  </details>
+
+  <details class="issue">
+    <summary>My lives don't seem to be resetting.</summary>
+    <div class="support-answer">
+      <p>Lives refresh at midnight local time. The pools (campaign, daily, special challenge) are separate and each one resets independently.</p>
+      <p>If your campaign lives are stuck at zero after midnight:</p>
+      <ol>
+        <li>Force-quit Thought Escape and reopen it. The reset check fires on launch.</li>
+        <li>Check your device's date and time settings — they should be set to automatic.</li>
+        <li>If still stuck, email the build number and a screenshot of the lives counter.</li>
+      </ol>
+    </div>
+  </details>
+
+  <details class="issue">
+    <summary>The game is stuck or feels frozen between levels.</summary>
+    <div class="support-answer">
+      <p>Try this in order:</p>
+      <ol>
+        <li>Tap anywhere on the screen first — sometimes the victory animation is still playing.</li>
+        <li>Force-quit and reopen the app.</li>
+        <li>Restart the phone.</li>
+        <li>If you're on an older device (iPhone X or earlier), make sure no other heavy apps are running in the background.</li>
+      </ol>
+      <p>If the freeze keeps happening on the same level, email the level number — every freeze report ships a fix in the next build.</p>
+    </div>
+  </details>
+
+  <details class="issue">
+    <summary>I can't hear sound or feel haptics.</summary>
+    <div class="support-answer">
+      <ul>
+        <li><strong>No sound:</strong> Check that your device isn't in silent mode (orange switch on iPhone). Then go to <strong>Settings → Sound</strong> in Thought Escape and confirm it's on. Sounds also lower on top of the system volume slider.</li>
+        <li><strong>No haptics:</strong> On iPhone, check <strong>Settings → Sounds &amp; Haptics → System Haptics</strong>. On iPad, haptics are not supported by hardware — the toggle is intentionally disabled there.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="issue">
+    <summary>How do I delete my account or progress?</summary>
+    <div class="support-answer">
+      <p><strong>To delete local progress</strong> (campaign, streak, currencies, inventory): open <strong>Settings → Reset Progress</strong>. This is permanent.</p>
+      <p><strong>To delete your cloud profile</strong> (username and email used for the leaderboard): email Ananya from the email tied to the account. The cloud profile is removed within 7 days.</p>
+      <p>See the <a href="privacy-policy.html" title="Privacy policy">privacy policy</a> for the full data-deletion rights.</p>
+    </div>
+  </details>
+
+  <details class="issue">
+    <summary>I'm on TestFlight — how do I update to the latest build?</summary>
+    <div class="support-answer">
+      <ol>
+        <li>Open the <strong>TestFlight</strong> app.</li>
+        <li>Find Thought Escape in your list of beta apps.</li>
+        <li>Tap <strong>Update</strong> if a new build is available.</li>
+      </ol>
+      <p>Each TestFlight build expires after 90 days. If yours has expired, just update via TestFlight — there's always a fresh build.</p>
+    </div>
+  </details>
+
+  <details class="issue">
+    <summary>How do I report a bug or suggest a feature?</summary>
+    <div class="support-answer">
+      <p>Email <a href="mailto:ananyabilbanerjee@gmail.com?subject=Thought%20Escape%20feature%20idea" title="Email Ananya">ananyabilbanerjee@gmail.com</a> with a short description. Include the build number from the Settings footer and a screenshot if relevant.</p>
+      <p>Feature ideas that ship into the game often start as one-line emails. The fastest way to influence what's next is just to write.</p>
+    </div>
+  </details>
+
+  <!-- Refunds -->
+  <h2>Refunds and billing</h2>
+  <p>Thought Escape uses Apple App Store and Google Play for all purchases — the Developer does not control refund decisions.</p>
+  <ul>
+    <li><strong>iOS / iPadOS:</strong> request a refund at <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener noreferrer" title="Apple's official refund request page">reportaproblem.apple.com</a>.</li>
+    <li><strong>Android:</strong> open the Google Play app, go to your purchase history, find Thought Escape, and tap <strong>Request a refund</strong>.</li>
+  </ul>
+
+  <!-- Build info -->
+  <div class="build-strip">
+    <strong>When emailing about a bug, please include:</strong> device model (e.g. iPhone 15 Pro), OS version (e.g. iOS 18.4), the build number from <code>Settings → About</code>, and a one-sentence description of what you tapped and what happened.
+  </div>
+</main>
+
+<footer>
+  <div class="brand">
+    <img src="logo.png" alt="Thought Escape compass logo" width="30" height="30" loading="lazy">
+    <span>Thought Escape</span>
+  </div>
+  <div class="footer-links">
+    <a href="/" title="Back to Thought Escape home">Home</a>
+    <a href="support.html" title="Support">Support</a>
+    <a href="privacy-policy.html" title="Privacy policy">Privacy</a>
+    <a href="terms.html" title="Terms of use">Terms</a>
+  </div>
+  <div class="copy">© <span id="year">2026</span> Ananya Banerjee. All rights reserved. Thought Escape™.</div>
+</footer>
+
+<script src="year.js" defer data-cfasync="false"></script>
+
+</body>
+</html>
