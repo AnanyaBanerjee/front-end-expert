@@ -231,11 +231,7 @@
   var THEMES = {
     forest: {
       name: 'Forest',
-      tileColors: [
-        ['rgba(165,210,108,0.95)','rgba(135,185,82,0.95)','rgba(105,160,58,0.96)'],
-        ['rgba(112,158,62,0.96)','rgba(82,130,44,0.96)','rgba(55,105,28,0.97)'],
-        ['rgba(185,228,128,0.96)','rgba(158,205,98,0.96)','rgba(128,182,72,0.97)']
-      ],
+      tiles: ['forest1','forest2','forest3','forest4'],
       // Full 4×4 square — 16 tiles
       shape: {'0,0':1,'0,1':1,'0,2':1,'0,3':1,'1,0':1,'1,1':1,'1,2':1,'1,3':1,'2,0':1,'2,1':1,'2,2':1,'2,3':1,'3,0':1,'3,1':1,'3,2':1,'3,3':1},
       hint: 'Two tiles move freely. Find the clear paths and unlock the chain.',
@@ -260,11 +256,7 @@
     },
     ocean: {
       name: 'Ocean',
-      tileColors: [
-        ['rgba(210,238,255,0.80)','rgba(160,215,250,0.72)','rgba(120,190,240,0.76)'],
-        ['rgba(130,195,242,0.94)','rgba(82,158,225,0.94)','rgba(45,120,200,0.96)'],
-        ['rgba(170,242,235,0.92)','rgba(120,220,215,0.90)','rgba(82,200,195,0.92)']
-      ],
+      tiles: ['ocean1','ocean2','ocean3','ocean4'],
       // Plus/cross — 4×4 without corners (12 tiles)
       shape: {'0,1':1,'0,2':1,'1,0':1,'1,1':1,'1,2':1,'1,3':1,'2,0':1,'2,1':1,'2,2':1,'2,3':1,'3,1':1,'3,2':1},
       hint: 'A tidal cross. Four tiles escape freely — find the right order.',
@@ -285,11 +277,7 @@
     },
     mountain: {
       name: 'Mountain',
-      tileColors: [
-        ['rgba(238,218,178,0.95)','rgba(212,188,148,0.94)','rgba(180,155,115,0.95)'],
-        ['rgba(185,172,150,0.96)','rgba(148,135,112,0.96)','rgba(112,100,80,0.97)'],
-        ['rgba(245,210,148,0.96)','rgba(225,178,105,0.96)','rgba(195,145,68,0.97)']
-      ],
+      tiles: ['mountain1','mountain2','mountain3','mountain4'],
       // Descending staircase — top-heavy triangle (10 tiles)
       shape: {'0,0':1,'0,1':1,'0,2':1,'0,3':1,'1,0':1,'1,1':1,'1,2':1,'2,0':1,'2,1':1,'3,0':1},
       hint: 'A mountain staircase. Five paths open from the peak — work down.',
@@ -308,11 +296,7 @@
     },
     snow: {
       name: 'Snow',
-      tileColors: [
-        ['rgba(235,245,255,0.82)','rgba(205,222,248,0.76)','rgba(175,202,240,0.80)'],
-        ['rgba(175,202,242,0.94)','rgba(140,172,228,0.94)','rgba(110,145,215,0.96)'],
-        ['rgba(222,215,250,0.92)','rgba(202,192,245,0.90)','rgba(175,165,232,0.94)']
-      ],
+      tiles: ['snow1','snow2','snow3','snow4'],
       // Hollow frame — outer ring, no center 2×2 (12 tiles)
       shape: {'0,0':1,'0,1':1,'0,2':1,'0,3':1,'1,0':1,'1,3':1,'2,0':1,'2,3':1,'3,0':1,'3,1':1,'3,2':1,'3,3':1},
       hint: 'A snowflake ring. Six tiles are free — clear the frame.',
@@ -414,14 +398,16 @@
     el.style.left = p.left;
     el.style.top = p.top;
 
-    var types = THEMES[themeKey].tileColors;
+    var tileArts = THEMES[themeKey].tiles;
     var idx = parseInt(tile.id.replace('t', ''), 10) - 1;
-    var stops = types[idx % 3];
+    var art = tileArts[idx % tileArts.length];
 
-    var face = document.createElement('div');
-    face.className = 'play-tile__face';
-    face.style.background = 'linear-gradient(to bottom, ' + stops[0] + ', ' + stops[1] + ', ' + stops[2] + ')';
-    el.appendChild(face);
+    var img = document.createElement('img');
+    img.className = 'play-tile__img';
+    img.src = 'game-assets/tiles/' + art + '.png';
+    img.alt = '';
+    img.draggable = false;
+    el.appendChild(img);
 
     var arrowWrap = document.createElement('div');
     arrowWrap.className = 'play-tile__arrow';

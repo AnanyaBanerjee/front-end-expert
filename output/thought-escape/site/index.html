@@ -1604,21 +1604,14 @@
     transition: transform 0.34s var(--ease), opacity 0.34s var(--ease);
     will-change: transform, opacity;
   }
-  .play-tile__face {
-    position: relative;
+  .play-tile__img {
     width: 100%; height: 100%;
     pointer-events: none;
+    /* Hard-clip to the octagon shape so any remaining atmospheric pixels in the PNG are hidden. */
     clip-path: polygon(30% 2%, 70% 2%, 98% 30%, 98% 70%, 70% 98%, 30% 98%, 2% 70%, 2% 30%);
     -webkit-clip-path: polygon(30% 2%, 70% 2%, 98% 30%, 98% 70%, 70% 98%, 30% 98%, 2% 70%, 2% 30%);
     filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.55));
     transition: filter 0.2s var(--ease);
-  }
-  .play-tile__face::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(165deg, rgba(255,255,255,0.68) 0%, transparent 44%);
-    pointer-events: none;
   }
   .play-tile__arrow {
     position: absolute;
@@ -1634,7 +1627,7 @@
     transition: transform 0.35s var(--ease);
     filter: drop-shadow(0 0 6px var(--th-arrow-glow)) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.7));
   }
-  .play-tile.is-tappable .play-tile__face {
+  .play-tile.is-tappable .play-tile__img {
     filter: drop-shadow(0 0 10px var(--th-arrow-glow)) drop-shadow(0 6px 10px rgba(0, 0, 0, 0.55));
   }
   .play-tile.is-tappable::before {
@@ -1651,7 +1644,7 @@
     0%, 100% { opacity: 0; transform: scale(1); }
     50% { opacity: 0.42; transform: scale(1.07); }
   }
-  .play-tile.is-blocked .play-tile__face { animation: tile-blocked-flash 0.42s var(--ease); }
+  .play-tile.is-blocked .play-tile__img { animation: tile-blocked-flash 0.42s var(--ease); }
   @keyframes tile-blocked-flash {
     0%, 100% { filter: drop-shadow(0 4px 10px rgba(0,0,0,0.55)); }
     40% { filter: drop-shadow(0 0 16px #fca5a5) brightness(1.4); }
