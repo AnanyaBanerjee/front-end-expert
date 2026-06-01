@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Thought Escape — A Meditative Tile Puzzle Across Four Worlds</title>
-<meta name="description" content="A meditative tile puzzle for iOS and Android. 30 hand-tuned levels across four worlds. No timers. No gacha. No forced ads. Just arrows, four worlds, and the quiet between them.">
+<meta name="description" content="A meditative tile puzzle for iOS and Android. Hand-tuned levels across four worlds. No timers. No gacha. No forced ads. Just arrows, four worlds, and the quiet between them.">
 <meta name="author" content="Ananya Banerjee">
 <meta name="copyright" content="© 2026 Ananya Banerjee. All rights reserved.">
 <meta name="theme-color" content="#0a1f12">
@@ -22,7 +22,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thought-escape.com/">
 <meta property="og:title" content="Thought Escape — A Meditative Tile Puzzle Across Four Worlds">
-<meta property="og:description" content="30 hand-tuned puzzles. Four worlds. No timers. No gacha. No forced ads. A puzzle that waits for you.">
+<meta property="og:description" content="Hand-tuned puzzles. Four worlds. No timers. No gacha. No forced ads. A puzzle that waits for you.">
 <meta property="og:image" content="https://thought-escape.com/logo.png">
 <meta property="og:image:width" content="600">
 <meta property="og:image:height" content="600">
@@ -31,7 +31,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Thought Escape — A Meditative Tile Puzzle Across Four Worlds">
-<meta name="twitter:description" content="30 hand-tuned puzzles. Four worlds. No timers. No gacha. No forced ads. A puzzle that waits for you.">
+<meta name="twitter:description" content="Hand-tuned puzzles. Four worlds. No timers. No gacha. No forced ads. A puzzle that waits for you.">
 <meta name="twitter:image" content="https://thought-escape.com/logo.png">
 
 <link rel="canonical" href="https://thought-escape.com/">
@@ -88,7 +88,7 @@
       "name": "What is Thought Escape?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Thought Escape is a meditative mobile puzzle game. You tap tiles on a shaped board to escape them off the edges, working through dependencies and escape chains across 30 hand-tuned levels in four themed worlds: Ocean, Mountain, Forest, and Snow."
+        "text": "Thought Escape is a meditative mobile puzzle game. You tap tiles on a shaped board to escape them off the edges, working through dependencies and escape chains across hand-tuned levels in four themed worlds: Ocean, Mountain, Forest, and Snow."
       }
     },
     {
@@ -104,7 +104,7 @@
       "name": "How many levels does Thought Escape have?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "There are 30 hand-tuned campaign levels plus an infinite procedurally generated pool that adapts to five difficulty tiers: easy, medium, hard, expert, and nightmare."
+        "text": "Thought Escape has hand-tuned campaign levels plus an infinite procedurally generated pool that adapts to five difficulty tiers: easy, medium, hard, expert, and nightmare."
       }
     },
     {
@@ -112,7 +112,7 @@
       "name": "Is Thought Escape free to play?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Thought Escape is free to download. Optional in-app purchases include shard packs, a remove-ads upgrade, and cosmetic board skins. None of them gate progression."
+        "text": "Yes. Thought Escape is free to download. Optional in-app purchases include a Starter Bundle ($0.99), shard packs ($1.99–$14.99), world currency packs, a Remove Ads subscription ($4.99/month, $29.99/year, or $49.99 lifetime), and cosmetic board skins. None of them gate progression."
       }
     },
     {
@@ -165,7 +165,7 @@
   "contentRating": "4+",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "featureList": [
-    "30 hand-tuned campaign levels plus an infinite procedural pool",
+    "Hand-tuned campaign levels plus an infinite procedural pool",
     "4 themed worlds with unique art, sound, and currency",
     "5 adaptive difficulty tiers from easy to nightmare",
     "16 tile mechanics including frozen, mirrors, portals, countdown, and fire",
@@ -247,6 +247,7 @@
     --page-accent-rgb: 110, 231, 167;
     --page-glow: var(--forest-glow);
     --page-glow-strong: rgba(110, 231, 167, 0.34);
+
 
     --text: #f4ecd6;
     --text-soft: rgba(244, 236, 214, 0.78);
@@ -546,7 +547,7 @@
     color: var(--gold-soft);
   }
   .hero h1 {
-    background: linear-gradient(180deg, #fff8e6 0%, #f0c97c 70%, var(--gold-deep) 100%);
+    background: linear-gradient(180deg, #fff8e6 0%, var(--gold-soft) 55%, var(--page-accent) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -800,16 +801,10 @@
   .world-phone__screen {
     width: 100%; height: 100%;
     border-radius: 28px; overflow: hidden;
-    background: linear-gradient(180deg, var(--forest-bg) 0%, #050d08 100%);
+    background: #080e0b;
     position: relative;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--gold-soft);
-    font-family: var(--serif);
-    font-size: 14px;
-    text-align: center;
-    padding: 30px 20px;
   }
-  .world-phone__screen img { width: 100%; height: 100%; object-fit: cover; }
+  .world-phone__screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .world-phone__notch {
     position: absolute;
     top: 16px;
@@ -1095,7 +1090,7 @@
   .final-cta h2 {
     max-width: 720px;
     margin: 0 auto 26px;
-    background: linear-gradient(180deg, #fff8e6 0%, var(--gold-soft) 70%, var(--gold-deep) 100%);
+    background: linear-gradient(180deg, #fff8e6 0%, var(--gold-soft) 55%, var(--page-accent) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1250,8 +1245,8 @@
   }
   .theme-wheel {
     position: relative;
-    width: clamp(180px, 18vw, 220px);
-    height: clamp(180px, 18vw, 220px);
+    width: clamp(200px, 20vw, 240px);
+    height: clamp(200px, 20vw, 240px);
   }
   .theme-wheel svg { width: 100%; height: 100%; display: block; }
   .theme-wheel .quad {
@@ -1261,14 +1256,31 @@
     transform-origin: 110px 110px;
     outline: none;
   }
-  .theme-wheel .quad[data-theme="ocean"] { fill: #1e3a8a; }
-  .theme-wheel .quad[data-theme="mountain"] { fill: #92400e; }
-  .theme-wheel .quad[data-theme="snow"] { fill: #312e81; }
-  .theme-wheel .quad[data-theme="forest"] { fill: #1a5d3a; }
+  .theme-wheel .quad[data-theme="ocean"] { fill: #1a4896; }
+  .theme-wheel .quad[data-theme="mountain"] { fill: #8B3A0E; }
+  .theme-wheel .quad[data-theme="snow"] { fill: #3730a3; }
+  .theme-wheel .quad[data-theme="forest"] { fill: #166534; }
   .theme-wheel .quad:hover { filter: brightness(1.25); }
   .theme-wheel .quad[aria-checked="false"] { opacity: 0.55; }
   .theme-wheel .quad[aria-checked="true"] {
-    filter: brightness(1.35) drop-shadow(0 0 12px currentColor);
+    filter: brightness(1.5) saturate(1.4);
+    opacity: 1 !important;
+  }
+  .theme-wheel .quad-arc {
+    fill: none;
+    stroke-width: 4;
+    stroke-linecap: round;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .theme-wheel .quad-arc.arc-active {
+    opacity: 1;
+    animation: arcPulse 2s ease-in-out infinite;
+  }
+  @keyframes arcPulse {
+    0%, 100% { stroke-opacity: 0.8; }
+    50%       { stroke-opacity: 1; }
   }
   .theme-wheel .quad[data-theme="ocean"][aria-checked="true"] { color: #38bdf8; }
   .theme-wheel .quad[data-theme="mountain"][aria-checked="true"] { color: #f59e0b; }
@@ -1287,18 +1299,43 @@
   .theme-wheel__label[data-pos="ne"] { top: 8%; right: 8%; }
   .theme-wheel__label[data-pos="sw"] { bottom: 8%; left: 8%; }
   .theme-wheel__label[data-pos="se"] { bottom: 8%; right: 8%; }
+  .theme-wheel .quad-icon {
+    opacity: 0.62;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1.2, 0.36, 1), filter 0.4s ease;
+    transform-box: fill-box;
+    transform-origin: center center;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7)) saturate(0.8);
+  }
+  .theme-wheel .quad-icon.icon-active {
+    opacity: 1;
+    transform: scale(1.28);
+    filter: drop-shadow(0 4px 14px rgba(0,0,0,0.55)) saturate(1.2) brightness(1.08);
+  }
   .theme-wheel__hint {
-    color: var(--text-mute);
-    font-size: 13px;
-    letter-spacing: 0.02em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
     text-align: center;
   }
-  .theme-wheel__hint strong {
-    color: var(--gold-soft);
+  .theme-wheel__hint-now {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+  }
+  .theme-wheel__hint-name {
     font-family: var(--serif);
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
     letter-spacing: 0.06em;
-    margin-right: 4px;
+    color: var(--gold-soft);
+    line-height: 1.1;
+  }
+  .theme-wheel__hint-sub {
+    font-size: 11px;
+    color: var(--text-mute);
+    letter-spacing: 0.02em;
   }
 
   /* ── Phone device ── */
@@ -1505,6 +1542,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    transition: clip-path 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  /* Per-world board shape — clip-path makes each world visually distinct */
+  .play__device[data-theme="ocean"] .play__game-board-wrap {
+    clip-path: polygon(25% 0%, 75% 0%, 75% 25%, 100% 25%, 100% 75%, 75% 75%, 75% 100%, 25% 100%, 25% 75%, 0% 75%, 0% 25%, 25% 25%);
+    border-radius: 0;
+  }
+  .play__device[data-theme="mountain"] .play__game-board-wrap {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 25%, 75% 25%, 75% 50%, 50% 50%, 50% 75%, 25% 75%, 25% 100%, 0% 100%);
+    border-radius: 0;
+  }
+  /* Snow: hollow frame — CSS mask with SVG to punch a center hole */
+  .play__device[data-theme="snow"] .play__game-board-wrap {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Crect width='4' height='4' fill='white'/%3E%3Crect x='1' y='1' width='2' height='2' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% 100%;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Crect width='4' height='4' fill='white'/%3E%3Crect x='1' y='1' width='2' height='2' fill='black'/%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    border-radius: 0;
   }
   .play__game-board {
     position: relative;
@@ -1548,14 +1604,21 @@
     transition: transform 0.34s var(--ease), opacity 0.34s var(--ease);
     will-change: transform, opacity;
   }
-  .play-tile__img {
+  .play-tile__face {
+    position: relative;
     width: 100%; height: 100%;
     pointer-events: none;
-    /* Hard-clip to the octagon shape so any remaining atmospheric pixels in the PNG are hidden. */
     clip-path: polygon(30% 2%, 70% 2%, 98% 30%, 98% 70%, 70% 98%, 30% 98%, 2% 70%, 2% 30%);
     -webkit-clip-path: polygon(30% 2%, 70% 2%, 98% 30%, 98% 70%, 70% 98%, 30% 98%, 2% 70%, 2% 30%);
     filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.55));
     transition: filter 0.2s var(--ease);
+  }
+  .play-tile__face::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(165deg, rgba(255,255,255,0.68) 0%, transparent 44%);
+    pointer-events: none;
   }
   .play-tile__arrow {
     position: absolute;
@@ -1571,7 +1634,7 @@
     transition: transform 0.35s var(--ease);
     filter: drop-shadow(0 0 6px var(--th-arrow-glow)) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.7));
   }
-  .play-tile.is-tappable .play-tile__img {
+  .play-tile.is-tappable .play-tile__face {
     filter: drop-shadow(0 0 10px var(--th-arrow-glow)) drop-shadow(0 6px 10px rgba(0, 0, 0, 0.55));
   }
   .play-tile.is-tappable::before {
@@ -1588,7 +1651,7 @@
     0%, 100% { opacity: 0; transform: scale(1); }
     50% { opacity: 0.42; transform: scale(1.07); }
   }
-  .play-tile.is-blocked .play-tile__img { animation: tile-blocked-flash 0.42s var(--ease); }
+  .play-tile.is-blocked .play-tile__face { animation: tile-blocked-flash 0.42s var(--ease); }
   @keyframes tile-blocked-flash {
     0%, 100% { filter: drop-shadow(0 4px 10px rgba(0,0,0,0.55)); }
     40% { filter: drop-shadow(0 0 16px #fca5a5) brightness(1.4); }
@@ -1700,47 +1763,92 @@
     to { transform: rotate(0) scale(1); }
   }
 
-  /* Win overlay */
-  .play__win {
-    display: none;
+  /* Board crack overlay — JS-driven full-screen animation */
+  .play__crack {
     position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 30px;
-    width: clamp(280px, 28vw, 360px);
-    padding: 24px;
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212, 175, 55, 0.18) 0%, transparent 70%),
-      rgba(5, 13, 8, 0.92);
-    border: 1px solid rgba(212, 175, 55, 0.40);
-    border-radius: 18px;
-    text-align: center;
-    animation: fade-up 0.5s var(--ease);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-    z-index: 5;
+    inset: 0;
+    border-radius: 28px;
+    overflow: hidden;
+    z-index: 14;
+    display: none;
+    pointer-events: none;
   }
-  .play__win.show { display: block; }
-  .play__win-icon {
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 100%);
-    color: #1a1208;
+  .play__crack.active { display: block; }
+  @keyframes particleRise {
+    0%   { transform: translateY(0) scale(1);    opacity: 0.95; }
+    100% { transform: translateY(-90px) scale(0.6) rotate(20deg); opacity: 0; }
+  }
+  @keyframes fadeInUpHint {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    to   { opacity: 0.55; transform: translateX(-50%) translateY(0); }
+  }
+
+  /* Win screen — inside phone, overlays entire screen */
+  .play__win-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 15;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 14px;
-    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.34);
+    gap: 4px;
+    background:
+      radial-gradient(ellipse 90% 65% at 50% 30%, rgba(212, 175, 55, 0.28) 0%, transparent 65%),
+      rgba(5, 12, 7, 0.97);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+    padding: 20px;
+    text-align: center;
+    border-radius: 28px;
   }
-  .play__win-icon svg { width: 26px; height: 26px; }
-  .play__win h4 {
+  .play__win-screen.show { opacity: 1; pointer-events: all; }
+
+  /* Chest bounce */
+  .play__chest-anim { width: 68px; height: 68px; margin: 0 auto 2px; opacity: 0; }
+  .play__win-screen.show .play__chest-anim {
+    animation: chest-bounce 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  }
+  @keyframes chest-bounce {
+    0%   { transform: scale(0) rotate(-10deg); opacity: 0; }
+    55%  { transform: scale(1.18) rotate(4deg); opacity: 1; }
+    78%  { transform: scale(0.94) rotate(-2deg); }
+    100% { transform: scale(1) rotate(0); opacity: 1; }
+  }
+
+  /* Points pop */
+  .play__points-pop {
+    font-size: 26px; font-weight: 800;
+    color: var(--gold);
     font-family: var(--serif);
-    font-size: 20px;
-    color: var(--text);
-    margin-bottom: 8px;
     letter-spacing: 0.01em;
+    text-shadow: 0 2px 14px rgba(212, 175, 55, 0.6);
+    opacity: 0;
   }
-  .play__win p { color: var(--text-soft); font-size: 14px; margin-bottom: 18px; line-height: 1.55; }
+  .play__win-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--text);
+    letter-spacing: 0.01em;
+    opacity: 0;
+  }
+  .play__win-sub {
+    color: var(--text-soft);
+    font-size: 11px;
+    line-height: 1.5;
+    opacity: 0;
+    margin-bottom: 8px;
+  }
+  .play__win-cta { opacity: 0; }
+  .play__win-screen.show .play__points-pop { animation: pop-in 0.5s cubic-bezier(0.22,1,0.36,1) 0.32s both; }
+  .play__win-screen.show .play__win-title  { animation: pop-in 0.45s cubic-bezier(0.22,1,0.36,1) 0.46s both; }
+  .play__win-screen.show .play__win-sub    { animation: pop-in 0.45s cubic-bezier(0.22,1,0.36,1) 0.56s both; }
+  .play__win-screen.show .play__win-cta    { animation: pop-in 0.45s cubic-bezier(0.22,1,0.36,1) 0.68s both; }
+  @keyframes pop-in {
+    0%   { transform: translateY(10px) scale(0.88); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
   .play__cta {
     background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 60%, var(--gold-deep) 100%);
     color: #1a1208;
@@ -1898,9 +2006,29 @@
 
   /* Number ticker */
   .stat-card__num { will-change: contents; }
+
+  /* ─── World background image ─── */
+  #worldBg {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0;
+    mix-blend-mode: screen;
+    transition: opacity 0.7s ease;
+    will-change: opacity;
+  }
+  #worldBg.loaded { opacity: 0.28; }
 </style>
 </head>
 <body>
+
+<!-- World background atmosphere -->
+<div id="worldBg" aria-hidden="true"></div>
 
 <!-- Scroll progress -->
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -1953,7 +2081,7 @@
         </div>
         <div class="hero__chip reveal">TestFlight beta · iOS first, Android next</div>
         <h1 class="reveal">A puzzle that<br>waits for you.</h1>
-        <p id="product-summary" class="hero__sub reveal">Thirty hand-tuned levels. Eleven tools you keep forever. No timers, no gacha, no forced ads. Just arrows, four worlds, and the quiet between them.</p>
+        <p id="product-summary" class="hero__sub reveal">Hand-tuned levels across four worlds. Eleven tools you keep forever. No timers, no gacha, no forced ads. Just arrows, four worlds, and the quiet between them.</p>
 
         <form class="hero__form reveal" id="notify-hero" action="https://api.web3forms.com/submit" method="POST" novalidate>
           <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_ACCESS_KEY">
@@ -2005,6 +2133,16 @@
             <path class="quad" data-theme="mountain" d="M 110,110 L 204,110 A 94,94 0 0 0 110,16 Z" tabindex="0" role="radio" aria-label="Mountain world" aria-checked="false"/>
             <path class="quad" data-theme="snow" d="M 110,110 L 110,204 A 94,94 0 0 0 204,110 Z" tabindex="0" role="radio" aria-label="Snow world" aria-checked="false"/>
             <path class="quad" data-theme="forest" d="M 110,110 L 16,110 A 94,94 0 0 0 110,204 Z" tabindex="0" role="radio" aria-label="Forest world" aria-checked="true"/>
+            <!-- World play icons — real game assets, centered at each quadrant -->
+            <image href="game-assets/play_icons/play_ocean.png"    x="44" y="44" width="40" height="40" pointer-events="none" class="quad-icon" data-world="ocean"    preserveAspectRatio="xMidYMid meet"/>
+            <image href="game-assets/play_icons/play_mountain.png" x="136" y="44" width="40" height="40" pointer-events="none" class="quad-icon" data-world="mountain" preserveAspectRatio="xMidYMid meet"/>
+            <image href="game-assets/play_icons/play_snow.png"     x="136" y="136" width="40" height="40" pointer-events="none" class="quad-icon" data-world="snow"    preserveAspectRatio="xMidYMid meet"/>
+            <image href="game-assets/play_icons/play_forest.png"   x="44" y="136" width="40" height="40" pointer-events="none" class="quad-icon" data-world="forest"   preserveAspectRatio="xMidYMid meet"/>
+            <!-- Active arc indicators (one per quadrant, JS toggles arc-active class) -->
+            <path class="quad-arc" id="arc-ocean"    data-world="ocean"    stroke="#38bdf8" d="M 110,16 A 94,94 0 0 0 16,110"/>
+            <path class="quad-arc" id="arc-mountain" data-world="mountain" stroke="#f59e0b" d="M 204,110 A 94,94 0 0 0 110,16"/>
+            <path class="quad-arc" id="arc-snow"     data-world="snow"     stroke="#93c5fd" d="M 110,204 A 94,94 0 0 0 204,110"/>
+            <path class="quad-arc" id="arc-forest"   data-world="forest"   stroke="#6ee7a7" d="M 16,110 A 94,94 0 0 0 110,204"/>
             <circle cx="110" cy="110" r="42" fill="url(#wheelInner)" pointer-events="none"/>
             <circle cx="110" cy="110" r="42" fill="none" stroke="#d4af37" stroke-width="2" pointer-events="none"/>
             <g pointer-events="none">
@@ -2019,7 +2157,11 @@
           <span class="theme-wheel__label" data-pos="se">Snow</span>
           <span class="theme-wheel__label" data-pos="sw">Forest</span>
         </div>
-        <p class="theme-wheel__hint">Now playing: <strong id="themeName">Forest</strong> · Tap a quadrant</p>
+        <div class="theme-wheel__hint">
+          <span class="theme-wheel__hint-now">Now playing</span>
+          <strong class="theme-wheel__hint-name" id="themeName">Forest</strong>
+          <span class="theme-wheel__hint-sub" id="themeSubHint">🌲 Spirit Seeds · tap quadrant to switch</span>
+        </div>
       </div>
 
       <!-- Phone-mockup playable -->
@@ -2054,13 +2196,13 @@
                     <img src="game-assets/life_heart.png" alt="" width="22" height="22" loading="lazy">
                     <img src="game-assets/life_heart.png" alt="" width="22" height="22" loading="lazy">
                   </div>
-                  <div class="play__game-moves" aria-live="polite">Moves: <strong id="playTaps">0</strong>/<span>20</span></div>
+                  <div class="play__game-moves" aria-live="polite">Moves: <strong id="playTaps">0</strong>/<span>22</span></div>
                 </div>
               </div>
             </div>
 
             <!-- Hint -->
-            <div class="play__game-hint" id="playHint" aria-live="polite">Only one tile has a clear path. Find it.</div>
+            <div class="play__game-hint" id="playHint" aria-live="polite">Two tiles move freely. Find the clear paths and unlock the chain.</div>
 
             <!-- Board -->
             <div class="play__game-board-wrap">
@@ -2080,17 +2222,35 @@
                 <span class="play__tool-label">Rotate</span>
               </button>
             </div>
-          </div>
-        </div>
 
-        <!-- Win overlay floats next to the phone -->
-        <div class="play__win" id="playSuccess" role="status" aria-live="polite">
-          <div class="play__win-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="play__crack" id="playCrack" aria-hidden="true"></div>
+
+            <!-- Win screen — overlays full phone when level clears -->
+            <div class="play__win-screen" id="playWinScreen" role="status" aria-live="polite">
+              <div class="play__chest-anim" id="playChest">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="68" height="68">
+                  <rect x="8" y="34" width="48" height="22" rx="4" fill="#8B5A1A" stroke="#5C3800" stroke-width="1.5"/>
+                  <path d="M8,34 Q8,14 32,14 Q56,14 56,34 Z" fill="#A5701A" stroke="#5C3800" stroke-width="1.5"/>
+                  <rect x="8" y="31.5" width="48" height="5" rx="1" fill="#D4AF37" stroke="#907000" stroke-width="0.8"/>
+                  <rect x="25" y="29" width="14" height="10" rx="3" fill="#D4AF37" stroke="#907000" stroke-width="1"/>
+                  <circle cx="32" cy="33" r="2.2" fill="#5C3800"/>
+                  <path d="M31,34.5 L31,37.5 L33,37.5 L33,34.5" fill="#5C3800"/>
+                  <rect x="8" y="34" width="5" height="22" rx="2" fill="#D4AF37" opacity="0.35"/>
+                  <rect x="51" y="34" width="5" height="22" rx="2" fill="#D4AF37" opacity="0.35"/>
+                  <line x1="8" y1="45" x2="56" y2="45" stroke="#D4AF37" stroke-width="1.2" opacity="0.4"/>
+                  <line x1="20" y1="18" x2="16" y2="31" stroke="#C07820" stroke-width="0.8" opacity="0.35"/>
+                  <line x1="44" y1="18" x2="48" y2="31" stroke="#C07820" stroke-width="0.8" opacity="0.35"/>
+                  <text x="2" y="23" fill="#F0C97C" font-size="11" opacity="0.85">✦</text>
+                  <text x="50" y="20" fill="#F0C97C" font-size="8" opacity="0.7">✧</text>
+                  <text x="26" y="9" fill="#FFD700" font-size="7" opacity="0.8">✦</text>
+                </svg>
+              </div>
+              <div class="play__points-pop">+<span id="playPointsNum">0</span>&thinsp;pts</div>
+              <h4 class="play__win-title">Level Cleared!</h4>
+              <p class="play__win-sub" id="playWinMsg">The board cracked. The chest is yours.</p>
+              <button type="button" class="play__cta play__win-cta" data-scroll="#notify">Join the waitlist</button>
+            </div>
           </div>
-          <h4>Level cleared.</h4>
-          <p>That's the core mechanic. 30 hand-tuned levels and an infinite procedural pool wait in the full game.</p>
-          <button type="button" class="play__cta" data-scroll="#notify">Join the waitlist</button>
         </div>
       </div>
 
@@ -2115,7 +2275,7 @@
     <div class="worlds__header reveal">
       <span class="kicker">Four Worlds</span>
       <h2>Ocean. Mountain. Forest. Snow.</h2>
-      <p>Four palettes. Four currencies. Four ambient soundscapes. One linear journey from coral reef to aurora-lit ice — thirty levels in.</p>
+      <p>Four palettes. Four currencies. Four ambient soundscapes. One linear journey from coral reef to aurora-lit ice.</p>
     </div>
 
     <div class="world-tabs reveal" role="tablist">
@@ -2368,7 +2528,7 @@
       </div>
       <div class="principle reveal">
         <h4>No forced ads</h4>
-        <p>You'll never see an interstitial mid-puzzle. Rewarded ads are optional buttons you tap when you want extra moves. $4.99 removes them all forever.</p>
+        <p>You'll never see an interstitial mid-puzzle. Rewarded ads are optional buttons you tap when you want extra moves. A subscription ($4.99/mo, $29.99/yr, or $49.99 lifetime) removes them all.</p>
       </div>
     </div>
   </div>
@@ -2385,7 +2545,7 @@
     <div class="faq-list">
       <details class="faq-item reveal">
         <summary>What is Thought Escape?</summary>
-        <div class="faq-answer">Thought Escape is a meditative mobile puzzle game. You tap tiles on a shaped board to escape them off the edges, working through dependencies and escape chains across 30 hand-tuned levels in four themed worlds: Ocean, Mountain, Forest, and Snow.</div>
+        <div class="faq-answer">Thought Escape is a meditative mobile puzzle game. You tap tiles on a shaped board to escape them off the edges, working through dependencies and escape chains across hand-tuned levels in four themed worlds: Ocean, Mountain, Forest, and Snow.</div>
       </details>
       <details class="faq-item reveal">
         <summary>What platforms is Thought Escape on?</summary>
@@ -2393,15 +2553,15 @@
       </details>
       <details class="faq-item reveal">
         <summary>How many levels does it have?</summary>
-        <div class="faq-answer">There are 30 hand-tuned campaign levels plus an infinite procedurally generated pool that adapts to five difficulty tiers: easy, medium, hard, expert, and nightmare. Plus a fresh daily puzzle every day.</div>
+        <div class="faq-answer">Thought Escape has hand-tuned campaign levels plus an infinite procedurally generated pool that adapts to five difficulty tiers: easy, medium, hard, expert, and nightmare. Plus a fresh daily puzzle every day.</div>
       </details>
       <details class="faq-item reveal">
         <summary>Is Thought Escape free?</summary>
-        <div class="faq-answer">Yes — free to download, free to finish all 30 campaign levels. Optional in-app purchases are: shard packs ($0.99–$14.99) that buy retries and skin unlocks, one-time Remove Ads for $4.99, and cosmetic board skins ($0.99–$1.99 each). Nothing gates progression. No subscription. No paywall.</div>
+        <div class="faq-answer">Yes — free to download, free to play all campaign levels. Optional in-app purchases are: a one-time Starter Bundle ($0.99, shown on first launch), shard packs ($1.99–$14.99), world currency packs ($0.99–$6.99), Remove Ads as a subscription ($4.99/month, $9.99/quarter, $29.99/year) or a lifetime one-time purchase ($49.99), and cosmetic board skins ($0.99–$1.99 each). Nothing gates progression. No paywall.</div>
       </details>
       <details class="faq-item reveal">
         <summary>How is this different from Arrowscapes or Arrows Puzzle Escape?</summary>
-        <div class="faq-answer">Three differences. First, no timers on standard levels — the board waits for you. Second, no gacha mechanics — every tool unlocks by playing, and once you have it you have it forever. Third, $4.99 removes all ads forever; there's no monthly subscription. The puzzle logic is the same arrow-cascade mechanic the genre is built on, just rendered as a luxury gemstone artifact instead of a flat UI.</div>
+        <div class="faq-answer">Three differences. First, no timers on standard levels — the board waits for you. Second, no gacha mechanics — every tool unlocks by playing, and once you have it you have it forever. Third, cosmetic spend only: Remove Ads starts at $4.99/month or $49.99 lifetime — nothing behind a paywall affects gameplay. The puzzle logic is the same arrow-cascade mechanic the genre is built on, just rendered as a luxury gemstone artifact instead of a flat UI.</div>
       </details>
       <details class="faq-item reveal">
         <summary>What are the four worlds?</summary>

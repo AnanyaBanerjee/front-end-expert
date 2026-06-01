@@ -425,9 +425,18 @@
     font-size: 13px;
     letter-spacing: 0.02em;
   }
+  #worldBg {
+    position: fixed; inset: 0; z-index: 5; pointer-events: none;
+    background-size: cover; background-position: center top;
+    background-repeat: no-repeat; background-attachment: fixed;
+    opacity: 0; mix-blend-mode: screen; transition: opacity 0.7s ease; will-change: opacity;
+  }
+  #worldBg.loaded { opacity: 0.22; }
 </style>
 </head>
 <body>
+
+<div id="worldBg" aria-hidden="true"></div>
 
 <nav class="nav" aria-label="Primary">
   <a href="/" class="nav__brand" title="Thought Escape home">
@@ -468,21 +477,32 @@
         <li>Open Thought Escape on the new device.</li>
         <li>Sign in to the App Store or Google Play with the <strong>same account</strong> that made the original purchase.</li>
         <li>Go to <strong>Settings → In-App Purchases → Restore Purchases</strong>.</li>
-        <li>Non-consumable items (Remove Ads, Board Skins) return within seconds.</li>
+        <li>Non-consumable items (Board Skins, Lifetime Remove Ads) return within seconds. Active Remove Ads subscriptions restore automatically when you sign in with the same account.</li>
       </ol>
-      <p>Consumable items (Escape Shards, Extra Moves, Restore Lives) do not restore by design — Apple and Google don't support consumable restores. If your shards didn't credit the first time, email the receipt and they will be granted manually.</p>
+      <p>Consumable items (Escape Shards, World Currency, Extra Moves, Restore Lives) do not restore by design — Apple and Google don't support consumable restores. If your shards didn't credit the first time, email the receipt and they will be granted manually.</p>
     </div>
   </details>
 
   <details class="issue">
-    <summary>I bought Remove Ads but I still see ads.</summary>
+    <summary>I subscribed to Remove Ads but I still see ads.</summary>
     <div class="support-answer">
       <ol>
-        <li>Force-quit Thought Escape and reopen it.</li>
+        <li>Force-quit Thought Escape and reopen it — the subscription status is checked on launch.</li>
         <li>If ads still appear, go to <strong>Settings → Restore Purchases</strong>.</li>
+        <li>Make sure you're signed in to the App Store or Google Play with the same account that made the purchase.</li>
         <li>If the issue persists, email Ananya with your Apple ID or Google receipt and the build number from the Settings footer.</li>
       </ol>
-      <p>Note: Remove Ads removes all <em>forced</em> interstitial and banner ads. The optional rewarded ads (Watch Ad for +5 shards, +3 moves, etc.) still appear as buttons — you can tap them or ignore them.</p>
+      <p>Note: Remove Ads removes all <em>forced</em> interstitial and banner ads. The optional rewarded ads (Watch Ad for +5 shards, +3 moves, etc.) still appear as buttons you can tap voluntarily — these are not removed.</p>
+    </div>
+  </details>
+
+  <details class="issue">
+    <summary>How do I cancel my Remove Ads subscription?</summary>
+    <div class="support-answer">
+      <p><strong>iOS / iPadOS:</strong> Open the Settings app → tap your name → Subscriptions. Find Thought Escape and tap it, then tap Cancel Subscription.</p>
+      <p><strong>Android:</strong> Open the Google Play app → tap your profile icon → Payments &amp; subscriptions → Subscriptions. Find Thought Escape and tap Cancel subscription.</p>
+      <p>You keep ad-free access until the end of the current billing period. After that, ads return and no further charges are made.</p>
+      <p>If you purchased the <strong>Lifetime</strong> plan ($49.99), that is a one-time purchase — it never expires and there is nothing to cancel.</p>
     </div>
   </details>
 
@@ -572,6 +592,7 @@
     <li><strong>iOS / iPadOS:</strong> request a refund at <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener noreferrer" title="Apple's official refund request page">reportaproblem.apple.com</a>.</li>
     <li><strong>Android:</strong> open the Google Play app, go to your purchase history, find Thought Escape, and tap <strong>Request a refund</strong>.</li>
   </ul>
+  <p>For <strong>Remove Ads subscriptions</strong>: cancel at any time through your App Store or Google Play account settings. Cancellation stops future billing immediately — you keep ad-free access through the end of the paid period. Apple and Google do not issue partial refunds for unused subscription time under their standard policies.</p>
 
   <!-- Build info -->
   <div class="build-strip">

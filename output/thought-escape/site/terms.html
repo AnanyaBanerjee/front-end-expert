@@ -180,9 +180,18 @@
     font-size: 13px;
     letter-spacing: 0.02em;
   }
+  #worldBg {
+    position: fixed; inset: 0; z-index: 5; pointer-events: none;
+    background-size: cover; background-position: center top;
+    background-repeat: no-repeat; background-attachment: fixed;
+    opacity: 0; mix-blend-mode: screen; transition: opacity 0.7s ease; will-change: opacity;
+  }
+  #worldBg.loaded { opacity: 0.22; }
 </style>
 </head>
 <body>
+
+<div id="worldBg" aria-hidden="true"></div>
 
 <nav class="nav" aria-label="Primary">
   <a href="/" class="nav__brand" title="Thought Escape home">
@@ -213,8 +222,9 @@
   </ul>
 
   <h2>In-app purchases</h2>
-  <p>Thought Escape sells consumable and non-consumable in-app purchases — shard packs, life restores, a one-time remove-ads upgrade, and cosmetic board skins. Purchases are processed by Apple App Store or Google Play. Refund requests are handled by Apple or Google according to their respective policies — the Developer does not control refund decisions.</p>
-  <p>Consumable currency (escape shards, world currencies) has no real-world value and cannot be exchanged for money. Non-consumable items (remove ads, board skins) are tied to your App Store or Google Play account and can be restored on a new device using the platform's restore-purchases flow.</p>
+  <p>Thought Escape sells consumable in-app purchases (shard packs, world currency packs, extra moves, restore lives), non-consumable items (cosmetic board skins, lifetime Remove Ads), and auto-renewable subscriptions (Remove Ads Monthly at $4.99/month, Quarterly at $9.99/quarter, and Yearly at $29.99/year). Purchases are processed by Apple App Store or Google Play. Refund requests are handled by Apple or Google according to their respective policies — the Developer does not control refund decisions.</p>
+  <p>Consumable currency (escape shards, world currencies) has no real-world value and cannot be exchanged for money. Non-consumable items (lifetime Remove Ads, board skins) are tied to your App Store or Google Play account and can be restored on a new device using the platform's restore-purchases flow. Active subscriptions restore automatically when you sign in with the same account.</p>
+  <p><strong>Subscription terms:</strong> Remove Ads subscriptions automatically renew unless cancelled at least 24 hours before the end of the current billing period. You may manage or cancel your subscription at any time through your App Store or Google Play account settings. No refund is issued for unused time within a billing period. Prices shown are in USD; local pricing may vary.</p>
 
   <h2>User content</h2>
   <p>If you enter a username, it appears on Thought Escape's leaderboard and may be visible to other players. By submitting a username, you grant the Developer permission to display it in the leaderboard and in any associated marketing screenshots. Usernames that contain hate speech, harassment, or impersonation of the Developer or any third party will be removed.</p>

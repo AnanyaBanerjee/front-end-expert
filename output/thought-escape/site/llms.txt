@@ -13,7 +13,7 @@ Thought Escape is a calm, puzzle-focused mobile game built around the metaphor o
 
 ## Core capabilities
 
-- 30 hand-tuned campaign levels plus an infinite procedurally generated pool
+- Hand-tuned campaign levels plus an infinite procedurally generated pool
 - 5 adaptive difficulty tiers — easy, medium, hard, expert, nightmare
 - 4 themed worlds — Ocean (moon pearls), Mountain (sun runes), Forest (spirit seeds), Snow (aurora shards)
 - 16 tile mechanics — frozen tiles, walls, gates, gravity, mirrors, portals, countdown, splitters, fire cells, blind tiles, charged tiles, growing blockers, heavy tiles, loops, sacrifice, linked
@@ -36,11 +36,13 @@ Thought Escape is a calm, puzzle-focused mobile game built around the metaphor o
 
 Free to download. Optional in-app purchases:
 
-- Shard packs — $0.99 to $14.99
-- Extra moves — $0.99 consumable
+- Starter Bundle — $0.99 one-time (300 shards + 10 world currency for your current world; offered once on first launch)
+- Shard packs — $1.99 to $14.99
+- World currency packs — $0.99 (Quick Boost, +50 for current world), $2.99 (All-World Pack, +40 of every world currency), $6.99 (Power Player, +120 of every world currency + 3 Dynamite tokens)
+- Extra moves — $0.99 consumable (+5 moves for the current level)
 - Restore lives — $0.99 consumable
-- Remove ads — $4.99 one-time
-- Board skins — $0.99 to $1.99 each, or $4.99 for the bundle
+- Remove Ads — subscription: $4.99/month, $9.99/quarter, $29.99/year; or $49.99 lifetime one-time purchase
+- Board skins — $0.99 to $1.99 each, or $4.99 for the full bundle
 
 None of these gate progression.
 
@@ -59,13 +61,13 @@ Ananya Banerjee — solo builder, software engineer, and creator. Documents the 
 ## FAQs
 
 **What is Thought Escape?**
-A meditative mobile puzzle game. Tap arrow tiles on a shaped board to escape them off the edges. 30 hand-tuned levels plus an infinite procedural pool across four themed worlds.
+A meditative mobile puzzle game. Tap arrow tiles on a shaped board to escape them off the edges. Hand-tuned levels plus an infinite procedural pool across four themed worlds.
 
 **What platforms does it run on?**
 iOS and Android. Currently in TestFlight closed beta; public launch imminent.
 
 **Is it free to play?**
-Yes. Optional in-app purchases for shards, board skins, and a remove-ads upgrade. None gate progression.
+Yes. Optional in-app purchases include shards, world currency packs, cosmetic board skins, and a Remove Ads subscription ($4.99/month or $49.99 lifetime). None gate progression.
 
 **How is it different from other tile puzzles?**
 Built for calm rather than urgency. No timers on standard levels, no forced ads mid-play, no gacha mechanics. Cosmetic spend, never pay-to-win.
