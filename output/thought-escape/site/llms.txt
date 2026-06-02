@@ -8,7 +8,7 @@ Thought Escape is a calm, puzzle-focused mobile game built around the metaphor o
 
 ## Platforms
 
-- iOS — TestFlight closed beta, public launch imminent
+- iOS — available now
 - Android — coming alongside iOS launch
 
 ## Core capabilities
@@ -64,7 +64,7 @@ Ananya Banerjee — solo builder, software engineer, and creator. Documents the 
 A meditative mobile puzzle game. Tap arrow tiles on a shaped board to escape them off the edges. Hand-tuned levels plus an infinite procedural pool across four themed worlds.
 
 **What platforms does it run on?**
-iOS and Android. Currently in TestFlight closed beta; public launch imminent.
+Available on iOS. Android coming soon.
 
 **Is it free to play?**
 Yes. Optional in-app purchases include shards, world currency packs, cosmetic board skins, and a Remove Ads subscription ($4.99/month or $49.99 lifetime). None gate progression.

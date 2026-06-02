@@ -231,7 +231,7 @@
   var THEMES = {
     forest: {
       name: 'Forest',
-      tiles: ['forest1','forest2','forest3','forest4'],
+      tiles: ['forest1','forest2','forest3','forest4','forest5','shared_moonstone','shared_sunstone'],
       // Full 4×4 square — 16 tiles
       shape: {'0,0':1,'0,1':1,'0,2':1,'0,3':1,'1,0':1,'1,1':1,'1,2':1,'1,3':1,'2,0':1,'2,1':1,'2,2':1,'2,3':1,'3,0':1,'3,1':1,'3,2':1,'3,3':1},
       hint: 'Two tiles move freely. Find the clear paths and unlock the chain.',
@@ -256,7 +256,7 @@
     },
     ocean: {
       name: 'Ocean',
-      tiles: ['ocean1','ocean2','ocean3','ocean4'],
+      tiles: ['ocean1','ocean2','ocean3','ocean4','ocean5','ocean6','shared_moonstone','shared_seafoam','shared_teal'],
       // Plus/cross — 4×4 without corners (12 tiles)
       shape: {'0,1':1,'0,2':1,'1,0':1,'1,1':1,'1,2':1,'1,3':1,'2,0':1,'2,1':1,'2,2':1,'2,3':1,'3,1':1,'3,2':1},
       hint: 'A tidal cross. Four tiles escape freely — find the right order.',
@@ -277,7 +277,7 @@
     },
     mountain: {
       name: 'Mountain',
-      tiles: ['mountain1','mountain2','mountain3','mountain4'],
+      tiles: ['mountain1','mountain2','mountain3','mountain4','shared_sunstone','shared_ruby'],
       // Descending staircase — top-heavy triangle (10 tiles)
       shape: {'0,0':1,'0,1':1,'0,2':1,'0,3':1,'1,0':1,'1,1':1,'1,2':1,'2,0':1,'2,1':1,'3,0':1},
       hint: 'A mountain staircase. Five paths open from the peak — work down.',
@@ -296,7 +296,7 @@
     },
     snow: {
       name: 'Snow',
-      tiles: ['snow1','snow2','snow3','snow4'],
+      tiles: ['snow1','snow2','snow3','snow4','shared_moonstone','shared_aurora','shared_teal'],
       // Hollow frame — outer ring, no center 2×2 (12 tiles)
       shape: {'0,0':1,'0,1':1,'0,2':1,'0,3':1,'1,0':1,'1,3':1,'2,0':1,'2,3':1,'3,0':1,'3,1':1,'3,2':1,'3,3':1},
       hint: 'A snowflake ring. Six tiles are free — clear the frame.',
