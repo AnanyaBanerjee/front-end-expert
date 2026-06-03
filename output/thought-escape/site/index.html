@@ -130,6 +130,14 @@
         "@type": "Answer",
         "text": "The four worlds are Ocean (moon pearls), Mountain (sun runes), Forest (spirit seeds), and Snow (aurora shards). Each world has its own art, tile materials, sounds, and currency. Levels unlock progressively along a single linear journey."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Thought Escape work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All campaign levels and daily puzzles in Thought Escape work fully offline. Progress saves locally on the device. The leaderboard and optional cloud profile sync require a connection, but those are optional. The game works without an internet connection."
+      }
     }
   ]
 }
@@ -1999,6 +2007,256 @@
   /* Number ticker */
   .stat-card__num { will-change: contents; }
 
+  /* ─────────────── STORE BUTTONS ─────────────── */
+  .store-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 22px;
+    border-radius: 16px;
+    border: 1.5px solid rgba(212, 175, 55, 0.38);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.22s var(--spring), border-color 0.22s var(--ease), background 0.22s var(--ease), box-shadow 0.22s var(--ease);
+    min-height: 58px;
+    text-decoration: none;
+  }
+  .store-btn:hover:not(.store-btn--soon) {
+    transform: translateY(-2px);
+    border-color: rgba(212, 175, 55, 0.7);
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.18);
+  }
+  .store-btn--soon {
+    opacity: 0.48;
+    cursor: default;
+    pointer-events: none;
+  }
+  .store-btn__icon { width: 28px; height: 28px; flex-shrink: 0; }
+  .store-btn__text { display: flex; flex-direction: column; line-height: 1.25; }
+  .store-btn__sub {
+    font-size: 10px;
+    color: var(--text-mute);
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+  }
+  .store-btn__name {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+  .store-btn--soon .store-btn__name { color: var(--text-mute); }
+  .store-android-note {
+    font-size: 12px;
+    color: var(--text-mute);
+    letter-spacing: 0.02em;
+    margin-top: 4px;
+  }
+  .store-android-note a { color: var(--gold-soft); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ─────────────── PULL QUOTE STRIP ─────────────── */
+  .pull-quote-strip {
+    background: linear-gradient(180deg, #050d08 0%, #050d08 100%);
+    padding: clamp(52px, 7vw, 88px) var(--pad-x);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .pull-quote-strip::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.45), transparent);
+  }
+  .pull-quote {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.4vw, 42px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    max-width: 860px;
+    margin: 0 auto 36px;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+  }
+  .pull-quote strong {
+    background: linear-gradient(180deg, #fff8e6 0%, var(--gold-soft) 60%, var(--page-accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-style: normal;
+    font-weight: 500;
+    transition: background 0.6s var(--ease);
+  }
+  .trust-pills {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.16);
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--text-soft);
+    letter-spacing: 0.03em;
+  }
+  .trust-pill__dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--page-accent);
+    box-shadow: 0 0 8px var(--page-accent);
+    flex-shrink: 0;
+    transition: background 0.6s var(--ease), box-shadow 0.6s var(--ease);
+  }
+
+  /* ─────────────── STRATEGY ─────────────── */
+  .strategy {
+    background:
+      radial-gradient(ellipse 70% 40% at 50% 100%, var(--page-glow) 0%, transparent 60%),
+      linear-gradient(180deg, #050d08 0%, var(--page-bg) 100%);
+    transition: background 0.6s var(--ease);
+  }
+  .strategy__header { text-align: center; max-width: 720px; margin: 0 auto 56px; }
+  .strategy__header h2 {
+    background: linear-gradient(180deg, #fff8e6 0%, var(--gold-soft) 55%, var(--page-accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .strategy__header p { color: var(--text-soft); font-size: 17px; margin-top: 20px; }
+  .strategy-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(16px, 2vw, 24px);
+    max-width: var(--container);
+    margin: 0 auto;
+  }
+  @media (max-width: 640px) { .strategy-cards { grid-template-columns: 1fr; } }
+  .strategy-card {
+    padding: 28px 26px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(var(--page-accent-rgb), 0.16);
+    border-radius: 20px;
+    transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), background 0.3s var(--ease);
+  }
+  .strategy-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(var(--page-accent-rgb), 0.40);
+    background: rgba(var(--page-accent-rgb), 0.03);
+  }
+  .strategy-card__num {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 500;
+    color: rgba(var(--page-accent-rgb), 0.18);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+    transition: color 0.6s var(--ease);
+  }
+  .strategy-card__title {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--text);
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+  }
+  .strategy-card__body {
+    color: var(--text-soft);
+    font-size: 14.5px;
+    line-height: 1.62;
+  }
+
+  /* ─────────────── PRICING BLOCK ─────────────── */
+  .pricing {
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(212, 175, 55, 0.06) 0%, transparent 60%),
+      linear-gradient(180deg, var(--page-bg) 0%, #050d08 100%);
+    transition: background 0.6s var(--ease);
+  }
+  .pricing__inner { max-width: 860px; margin: 0 auto; }
+  .pricing__head { text-align: center; margin-bottom: 48px; }
+  .pricing__head h2 {
+    background: linear-gradient(180deg, #fff8e6 0%, var(--gold-soft) 60%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .pricing__head p {
+    color: var(--text-soft);
+    font-size: 17px;
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  .pricing__table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 580px) { .pricing__table { grid-template-columns: 1fr; } }
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    gap: 12px;
+  }
+  .price-row__name {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.3;
+  }
+  .price-row__price {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--text);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+  }
+  .price-row__price.is-free {
+    color: var(--page-accent);
+    font-weight: 600;
+    transition: color 0.6s var(--ease);
+  }
+  .pricing__commitment {
+    text-align: center;
+    padding: 22px 28px;
+    background: rgba(var(--page-accent-rgb), 0.05);
+    border: 1px solid rgba(var(--page-accent-rgb), 0.22);
+    border-radius: 16px;
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.65;
+    transition: background 0.6s var(--ease), border-color 0.6s var(--ease);
+  }
+  .pricing__commitment strong { color: var(--text); }
+
   /* ─── World background image ─── */
   #worldBg {
     position: fixed;
@@ -2035,10 +2293,11 @@
     <a href="#play" title="Try a Thought Escape mini puzzle right here">Play</a>
     <a href="#worlds" title="Explore the four worlds">Worlds</a>
     <a href="#mechanics" title="How Thought Escape plays">Mechanics</a>
+    <a href="#strategy" title="How to think about escape puzzles">Strategy</a>
     <a href="#daily" title="Daily puzzle and streak system">Daily</a>
     <a href="#faq" title="Frequently asked questions">FAQ</a>
   </div>
-  <button class="nav__cta" type="button" data-scroll="#notify" aria-label="Get notified when Thought Escape launches">Notify me</button>
+  <button class="nav__cta" type="button" data-scroll="#download" aria-label="Download Thought Escape free on iOS">Download Free</button>
   <button class="nav__burger" type="button" id="burger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
       <line x1="3" y1="7" x2="21" y2="7"></line>
@@ -2054,10 +2313,11 @@
   <a href="#play" data-drawer-close title="Try a Thought Escape mini puzzle">Play a level</a>
   <a href="#worlds" data-drawer-close title="Explore the four worlds">Worlds</a>
   <a href="#mechanics" data-drawer-close title="How Thought Escape plays">Mechanics</a>
+  <a href="#strategy" data-drawer-close title="How to think about escape puzzles">Strategy</a>
   <a href="#daily" data-drawer-close title="Daily puzzle and streak system">Daily</a>
   <a href="#shop" data-drawer-close title="Shop and cosmetic boards">Shop</a>
   <a href="#faq" data-drawer-close title="Frequently asked questions">FAQ</a>
-  <button class="drawer__cta" type="button" data-scroll="#notify" data-drawer-close>Notify me on launch</button>
+  <button class="drawer__cta" type="button" data-scroll="#download" data-drawer-close>Download Free</button>
 </aside>
 
 <!-- ─────────────── HERO ─────────────── -->
@@ -2071,20 +2331,32 @@
           <img src="logo.png" alt="Thought Escape four-world compass medallion" class="hero__logo-emblem" width="64" height="64">
           <span class="hero__brand">Thought Escape</span>
         </div>
-        <div class="hero__chip reveal">iOS first · Android coming soon</div>
+        <div class="hero__chip reveal">Now on iOS · Android coming soon</div>
         <h1 class="reveal">A puzzle that<br>waits for you.</h1>
         <p id="product-summary" class="hero__sub reveal">Hand-tuned levels across four worlds. Eleven tools you keep forever. No timers, no gacha, no forced ads. Just arrows, four worlds, and the quiet between them.</p>
 
-        <form class="hero__form reveal" id="notify-hero" action="https://api.web3forms.com/submit" method="POST" novalidate>
-          <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_ACCESS_KEY">
-          <input type="hidden" name="subject" value="Thought Escape — new waitlist signup">
-          <input type="hidden" name="from_name" value="Thought Escape Landing">
-          <input type="text" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
-          <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" inputmode="email" aria-label="Email address">
-          <button type="submit">Notify me</button>
-        </form>
-        <div class="form-success" id="hero-success" role="status">✦ You're on the list. We'll write the moment Thought Escape goes live.</div>
-        <p class="hero__form-note reveal">No spam. One email when the App Store link goes live.</p>
+        <!-- TODO: Replace href="#" with the actual App Store URL once live -->
+        <div class="store-buttons reveal" id="download">
+          <a href="#" class="store-btn magnet" title="Download Thought Escape on the App Store" aria-label="Download on the App Store">
+            <svg class="store-btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color: var(--text)">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.13-1.12.43-2.28 1.05-3.11z"/>
+            </svg>
+            <div class="store-btn__text">
+              <span class="store-btn__sub">Download on the</span>
+              <span class="store-btn__name">App Store</span>
+            </div>
+          </a>
+          <a href="#notify" class="store-btn store-btn--soon" title="Android version — join the waitlist" aria-label="Google Play coming soon">
+            <svg class="store-btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color: var(--text-mute)">
+              <path d="M3.18 23.76c-.12-.04-.24-.12-.34-.21-.27-.27-.42-.67-.42-1.18V1.63c0-.51.15-.91.42-1.18.1-.09.22-.17.34-.21L14.26 12 3.18 23.76zm12.16-10.7L5.5 22.94l11.88-6.72-1.04-3.16zm3.24 1.04l-2.59-3.1 2.59-3.1 3.67 2.14c.83.48.83 1.44 0 1.92l-3.67 2.14zM5.5 1.06l9.84 9.88 2.04-3.16L5.5 1.06z"/>
+            </svg>
+            <div class="store-btn__text">
+              <span class="store-btn__sub">Coming soon to</span>
+              <span class="store-btn__name">Google Play</span>
+            </div>
+          </a>
+        </div>
+        <p class="store-android-note reveal">Android waitlist → <a href="#notify">leave your email below</a></p>
       </div>
 
       <div class="reveal">
@@ -2099,6 +2371,17 @@
     </div>
   </div>
 </header>
+
+<!-- ─────────────── PULL QUOTE STRIP ─────────────── -->
+<div class="pull-quote-strip reveal">
+  <p class="pull-quote"><strong>Designed to be meditative,<br>not manipulative.</strong> No timers counting down. No spin wheels. No gacha boxes. Just a puzzle, waiting quietly for you to solve it.</p>
+  <div class="trust-pills">
+    <span class="trust-pill"><span class="trust-pill__dot" aria-hidden="true"></span>No timers on standard levels</span>
+    <span class="trust-pill"><span class="trust-pill__dot" aria-hidden="true"></span>No forced interstitials</span>
+    <span class="trust-pill"><span class="trust-pill__dot" aria-hidden="true"></span>No gacha mechanics</span>
+    <span class="trust-pill"><span class="trust-pill__dot" aria-hidden="true"></span>Made by one person</span>
+  </div>
+</div>
 
 <!-- ─────────────── PLAYABLE MINI-LEVEL ─────────────── -->
 <section class="section play" id="play" aria-labelledby="play-title">
@@ -2174,9 +2457,9 @@
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.4 1 1 1 1.7v.6h6v-.6c0-.7.4-1.3 1-1.7A7 7 0 0 0 12 2z"/></svg>
                       <em>1</em>
                     </span>
-                    <span class="play__game-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2.5-2.5 4M12 17h.01"/></svg>
-                    </span>
+                    <button type="button" class="play__game-icon" id="soundToggle" aria-label="Mute game sounds">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                    </button>
                     <button type="button" class="play__game-icon play__game-reset" id="playReset" aria-label="Reset puzzle">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>
                     </button>
@@ -2431,6 +2714,44 @@
   </div>
 </section>
 
+<!-- ─────────────── STRATEGY ─────────────── -->
+<section class="section strategy" id="strategy" aria-labelledby="strategy-title">
+  <div class="container">
+    <div class="strategy__header reveal">
+      <span class="kicker">Think deeper</span>
+      <h2 id="strategy-title">How to read an escape board.</h2>
+      <p>The rules are simple. The strategy takes a little longer — here's how experienced players think before they tap.</p>
+    </div>
+    <div class="strategy-cards">
+      <div class="strategy-card reveal">
+        <div class="strategy-card__num">01</div>
+        <div class="strategy-card__title">Find the free tiles first</div>
+        <p class="strategy-card__body">Look for tiles whose arrows point directly to an open board edge with nothing in the way. These escape without any other tile needing to move first. Tap those first — they're free moves that open everything else.</p>
+      </div>
+      <div class="strategy-card reveal">
+        <div class="strategy-card__num">02</div>
+        <div class="strategy-card__title">Read what's blocking, not what's free</div>
+        <p class="strategy-card__body">For every tile that can't escape yet, identify exactly which tile is sitting in its path. That blocker becomes your next priority. Trace each dependency before you tap — know the chain, don't guess it.</p>
+      </div>
+      <div class="strategy-card reveal">
+        <div class="strategy-card__num">03</div>
+        <div class="strategy-card__title">Think in reverse</div>
+        <p class="strategy-card__body">Start from the last tile that needs to leave and work backwards. Which tile has to escape before it? And before that one? Mentally clearing the board in reverse reveals the correct forward tap order almost automatically.</p>
+      </div>
+      <div class="strategy-card reveal">
+        <div class="strategy-card__num">04</div>
+        <div class="strategy-card__title">Save tools for genuine dead ends</div>
+        <p class="strategy-card__body">Undo is powerful, but burning it on your first misstep is wasteful — what looks like a mistake sometimes opens an unexpected path two moves later. Use Rotate and Magnet when the board is truly stuck, not after a single bad tap.</p>
+      </div>
+      <div class="strategy-card reveal">
+        <div class="strategy-card__num">05</div>
+        <div class="strategy-card__title">Shaped boards have hidden shortcuts</div>
+        <p class="strategy-card__body">Not every cell exists on a shaped board. Tiles pointing toward a corner that doesn't exist travel past the missing cells straight to the edge — they escape faster than they look. Diagonals on irregular shapes are often the fastest exits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ─────────────── DAILY ─────────────── -->
 <section class="section daily" id="daily">
   <div class="container">
@@ -2526,6 +2847,70 @@
   </div>
 </section>
 
+<!-- ─────────────── PRICING ─────────────── -->
+<section class="section pricing" aria-labelledby="pricing-title">
+  <div class="container">
+    <div class="pricing__inner">
+      <div class="pricing__head reveal">
+        <span class="kicker">Transparent pricing</span>
+        <h2 id="pricing-title">Free to download.<br>Never pay-to-win.</h2>
+        <p>Core gameplay — all campaign levels, all daily puzzles, your full streak — is free forever. Everything below is optional. Nothing here affects whether you can solve a level.</p>
+      </div>
+      <div class="pricing__table reveal">
+        <div class="price-row">
+          <span class="price-row__name">All campaign levels (30 hand-tuned)</span>
+          <span class="price-row__price is-free">Free</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row__name">Daily puzzle + streak system</span>
+          <span class="price-row__price is-free">Free</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row__name">Infinite procedural level pool</span>
+          <span class="price-row__price is-free">Free</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row__name">All 11 power-up tools (daily refill)</span>
+          <span class="price-row__price is-free">Free</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row__name">Leaderboard + usernames</span>
+          <span class="price-row__price is-free">Free</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row__name">Starter Bundle (300 shards + world boost)</span>
+          <span class="price-row__price">$0.99 once</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row__name">Shard packs (power-up fuel)</span>
+          <span class="price-row__price">$1.99 – $14.99</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row__name">World currency packs</span>
+          <span class="price-row__price">$0.99 – $6.99</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row__name">Cosmetic board skins (12 available)</span>
+          <span class="price-row__price">$0.99 – $1.99</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row__name">Remove Ads — monthly</span>
+          <span class="price-row__price">$4.99/mo</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row__name">Remove Ads — yearly</span>
+          <span class="price-row__price">$29.99/yr</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row__name">Remove Ads — lifetime, one-time</span>
+          <span class="price-row__price">$49.99</span>
+        </div>
+      </div>
+      <p class="pricing__commitment reveal"><strong>The commitment:</strong> Optional extras exist so the game can keep getting better. But your ability to play, progress, and enjoy Thought Escape does not depend on spending a single dollar. Cosmetic spend only. Never pay-to-win.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ─────────────── FAQ ─────────────── -->
 <section class="section faq" id="faq">
   <div class="container">
@@ -2560,6 +2945,10 @@
         <div class="faq-answer">Ocean (moon pearls), Mountain (sun runes), Forest (spirit seeds), and Snow (aurora shards). Each world has its own art, tile materials, sounds, and currency. Levels unlock progressively along a single linear journey.</div>
       </details>
       <details class="faq-item reveal">
+        <summary>Does it work offline?</summary>
+        <div class="faq-answer">Yes — all campaign levels and daily puzzles work fully offline. Your progress saves locally on your device. The leaderboard and cloud profile sync require a connection, but those are optional features. You can play Thought Escape on a plane with no issue.</div>
+      </details>
+      <details class="faq-item reveal">
         <summary>Who builds Thought Escape?</summary>
         <div class="faq-answer">Thought Escape is built by Ananya Banerjee — a solo builder shipping calm, useful apps. You can follow the build process on Ananya's Build Room on Substack.</div>
       </details>
@@ -2570,18 +2959,18 @@
 <!-- ─────────────── FINAL CTA ─────────────── -->
 <section class="section final-cta" id="notify">
   <div class="container">
-    <span class="kicker reveal">Launching soon</span>
-    <h2 class="reveal">Be the first to play, the day it ships.</h2>
-    <p class="reveal">One email. No drip campaign. No newsletter. Just the App Store link, the moment Thought Escape goes live. Unsubscribe in one click if you change your mind.</p>
+    <span class="kicker reveal">Android coming soon</span>
+    <h2 class="reveal">Already on iOS. Android is next.</h2>
+    <p class="reveal">Leave your email and we'll send one message the day Thought Escape lands on Google Play. No drip campaign, no newsletter — just the link, when it's ready.</p>
     <form class="hero__form reveal" id="notify-final" action="https://api.web3forms.com/submit" method="POST" novalidate>
       <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_ACCESS_KEY">
-      <input type="hidden" name="subject" value="Thought Escape — new waitlist signup">
+      <input type="hidden" name="subject" value="Thought Escape — Android waitlist">
       <input type="hidden" name="from_name" value="Thought Escape Landing">
       <input type="text" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
-      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" inputmode="email" aria-label="Email address">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" inputmode="email" aria-label="Email address for Android waitlist">
       <button type="submit">Notify me</button>
     </form>
-    <div class="form-success" id="final-success" role="status">✦ You're on the list. We'll write the moment Thought Escape goes live.</div>
+    <div class="form-success" id="final-success" role="status">✦ You're on the list. One email when Android launches.</div>
     <div class="final-cta__divider"></div>
     <p class="final-cta__build">Follow the build at <a href="https://buildroomananya.substack.com/" target="_blank" rel="noopener noreferrer" title="Ananya's Build Room on Substack">Ananya's Build Room</a></p>
   </div>
@@ -2595,12 +2984,13 @@
         <img src="logo.png" alt="Thought Escape four-world compass medallion" width="36" height="36" loading="lazy">
         <span>Thought Escape</span>
       </div>
-      <p class="footer__about">A meditative tile puzzle across Ocean, Mountain, Forest, and Snow. Built by Ananya Banerjee. Coming soon to iOS and Android.</p>
+      <p class="footer__about">A meditative tile puzzle across Ocean, Mountain, Forest, and Snow. Built by Ananya Banerjee. Available on iOS. Android coming soon.</p>
     </div>
     <div class="footer__col">
       <h5>The Game</h5>
       <a href="#worlds" title="The four worlds">Worlds</a>
       <a href="#mechanics" title="How it plays">Mechanics</a>
+      <a href="#strategy" title="How to think about escape puzzles">Strategy</a>
       <a href="#daily" title="Daily puzzle and streak">Daily</a>
       <a href="#shop" title="Shop and cosmetics">Shop</a>
       <a href="#faq" title="Frequently asked questions">FAQ</a>

@@ -228,6 +228,52 @@
   var board = document.getElementById('playBoard');
   if (!board) return;
 
+  // ─── Sound system ───
+  var soundMuted = false;
+  var escapeIndex = 0;
+  var SOUNDS = {};
+  (function () {
+    var files = {
+      escape_0:'escape_0.m4a', escape_1:'escape_1.m4a', escape_2:'escape_2.m4a',
+      escape_3:'escape_3.m4a', escape_4:'escape_4.m4a', escape_5:'escape_5.m4a',
+      escape_6:'escape_6.m4a', escape_7:'escape_7.m4a',
+      blocked:'blocked.m4a', board_crack:'board_crack.m4a', victory:'victory_new.m4a'
+    };
+    Object.keys(files).forEach(function (key) {
+      try {
+        var a = new Audio('game-assets/sounds/' + files[key]);
+        a.preload = 'auto';
+        SOUNDS[key] = a;
+      } catch (e) {}
+    });
+  })();
+
+  function playSound(key, vol) {
+    if (soundMuted || !SOUNDS[key]) return;
+    try {
+      var snd = SOUNDS[key].cloneNode();
+      snd.volume = vol !== undefined ? vol : 1.0;
+      var p = snd.play();
+      if (p && p.catch) p.catch(function () {});
+    } catch (e) {}
+  }
+
+  var soundToggleBtn = document.getElementById('soundToggle');
+  var SVG_ON  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>';
+  var SVG_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+  function syncSoundBtn() {
+    if (!soundToggleBtn) return;
+    soundToggleBtn.innerHTML = soundMuted ? SVG_OFF : SVG_ON;
+    soundToggleBtn.setAttribute('aria-label', soundMuted ? 'Unmute sounds' : 'Mute sounds');
+  }
+  if (soundToggleBtn) {
+    soundToggleBtn.addEventListener('click', function () {
+      soundMuted = !soundMuted;
+      syncSoundBtn();
+    });
+    syncSoundBtn();
+  }
+
   var THEMES = {
     forest: {
       name: 'Forest',
@@ -621,6 +667,7 @@
 
   function triggerWin() {
     vibrate([20, 60, 30]);
+    playSound('board_crack');
     setHint('✦ Level cleared!', 'win');
 
     if (reducedMotion || !crackEl) {
@@ -787,6 +834,7 @@
       // Chest opens (600ms after chest appears = 1720ms total)
       setTimeout(function () {
         chestImg.src = 'game-assets/chests/chest-' + currentTheme + '-open.png';
+        playSound('victory', 0.85);
         chestWrap.style.transition = 'transform 0.18s cubic-bezier(0.22,1,0.36,1)';
         chestWrap.style.transform = 'translate(-50%,-50%) scale(1.18) rotate(2deg)';
         setTimeout(function () {
@@ -913,6 +961,8 @@
     var tileEl = board.querySelector('[data-id="' + id + '"]');
     if (isTappable(tile)) {
       vibrate(12);
+      playSound('escape_' + (escapeIndex % 8));
+      escapeIndex++;
       // record for undo
       history.push({ type: 'escape', tileId: id, prevRow: tile.row, prevCol: tile.col, prevDir: tile.dir });
       tile.escaped = true;
@@ -941,6 +991,7 @@
       tileEl.classList.add('is-blocked');
       board.classList.add('shake');
       vibrate([22, 40, 22]);
+      playSound('blocked', 0.75);
       setHint('Blocked — another tile is in the way.', 'warn');
       setTimeout(function () {
         tileEl.classList.remove('is-blocked');
@@ -1031,6 +1082,7 @@
     history = [];
     armedTool = null;
     toolUses = Object.assign({}, TOOL_INITIAL);
+    escapeIndex = 0;
     tapsEl.textContent = '0';
     if (winScreenEl) winScreenEl.classList.remove('show');
     if (crackEl) {
