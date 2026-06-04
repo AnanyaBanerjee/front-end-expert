@@ -224,6 +224,34 @@
   }
   _updateWorldBg(currentTheme);
 
+  // ─── World ambience particles (all pages) ───
+  var ambienceLayer = document.getElementById('ambienceLayer');
+  function _ambienceRand(seed) {
+    var x = Math.sin(seed * 9301 + 49297) * 233280;
+    return x - Math.floor(x);
+  }
+  function _buildAmbience(theme) {
+    if (!ambienceLayer) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var counts = { mountain: 22, forest: 18, ocean: 14, snow: 28 };
+    var n = counts[theme] || 18;
+    var vl = theme.length;
+    ambienceLayer.className = 'te-ambience te-ambience--' + theme + ' te-ambience--fixed';
+    ambienceLayer.innerHTML = '';
+    for (var i = 0; i < n; i++) {
+      var p = document.createElement('span');
+      p.className = 'te-ambience__p';
+      var l = _ambienceRand(i + 1 + vl) * 100;
+      var t = _ambienceRand(i + 11 + vl) * 100;
+      var d = _ambienceRand(i + 21 + vl) * 8;
+      var dur = 4 + _ambienceRand(i + 31 + vl) * 8;
+      var s = 0.5 + _ambienceRand(i + 41 + vl) * 1.5;
+      p.style.cssText = 'left:' + l.toFixed(1) + '%;top:' + t.toFixed(1) + '%;animation-delay:' + d.toFixed(2) + 's;animation-duration:' + dur.toFixed(2) + 's;--s:' + s.toFixed(2) + ';';
+      ambienceLayer.appendChild(p);
+    }
+  }
+  _buildAmbience(currentTheme);
+
   // ─────────────── PLAYABLE MINI-LEVEL ───────────────
   var board = document.getElementById('playBoard');
   if (!board) return;
@@ -1385,6 +1413,7 @@
     applyTheme(themeKey);
     persistTheme(themeKey);
     _updateWorldBg(themeKey);
+    _buildAmbience(themeKey);
     if (heroPhoneEl) {
       heroPhoneEl.src = HERO_PHONE_IMGS[themeKey] || HERO_PHONE_IMGS.forest;
       heroPhoneEl.alt = HERO_PHONE_ALTS[themeKey] || HERO_PHONE_ALTS.forest;

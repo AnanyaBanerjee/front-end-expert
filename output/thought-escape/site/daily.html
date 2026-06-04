@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shape of the Day — Daily Puzzle | Thought Escape</title>
+<meta name="description" content="A new procedurally-generated board shape every day. Seven shapes per week, freshly generated each Monday. Download Thought Escape to play the daily puzzle on your phone.">
+<meta name="author" content="Ananya Banerjee">
+<meta name="copyright" content="© 2026 Ananya Banerjee. All rights reserved.">
+<meta name="robots" content="index, follow">
+<meta name="noai" content="1">
+<meta name="noimageai" content="1">
+<meta name="theme-color" content="#0a1f12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thought-escape.com/daily.html">
+<meta property="og:title" content="Shape of the Day — Daily Puzzle | Thought Escape">
+<meta property="og:description" content="A new procedurally-generated board shape every day. Seven shapes per week, freshly generated each Monday. Download Thought Escape to play.">
+<meta property="og:image" content="https://thought-escape.com/logo.png">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:site_name" content="Thought Escape">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shape of the Day — Daily Puzzle | Thought Escape">
+<meta name="twitter:description" content="A new procedurally-generated board shape every day. Seven shapes per week, freshly generated each Monday.">
+<meta name="twitter:image" content="https://thought-escape.com/logo.png">
+
+<link rel="canonical" href="https://thought-escape.com/daily.html">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+
+<!-- JSON-LD: WebPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Shape of the Day — Daily Puzzle | Thought Escape",
+  "url": "https://thought-escape.com/daily.html",
+  "description": "A new procedurally-generated board shape every day. Seven shapes per week, freshly generated each Monday. Download Thought Escape to play the daily puzzle on your phone.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Thought Escape",
+    "url": "https://thought-escape.com/"
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["#daily-intro", "#how-it-works"]
+  }
+}
+</script>
+
+<style>
+  :root {
+    --gold: #d4af37;
+    --gold-soft: #f0c97c;
+    --gold-deep: #c8a020;
+    --bg-deep: #020806;
+    --forest-bg: #0a1f12;
+    --ocean-bg: #061a2b;
+    --mountain-bg: #1a1208;
+    --snow-bg: #0e1230;
+    --forest-accent: #6ee7a7;
+    --ocean-accent: #38bdf8;
+    --mountain-accent: #f59e0b;
+    --snow-accent: #93c5fd;
+    --text: #f4ecd6;
+    --text-soft: rgba(244, 236, 214, 0.78);
+    --text-mute: rgba(244, 236, 214, 0.56);
+    --line: rgba(244, 236, 214, 0.10);
+    --serif: ui-serif, Georgia, "Times New Roman", Cambria, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --pad-x: clamp(20px, 5vw, 56px);
+    --section-y: clamp(72px, 10vw, 120px);
+    --container: 1180px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --page-bg: var(--forest-bg);
+    --page-accent: var(--forest-accent);
+    --page-accent-rgb: 110, 231, 167;
+  }
+  body[data-theme="ocean"]    { --page-bg: var(--ocean-bg);    --page-accent: var(--ocean-accent);    --page-accent-rgb: 56, 189, 248; }
+  body[data-theme="mountain"] { --page-bg: var(--mountain-bg); --page-accent: var(--mountain-accent); --page-accent-rgb: 245, 158, 11; }
+  body[data-theme="snow"]     { --page-bg: var(--snow-bg);     --page-accent: var(--snow-accent);     --page-accent-rgb: 147, 197, 253; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: linear-gradient(180deg, var(--page-bg) 0%, var(--bg-deep) 100%);
+    transition: background 0.6s var(--ease);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.65;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; }
+
+  /* ─── NAVBAR ─── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px var(--pad-x);
+    padding-top: calc(14px + env(safe-area-inset-top));
+    background: rgba(5, 13, 8, 0.72);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+    transition: background 0.3s var(--ease);
+  }
+  .nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--gold-soft);
+    text-decoration: none;
+  }
+  .nav__logo {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35), 0 6px 22px rgba(212, 175, 55, 0.18);
+  }
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: clamp(18px, 2.4vw, 32px);
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--text-soft);
+  }
+  .nav__links a {
+    transition: color 0.2s var(--ease);
+    padding: 6px 0;
+    text-decoration: none;
+    color: var(--text-soft);
+  }
+  .nav__links a:hover { color: var(--gold-soft); }
+  .nav__links a[aria-current="page"] {
+    color: var(--gold-soft);
+    border-bottom: 1.5px solid rgba(212, 175, 55, 0.50);
+  }
+  .nav__cta {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 60%, var(--gold-deep) 100%);
+    color: #1a1208;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 6px 24px rgba(212, 175, 55, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: transform 0.2s var(--spring), box-shadow 0.2s var(--ease);
+    min-height: 44px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+  .nav__cta:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4); color: #1a1208; }
+  .nav__burger {
+    display: none;
+    width: 44px; height: 44px;
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.24);
+    border-radius: 10px;
+    color: var(--gold-soft);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .nav__burger svg { width: 22px; height: 22px; }
+  @media (max-width: 820px) {
+    .nav__links { display: none; }
+    .nav__burger { display: inline-flex; }
+    .nav__cta { display: none; }
+  }
+
+  /* Mobile drawer */
+  .drawer {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    width: min(82vw, 320px);
+    background: linear-gradient(180deg, #06140c 0%, #050d08 100%);
+    border-left: 1px solid rgba(212, 175, 55, 0.16);
+    z-index: 110;
+    transform: translateX(100%);
+    transition: transform 0.4s var(--ease);
+    padding: calc(28px + env(safe-area-inset-top)) 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .drawer.open { transform: translateX(0); }
+  .drawer__close {
+    align-self: flex-end;
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.24);
+    border-radius: 10px;
+    width: 40px; height: 40px;
+    color: var(--gold-soft);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .drawer a {
+    padding: 14px 0;
+    font-size: 17px;
+    color: var(--text);
+    border-bottom: 1px solid rgba(244, 236, 214, 0.06);
+    font-family: var(--serif);
+    letter-spacing: 0.03em;
+    text-decoration: none;
+  }
+  .drawer a[aria-current="page"] { color: var(--gold-soft); }
+  .drawer__cta {
+    margin-top: auto;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 100%);
+    color: #1a1208;
+    padding: 14px 22px;
+    border-radius: 999px;
+    border: none;
+    font-weight: 700;
+    text-align: center;
+    min-height: 50px;
+    text-decoration: none;
+    display: block;
+  }
+  .drawer-scrim {
+    position: fixed; inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 105;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease);
+  }
+  .drawer-scrim.open { opacity: 1; pointer-events: auto; }
+
+  /* ─── SECTION CHROME ─── */
+  .section {
+    position: relative;
+    padding: var(--section-y) var(--pad-x);
+    overflow: hidden;
+    z-index: 10;
+  }
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .kicker {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 18px;
+    display: inline-block;
+  }
+  .kicker::before {
+    content: '✦';
+    margin-right: 10px;
+    color: var(--gold);
+    font-size: 10px;
+  }
+  h1, h2, h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    color: var(--text);
+  }
+  h1 { font-size: clamp(38px, 6vw, 72px); }
+  h2 { font-size: clamp(28px, 4vw, 48px); }
+  h3 { font-size: clamp(18px, 2vw, 24px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(var(--page-accent-rgb), 0.20) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(212, 175, 55, 0.06) 0%, transparent 70%),
+      linear-gradient(180deg, var(--page-bg) 0%, #050d08 100%);
+    padding-top: calc(110px + env(safe-area-inset-top));
+    padding-bottom: clamp(60px, 10vw, 100px);
+    transition: background 0.6s var(--ease);
+  }
+  .hero .container { text-align: center; }
+  .hero h1 {
+    background: linear-gradient(180deg, #fff8e6 0%, var(--gold-soft) 55%, var(--page-accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 22px;
+    transition: background 0.6s var(--ease);
+  }
+  .hero__sub {
+    font-size: clamp(16px, 1.4vw, 20px);
+    color: var(--text-soft);
+    max-width: 560px;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+  }
+
+  /* Store buttons */
+  .store-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+  .store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 22px;
+    border-radius: 16px;
+    border: 1.5px solid rgba(212, 175, 55, 0.38);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.22s var(--spring), border-color 0.22s var(--ease), background 0.22s var(--ease), box-shadow 0.22s var(--ease);
+    min-height: 58px;
+    text-decoration: none;
+  }
+  .store-btn:hover:not(.store-btn--soon) {
+    transform: translateY(-2px);
+    border-color: rgba(212, 175, 55, 0.7);
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.18);
+  }
+  .store-btn--soon {
+    opacity: 0.48;
+    cursor: default;
+    pointer-events: none;
+  }
+  .store-btn__icon { width: 28px; height: 28px; flex-shrink: 0; }
+  .store-btn__text { display: flex; flex-direction: column; line-height: 1.25; }
+  .store-btn__sub {
+    font-size: 10px;
+    color: var(--text-mute);
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+  }
+  .store-btn__name {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+  .store-btn--soon .store-btn__name { color: var(--text-mute); }
+
+  /* ─── SHAPE OF THE DAY ─── */
+  .daily-section {
+    background: linear-gradient(180deg, #050d08 0%, var(--page-bg) 100%);
+    transition: background 0.6s var(--ease);
+  }
+  .daily-section .container { text-align: center; }
+  .daily-card {
+    display: inline-block;
+    max-width: 420px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1.5px solid rgba(212, 175, 55, 0.30);
+    border-radius: 28px;
+    padding: clamp(24px, 3.4vw, 40px);
+    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(212, 175, 55, 0.08);
+    transition: border-color 0.6s var(--ease);
+  }
+  .daily-card__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-family: var(--serif);
+    border-width: 1px;
+    border-style: solid;
+    transition: background 0.6s var(--ease), border-color 0.6s var(--ease), color 0.6s var(--ease);
+  }
+  .daily-card__badge--forest   { background: rgba(110,231,167,0.10); border-color: rgba(110,231,167,0.34); color: #6ee7a7; }
+  .daily-card__badge--ocean    { background: rgba(56,189,248,0.10);  border-color: rgba(56,189,248,0.34);  color: #38bdf8; }
+  .daily-card__badge--mountain { background: rgba(245,158,11,0.10);  border-color: rgba(245,158,11,0.34);  color: #f59e0b; }
+  .daily-card__badge--snow     { background: rgba(147,197,253,0.10); border-color: rgba(147,197,253,0.34); color: #93c5fd; }
+  .daily-card__badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 8px currentColor;
+  }
+  .daily-card__name {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3vw, 30px);
+    color: var(--gold-soft);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .daily-card__date {
+    font-size: 13px;
+    color: var(--text-mute);
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
+  }
+  .daily-card__svg-wrap {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .daily-card__meta {
+    font-size: 13px;
+    color: var(--text-mute);
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── WEEK SECTION HEADER ─── */
+  .week-section {
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(var(--page-accent-rgb), 0.12) 0%, transparent 60%),
+      linear-gradient(180deg, var(--page-bg) 0%, #050d08 100%);
+    transition: background 0.6s var(--ease);
+  }
+  .week-header { text-align: center; max-width: 680px; margin: 0 auto 52px; }
+  .week-header h2 {
+    background: linear-gradient(180deg, #f4ecd6 0%, var(--page-accent) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background 0.6s var(--ease);
+    margin-bottom: 14px;
+  }
+  .week-header p { color: var(--text-soft); font-size: 16px; }
+
+  /* Week grid: 7 cards */
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    max-width: var(--container);
+    margin: 0 auto;
+  }
+  @media (max-width: 1080px) { .week-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 640px)  { .week-grid { grid-template-columns: repeat(2, 1fr); } }
+  .week-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 16px 12px;
+    text-align: center;
+    transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .week-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.06); }
+  .week-card.today {
+    border-color: rgba(212, 175, 55, 0.55);
+    background: rgba(212, 175, 55, 0.06);
+    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.12);
+  }
+  .week-card__day {
+    font-family: var(--serif);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    margin-bottom: 8px;
+  }
+  .week-card.today .week-card__day { color: var(--gold-soft); }
+  .week-card__world {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-family: var(--serif);
+  }
+  .week-card__world--forest   { color: #6ee7a7; }
+  .week-card__world--ocean    { color: #38bdf8; }
+  .week-card__world--mountain { color: #f59e0b; }
+  .week-card__world--snow     { color: #93c5fd; }
+  .week-card__svg-wrap {
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+  }
+  .week-card__name {
+    font-family: var(--serif);
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .week-card.today .week-card__name { color: var(--gold-soft); }
+  .week-card__size {
+    font-size: 10px;
+    color: var(--text-mute);
+    letter-spacing: 0.04em;
+  }
+  .week-card__today-badge {
+    display: none;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: var(--serif);
+    margin-top: 6px;
+    font-weight: 600;
+  }
+  .week-card.today .week-card__today-badge { display: block; }
+
+  /* ─── HOW IT WORKS ─── */
+  .how-section {
+    background: linear-gradient(180deg, #050d08 0%, var(--page-bg) 50%, #050d08 100%);
+    transition: background 0.6s var(--ease);
+  }
+  .how-section .container { max-width: 860px; }
+  .how-header { text-align: center; max-width: 680px; margin: 0 auto 48px; }
+  .how-header h2 {
+    background: linear-gradient(180deg, #fff8e6 0%, var(--gold-soft) 60%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 16px;
+  }
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 600px) { .how-grid { grid-template-columns: 1fr; } }
+  .how-card {
+    padding: 24px 22px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(var(--page-accent-rgb), 0.16);
+    border-radius: 16px;
+    transition: border-color 0.3s var(--ease);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .how-card:hover { border-color: rgba(var(--page-accent-rgb), 0.36); }
+  .how-card__num {
+    font-family: var(--serif);
+    font-size: 32px;
+    color: rgba(var(--page-accent-rgb), 0.20);
+    line-height: 1;
+    min-width: 40px;
+    transition: color 0.6s var(--ease);
+  }
+  .how-card__body {
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.62;
+  }
+  .how-card strong { color: var(--text); font-weight: 600; }
+
+  /* ─── FINAL CTA ─── */
+  .final-cta {
+    background:
+      radial-gradient(ellipse 60% 80% at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 70%),
+      linear-gradient(180deg, #050d08 0%, #050d08 100%);
+    text-align: center;
+    padding-top: clamp(80px, 10vw, 120px);
+    padding-bottom: clamp(80px, 10vw, 120px);
+  }
+  .final-cta h2 {
+    max-width: 640px;
+    margin: 0 auto 22px;
+    background: linear-gradient(180deg, #fff8e6 0%, var(--gold-soft) 60%, var(--page-accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background 0.6s var(--ease);
+  }
+  .final-cta p {
+    color: var(--text-soft);
+    max-width: 480px;
+    margin: 0 auto 36px;
+    font-size: 16px;
+  }
+
+  /* World background overlay */
+  #worldBg {
+    position: fixed; inset: 0; z-index: 5; pointer-events: none;
+    background-size: cover; background-position: center top;
+    background-repeat: no-repeat; background-attachment: fixed;
+    opacity: 0; mix-blend-mode: screen; transition: opacity 0.7s ease; will-change: opacity;
+  }
+  #worldBg.loaded { opacity: 0.22; }
+
+  /* Ambience particles */
+  .te-page-ambience{position:fixed;inset:0;pointer-events:none;z-index:7;opacity:0.55;mix-blend-mode:screen}
+  .te-ambience{position:absolute;inset:-2rem;pointer-events:none;overflow:hidden;border-radius:1.5rem;z-index:1}
+  .te-ambience--fixed{position:fixed;inset:0;border-radius:0;z-index:0}
+  .te-ambience__p{position:absolute;display:block;width:calc(6px * var(--s,1));height:calc(6px * var(--s,1));border-radius:999px;will-change:transform,opacity;opacity:0}
+  .te-ambience--mountain .te-ambience__p{background:radial-gradient(circle,#fde68a 0%,#f59e0b 45%,rgba(239,68,68,0) 75%);box-shadow:0 0 8px rgba(245,158,11,.9),0 0 16px rgba(239,68,68,.5);animation-name:te-spark-rise;animation-timing-function:ease-in;animation-iteration-count:infinite}
+  @keyframes te-spark-rise{0%{transform:translate(0,20px) scale(.6);opacity:0}15%{opacity:1}70%{opacity:.9}100%{transform:translate(calc(var(--s,1)*14px - 7px),-120px) scale(.2);opacity:0}}
+  .te-ambience--forest .te-ambience__p{background:radial-gradient(circle,#fef9c3 0%,#a3e635 50%,rgba(110,231,167,0) 80%);box-shadow:0 0 10px #bef264,0 0 22px rgba(163,230,53,.6);animation-name:te-firefly;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+  @keyframes te-firefly{0%,100%{transform:translate(0,0) scale(.7);opacity:0}20%{opacity:1}50%{transform:translate(30px,-25px) scale(1.1);opacity:.95}80%{opacity:.4}}
+  .te-ambience--ocean .te-ambience__p{background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.95),rgba(186,230,253,.5) 50%,rgba(56,189,248,.15) 80%);border:1px solid rgba(186,230,253,.4);box-shadow:0 0 8px rgba(56,189,248,.4),inset 0 0 4px rgba(255,255,255,.3);width:calc(10px * var(--s,1));height:calc(10px * var(--s,1));animation-name:te-bubble-rise;animation-timing-function:ease-out;animation-iteration-count:infinite}
+  @keyframes te-bubble-rise{0%{transform:translate(0,40px) scale(.4);opacity:0}20%{opacity:.9}50%{transform:translate(8px,-40px) scale(1)}80%{opacity:.8}100%{transform:translate(-6px,-160px) scale(.6);opacity:0}}
+  .te-ambience--snow .te-ambience__p{background:radial-gradient(circle,#fff 0%,#e0f2fe 60%,rgba(147,197,253,0) 85%);box-shadow:0 0 6px rgba(224,242,254,.95),0 0 14px rgba(147,197,253,.5);animation-name:te-snow-fall;animation-timing-function:linear;animation-iteration-count:infinite}
+  @keyframes te-snow-fall{0%{transform:translate(0,-40px) rotate(0deg);opacity:0}15%{opacity:1}85%{opacity:.9}100%{transform:translate(40px,220px) rotate(360deg);opacity:0}}
+  @media(prefers-reduced-motion:reduce){.te-ambience{display:none}}
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: linear-gradient(180deg, #050d08 0%, #02060b 100%);
+    padding: 60px var(--pad-x) 40px;
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(212, 175, 55, 0.10);
+    position: relative;
+    z-index: 10;
+  }
+  .footer__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 740px) {
+    .footer__inner { grid-template-columns: 1fr; gap: 32px; }
+  }
+  .footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .footer__brand img {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    opacity: 0.85;
+  }
+  .footer__brand span {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--gold-soft);
+    letter-spacing: 0.04em;
+  }
+  .footer__about {
+    color: var(--text-mute);
+    font-size: 14px;
+    max-width: 380px;
+    line-height: 1.6;
+  }
+  .footer__col h5 {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 0.20em;
+    color: var(--gold-soft);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .footer__col a {
+    display: block;
+    padding: 6px 0;
+    color: var(--text-mute);
+    font-size: 14px;
+    transition: color 0.2s var(--ease);
+    text-decoration: none;
+  }
+  .footer__col a:hover { color: var(--text); }
+  .footer__bottom {
+    max-width: var(--container);
+    margin: 40px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(244, 236, 214, 0.06);
+    color: var(--text-mute);
+    font-size: 13px;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  /* ─── DAILY APP PROMO MODAL ─── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0, 0, 0, 0.70);
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+  .modal {
+    background: linear-gradient(180deg, #0d1f14 0%, #06120c 100%);
+    border: 1.5px solid rgba(212, 175, 55, 0.32);
+    border-radius: 28px;
+    padding: clamp(28px, 4vw, 44px);
+    max-width: 460px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.60);
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.35s var(--spring);
+  }
+  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+  .modal__close {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 50%;
+    width: 36px; height: 36px;
+    color: var(--text-mute);
+    font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .modal__close:hover { background: rgba(255,255,255,0.12); color: var(--text); }
+  .modal__kicker {
+    font-family: var(--serif);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .modal__kicker::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold-soft);
+    box-shadow: 0 0 8px var(--gold-soft);
+  }
+  .modal__title {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 26px);
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .modal__body {
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.62;
+    margin-bottom: 28px;
+  }
+  .modal__btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .modal__btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 60%, var(--gold-deep) 100%);
+    color: #1a1208;
+    padding: 14px 22px;
+    border-radius: 999px;
+    border: none;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    min-height: 52px;
+    text-decoration: none;
+    box-shadow: 0 8px 28px rgba(212,175,55,0.28), inset 0 1px 0 rgba(255,255,255,0.35);
+    transition: transform 0.22s var(--spring), box-shadow 0.22s var(--ease);
+  }
+  .modal__btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(212,175,55,0.40); color: #1a1208; }
+  .modal__btn-soon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: transparent;
+    color: var(--text-mute);
+    font-size: 15px;
+    min-height: 52px;
+    opacity: 0.55;
+    cursor: default;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="worldBg" aria-hidden="true"></div>
+<div class="te-page-ambience" aria-hidden="true"><div id="ambienceLayer" class="te-ambience te-ambience--forest te-ambience--fixed" aria-hidden="true"></div></div>
+
+<!-- ─── DAILY APP PROMO MODAL ─── -->
+<div class="modal-overlay" id="dailyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <button class="modal__close" id="modalClose" aria-label="Close">×</button>
+    <div class="modal__kicker">You keep coming back</div>
+    <h2 class="modal__title" id="modalTitle">Hooked yet? Take it with you.</h2>
+    <p class="modal__body">You've come back two days running. The full game lives on your phone — offline puzzles, the streak system, haptics, the works.</p>
+    <div class="modal__btns">
+      <a href="#" class="modal__btn-primary" title="Download Thought Escape on the App Store">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.13-1.12.43-2.28 1.05-3.11z"/>
+        </svg>
+        Download on the App Store
+      </a>
+      <div class="modal__btn-soon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M3.18 23.76c-.12-.04-.24-.12-.34-.21-.27-.27-.42-.67-.42-1.18V1.63c0-.51.15-.91.42-1.18.1-.09.22-.17.34-.21L14.26 12 3.18 23.76zm12.16-10.7L5.5 22.94l11.88-6.72-1.04-3.16zm3.24 1.04l-2.59-3.1 2.59-3.1 3.67 2.14c.83.48.83 1.44 0 1.92l-3.67 2.14zM5.5 1.06l9.84 9.88 2.04-3.16L5.5 1.06z"/>
+        </svg>
+        Google Play — Coming soon
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── NAV ─── -->
+<nav class="nav" aria-label="Primary">
+  <a href="/" class="nav__brand" title="Thought Escape home">
+    <img src="logo.png" alt="Thought Escape compass logo" class="nav__logo" width="34" height="34">
+    <span>Thought Escape</span>
+  </a>
+  <div class="nav__links">
+    <a href="/" title="Download Thought Escape">Play</a>
+    <a href="/#worlds" title="Explore the four worlds">Worlds</a>
+    <a href="guide/strategy-tips.html" title="Arrow puzzle strategy guide">Strategy</a>
+    <a href="daily.html" title="Daily puzzle — shape of the day" aria-current="page">Daily</a>
+    <a href="faq.html" title="Frequently asked questions">FAQ</a>
+  </div>
+  <a href="/" class="nav__cta" title="Download Thought Escape on the App Store">Download Free</a>
+  <button class="nav__burger" type="button" id="burger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <line x1="3" y1="7" x2="21" y2="7"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="17" x2="21" y2="17"></line>
+    </svg>
+  </button>
+</nav>
+
+<div class="drawer-scrim" id="drawerScrim"></div>
+<aside class="drawer" id="drawer" aria-label="Mobile navigation">
+  <button class="drawer__close" id="drawerClose" aria-label="Close menu">×</button>
+  <a href="/" title="Download Thought Escape">Play</a>
+  <a href="/#worlds" title="Explore the four worlds">Worlds</a>
+  <a href="guide/strategy-tips.html" title="Arrow puzzle strategy guide">Strategy</a>
+  <a href="daily.html" aria-current="page" title="Daily puzzle — shape of the day">Daily</a>
+  <a href="faq.html" title="Frequently asked questions">FAQ</a>
+  <a href="/" class="drawer__cta" title="Download Thought Escape">Download Free</a>
+</aside>
+
+<!-- ─── HERO ─── -->
+<header class="section hero">
+  <div class="container">
+    <span class="kicker">Daily ritual</span>
+    <h1 class="reveal">Shape of the Day</h1>
+    <p id="daily-intro" class="hero__sub reveal">A new board geometry every morning. Seven shapes per week, freshly generated each Monday — no two weeks alike.</p>
+    <div class="store-buttons reveal">
+      <a href="#" class="store-btn" title="Download Thought Escape on the App Store" aria-label="Download on the App Store">
+        <svg class="store-btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color: var(--text)">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.13-1.12.43-2.28 1.05-3.11z"/>
+        </svg>
+        <div class="store-btn__text">
+          <span class="store-btn__sub">Download on the</span>
+          <span class="store-btn__name">App Store</span>
+        </div>
+      </a>
+      <a class="store-btn store-btn--soon" title="Google Play — coming soon" aria-label="Google Play coming soon" aria-disabled="true">
+        <svg class="store-btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color: var(--text-mute)">
+          <path d="M3.18 23.76c-.12-.04-.24-.12-.34-.21-.27-.27-.42-.67-.42-1.18V1.63c0-.51.15-.91.42-1.18.1-.09.22-.17.34-.21L14.26 12 3.18 23.76zm12.16-10.7L5.5 22.94l11.88-6.72-1.04-3.16zm3.24 1.04l-2.59-3.1 2.59-3.1 3.67 2.14c.83.48.83 1.44 0 1.92l-3.67 2.14zM5.5 1.06l9.84 9.88 2.04-3.16L5.5 1.06z"/>
+        </svg>
+        <div class="store-btn__text">
+          <span class="store-btn__sub">Coming soon to</span>
+          <span class="store-btn__name">Google Play</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ─── SHAPE OF THE DAY ─── -->
+<section class="section daily-section">
+  <div class="container">
+    <div class="daily-card reveal" id="todayCard" aria-label="Today's shape of the day">
+      <div class="daily-card__badge daily-card__badge--forest" id="todayBadge">Forest</div>
+      <div class="daily-card__name" id="todayName">Loading…</div>
+      <div class="daily-card__date" id="todayDate"></div>
+      <div class="daily-card__svg-wrap" id="todaySvgWrap" aria-hidden="true"></div>
+      <div class="daily-card__meta" id="todayMeta"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WEEK LINEUP ─── -->
+<section class="section week-section">
+  <div class="container">
+    <div class="week-header reveal">
+      <span class="kicker">This week's shapes</span>
+      <h2>The seven shapes this week</h2>
+      <p>A new lineup generates every Monday. Each day pairs with one of the four worlds.</p>
+    </div>
+    <div class="week-grid reveal" id="weekGrid" aria-label="Week lineup of board shapes"></div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="section how-section" id="how-it-works">
+  <div class="container">
+    <div class="how-header reveal">
+      <span class="kicker">How it works</span>
+      <h2>A ritual, not a race.</h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-card reveal">
+        <div class="how-card__num">01</div>
+        <div class="how-card__body"><strong>A new board appears at midnight,</strong> paired with one of the four realms. Forest, Ocean, Mountain, or Snow — the world shifts with the day.</div>
+      </div>
+      <div class="how-card reveal">
+        <div class="how-card__num">02</div>
+        <div class="how-card__body"><strong>Every Monday the seven-shape lineup regenerates</strong> from scratch. No two weeks share the same sequence of boards.</div>
+      </div>
+      <div class="how-card reveal">
+        <div class="how-card__num">03</div>
+        <div class="how-card__body"><strong>Sizes range from 6×6 to 10×10</strong> — effectively infinite distinct boards. The shape changes, the rules stay the same.</div>
+      </div>
+      <div class="how-card reveal">
+        <div class="how-card__num">04</div>
+        <div class="how-card__body"><strong>Same rules as the main game</strong> — only the canvas changes. Arrow tiles, eight directions, chain escapes. Just a new shape every morning.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA ─── -->
+<section class="section final-cta">
+  <div class="container">
+    <span class="kicker reveal">Your phone, every morning</span>
+    <h2 class="reveal">Play the daily on your phone.</h2>
+    <p class="reveal">The streak system, haptic feedback, and offline play live in the app. No browser required.</p>
+    <div class="store-buttons reveal">
+      <a href="#" class="store-btn" title="Download Thought Escape on the App Store" aria-label="Download on the App Store">
+        <svg class="store-btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color: var(--text)">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.13-1.12.43-2.28 1.05-3.11z"/>
+        </svg>
+        <div class="store-btn__text">
+          <span class="store-btn__sub">Download on the</span>
+          <span class="store-btn__name">App Store</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand">
+        <img src="logo.png" alt="Thought Escape four-world compass medallion" width="36" height="36" loading="lazy">
+        <span>Thought Escape</span>
+      </div>
+      <p class="footer__about">A meditative tile puzzle across Ocean, Mountain, Forest, and Snow. Built by Ananya Banerjee. Available on iOS. Android coming soon.</p>
+    </div>
+    <div class="footer__col">
+      <h5>The Game</h5>
+      <a href="/#worlds" title="The four worlds">Worlds</a>
+      <a href="/#mechanics" title="How it plays">Mechanics</a>
+      <a href="guide/strategy-tips.html" title="Arrow puzzle strategy guide">Strategy</a>
+      <a href="daily.html" title="Daily puzzle — shape of the day">Daily Challenge</a>
+      <a href="/#shop" title="Shop and cosmetics">Shop</a>
+      <a href="faq.html" title="Frequently asked questions">FAQ</a>
+    </div>
+    <div class="footer__col">
+      <h5>Help &amp; Legal</h5>
+      <a href="support.html" title="Support and troubleshooting">Support</a>
+      <a href="privacy-policy.html" title="Privacy policy">Privacy</a>
+      <a href="terms.html" title="Terms of use">Terms</a>
+      <a href="https://buildroomananya.substack.com/" target="_blank" rel="noopener noreferrer" title="Ananya's Build Room newsletter">Build Room</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    © <span id="year">2026</span> Ananya Banerjee. All rights reserved. Thought Escape™.
+  </div>
+</footer>
+
+<script src="main.js" defer data-cfasync="false"></script>
+<script>
+// ─── YEAR ───
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// ─── MOBILE DRAWER ───
+var burger = document.getElementById('burger');
+var drawer = document.getElementById('drawer');
+var drawerClose = document.getElementById('drawerClose');
+var drawerScrim = document.getElementById('drawerScrim');
+function openDrawer() { drawer.classList.add('open'); drawerScrim.classList.add('open'); burger.setAttribute('aria-expanded', 'true'); }
+function closeDrawer() { drawer.classList.remove('open'); drawerScrim.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }
+burger.addEventListener('click', openDrawer);
+drawerClose.addEventListener('click', closeDrawer);
+drawerScrim.addEventListener('click', closeDrawer);
+
+// ─── REVEAL ON SCROLL ───
+var revealEls = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  revealEls.forEach(function(el) { obs.observe(el); });
+} else {
+  revealEls.forEach(function(el) { el.classList.add('visible'); });
+}
+
+// ─── SHAPE GENERATOR ───
+
+function hashString(s) {
+  var h = 2166136261 >>> 0;
+  for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function mulberry32(seedStr) {
+  var a = hashString(seedStr) || 1;
+  return function() {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    var t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function isoWeek(d) {
+  var date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  var dayNum = date.getUTCDay() || 7;
+  date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+  var yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  var week = Math.ceil(((date.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+  return { year: date.getUTCFullYear(), week: week };
+}
+function todayDayIndex(d) { return (d.getDay() + 6) % 7; } // Mon=0..Sun=6
+
+function expand(cells, size, mode) {
+  var set = {};
+  var m = size - 1;
+  function add(c, r) {
+    if (c < 0 || c >= size || r < 0 || r >= size) return;
+    set[c + ',' + r] = true;
+  }
+  for (var i = 0; i < cells.length; i++) {
+    var c = cells[i][0], r = cells[i][1];
+    add(c, r);
+    if (mode === 'vertical' || mode === 'biaxial' || mode === 'diagonal' || mode === 'dihedral') add(m - c, r);
+    if (mode === 'biaxial' || mode === 'dihedral') { add(c, m - r); add(m - c, m - r); }
+    if (mode === 'diagonal' || mode === 'dihedral') { add(r, c); add(m - r, c); add(r, m - c); add(m - r, m - c); }
+    if (mode === 'rot4' || mode === 'dihedral') { add(m - r, c); add(m - c, m - r); add(r, m - c); }
+  }
+  return Object.keys(set).map(function(k) { var p = k.split(','); return [+p[0], +p[1]]; });
+}
+
+function isConnected(cells) {
+  if (!cells.length) return false;
+  var set = {};
+  cells.forEach(function(c) { set[c[0] + ',' + c[1]] = true; });
+  var seen = {}; seen[cells[0][0] + ',' + cells[0][1]] = true;
+  var stack = [cells[0]];
+  while (stack.length) {
+    var cur = stack.pop();
+    [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function(d) {
+      var nc = cur[0] + d[0], nr = cur[1] + d[1], k = nc + ',' + nr;
+      if (set[k] && !seen[k]) { seen[k] = true; stack.push([nc, nr]); }
+    });
+  }
+  return Object.keys(seen).length === cells.length;
+}
+
+var NAMES_SYM   = ['Lotus', 'Crystal', 'Halo', 'Bloom', 'Mandala', 'Quartz', 'Petal', 'Compass', 'Beacon', 'Prism'];
+var NAMES_ORG   = ['Drift', 'Ember', 'Thicket', 'Tide', 'Cinder', 'Glyph', 'Rune', 'Loom', 'Vein', 'Sprig'];
+var NAMES_DENSE = ['Citadel', 'Bastion', 'Hearth', 'Anvil', 'Keep', 'Cairn', 'Forge'];
+var NAMES_SPARSE = ['Mote', 'Spark', 'Wisp', 'Echo', 'Fern', 'Cinder', 'Reed'];
+
+function nameFor(rng, mode, density) {
+  var pool = density > 0.7 ? NAMES_DENSE : density < 0.35 ? NAMES_SPARSE :
+    (mode === 'dihedral' || mode === 'rot4') ? NAMES_SYM : NAMES_ORG;
+  return pool[Math.floor(rng() * pool.length)];
+}
+
+function growPolyomino(rng, size, mode, density) {
+  var half = Math.ceil(size / 2);
+  function inDomain(c, r) {
+    if (c < 0 || r < 0 || c >= size || r >= size) return false;
+    if (mode === 'vertical') return c < half;
+    if (mode === 'biaxial') return c < half && r < half;
+    if (mode === 'rot4') return r < half;
+    if (mode === 'diagonal' || mode === 'dihedral') return c < half && r < half && r <= c;
+    return true;
+  }
+  var domain = [];
+  for (var r = 0; r < size; r++) for (var c = 0; c < size; c++) if (inDomain(c, r)) domain.push([c, r]);
+  var target = Math.max(2, Math.round(domain.length * density));
+  var seedC = mode === 'rot4' ? 0 : size - 1, seedR = 0;
+  var seed = inDomain(seedC, seedR) ? [seedC, seedR] : domain[0];
+  var cells = {}; cells[seed[0] + ',' + seed[1]] = true;
+  var frontier = [seed];
+  while (Object.keys(cells).length < target && frontier.length) {
+    var idx = Math.floor(rng() * frontier.length);
+    var cur = frontier.splice(idx, 1)[0];
+    var dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+    for (var i = dirs.length - 1; i > 0; i--) {
+      var j = Math.floor(rng() * (i + 1)); var tmp = dirs[i]; dirs[i] = dirs[j]; dirs[j] = tmp;
+    }
+    for (var di = 0; di < dirs.length; di++) {
+      var nc = cur[0] + dirs[di][0], nr = cur[1] + dirs[di][1], key = nc + ',' + nr;
+      if (!inDomain(nc, nr) || cells[key]) continue;
+      if (rng() < 0.78) {
+        cells[key] = true; frontier.push([nc, nr]);
+        if (Object.keys(cells).length >= target) break;
+      } else { frontier.push(cur); break; }
+    }
+  }
+  return Object.keys(cells).map(function(k) { var p = k.split(','); return [+p[0], +p[1]]; });
+}
+
+function generateShape(seedKey) {
+  var rng = mulberry32(seedKey);
+  var size = 6 + Math.floor(rng() * 5);
+  var modes = ['vertical', 'biaxial', 'diagonal', 'rot4', 'dihedral'];
+  var modeIdx = Math.min(modes.length - 1, Math.floor(rng() * modes.length * (size > 8 ? 0.9 : 1.1)));
+  var mode = modes[modeIdx];
+  var density = 0.45 + rng() * 0.45;
+  var cells = [];
+  for (var attempt = 0; attempt < 6; attempt++) {
+    var domain = growPolyomino(rng, size, mode, density);
+    var full = expand(domain, size, mode);
+    if (isConnected(full) && full.length >= 6) { cells = full; break; }
+  }
+  if (!cells.length) {
+    cells = [];
+    for (var row = 0; row < size; row++) for (var col = 0; col < size; col++) cells.push([col, row]);
+  }
+  var fillFrac = cells.length / (size * size);
+  var name = nameFor(rng, mode, fillFrac);
+  return { name: name, size: size, cells: cells, cellCount: cells.length };
+}
+
+function generateWeek(date) {
+  var wi = isoWeek(date);
+  return Array.from({ length: 7 }, function(_, d) {
+    return generateShape('v1-' + wi.year + '-W' + wi.week + '-D' + d);
+  });
+}
+
+// World by day Mon=0..Sun=6
+var WORLDS_BY_DAY = ['forest', 'ocean', 'mountain', 'snow', 'forest', 'mountain', 'ocean'];
+var DAY_LABELS    = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+var WORLD_COLORS = {
+  forest:   { accent: '#8fd83a', fill: 'rgba(26,93,58,0.55)',   arrow: '#6ee7a7' },
+  ocean:    { accent: '#38bdf8', fill: 'rgba(30,58,138,0.55)',  arrow: '#38bdf8' },
+  mountain: { accent: '#f59e0b', fill: 'rgba(146,64,14,0.55)',  arrow: '#f59e0b' },
+  snow:     { accent: '#93c5fd', fill: 'rgba(49,46,129,0.55)',  arrow: '#93c5fd' }
+};
+
+function renderShapeSVG(shape, world, svgSize) {
+  svgSize = svgSize || 180;
+  var pad = 14;
+  var cellSize = (svgSize - 2 * pad) / shape.size;
+  var colors = WORLD_COLORS[world] || WORLD_COLORS.forest;
+
+  var rects = '';
+  var arrows = '';
+  shape.cells.forEach(function(cell) {
+    var c = cell[0], r = cell[1];
+    var x = pad + c * cellSize;
+    var y = pad + r * cellSize;
+    var rx = cellSize * 0.22;
+    rects += '<rect x="' + x.toFixed(2) + '" y="' + y.toFixed(2) + '" width="' + cellSize.toFixed(2) + '" height="' + cellSize.toFixed(2) + '" rx="' + rx.toFixed(2) + '" fill="' + colors.fill + '" stroke="' + colors.accent + '" stroke-width="0.6" stroke-opacity="0.5"/>';
+
+    // Arrow path
+    var cx = x + cellSize / 2;
+    var cy = y + cellSize / 2;
+    var ar = cellSize * 0.28;
+    var p1x = (cx - ar * 0.45).toFixed(2), p1y = cy.toFixed(2);
+    var p2x = (cx + ar * 0.35).toFixed(2), p2y = cy.toFixed(2);
+    var h1x = (cx + ar * 0.05).toFixed(2), h1y = (cy - ar * 0.35).toFixed(2);
+    var h2x = (cx + ar * 0.40).toFixed(2), h2y = cy.toFixed(2);
+    var h3x = (cx + ar * 0.05).toFixed(2), h3y = (cy + ar * 0.35).toFixed(2);
+    arrows += '<path d="M ' + p1x + ',' + p1y + ' L ' + p2x + ',' + p2y + ' M ' + h1x + ',' + h1y + ' L ' + h2x + ',' + h2y + ' L ' + h3x + ',' + h3y + '" stroke="' + colors.arrow + '" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.7"/>';
+  });
+
+  return '<svg viewBox="0 0 ' + svgSize + ' ' + svgSize + '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' + rects + arrows + '</svg>';
+}
+
+// ─── RENDER TODAY CARD ───
+function renderTodayCard() {
+  var today = new Date();
+  var dayIdx = todayDayIndex(today);
+  var week = generateWeek(today);
+  var shape = week[dayIdx];
+  var world = WORLDS_BY_DAY[dayIdx];
+  var colors = WORLD_COLORS[world];
+
+  // Badge
+  var badge = document.getElementById('todayBadge');
+  badge.textContent = world.charAt(0).toUpperCase() + world.slice(1);
+  badge.className = 'daily-card__badge daily-card__badge--' + world;
+
+  // Name
+  document.getElementById('todayName').textContent = shape.name;
+
+  // Date
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var d = today;
+  document.getElementById('todayDate').textContent = DAY_LABELS[dayIdx] + ', ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+
+  // SVG
+  document.getElementById('todaySvgWrap').innerHTML = renderShapeSVG(shape, world, 180);
+
+  // Meta
+  document.getElementById('todayMeta').textContent = shape.size + '×' + shape.size + ' · ' + shape.cellCount + ' cells';
+}
+
+// ─── RENDER WEEK GRID ───
+function renderWeekGrid() {
+  var today = new Date();
+  var todayIdx = todayDayIndex(today);
+  var week = generateWeek(today);
+  var grid = document.getElementById('weekGrid');
+  var html = '';
+  for (var d = 0; d < 7; d++) {
+    var shape = week[d];
+    var world = WORLDS_BY_DAY[d];
+    var isToday = d === todayIdx;
+    html += '<div class="week-card' + (isToday ? ' today' : '') + '" aria-label="' + DAY_LABELS[d] + ': ' + shape.name + '">';
+    html += '<div class="week-card__day">' + DAY_LABELS[d] + '</div>';
+    html += '<div class="week-card__world week-card__world--' + world + '">' + world.charAt(0).toUpperCase() + world.slice(1) + '</div>';
+    html += '<div class="week-card__svg-wrap">' + renderShapeSVG(shape, world, 100) + '</div>';
+    html += '<div class="week-card__name">' + shape.name + '</div>';
+    html += '<div class="week-card__size">' + shape.size + '×' + shape.size + ' · ' + shape.cellCount + ' cells</div>';
+    html += '<div class="week-card__today-badge">Today</div>';
+    html += '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+// ─── DAILY APP PROMO MODAL ───
+(function() {
+  var modal = document.getElementById('dailyModal');
+  var modalClose = document.getElementById('modalClose');
+  var VISITS_KEY = 'te-daily-visits';
+  var DISMISSED_KEY = 'te-daily-app-modal-dismissed-on';
+  var todayStr = new Date().toISOString().slice(0, 10);
+
+  // Track visits
+  var visits = JSON.parse(localStorage.getItem(VISITS_KEY) || '[]');
+  if (!visits.includes(todayStr)) {
+    visits.push(todayStr);
+    // Keep only last 7 days
+    if (visits.length > 7) visits = visits.slice(-7);
+    localStorage.setItem(VISITS_KEY, JSON.stringify(visits));
+  }
+
+  // Check if already dismissed today
+  var dismissedOn = localStorage.getItem(DISMISSED_KEY);
+  if (dismissedOn === todayStr) return;
+
+  // Check if 2+ consecutive days
+  function hasConsecutiveDays(dates) {
+    if (dates.length < 2) return false;
+    var sorted = dates.slice().sort();
+    for (var i = sorted.length - 1; i >= 1; i--) {
+      var a = new Date(sorted[i - 1]);
+      var b = new Date(sorted[i]);
+      var diff = (b - a) / 86400000;
+      if (diff === 1) return true;
+    }
+    return false;
+  }
+
+  if (!hasConsecutiveDays(visits)) return;
+
+  // Show modal after 1.4s
+  setTimeout(function() {
+    modal.classList.add('open');
+    modal.querySelector('.modal').focus();
+  }, 1400);
+
+  function dismissModal() {
+    modal.classList.remove('open');
+    localStorage.setItem(DISMISSED_KEY, todayStr);
+  }
+
+  modalClose.addEventListener('click', dismissModal);
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) dismissModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) dismissModal();
+  });
+})();
+
+// ─── INIT ───
+renderTodayCard();
+renderWeekGrid();
+</script>
+
+</body>
+</html>

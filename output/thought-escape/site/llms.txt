@@ -53,6 +53,9 @@ Ananya Banerjee — solo builder, software engineer, and creator. Documents the 
 ## Key pages
 
 - Home: https://thought-escape.com/
+- Daily Puzzle (Shape of the Day): https://thought-escape.com/daily.html
+- FAQ: https://thought-escape.com/faq.html
+- Strategy Guide: https://thought-escape.com/guide/strategy-tips.html
 - Support: https://thought-escape.com/support.html
 - Privacy policy: https://thought-escape.com/privacy-policy.html
 - Terms of use: https://thought-escape.com/terms.html
