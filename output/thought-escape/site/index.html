@@ -1805,46 +1805,58 @@
   }
   .play__win-screen.show { opacity: 1; pointer-events: all; }
 
-  /* Chest bounce */
-  .play__chest-anim { width: 68px; height: 68px; margin: 0 auto 2px; opacity: 0; }
-  .play__win-screen.show .play__chest-anim {
-    animation: chest-bounce 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  /* Victory stars */
+  .play__win-stars {
+    width: 140px; max-width: 70%; object-fit: contain;
+    margin: 0 auto 2px; opacity: 0;
   }
-  @keyframes chest-bounce {
-    0%   { transform: scale(0) rotate(-10deg); opacity: 0; }
-    55%  { transform: scale(1.18) rotate(4deg); opacity: 1; }
-    78%  { transform: scale(0.94) rotate(-2deg); }
-    100% { transform: scale(1) rotate(0); opacity: 1; }
-  }
+  .play__win-screen.show .play__win-stars { animation: pop-in 0.55s cubic-bezier(0.22,1,0.36,1) 0.05s both; }
 
-  /* Points pop */
-  .play__points-pop {
-    font-size: 26px; font-weight: 800;
-    color: var(--gold);
-    font-family: var(--serif);
-    letter-spacing: 0.01em;
-    text-shadow: 0 2px 14px rgba(212, 175, 55, 0.6);
-    opacity: 0;
-  }
   .play__win-title {
     font-family: var(--serif);
-    font-size: 17px;
+    font-size: 16px;
     color: var(--text);
     letter-spacing: 0.01em;
     opacity: 0;
   }
   .play__win-sub {
     color: var(--text-soft);
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.5;
     opacity: 0;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
-  .play__win-cta { opacity: 0; }
-  .play__win-screen.show .play__points-pop { animation: pop-in 0.5s cubic-bezier(0.22,1,0.36,1) 0.32s both; }
-  .play__win-screen.show .play__win-title  { animation: pop-in 0.45s cubic-bezier(0.22,1,0.36,1) 0.46s both; }
-  .play__win-screen.show .play__win-sub    { animation: pop-in 0.45s cubic-bezier(0.22,1,0.36,1) 0.56s both; }
-  .play__win-screen.show .play__win-cta    { animation: pop-in 0.45s cubic-bezier(0.22,1,0.36,1) 0.68s both; }
+  .play__win-screen.show .play__win-title { animation: pop-in 0.45s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
+  .play__win-screen.show .play__win-sub   { animation: pop-in 0.45s cubic-bezier(0.22,1,0.36,1) 0.3s both; }
+
+  /* Reward rows */
+  .play__win-rewards {
+    display: flex; flex-direction: column; align-items: stretch; gap: 5px;
+    width: 100%; padding: 8px 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,175,55,0.16);
+    border-radius: 10px;
+    margin: 4px 0;
+    opacity: 0;
+  }
+  .play__win-screen.show .play__win-rewards { animation: pop-in 0.45s cubic-bezier(0.22,1,0.36,1) 0.38s both; }
+  .play__win-reward { display: flex; align-items: center; gap: 6px; }
+  .play__win-reward-icon { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; }
+  .play__win-reward-amount { color: var(--gold); font-weight: 700; font-size: 13px; min-width: 30px; }
+  .play__win-reward-label { color: var(--text-soft); font-size: 11px; }
+
+  /* Win buttons */
+  .play__win-btns {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    width: 100%; opacity: 0;
+  }
+  .play__win-screen.show .play__win-btns { animation: pop-in 0.45s cubic-bezier(0.22,1,0.36,1) 0.52s both; }
+  .play__win-again { width: 100%; }
+  .play__win-download {
+    font-size: 11px; color: var(--gold-soft); text-decoration: none;
+    letter-spacing: 0.03em; opacity: 0.75;
+  }
+  .play__win-download:hover { opacity: 1; color: var(--gold); }
   @keyframes pop-in {
     0%   { transform: translateY(10px) scale(0.88); opacity: 0; }
     100% { transform: translateY(0) scale(1); opacity: 1; }
@@ -2502,28 +2514,29 @@
 
             <!-- Win screen — overlays full phone when level clears -->
             <div class="play__win-screen" id="playWinScreen" role="status" aria-live="polite">
-              <div class="play__chest-anim" id="playChest">
-                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="68" height="68">
-                  <rect x="8" y="34" width="48" height="22" rx="4" fill="#8B5A1A" stroke="#5C3800" stroke-width="1.5"/>
-                  <path d="M8,34 Q8,14 32,14 Q56,14 56,34 Z" fill="#A5701A" stroke="#5C3800" stroke-width="1.5"/>
-                  <rect x="8" y="31.5" width="48" height="5" rx="1" fill="#D4AF37" stroke="#907000" stroke-width="0.8"/>
-                  <rect x="25" y="29" width="14" height="10" rx="3" fill="#D4AF37" stroke="#907000" stroke-width="1"/>
-                  <circle cx="32" cy="33" r="2.2" fill="#5C3800"/>
-                  <path d="M31,34.5 L31,37.5 L33,37.5 L33,34.5" fill="#5C3800"/>
-                  <rect x="8" y="34" width="5" height="22" rx="2" fill="#D4AF37" opacity="0.35"/>
-                  <rect x="51" y="34" width="5" height="22" rx="2" fill="#D4AF37" opacity="0.35"/>
-                  <line x1="8" y1="45" x2="56" y2="45" stroke="#D4AF37" stroke-width="1.2" opacity="0.4"/>
-                  <line x1="20" y1="18" x2="16" y2="31" stroke="#C07820" stroke-width="0.8" opacity="0.35"/>
-                  <line x1="44" y1="18" x2="48" y2="31" stroke="#C07820" stroke-width="0.8" opacity="0.35"/>
-                  <text x="2" y="23" fill="#F0C97C" font-size="11" opacity="0.85">✦</text>
-                  <text x="50" y="20" fill="#F0C97C" font-size="8" opacity="0.7">✧</text>
-                  <text x="26" y="9" fill="#FFD700" font-size="7" opacity="0.8">✦</text>
-                </svg>
-              </div>
-              <div class="play__points-pop">+<span id="playPointsNum">0</span>&thinsp;pts</div>
+              <img class="play__win-stars" id="playWinStars"
+                   src="game-assets/victory-stars/forest.png"
+                   alt="Level cleared" width="140" height="56">
               <h4 class="play__win-title">Level Cleared!</h4>
-              <p class="play__win-sub" id="playWinMsg">The board cracked. The chest is yours.</p>
-              <button type="button" class="play__cta play__win-cta" data-scroll="#notify">Join the waitlist</button>
+              <p class="play__win-sub" id="playWinMsg">Board cleared in 0 taps.</p>
+              <div class="play__win-rewards">
+                <div class="play__win-reward">
+                  <img class="play__win-reward-icon" id="playWinCurrencyIcon"
+                       src="game-assets/rewards/spirit-seeds.png" alt="" width="20" height="20">
+                  <span class="play__win-reward-amount" id="playWinCurrencyAmt">+120</span>
+                  <span class="play__win-reward-label" id="playWinCurrencyLabel">Spirit Seeds</span>
+                </div>
+                <div class="play__win-reward">
+                  <img class="play__win-reward-icon"
+                       src="game-assets/rewards/escape-shards.png" alt="" width="20" height="20">
+                  <span class="play__win-reward-amount" id="playWinShardsAmt">+15</span>
+                  <span class="play__win-reward-label">Escape Shards</span>
+                </div>
+              </div>
+              <div class="play__win-btns">
+                <button type="button" class="play__cta play__win-again" id="playWinAgain">Play Again</button>
+                <a href="#download" class="play__win-download" data-scroll="#download">Download Free →</a>
+              </div>
             </div>
           </div>
         </div>

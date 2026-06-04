@@ -237,7 +237,7 @@
       escape_0:'escape_0.m4a', escape_1:'escape_1.m4a', escape_2:'escape_2.m4a',
       escape_3:'escape_3.m4a', escape_4:'escape_4.m4a', escape_5:'escape_5.m4a',
       escape_6:'escape_6.m4a', escape_7:'escape_7.m4a',
-      blocked:'blocked.m4a', board_crack:'board_crack.m4a', victory:'victory_new.m4a'
+      blocked:'blocked.m4a', board_crack:'board_crack.m4a', victory:'victory_new.m4a', victory_perfect:'victory_perfect.m4a'
     };
     Object.keys(files).forEach(function (key) {
       try {
@@ -385,8 +385,13 @@
   var tapsEl = document.getElementById('playTaps');
   var winScreenEl = document.getElementById('playWinScreen');
   var crackEl = document.getElementById('playCrack');
-  var pointsNumEl = document.getElementById('playPointsNum');
   var winMsgEl = document.getElementById('playWinMsg');
+  var winStarsEl = document.getElementById('playWinStars');
+  var winCurrencyIconEl = document.getElementById('playWinCurrencyIcon');
+  var winCurrencyAmtEl = document.getElementById('playWinCurrencyAmt');
+  var winCurrencyLabelEl = document.getElementById('playWinCurrencyLabel');
+  var winShardsAmtEl = document.getElementById('playWinShardsAmt');
+  var winAgainBtn = document.getElementById('playWinAgain');
   var resetBtn = document.getElementById('playReset');
   var themeNameEl = document.getElementById('themeName');
   var themeSubHintEl = document.getElementById('themeSubHint');
@@ -403,6 +408,7 @@
 
   var tiles = [];
   var taps = 0;
+  var blockedTaps = 0;
   var isResetting = false;
 
   function isTappable(tile) {
@@ -534,10 +540,10 @@
 
   // ─── Crack animation config per world ───
   var CRACK_CFG = {
-    forest:   { glow: 'rgba(35,200,70,0.96)',   dust: ['rgba(130,245,135,0.95)','rgba(255,255,255,0.78)','rgba(45,150,70,0.72)'],    particle: '🍃', currency: 'Spirit Seeds',   amount: 120 },
-    ocean:    { glow: 'rgba(40,150,235,0.96)',   dust: ['rgba(120,220,255,0.95)','rgba(255,255,255,0.9)','rgba(42,140,235,0.7)'],    particle: '🫧', currency: 'Moon Pearls',    amount: 100 },
-    mountain: { glow: 'rgba(230,120,30,0.96)',   dust: ['rgba(255,198,112,0.95)','rgba(255,255,255,0.78)','rgba(165,85,30,0.72)'],   particle: '✨', currency: 'Sun Runes',     amount: 80  },
-    snow:     { glow: 'rgba(165,190,250,0.96)',  dust: ['rgba(215,235,255,0.98)','rgba(255,255,255,0.95)','rgba(145,175,245,0.72)'], particle: '❄️', currency: 'Aurora Shards', amount: 90  }
+    forest:   { glow: 'rgba(35,200,70,0.96)',   dust: ['rgba(130,245,135,0.95)','rgba(255,255,255,0.78)','rgba(45,150,70,0.72)'],    particle: '🍃', currency: 'Spirit Seeds',   rewardImg: 'spirit-seeds.png',   amount: 120 },
+    ocean:    { glow: 'rgba(40,150,235,0.96)',   dust: ['rgba(120,220,255,0.95)','rgba(255,255,255,0.9)','rgba(42,140,235,0.7)'],    particle: '🫧', currency: 'Moon Pearls',    rewardImg: 'moon-pearls.png',    amount: 100 },
+    mountain: { glow: 'rgba(230,120,30,0.96)',   dust: ['rgba(255,198,112,0.95)','rgba(255,255,255,0.78)','rgba(165,85,30,0.72)'],   particle: '✨', currency: 'Sun Runes',     rewardImg: 'sun-runes.png',      amount: 80  },
+    snow:     { glow: 'rgba(165,190,250,0.96)',  dust: ['rgba(215,235,255,0.98)','rgba(255,255,255,0.95)','rgba(145,175,245,0.72)'], particle: '❄️', currency: 'Aurora Shards', rewardImg: 'aurora-shards.png',  amount: 90  }
   };
 
   function _buildCrackPath(svg, x1, y1, x2, y2, color, strokeWidth, opacityVal) {
@@ -665,15 +671,66 @@
     }
   }
 
+  function _spawnRewardTokens(container, bLeft, bTop, bW, bH, cfg, cxPx, cyPx) {
+    if (reducedMotion) return;
+    var srcs = [
+      'game-assets/rewards/' + cfg.rewardImg,
+      'game-assets/rewards/' + cfg.rewardImg,
+      'game-assets/rewards/' + cfg.rewardImg,
+      'game-assets/rewards/escape-shards.png',
+      'game-assets/rewards/escape-shards.png',
+    ];
+    srcs.forEach(function (src, idx) {
+      setTimeout(function () {
+        var el = document.createElement('img');
+        el.src = src;
+        var sz = 22 + Math.random() * 8;
+        var startX = bLeft + 10 + Math.random() * (bW - 20);
+        var startY = bTop + 10 + Math.random() * (bH - 20);
+        el.style.cssText = [
+          'position:absolute;width:' + sz + 'px;height:' + sz + 'px;object-fit:contain;',
+          'left:' + startX + 'px;top:' + startY + 'px;',
+          'pointer-events:none;z-index:13;',
+        ].join('');
+        container.appendChild(el);
+        var dur = 460 + Math.random() * 100;
+        var startT = performance.now();
+        var destX = cxPx - sz / 2;
+        var destY = cyPx - sz / 2;
+        var arcH = -(50 + Math.random() * 40);
+        function frame(now) {
+          var t = Math.min((now - startT) / dur, 1);
+          var ease = 1 - Math.pow(1 - t, 2);
+          var x = startX + (destX - startX) * ease;
+          var arc = arcH * Math.sin(Math.PI * t);
+          var y = startY + (destY - startY) * ease + arc;
+          var scale = 1 - t * 0.45;
+          el.style.left = x + 'px';
+          el.style.top = y + 'px';
+          el.style.transform = 'scale(' + scale + ')';
+          el.style.opacity = t > 0.8 ? String(1 - (t - 0.8) / 0.2) : '1';
+          if (t < 1) requestAnimationFrame(frame);
+          else el.remove();
+        }
+        requestAnimationFrame(frame);
+      }, idx * 75);
+    });
+  }
+
   function triggerWin() {
     vibrate([20, 60, 30]);
     playSound('board_crack');
     setHint('✦ Level cleared!', 'win');
 
     if (reducedMotion || !crackEl) {
-      var ptsR = Math.max(80, 500 - Math.max(0, taps - THEMES[currentTheme].level.length) * 15);
-      if (pointsNumEl) pointsNumEl.textContent = ptsR;
+      var cfg0 = CRACK_CFG[currentTheme] || CRACK_CFG.forest;
+      var shardsR = Math.max(5, 15 - Math.max(0, taps - THEMES[currentTheme].level.length));
       if (winMsgEl) winMsgEl.textContent = 'Board cleared in ' + taps + ' tap' + (taps === 1 ? '' : 's') + '.';
+      if (winStarsEl) winStarsEl.src = 'game-assets/victory-stars/' + currentTheme + '.png';
+      if (winCurrencyIconEl) winCurrencyIconEl.src = 'game-assets/rewards/' + cfg0.rewardImg;
+      if (winCurrencyAmtEl) winCurrencyAmtEl.textContent = '+' + cfg0.amount;
+      if (winCurrencyLabelEl) winCurrencyLabelEl.textContent = cfg0.currency;
+      if (winShardsAmtEl) winShardsAmtEl.textContent = '+' + shardsR;
       if (winScreenEl) winScreenEl.classList.add('show');
       return;
     }
@@ -831,10 +888,17 @@
 
       _spawnAmbientParticles(crackEl, cfg);
 
+      // Reward tokens fly to chest (80ms after chest appears = 1200ms total, land ~1700ms)
+      setTimeout(function () {
+        var cxPx = screenRect.width / 2;
+        var cyPx = screenRect.height / 2;
+        _spawnRewardTokens(crackEl, bLeft, bTop, bW, bH, cfg, cxPx, cyPx);
+      }, 80);
+
       // Chest opens (600ms after chest appears = 1720ms total)
       setTimeout(function () {
         chestImg.src = 'game-assets/chests/chest-' + currentTheme + '-open.png';
-        playSound('victory', 0.85);
+        playSound(blockedTaps === 0 ? 'victory_perfect' : 'victory', 0.85);
         chestWrap.style.transition = 'transform 0.18s cubic-bezier(0.22,1,0.36,1)';
         chestWrap.style.transform = 'translate(-50%,-50%) scale(1.18) rotate(2deg)';
         setTimeout(function () {
@@ -927,9 +991,13 @@
 
     // ── Phase 9: Complete → win screen (3400ms) ──
     setTimeout(function () {
-      var ptsF = Math.max(80, 500 - Math.max(0, taps - THEMES[currentTheme].level.length) * 15);
-      if (pointsNumEl) pointsNumEl.textContent = ptsF;
+      var shardsF = Math.max(5, 15 - Math.max(0, taps - THEMES[currentTheme].level.length));
       if (winMsgEl) winMsgEl.textContent = 'Board cleared in ' + taps + ' tap' + (taps === 1 ? '' : 's') + '.';
+      if (winStarsEl) winStarsEl.src = 'game-assets/victory-stars/' + currentTheme + '.png';
+      if (winCurrencyIconEl) winCurrencyIconEl.src = 'game-assets/rewards/' + cfg.rewardImg;
+      if (winCurrencyAmtEl) winCurrencyAmtEl.textContent = '+' + cfg.amount;
+      if (winCurrencyLabelEl) winCurrencyLabelEl.textContent = cfg.currency;
+      if (winShardsAmtEl) winShardsAmtEl.textContent = '+' + shardsF;
 
       crackEl.style.transition = 'opacity 0.5s ease';
       crackEl.style.opacity = '0';
@@ -988,6 +1056,7 @@
         }
       }, 480);
     } else {
+      blockedTaps++;
       tileEl.classList.add('is-blocked');
       board.classList.add('shake');
       vibrate([22, 40, 22]);
@@ -1079,6 +1148,7 @@
     isResetting = true;
     tiles = THEMES[currentTheme].level.map(function (t) { return Object.assign({}, t, { escaped: false }); });
     taps = 0;
+    blockedTaps = 0;
     history = [];
     armedTool = null;
     toolUses = Object.assign({}, TOOL_INITIAL);
@@ -1145,4 +1215,5 @@
   // Initialize: apply persisted theme to both site and play
   setTheme(currentTheme);
   if (resetBtn) resetBtn.addEventListener('click', resetPuzzle);
+  if (winAgainBtn) winAgainBtn.addEventListener('click', resetPuzzle);
 })();
