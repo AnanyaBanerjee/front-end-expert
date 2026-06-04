@@ -227,6 +227,7 @@
   // ─────────────── PLAYABLE MINI-LEVEL ───────────────
   var board = document.getElementById('playBoard');
   if (!board) return;
+  var boardWrap = board.parentElement;
 
   // ─── Sound system ───
   var soundMuted = false;
@@ -569,6 +570,42 @@
     requestAnimationFrame(function () { pathEl.style.strokeDashoffset = '0'; });
   }
 
+  function _makeWanderingPath(ox, oy, bW, bH, dir) {
+    var targetY = dir < 0 ? 0 : bH;
+    var steps = [0.18, 0.38, 0.56, 0.76, 1.0];
+    var pts = [{x: ox, y: oy}];
+    steps.forEach(function (t) {
+      var y = oy + (targetY - oy) * t;
+      var wander = (Math.random() - 0.5) * bW * Math.max(0.04, 0.14 - t * 0.04);
+      pts.push({x: Math.max(4, Math.min(bW - 4, ox + wander)), y: y});
+    });
+    var d = pts.map(function (p, i) {
+      return (i === 0 ? 'M ' : 'L ') + p.x.toFixed(1) + ' ' + p.y.toFixed(1);
+    }).join(' ');
+    var len = 0;
+    for (var i = 1; i < pts.length; i++) {
+      len += Math.hypot(pts[i].x - pts[i-1].x, pts[i].y - pts[i-1].y);
+    }
+    return {d: d, len: len};
+  }
+
+  function _svgPathEl(svg, d, stroke, sw, opacity, dashLen) {
+    var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('d', d);
+    p.setAttribute('stroke', stroke);
+    p.setAttribute('stroke-width', String(sw));
+    p.setAttribute('fill', 'none');
+    p.setAttribute('opacity', String(opacity));
+    p.setAttribute('stroke-linecap', 'round');
+    p.setAttribute('stroke-linejoin', 'round');
+    if (dashLen !== undefined) {
+      p.style.strokeDasharray = String(dashLen);
+      p.style.strokeDashoffset = String(dashLen);
+    }
+    svg.appendChild(p);
+    return p;
+  }
+
   function _spawnDust(container, bLeft, bTop, bW, bH, cfg) {
     for (var i = 0; i < 22; i++) {
       (function () {
@@ -803,7 +840,11 @@
     var cfg = CRACK_CFG[currentTheme] || CRACK_CFG.forest;
     var screenEl = crackEl.parentElement;
 
-    // Clear any previous run
+    // Clear any previous run (restore board if a prior crack moved it)
+    if (boardWrap && board.parentElement !== boardWrap) {
+      board.removeAttribute('style');
+      boardWrap.appendChild(board);
+    }
     crackEl.innerHTML = '';
     crackEl.style.display = 'block';
     crackEl.style.opacity = '1';
@@ -829,59 +870,85 @@
       }, 150);
     }, 150);
 
-    // ── Hairline SVG (80ms) ──
-    var hairSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    hairSvg.setAttribute('viewBox', '0 0 ' + bW + ' ' + bH);
-    hairSvg.style.cssText = 'position:absolute;left:' + bLeft + 'px;top:' + bTop + 'px;width:' + bW + 'px;height:' + bH + 'px;pointer-events:none;';
-    var hairDefs = [
-      [cx, cy, cx * 0.2, cy * 0.15],
-      [cx, cy, cx * 1.8, cy * 0.2],
-      [cx, cy, cx * 0.25, cy * 1.82],
-      [cx, cy, cx * 1.75, cy * 1.85],
-    ];
-    var hairEls = hairDefs.map(function (d) {
-      return _buildCrackPath(hairSvg, d[0], d[1], d[2], d[3], cfg.glow, 0.8, 0.65);
-    });
-    crackEl.appendChild(hairSvg);
+    // Crack origin — near center but slightly randomised, like the real game
+    var crackOx = Math.max(bW * 0.18, Math.min(bW * 0.82, cx + (Math.random() - 0.5) * bW * 0.16));
+    var crackOy = Math.max(bH * 0.15, Math.min(bH * 0.85, cy + (Math.random() - 0.5) * bH * 0.16));
 
-    setTimeout(function () {
-      hairEls.forEach(function (p, i) {
-        setTimeout(function () { _animateDash(p, 220); }, i * 25);
-      });
-    }, 80);
-
-    // ── Main crack SVG (330ms) ──
+    // ── Hairlines: 7 short lines radiating from crack origin (80ms) ──
     var crackSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     crackSvg.setAttribute('viewBox', '0 0 ' + bW + ' ' + bH);
     crackSvg.style.cssText = 'position:absolute;left:' + bLeft + 'px;top:' + bTop + 'px;width:' + bW + 'px;height:' + bH + 'px;pointer-events:none;';
 
-    // Glow layers (wide stroke, low opacity)
-    var upGlow   = _buildCrackPath(crackSvg, cx, cy, cx, -4,      cfg.glow, 12, 0.35);
-    var downGlow = _buildCrackPath(crackSvg, cx, cy, cx, bH + 4,  cfg.glow, 12, 0.35);
-    // Core crack lines
-    var upPath   = _buildCrackPath(crackSvg, cx, cy, cx, -4,      cfg.glow, 3,  0.95);
-    var downPath = _buildCrackPath(crackSvg, cx, cy, cx, bH + 4,  cfg.glow, 3,  0.95);
-    // Branches
-    var branches = [
-      _buildCrackPath(crackSvg, cx, cy * 0.65, cx - bW * 0.28, cy * 0.12, cfg.glow, 1.5, 0.65),
-      _buildCrackPath(crackSvg, cx, cy * 0.65, cx + bW * 0.30, cy * 0.18, cfg.glow, 1.5, 0.65),
-      _buildCrackPath(crackSvg, cx, cy * 1.35, cx - bW * 0.30, cy * 1.88, cfg.glow, 1.5, 0.65),
-      _buildCrackPath(crackSvg, cx, cy * 1.35, cx + bW * 0.28, cy * 1.82, cfg.glow, 1.5, 0.65),
-      _buildCrackPath(crackSvg, cx, cy,        cx - bW * 0.40, cy - cy * 0.3, cfg.glow, 1,  0.45),
-      _buildCrackPath(crackSvg, cx, cy,        cx + bW * 0.38, cy + cy * 0.35, cfg.glow, 1, 0.45),
-    ];
+    var hairLen = bW * 0.35;
+    var hairEls = [];
+    for (var hi = 0; hi < 7; hi++) {
+      var hSide = Math.random() > 0.5 ? 1 : -1;
+      var hsx = Math.max(4, Math.min(bW-4, crackOx + (Math.random()-0.5)*bW*0.32));
+      var hsy = Math.max(4, Math.min(bH-4, crackOy + (Math.random()-0.5)*bH*0.45));
+      var hLen = bW * (0.045 + Math.random() * 0.08);
+      var hex2 = Math.max(4, Math.min(bW-4, hsx + hSide * hLen));
+      var hey2 = Math.max(4, Math.min(bH-4, hsy + (Math.random()-0.5) * hLen));
+      var hd = 'M '+hsx.toFixed(1)+' '+hsy.toFixed(1)+' L '+hex2.toFixed(1)+' '+hey2.toFixed(1);
+      hairEls.push(_svgPathEl(crackSvg, hd, 'white', 1.1, 0.32, hairLen));
+    }
+
+    // ── Main crack: two multi-segment wandering paths up and down ──
+    var upGeom   = _makeWanderingPath(crackOx, crackOy, bW, bH, -1);
+    var downGeom = _makeWanderingPath(crackOx, crackOy, bW, bH,  1);
+    var mainLen  = Math.max(upGeom.len, downGeom.len, bH);
+
+    // Wide white glow behind crack (matches real game strokeWidth 40, opacity 0.17)
+    _svgPathEl(crackSvg, upGeom.d,   'white', 40, 0.17, mainLen);
+    _svgPathEl(crackSvg, downGeom.d, 'white', 40, 0.17, mainLen);
+    // Medium white bloom (strokeWidth 16, opacity 0.18)
+    var upBloom   = _svgPathEl(crackSvg, upGeom.d,   'white', 16, 0.18, mainLen);
+    var downBloom = _svgPathEl(crackSvg, downGeom.d, 'white', 16, 0.18, mainLen);
+    // Core colored crack line (strokeWidth 3.2)
+    var upCore   = _svgPathEl(crackSvg, upGeom.d,   cfg.glow, 3.2, 1.0, mainLen);
+    var downCore = _svgPathEl(crackSvg, downGeom.d, cfg.glow, 3.2, 1.0, mainLen);
+
+    // 6 branch cracks radiating diagonally from near origin
+    var branchEls = [];
+    for (var bi = 0; bi < 6; bi++) {
+      var bvSign = bi < 3 ? -1 : 1;
+      var bside  = bi % 2 === 0 ? -1 : 1;
+      var bsx = Math.max(4, Math.min(bW-4, crackOx + (Math.random()-0.5)*bW*0.12));
+      var bsy = Math.max(4, Math.min(bH-4, crackOy + bvSign*bH*(0.08+Math.random()*0.26)));
+      var blen = bW * (0.1 + Math.random() * 0.16);
+      var bmx = Math.max(4, Math.min(bW-4, bsx + bside*blen*0.45));
+      var bmy = Math.max(4, Math.min(bH-4, bsy + bvSign*blen*0.18));
+      var bex = Math.max(4, Math.min(bW-4, bsx + bside*blen));
+      var bey = Math.max(4, Math.min(bH-4, bsy + bvSign*blen*(0.35+Math.random()*0.5)));
+      var bd = 'M '+bsx.toFixed(1)+' '+bsy.toFixed(1)+' L '+bmx.toFixed(1)+' '+bmy.toFixed(1)+' L '+bex.toFixed(1)+' '+bey.toFixed(1);
+      var bpLen = Math.hypot(bmx-bsx,bmy-bsy) + Math.hypot(bex-bmx,bey-bmy);
+      var bstroke = bi % 2 === 0 ? 'white' : cfg.glow;
+      branchEls.push({el: _svgPathEl(crackSvg, bd, bstroke, 1.7, 0.62, bpLen), delay: bi*55 + Math.random()*45});
+    }
+
     crackEl.appendChild(crackSvg);
 
+    // Draw hairlines in
     setTimeout(function () {
-      _animateDash(upPath, 250);
-      _animateDash(upGlow, 260);
-      _animateDash(downPath, 350);
-      _animateDash(downGlow, 360);
+      hairEls.forEach(function (p, i) {
+        setTimeout(function () { _animateDash(p, 230); }, i * 25);
+      });
+    }, 80);
+
+    // Draw main crack (glow/bloom/core all together)
+    setTimeout(function () {
+      [upBloom, upCore].forEach(function (el) { _animateDash(el, 250); });
+      [downBloom, downCore].forEach(function (el) { _animateDash(el, 350); });
+      // Fade in the wide glow layers (they're children of crackSvg, already have dashoffset set)
+      crackSvg.querySelectorAll('path').forEach(function (p) {
+        if (parseFloat(p.getAttribute('stroke-width') || '0') >= 16 && p.style.strokeDashoffset !== '0') {
+          _animateDash(p, 400);
+        }
+      });
     }, 330);
 
     setTimeout(function () {
-      branches.forEach(function (b, i) {
-        setTimeout(function () { _animateDash(b, 200); }, i * 38);
+      branchEls.forEach(function (b) {
+        setTimeout(function () { _animateDash(b.el, 220); }, b.delay);
       });
     }, 480);
 
@@ -906,48 +973,82 @@
       _spawnDust(crackEl, bLeft, bTop, bW, bH, cfg);
     }, 610);
 
-    // ── Phase 4: Board splits left/right (760ms) ──
+    // ── Phase 4: Board splits left/right — tiles visible in each half (760ms) ──
     setTimeout(function () {
-      board.style.opacity = '0';
+      // splitX near crack origin x (like real game's splitX = origin.x ± small)
+      var splitX = Math.max(Math.round(bW * 0.30), Math.min(Math.round(bW * 0.70),
+        Math.round(crackOx + (Math.random() - 0.5) * bW * 0.05)));
+      var tiltDeg = (4 + Math.random() * 4).toFixed(2);
+      var SPLIT_PX = 78; // matches real game phone value
 
-      var leftPanel  = _createSplitPanel(bLeft,          bTop, bW / 2, bH, 'left',  cfg);
-      var rightPanel = _createSplitPanel(bLeft + bW / 2, bTop, bW / 2, bH, 'right', cfg);
-      crackEl.appendChild(leftPanel);
-      crackEl.appendChild(rightPanel);
+      // Left clip — overflow:hidden reveals only left side of board
+      var leftClip = document.createElement('div');
+      leftClip.style.cssText = [
+        'position:absolute;overflow:hidden;pointer-events:none;',
+        'left:' + bLeft + 'px;top:' + bTop + 'px;',
+        'width:' + splitX + 'px;height:' + bH + 'px;',
+      ].join('');
 
+      // Right clip — overflow:hidden reveals only right side (board clone shifted left)
+      var rightClip = document.createElement('div');
+      rightClip.style.cssText = [
+        'position:absolute;overflow:hidden;pointer-events:none;',
+        'left:' + (bLeft + splitX) + 'px;top:' + bTop + 'px;',
+        'width:' + (bW - splitX) + 'px;height:' + bH + 'px;',
+      ].join('');
+
+      // Move the real board into leftClip
+      board.style.cssText = 'position:absolute;left:0;top:0;width:' + bW + 'px;height:' + bH + 'px;opacity:1;transition:none;pointer-events:none;';
+      leftClip.appendChild(board);
+
+      // Clone board into rightClip, shifted left by splitX to expose the right half
+      var boardClone = board.cloneNode(true);
+      boardClone.style.cssText = 'position:absolute;left:-' + splitX + 'px;top:0;width:' + bW + 'px;height:' + bH + 'px;pointer-events:none;';
+      rightClip.appendChild(boardClone);
+
+      crackEl.appendChild(leftClip);
+      crackEl.appendChild(rightClip);
+
+      // Animate: perspective + translateX + translateY + rotate + rotateX + scale
+      // matches real game: { perspective:900 } + splitLeft/Right + tilt + pitch + panelScale
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          var splitPx = Math.round(bW * 0.34);
-          leftPanel.style.transition  = 'transform 0.56s cubic-bezier(0.4,0,0.2,1)';
-          rightPanel.style.transition = 'transform 0.56s cubic-bezier(0.4,0,0.2,1)';
-          leftPanel.style.transform   = 'translateX(-' + splitPx + 'px) rotateY(10deg)';
-          rightPanel.style.transform  = 'translateX('  + splitPx + 'px) rotateY(-10deg)';
+          var dur = '0.56s cubic-bezier(0.4,0,0.2,1)';
+          leftClip.style.transition  = 'transform ' + dur;
+          rightClip.style.transition = 'transform ' + dur;
+          leftClip.style.transform  = 'perspective(900px) translateX(-' + SPLIT_PX + 'px) translateY(-11px) rotate(-' + tiltDeg + 'deg) rotateX(-8deg) scale(0.984)';
+          rightClip.style.transform = 'perspective(900px) translateX('  + SPLIT_PX + 'px) translateY(13px)  rotate('  + tiltDeg + 'deg) rotateX(8deg)  scale(0.984)';
         });
       });
     }, 760);
 
-    // ── Phase 5: Chest springs up (1120ms) ──
+    // ── Phase 5: Chest springs up from below (1120ms) ──
+    // CHEST_SZ: Math.min(boardSz * 0.78, 300) — matches real game phone formula
     setTimeout(function () {
+      var CHEST_SZ = Math.min(Math.round(bW * 0.78), 300);
       var chestWrap = document.createElement('div');
       chestWrap.id = 'crackChestWrap';
+      // Start: off the bottom of the screen (translateY = screenRect.height), scale 0.4, opacity 0
+      // Spring to center using bouncy cubic-bezier (approx friction:6 tension:60)
       chestWrap.style.cssText = [
-        'position:absolute;left:50%;top:50%;',
-        'transform:translate(-50%,-50%) scale(0) rotate(-8deg);',
-        'z-index:12;pointer-events:none;',
-        'transition:transform 0.52s cubic-bezier(0.22,1.25,0.36,1);',
+        'position:absolute;left:50%;top:50%;z-index:12;pointer-events:none;',
         'display:flex;flex-direction:column;align-items:center;gap:4px;',
+        'transform:translate(-50%,calc(-50% + ' + screenRect.height + 'px)) scale(0.4);',
+        'opacity:0;',
+        'transition:transform 0.68s cubic-bezier(0.34,1.56,0.64,1),opacity 0.25s ease;',
       ].join('');
 
       var chestImg = document.createElement('img');
       chestImg.src = 'game-assets/chests/chest-' + currentTheme + '-closed.png';
       chestImg.alt = '';
-      chestImg.style.cssText = 'width:128px;height:128px;object-fit:contain;display:block;filter:drop-shadow(0 10px 36px ' + cfg.glow + ') drop-shadow(0 2px 10px rgba(0,0,0,0.7));';
+      chestImg.style.cssText = 'width:' + CHEST_SZ + 'px;height:' + CHEST_SZ + 'px;object-fit:contain;display:block;filter:drop-shadow(0 12px 40px ' + cfg.glow + ') drop-shadow(0 2px 10px rgba(0,0,0,0.7));';
       chestWrap.appendChild(chestImg);
       crackEl.appendChild(chestWrap);
 
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          chestWrap.style.transform = 'translate(-50%,-50%) scale(1) rotate(0)';
+          chestWrap.style.transform = 'translate(-50%,-50%) scale(1)';
+          chestWrap.style.opacity = '1';
         });
       });
 
@@ -1067,6 +1168,12 @@
       crackEl.style.transition = 'opacity 0.5s ease';
       crackEl.style.opacity = '0';
       setTimeout(function () {
+        // Restore the real board to its original parent before clearing crackEl
+        if (boardWrap && board.parentElement !== boardWrap) {
+          board.removeAttribute('style');
+          boardWrap.appendChild(board);
+        }
+        crackEl.innerHTML = '';
         crackEl.style.display = 'none';
         crackEl.style.opacity = '';
         crackEl.style.transition = '';
@@ -1226,6 +1333,10 @@
     if (winScreenEl) winScreenEl.classList.remove('show');
     if (crackEl) {
       crackEl.classList.remove('active');
+      if (boardWrap && board.parentElement !== boardWrap) {
+        board.removeAttribute('style');
+        boardWrap.appendChild(board);
+      }
       crackEl.innerHTML = '';
       crackEl.style.display = 'none';
       crackEl.style.opacity = '';
