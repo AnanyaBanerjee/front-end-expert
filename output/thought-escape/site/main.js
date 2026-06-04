@@ -773,8 +773,17 @@
     })(t0);
   }
 
-  function _spawnRewardTokens(container, bLeft, bTop, bW, bH, cfg, cxPx, cyPx) {
+  // chestEl: the chestWrap element (already settled at center when called)
+  // bLeft/bTop/bW/bH: original board coords in crackEl space
+  // screenRect: crackEl's parent bounding rect (used to convert chestEl rect to local coords)
+  function _spawnRewardTokens(container, bLeft, bTop, bW, bH, cfg, chestEl, screenRect) {
     if (reducedMotion) return;
+    // Compute chest opening position in crackEl local coords.
+    // getBoundingClientRect gives viewport coords; subtract screenRect.left/top for crackEl-local.
+    var cr = chestEl.getBoundingClientRect();
+    var chestCx = cr.left - screenRect.left + cr.width  * 0.5;
+    var chestCy = cr.top  - screenRect.top  + cr.height * 0.28; // aim at opening (~28% from top)
+
     var srcs = [
       'game-assets/rewards/' + cfg.rewardImg,
       'game-assets/rewards/' + cfg.rewardImg,
@@ -786,36 +795,40 @@
       setTimeout(function () {
         var el = document.createElement('img');
         el.src = src;
-        var sz = 22 + Math.random() * 8;
+        var sz = 34 + Math.random() * 10;
         var startX = bLeft + 10 + Math.random() * (bW - 20);
         var startY = bTop + 10 + Math.random() * (bH - 20);
         el.style.cssText = [
           'position:absolute;width:' + sz + 'px;height:' + sz + 'px;object-fit:contain;',
           'left:' + startX + 'px;top:' + startY + 'px;',
           'pointer-events:none;z-index:13;',
+          'filter:drop-shadow(0 0 6px ' + cfg.glow + ');',
         ].join('');
         container.appendChild(el);
-        var dur = 460 + Math.random() * 100;
+        var dur = 620 + Math.random() * 120;
         var startT = performance.now();
-        var destX = cxPx - sz / 2;
-        var destY = cyPx - sz / 2;
-        var arcH = -(50 + Math.random() * 40);
+        var destX = chestCx - sz / 2;
+        var destY = chestCy - sz / 2;
+        // Arc upward if board is below chest, downward if above — always goes toward chest
+        var midY = (startY + destY) / 2;
+        var arcDir = startY > destY ? -1 : 1; // up when flying up, down when flying down
+        var arcH = arcDir * (40 + Math.random() * 35);
         function frame(now) {
           var t = Math.min((now - startT) / dur, 1);
           var ease = 1 - Math.pow(1 - t, 2);
           var x = startX + (destX - startX) * ease;
-          var arc = arcH * Math.sin(Math.PI * t);
+          var arc = -Math.abs(arcH) * Math.sin(Math.PI * t); // always arc away from straight line
           var y = startY + (destY - startY) * ease + arc;
-          var scale = 1 - t * 0.45;
+          var scale = 1.2 - t * 0.5;
           el.style.left = x + 'px';
           el.style.top = y + 'px';
           el.style.transform = 'scale(' + scale + ')';
-          el.style.opacity = t > 0.8 ? String(1 - (t - 0.8) / 0.2) : '1';
+          el.style.opacity = t > 0.75 ? String(1 - (t - 0.75) / 0.25) : '1';
           if (t < 1) requestAnimationFrame(frame);
           else el.remove();
         }
         requestAnimationFrame(frame);
-      }, idx * 75);
+      }, idx * 90);
     });
   }
 
@@ -1054,14 +1067,8 @@
 
       _spawnAmbientParticles(crackEl, cfg);
 
-      // Reward tokens fly to chest (80ms after chest appears = 1200ms total, land ~1700ms)
-      setTimeout(function () {
-        var cxPx = screenRect.width / 2;
-        var cyPx = screenRect.height / 2;
-        _spawnRewardTokens(crackEl, bLeft, bTop, bW, bH, cfg, cxPx, cyPx);
-      }, 80);
-
       // Chest opens (600ms after chest appears = 1720ms total)
+      // Reward tokens spawn here — chest is open and fully settled (spring=680ms, tokens at 600ms+)
       setTimeout(function () {
         chestImg.src = 'game-assets/chests/chest-' + currentTheme + '-open.png';
         playSound(blockedTaps === 0 ? 'victory_perfect' : 'victory', 0.85);
@@ -1070,6 +1077,11 @@
         setTimeout(function () {
           chestWrap.style.transform = 'translate(-50%,-50%) scale(1) rotate(0)';
         }, 120);
+
+        // Rewards fly into open chest — spawn 140ms after open so chest has settled its bounce
+        setTimeout(function () {
+          _spawnRewardTokens(crackEl, bLeft, bTop, bW, bH, cfg, chestWrap, screenRect);
+        }, 140);
 
         // Token arc (960ms after open = 2680ms total)
         setTimeout(function () {
