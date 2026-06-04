@@ -825,6 +825,62 @@
     z-index: 2;
   }
 
+  /* ─────────────── WORLD REWARD ICON (animated) ─────────────── */
+  .world-copy-head {
+    display: grid;
+    grid-template-columns: minmax(80px, 100px) minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 540px) {
+    .world-copy-head { grid-template-columns: 1fr; gap: 12px; }
+  }
+  .world-reward-icon {
+    position: relative;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border-radius: 20px;
+    margin-top: 6px;
+    background: radial-gradient(circle at 50% 45%, var(--world-reward-glow, rgba(212,175,55,0.18)) 0%, rgba(255,255,255,0.02) 55%, transparent 80%);
+    box-shadow: 0 0 36px var(--world-reward-glow, rgba(212,175,55,0.25));
+    animation: world-reward-halo 4.5s ease-in-out infinite;
+  }
+  .world-reward-icon::after {
+    content: "";
+    position: absolute;
+    inset: 12%;
+    border-radius: 999px;
+    background: radial-gradient(circle, var(--world-reward-glow, rgba(212,175,55,0.26)) 0%, transparent 72%);
+    filter: blur(14px);
+    opacity: 0.75;
+    animation: world-reward-pulse 4.5s ease-in-out infinite;
+  }
+  .world-reward-icon img {
+    position: relative;
+    z-index: 1;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    animation: world-reward-float 5.5s ease-in-out infinite;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.38));
+    transform-origin: 50% 55%;
+  }
+  @keyframes world-reward-float {
+    0%, 100% { transform: translateY(0) rotate(-1.5deg) scale(1); }
+    50%       { transform: translateY(-7px) rotate(1.5deg) scale(1.04); }
+  }
+  @keyframes world-reward-halo {
+    0%, 100% { box-shadow: 0 0 32px var(--world-reward-glow, rgba(212,175,55,0.22)); }
+    50%       { box-shadow: 0 0 60px var(--world-reward-glow, rgba(212,175,55,0.46)); }
+  }
+  @keyframes world-reward-pulse {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50%       { opacity: 0.95; transform: scale(1.12); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .world-reward-icon, .world-reward-icon::after, .world-reward-icon img { animation: none; }
+  }
   /* ─────────────── MECHANICS (themed) ─────────────── */
   .mechanics {
     background:
@@ -2375,7 +2431,7 @@
         <div class="phone" aria-hidden="true">
           <div class="phone__notch"></div>
           <div class="phone__screen">
-            <img src="images/screen-home.png" alt="Thought Escape home screen showing the Forest world with continue level, streak count, and a glowing green play button" width="280" height="610" loading="eager" fetchpriority="high">
+            <img id="heroPhone" src="images/screen-home.png" alt="Thought Escape home screen showing the Forest world with continue level, streak count, and a glowing green play button" width="280" height="610" loading="eager" fetchpriority="high">
           </div>
           <div class="phone__shine"></div>
         </div>
@@ -2584,12 +2640,19 @@
     <div class="world-panel active" data-world="ocean" role="tabpanel" aria-label="Ocean world">
       <div class="world-panel__bg" aria-hidden="true"></div>
       <div class="world-panel__copy reveal">
-        <h3>Ocean — Moon Pearls</h3>
-        <p class="world-panel__lede">Tide-blue tiles carved from sapphire and seafoam. Calm waves drift behind the board. The first eight levels live here — the place where the rules of escape begin.</p>
+        <div class="world-copy-head">
+          <div class="world-reward-icon" style="--world-reward-glow: rgba(56,189,248,0.3)">
+            <img src="game-assets/rewards/moon-pearls.png" alt="" loading="lazy" width="100" height="100">
+          </div>
+          <div>
+            <h3>Ocean — Moon Pearls</h3>
+            <p class="world-panel__lede">Follow the rivers to the shore. Tide-blue tiles carved from sapphire and seafoam, calm waves drifting behind the board. The rules deepen, the puzzles widen, and moon pearls wash in with the tide.</p>
+          </div>
+        </div>
         <div class="world-stats">
-          <div class="world-stat"><strong>8</strong>opening levels</div>
-          <div class="world-stat"><strong>Moon pearls</strong>world currency</div>
-          <div class="world-stat"><strong>5</strong>tile materials</div>
+          <div class="world-stat"><strong>Third</strong>stop on the path</div>
+          <div class="world-stat"><strong>Moon pearls</strong>currency</div>
+          <div class="world-stat"><strong>Tide, currents</strong>mechanics</div>
         </div>
       </div>
       <div class="world-panel__media">
@@ -2605,12 +2668,19 @@
     <div class="world-panel" data-world="mountain" role="tabpanel" aria-label="Mountain world" hidden>
       <div class="world-panel__bg" aria-hidden="true"></div>
       <div class="world-panel__copy reveal">
-        <h3>Mountain — Sun Runes</h3>
-        <p class="world-panel__lede">Molten amber tiles, obsidian walls, and iron-bound rune gates. Mountain teaches you frozen tiles and locked-direction logic. Eight levels carved from heat and stone.</p>
+        <div class="world-copy-head">
+          <div class="world-reward-icon" style="--world-reward-glow: rgba(245,158,11,0.3)">
+            <img src="game-assets/rewards/sun-runes.png" alt="" loading="lazy" width="100" height="100">
+          </div>
+          <div>
+            <h3>Mountain — Sun Runes</h3>
+            <p class="world-panel__lede">Where the journey begins. Molten amber tiles, obsidian walls, and iron-bound rune gates rise from the rock. Climb the ridges, learn the language of escape, and earn your first sun runes.</p>
+          </div>
+        </div>
         <div class="world-stats">
-          <div class="world-stat"><strong>8</strong>levels</div>
-          <div class="world-stat"><strong>Sun runes</strong>world currency</div>
-          <div class="world-stat"><strong>Mechanics</strong>walls, gates, frozen</div>
+          <div class="world-stat"><strong>First</strong>stop on the path</div>
+          <div class="world-stat"><strong>Sun runes</strong>currency</div>
+          <div class="world-stat"><strong>Walls, gates</strong>mechanics</div>
         </div>
       </div>
       <div class="world-panel__media">
@@ -2626,12 +2696,19 @@
     <div class="world-panel" data-world="forest" role="tabpanel" aria-label="Forest world" hidden>
       <div class="world-panel__bg" aria-hidden="true"></div>
       <div class="world-panel__copy reveal">
-        <h3>Forest — Spirit Seeds</h3>
-        <p class="world-panel__lede">Living vines frame every modal. Tiles bloom as emerald and rose quartz. Forest is where gravity, mirrors, and portals enter the game — the world where the board starts thinking back.</p>
+        <div class="world-copy-head">
+          <div class="world-reward-icon" style="--world-reward-glow: rgba(143,216,58,0.3)">
+            <img src="game-assets/rewards/spirit-seeds.png" alt="" loading="lazy" width="100" height="100">
+          </div>
+          <div>
+            <h3>Forest — Spirit Seeds</h3>
+            <p class="world-panel__lede">Descend from the summit into the canopy. Living vines frame every modal, tiles bloom as emerald and rose quartz, and gravity, mirrors, and portals enter the game. The board starts thinking back.</p>
+          </div>
+        </div>
         <div class="world-stats">
-          <div class="world-stat"><strong>8</strong>levels</div>
-          <div class="world-stat"><strong>Spirit seeds</strong>world currency</div>
-          <div class="world-stat"><strong>Mechanics</strong>gravity, mirrors, portals</div>
+          <div class="world-stat"><strong>Second</strong>stop on the path</div>
+          <div class="world-stat"><strong>Spirit seeds</strong>currency</div>
+          <div class="world-stat"><strong>Gravity, portals</strong>mechanics</div>
         </div>
       </div>
       <div class="world-panel__media">
@@ -2647,12 +2724,19 @@
     <div class="world-panel" data-world="snow" role="tabpanel" aria-label="Snow world" hidden>
       <div class="world-panel__bg" aria-hidden="true"></div>
       <div class="world-panel__copy reveal">
-        <h3>Snow — Aurora Shards</h3>
-        <p class="world-panel__lede">Ice crystal arches, frozen tiles, and aurora-lit shards. Snow is the endgame — six levels where countdown tiles, splitters, and blind tiles converge. The quiet finale.</p>
+        <div class="world-copy-head">
+          <div class="world-reward-icon" style="--world-reward-glow: rgba(147,197,253,0.3)">
+            <img src="game-assets/rewards/aurora-shards.png" alt="" loading="lazy" width="100" height="100">
+          </div>
+          <div>
+            <h3>Snow — Aurora Shards</h3>
+            <p class="world-panel__lede">Cross the ice fields to the aurora. Crystal arches, frozen tiles, and shards of light where countdowns, splitters, and blind tiles converge. The quiet summit — then the cycle turns and the mountains call you back.</p>
+          </div>
+        </div>
         <div class="world-stats">
-          <div class="world-stat"><strong>6</strong>finale levels</div>
-          <div class="world-stat"><strong>Aurora shards</strong>world currency</div>
-          <div class="world-stat"><strong>Mechanics</strong>countdown, splitter, blind</div>
+          <div class="world-stat"><strong>Fourth</strong>stop on the path</div>
+          <div class="world-stat"><strong>Aurora shards</strong>currency</div>
+          <div class="world-stat"><strong>Countdown, blind</strong>mechanics</div>
         </div>
       </div>
       <div class="world-panel__media">

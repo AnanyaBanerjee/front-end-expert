@@ -1364,6 +1364,20 @@
     setTimeout(function () { isResetting = false; }, 200);
   }
 
+  var HERO_PHONE_IMGS = {
+    forest:   'images/screen-home.png',
+    ocean:    'images/ocean-home.png',
+    mountain: 'images/mountain-home.png',
+    snow:     'images/snow-home.png'
+  };
+  var HERO_PHONE_ALTS = {
+    forest:   'Forest world home screen with emerald canopy background, spirit seeds counter, and green Continue button',
+    ocean:    'Ocean world home screen with coral reef background, moon pearls counter, and deep blue Continue button',
+    mountain: 'Mountain world home screen with golden peaks at sunset, sun runes counter, and amber Continue button',
+    snow:     'Snow world home screen with aurora-lit ice peaks, aurora shards counter, and icy Continue button'
+  };
+  var heroPhoneEl = document.getElementById('heroPhone');
+
   function setTheme(themeKey) {
     if (!THEMES[themeKey]) return;
     currentTheme = themeKey;
@@ -1371,6 +1385,10 @@
     applyTheme(themeKey);
     persistTheme(themeKey);
     _updateWorldBg(themeKey);
+    if (heroPhoneEl) {
+      heroPhoneEl.src = HERO_PHONE_IMGS[themeKey] || HERO_PHONE_IMGS.forest;
+      heroPhoneEl.alt = HERO_PHONE_ALTS[themeKey] || HERO_PHONE_ALTS.forest;
+    }
     if (themeNameEl) themeNameEl.textContent = THEMES[themeKey].name;
     document.querySelectorAll('.theme-wheel .quad').forEach(function (q) {
       var on = q.getAttribute('data-theme') === themeKey;
