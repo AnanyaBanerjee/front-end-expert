@@ -795,7 +795,7 @@
       setTimeout(function () {
         var el = document.createElement('img');
         el.src = src;
-        var sz = 34 + Math.random() * 10;
+        var sz = 52 + Math.random() * 16;
         var startX = bLeft + 10 + Math.random() * (bW - 20);
         var startY = bTop + 10 + Math.random() * (bH - 20);
         el.style.cssText = [
