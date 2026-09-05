@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AgentChat Hub — Chat with Every AI Agent You Deploy</title>
-  <meta name="description" content="Privacy-focused AI chat app for A2A agents. No account required. Send files, stream responses in real time. Works on any A2A-compatible agent. Free on iPhone, iPad, Mac, and Vision Pro.">
+  <title>AgentChat Hub — Chat with Any AI Agent, Instantly</title>
+  <meta name="description" content="Connect to any A2A agent, bring your own key to Claude, GPT, or Grok, or run local models via Ollama. No account required. Free on iOS, iPad, Mac, Vision Pro.">
 
   <!-- SEO essentials -->
   <meta name="robots" content="index, follow, noai, noimageai" />
@@ -21,14 +21,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="AgentChat Hub" />
   <meta property="og:url" content="https://agent-chat-hub.com/" />
-  <meta property="og:title" content="AgentChat Hub — Chat with Every AI Agent You Deploy" />
-  <meta property="og:description" content="A privacy-focused AI chat app — no account required. Connect to any A2A-compatible AI agent via URL, send files, stream responses in real time. Free on iOS, iPad, Mac, and Vision Pro." />
+  <meta property="og:title" content="AgentChat Hub — Chat with Any AI Agent, Instantly" />
+  <meta property="og:description" content="Bring your own A2A agent, bring your own key to Claude, GPT, or Grok, or run local models via Ollama. No account required, zero data collection. Free on iOS, iPad, Mac, and Vision Pro." />
   <meta property="og:image" content="https://agent-chat-hub.com/og-image.png" />
 
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AgentChat Hub — Chat with Every AI Agent You Deploy" />
-  <meta name="twitter:description" content="A privacy-focused AI chat app — no account required. Connect to any A2A-compatible AI agent via URL, send files, stream responses in real time. Free on iOS, iPad, Mac, and Vision Pro." />
+  <meta name="twitter:title" content="AgentChat Hub — Chat with Any AI Agent, Instantly" />
+  <meta name="twitter:description" content="Bring your own A2A agent, bring your own key to Claude, GPT, or Grok, or run local models via Ollama. No account required, zero data collection. Free on iOS, iPad, Mac, and Vision Pro." />
   <meta name="twitter:image" content="https://agent-chat-hub.com/og-image.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -91,7 +91,7 @@
       --accent2-dim:       rgba(10,184,212,0.09);
       --grid-line:         rgba(0,184,106,0.07);
       --card-border-hov:   rgba(0,184,106,0.30);
-      --card-spotlight:    rgba(0,184,106,0.07);
+      --card-spotlight:    rgba(0,184,106,0.32);
       --card-hover-bg:     #F0F8F4;
       --card-shadow:       rgba(0,0,0,0.08);
       --card-ring:         rgba(0,184,106,0.12);
@@ -119,7 +119,7 @@
       --accent2-dim:       rgba(34,211,238,0.10);
       --grid-line:         rgba(0,232,122,0.10);
       --card-border-hov:   rgba(0,232,122,0.28);
-      --card-spotlight:    rgba(0,232,122,0.08);
+      --card-spotlight:    rgba(0,232,122,0.38);
       --card-hover-bg:     #0A100D;
       --card-shadow:       rgba(0,0,0,0.60);
       --card-ring:         rgba(0,232,122,0.08);
@@ -277,9 +277,58 @@
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     .cursor-blink { animation: blink 1s step-end infinite; }
 
-    /* ── Badge dot: opacity pulse, no outer glow ── */
-    @keyframes badge-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
-    .badge-dot { animation: badge-pulse 2s ease-in-out infinite; }
+    /* ── Thinking orb: small radial "AI processing" indicator ── */
+    .thinking-orb {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; display: inline-block;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--accent-raw) 45%, var(--accent2-raw) 100%);
+      box-shadow: 0 0 7px 1px rgb(var(--color-accent) / 0.55);
+      animation: orb-breathe 2.6s ease-in-out infinite;
+    }
+    @keyframes orb-breathe {
+      0%, 100% { transform: scale(1); filter: brightness(1); }
+      50%      { transform: scale(1.18); filter: brightness(1.3); }
+    }
+
+    /* ── Border beam: rotating rainbow glow around the hero screenshot ── */
+    .border-beam-wrap { position: relative; border-radius: 12px; }
+    .border-beam-wrap::before {
+      content: ''; position: absolute; inset: -2px; z-index: -1;
+      border-radius: inherit; opacity: 0.5; filter: blur(3px);
+      background: conic-gradient(from 0deg,
+        #ff5f57, #febc2e, #28c840, #22d3ee, #a78bfa, #ff5f57);
+      animation: beam-spin 7s linear infinite;
+    }
+    @keyframes beam-spin { to { transform: rotate(360deg); } }
+
+    /* ── Connect Everything: vertical ferris-wheel list ── */
+    .connect-wheel-card {
+      display: grid; gap: 28px;
+      border: 1px solid rgb(var(--color-border)); border-radius: 16px;
+      padding: 32px; background: rgb(var(--color-surface));
+    }
+    @media (min-width: 768px) {
+      .connect-wheel-card { grid-template-columns: 1.1fr 1fr; align-items: center; }
+    }
+    .cw-mask {
+      position: relative; height: 220px; overflow: hidden;
+      mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+    }
+    .cw-wheel {
+      display: flex; flex-direction: column; gap: 10px;
+      animation: cw-scroll 9s linear infinite;
+    }
+    .cw-wheel span {
+      font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500;
+      color: rgb(var(--color-text-sec));
+      border: 1px solid rgb(var(--color-border)); border-radius: 10px;
+      padding: 10px 16px; background: rgb(var(--color-bg));
+      text-align: center;
+    }
+    @keyframes cw-scroll {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-50%); }
+    }
 
     /* ── Button: inner refraction, no outer glow ── */
     .btn-primary {
@@ -302,26 +351,43 @@
     }
     .btn-primary:active { transform: translateY(0) scale(0.97); }
 
+    /* ── Metallic sheen ring (CSS approximation of a liquid-chrome shader) ── */
+    .btn-metal::before {
+      content: ''; position: absolute; inset: -3px; z-index: -1;
+      border-radius: inherit; opacity: 0; filter: blur(1.5px);
+      background: conic-gradient(from 0deg,
+        #9ca3af, #f4f4f5, #6b7280, #e5e7eb, #52525b, #f4f4f5, #9ca3af);
+      animation: metal-spin 3.5s linear infinite;
+      transition: opacity 0.25s ease;
+    }
+    .btn-metal:hover::before { opacity: 0.85; }
+    @keyframes metal-spin { to { transform: rotate(360deg); } }
+
     /* ── Feature card: spotlight + 3D tilt ── */
     .feat-card {
       position: relative;
       border: 1px solid rgb(var(--color-border));
       transform-style: preserve-3d;
       perspective: 800px;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 20px 20px;
       transition: border-color 0.35s ease,
-                  background 0.35s ease,
+                  background-color 0.35s ease,
                   transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                   box-shadow 0.35s ease;
     }
     .feat-card::before {
       content: ''; position: absolute; inset: -1px; border-radius: inherit;
-      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--card-spotlight), transparent 40%);
+      background: radial-gradient(280px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--card-spotlight), transparent 70%);
+      filter: blur(18px);
       opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 0;
     }
     .feat-card:hover::before { opacity: 1; }
     .feat-card:hover {
       border-color: var(--card-border-hov);
-      background: var(--card-hover-bg);
+      background-color: var(--card-hover-bg);
       transform: translateY(-6px);
       box-shadow: 0 20px 48px -16px var(--card-shadow), 0 0 0 1px var(--card-ring);
     }
@@ -346,6 +412,26 @@
       display: flex; align-items: center; gap: 8px;
     }
     .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+    /* ── Connect-an-agent card (hero mock, matches real Add Agent screen) ── */
+    .conn-section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+      color: rgb(var(--color-text-ter)); margin: 0 0 10px;
+    }
+    .conn-list { border: 1px solid rgb(var(--color-border)); border-radius: 14px; overflow: hidden; }
+    .conn-row {
+      display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+      border-bottom: 1px solid rgb(var(--color-border));
+    }
+    .conn-row-last { border-bottom: none; }
+    .conn-icon {
+      width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .conn-meta { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .conn-label { font-size: 14px; font-weight: 600; color: rgb(var(--color-text)); }
+    .conn-sub { font-size: 12px; color: rgb(var(--color-text-sec)); }
+    .conn-chev { color: rgb(var(--color-text-ter)); flex-shrink: 0; }
 
     /* ── Privacy row stagger ── */
     .privacy-row {
@@ -445,6 +531,17 @@
       position: relative; z-index: 2;
       transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
     }
+    .step-heartbeat {
+      position: absolute; bottom: -2px; right: -2px;
+      width: 11px; height: 11px; border-radius: 50%;
+      background: #22C55E; box-shadow: 0 0 8px 1px #22C55E;
+      border: 2px solid rgb(var(--color-bg));
+      animation: step-heartbeat-pulse 1.1s ease-in-out infinite;
+    }
+    @keyframes step-heartbeat-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%      { transform: scale(1.35); opacity: 0.65; }
+    }
     .step-col:hover .step-node {
       background: var(--accent-mid);
       border-color: rgb(var(--color-accent) / 0.5);
@@ -461,11 +558,55 @@
       left: calc(33.333% - 0px);
       right: calc(33.333% - 0px);
       height: 1px;
-      background: rgb(var(--color-border));
+      background: repeating-linear-gradient(90deg,
+        rgb(var(--color-accent) / 0.35) 0, rgb(var(--color-accent) / 0.35) 5px,
+        transparent 5px, transparent 11px);
       display: none;
+      overflow: hidden;
+    }
+    .steps-flow::after {
+      content: '';
+      position: absolute;
+      top: 21px; left: calc(33.333% - 0px); width: 4px; height: 3px;
+      border-radius: 2px; background: var(--accent-raw);
+      box-shadow: 0 0 6px var(--accent-raw);
+      display: none;
+      animation: pipeline-flow 3.4s linear infinite;
+    }
+    @keyframes pipeline-flow {
+      0%   { left: calc(33.333% - 0px); opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { left: calc(66.666% - 4px); opacity: 0; }
     }
     @media (min-width: 768px) {
-      .steps-flow::before { display: block; }
+      .steps-flow::before, .steps-flow::after { display: block; }
+    }
+    /* ── Pipeline node label: icon + text pill (borrowed from node-diagram patterns) ── */
+    .pipeline-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent-raw); background: var(--accent-dim);
+      border: 1px solid rgb(var(--color-accent) / 0.25);
+      border-radius: 999px; padding: 4px 11px 4px 8px; margin-bottom: 12px;
+    }
+    .pipeline-pill svg { flex-shrink: 0; }
+
+    /* ── EKG / heartbeat monitor — "your agent, alive" ── */
+    .ekg { position: relative; width: 100%; height: 34px; }
+    .ekg svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .ekg-line { fill: none; stroke: rgb(var(--color-border)); stroke-width: 1.5; }
+    .ekg-dot {
+      position: absolute; top: 0; left: 0; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent-raw);
+      box-shadow: 0 0 12px 2px var(--accent-raw);
+      offset-path: path("M0,42 L80,18 L92,68 L104,42 L230,42");
+      animation: ekg-trace 2.4s linear infinite;
+    }
+    @keyframes ekg-trace {
+      from { offset-distance: 0%; }
+      to   { offset-distance: 100%; }
     }
 
     /* ── Privacy: giant stat values ── */
@@ -490,11 +631,30 @@
       .bento-grid { grid-template-columns: 5fr 4fr 4fr; }
     }
     .bento-cell {
-      background: rgb(var(--color-surface));
+      position: relative;
+      background-color: rgb(var(--color-surface));
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 20px 20px;
       padding: 2.5rem;
-      transition: background 0.25s ease;
+      transform-style: preserve-3d;
+      perspective: 800px;
+      transition: background-color 0.25s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
     }
-    .bento-cell:hover { background: rgb(var(--color-elevated)); }
+    .bento-cell::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(280px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--card-spotlight), transparent 70%);
+      filter: blur(18px);
+      opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 0;
+    }
+    .bento-cell:hover {
+      background-color: rgb(var(--color-elevated));
+      z-index: 2;
+      box-shadow: 0 20px 48px -16px var(--card-shadow), 0 0 0 1px var(--card-ring);
+    }
+    .bento-cell:hover::before { opacity: 1; }
+    .bento-cell > * { position: relative; z-index: 1; }
     /* First cell spans 2 rows on desktop */
     @media (min-width: 1024px) {
       .bento-wide { grid-row: span 2; }
@@ -619,6 +779,88 @@
     @keyframes cursor-blink { 0%,100%{opacity:1} 50%{opacity:0} }
     .token-cursor { animation: cursor-blink 1s step-end infinite; }
 
+    /* ── Ferris wheel feature carousel ── */
+    .ferris-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 40px;
+      padding: 24px 0 48px;
+    }
+    @media (min-width: 900px) {
+      .ferris-wrap { flex-direction: row; align-items: center; justify-content: center; gap: 72px; }
+    }
+    .ferris-wheel {
+      position: relative; flex-shrink: 0;
+      width: 300px; height: 300px;
+    }
+    /* The ring holds rim + pods and is what actually spins (JS sets its rotation each step);
+       each pod counter-rotates its own icon so icons stay upright as the ring turns —
+       exactly like cabins on a real Ferris wheel. */
+    .ferris-ring {
+      position: absolute; inset: 0;
+      transition: transform 900ms cubic-bezier(.65,0,.35,1);
+    }
+    .ferris-rim {
+      position: absolute; inset: 0;
+      border: 1.5px dashed rgb(var(--color-border));
+      border-radius: 50%;
+      animation: ferris-rim-spin 60s linear infinite;
+    }
+    @keyframes ferris-rim-spin { to { transform: rotate(360deg); } }
+    .ferris-hub {
+      position: absolute; top: 50%; left: 50%;
+      margin: -5px;
+    }
+    .ferris-pod {
+      --angle: calc(var(--i) * 36deg);
+      position: absolute; top: 50%; left: 50%;
+      width: 54px; height: 54px; margin: -27px;
+      border-radius: 50%;
+      background: rgb(var(--color-surface));
+      border: 1px solid rgb(var(--color-border));
+      display: flex; align-items: center; justify-content: center;
+      transform: rotate(var(--angle)) translate(0, -150px) rotate(calc(-1 * var(--angle)));
+      transition: box-shadow 320ms ease, border-color 320ms ease, background 320ms ease;
+      cursor: pointer; padding: 0; font: inherit;
+    }
+    .ferris-pod-icon { display: flex; transition: transform 900ms cubic-bezier(.65,0,.35,1); }
+    .ferris-pod svg { width: 18px; height: 18px; }
+    .ferris-pod.active {
+      border-color: var(--accent-raw);
+      background: var(--accent-dim);
+      box-shadow: 0 0 0 5px var(--accent-dim), 0 0 26px var(--accent-mid);
+    }
+    @media (max-width: 899px) {
+      .ferris-wheel { width: 240px; height: 240px; }
+      .ferris-pod {
+        width: 46px; height: 46px; margin: -23px;
+        transform: rotate(var(--angle)) translate(0, -118px) rotate(calc(-1 * var(--angle)));
+      }
+    }
+    .ferris-callout {
+      position: relative;
+      width: 100%; max-width: 420px;
+      min-height: 230px;
+    }
+    .ferris-panel {
+      position: absolute; inset: 0;
+      opacity: 0; transform: scale(0.94) translateY(10px);
+      pointer-events: none;
+      transition: opacity 400ms ease, transform 400ms ease;
+    }
+    .ferris-panel.active {
+      opacity: 1; transform: scale(1) translateY(0);
+      pointer-events: auto;
+    }
+    .ferris-panel-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: var(--accent-dim);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ferris-ring, .ferris-pod, .ferris-pod-icon, .ferris-panel { transition: none; }
+      .ferris-rim { animation: none; }
+    }
+
     /* ── Final CTA animations ── */
     @keyframes pill-rise {
       0%   { transform: translateY(30px) translateX(0px); opacity: 0; }
@@ -669,11 +911,11 @@
       .word { transform: none; opacity: 1; }
       .term-line { opacity: 1; transform: none; }
       details .faq-body { grid-template-rows: 1fr; }
-      .hero-logo, .orb, .marquee-row { animation: none; }
+      .hero-logo, .orb, .marquee-row, .cw-wheel, .step-heartbeat { animation: none; }
       .marquee-row { flex-wrap: wrap; width: 100%; }
     }
 
-    /* ══ Demo section ═══════════════════════════════════════════════════════ */
+    /* ══ Demo section — real product screenshots ═══════════════════════════ */
     .demo-window {
       border: 1px solid rgb(var(--color-border));
       border-radius: 14px; overflow: hidden;
@@ -682,269 +924,147 @@
     html[data-theme="dark"] .demo-window {
       box-shadow: 0 24px 80px rgba(0,0,0,0.50), 0 4px 16px rgba(0,0,0,0.30);
     }
-    .demo-chrome {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 11px 16px;
-      background: rgb(var(--color-elevated));
-      border-bottom: 1px solid rgb(var(--color-border));
-    }
-    .traffic-lights { display: flex; gap: 6px; }
-    .tl { width: 11px; height: 11px; border-radius: 50%; }
-    .tl-red    { background: #FF5F57; }
-    .tl-yellow { background: #FEBC2E; }
-    .tl-green  { background: #28C840; }
-    .demo-window-title {
-      font-family: 'JetBrains Mono', monospace; font-size: 12px;
-      color: rgb(var(--color-text-ter));
-    }
-    .demo-body { display: flex; height: 440px; }
-    @media (max-width: 600px) { .demo-body { height: auto; flex-direction: column; } }
-    .demo-sidebar {
-      width: 215px; flex-shrink: 0;
-      border-right: 1px solid rgb(var(--color-border));
-      background: rgb(var(--color-surface));
-      padding: 14px 10px; overflow-y: auto;
-    }
-    @media (max-width: 600px) {
-      .demo-sidebar {
-        width: 100%; max-height: 110px; overflow-x: auto; overflow-y: hidden;
-        border-right: none; border-bottom: 1px solid rgb(var(--color-border));
-        padding: 10px 12px; display: flex; gap: 6px; align-items: center;
-      }
-      .sidebar-lbl { display: none; }
-      .add-agent-row { flex-shrink: 0; margin-top: 0; white-space: nowrap; }
-      .demo-agent-item { flex-direction: row; align-items: center; flex-shrink: 0; margin-bottom: 0; }
-    }
-    .sidebar-lbl {
-      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
-      letter-spacing: 0.12em; color: rgb(var(--color-text-ter));
-      padding: 0 8px; margin-bottom: 6px;
-    }
-    .demo-agent-item {
-      display: flex; align-items: flex-start; gap: 8px;
-      padding: 7px 9px; border-radius: 8px; cursor: pointer; margin-bottom: 1px;
-      transition: background 0.15s ease;
-    }
-    .demo-agent-item:hover { background: rgb(var(--color-elevated)); }
-    .demo-agent-item.active { background: var(--accent-dim); }
-    .agent-sdot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--accent-raw); flex-shrink: 0; margin-top: 5px;
-    }
-    .agent-meta-col { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-    .agent-dname {
-      font-size: 12.5px; font-weight: 500; color: rgb(var(--color-text));
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .demo-agent-item.active .agent-dname { color: var(--accent-raw); }
-    .agent-durl {
-      font-family: 'JetBrains Mono', monospace; font-size: 10px;
-      color: rgb(var(--color-text-ter));
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .add-agent-row {
-      display: flex; align-items: center; gap: 6px;
-      padding: 7px 9px; border-radius: 8px; font-size: 12px;
-      color: rgb(var(--color-text-ter)); cursor: pointer; margin-top: 10px;
-      border: 1px dashed rgb(var(--color-border));
-      transition: color 0.15s, border-color 0.15s;
-    }
-    .add-agent-row:hover { color: var(--accent-raw); border-color: var(--accent-raw); }
-    .demo-chat-panel {
-      flex: 1; display: flex; flex-direction: column;
-      overflow: hidden; background: rgb(var(--color-bg));
-    }
-    .demo-chat-hdr {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 11px 16px; border-bottom: 1px solid rgb(var(--color-border));
-      background: rgb(var(--color-surface));
-    }
-    .conn-indicator { display: flex; align-items: center; gap: 8px; }
-    .conn-dot-pulse {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent-raw); box-shadow: 0 0 6px var(--accent-raw);
-      animation: conn-pulse 2s ease-in-out infinite;
-    }
-    @keyframes conn-pulse { 0%,100%{opacity:1} 50%{opacity:.45} }
-    .conn-url { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgb(var(--color-text-sec)); }
-    .conn-badge {
-      font-size: 10.5px; font-weight: 500; padding: 2px 8px; border-radius: 99px;
-      background: var(--accent-dim); color: var(--accent-raw);
-    }
-    .demo-replay-btn {
-      display: flex; align-items: center; gap: 5px;
-      font-family: 'JetBrains Mono', monospace; font-size: 11px;
-      color: rgb(var(--color-text-ter)); background: none;
-      border: 1px solid rgb(var(--color-border)); border-radius: 6px;
-      padding: 4px 10px; cursor: pointer; transition: color 0.15s, border-color 0.15s;
-    }
-    .demo-replay-btn:hover { color: var(--accent-raw); border-color: var(--accent-raw); }
-    .demo-msgs {
-      flex: 1; overflow-y: auto; padding: 18px 16px;
-      display: flex; flex-direction: column; gap: 14px; scroll-behavior: smooth;
-    }
-    @media (max-width: 600px) { .demo-msgs { min-height: 260px; } }
-    .demo-msgs::-webkit-scrollbar { width: 3px; }
-    .demo-msgs::-webkit-scrollbar-thumb { background: rgb(var(--color-border)); border-radius: 2px; }
-    .dmsg-row {
-      display: flex; flex-direction: column; gap: 3px;
-      animation: dmsg-in 0.28s cubic-bezier(.16,1,.3,1) both;
-    }
-    @keyframes dmsg-in { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-    .dmsg-row.user { align-items: flex-end; }
-    .dmsg-row.agent { align-items: flex-start; }
-    .dmsg-lbl {
-      font-size: 10px; font-family: 'JetBrains Mono', monospace;
-      color: rgb(var(--color-text-ter)); padding: 0 4px;
-    }
-    .dmsg-bubble {
-      max-width: 78%; padding: 9px 13px; border-radius: 11px;
-      font-size: 13px; line-height: 1.55;
-    }
-    .dmsg-row.user .dmsg-bubble {
-      background: var(--accent-raw); color: #fff; border-bottom-right-radius: 4px;
-    }
-    .dmsg-row.agent .dmsg-bubble {
-      background: rgb(var(--color-surface)); color: rgb(var(--color-text));
-      border: 1px solid rgb(var(--color-border)); border-bottom-left-radius: 4px;
-    }
-    .dmsg-code {
-      margin-top: 8px; padding: 10px 12px;
-      background: rgb(var(--color-bg)); border: 1px solid rgb(var(--color-border));
-      border-radius: 6px; font-family: 'JetBrains Mono', monospace;
-      font-size: 10.5px; line-height: 1.65; color: var(--accent-raw);
-      overflow-x: auto; white-space: pre;
-    }
-    html[data-theme="dark"] .dmsg-code { background: rgb(4 10 7); }
-    .dmsg-cursor {
-      display: inline-block; width: 1.5px; height: 0.9em;
-      background: currentColor; vertical-align: text-bottom;
-      animation: dmsg-blink 0.75s step-end infinite; margin-left: 1px;
-    }
-    @keyframes dmsg-blink { 0%,100%{opacity:1} 50%{opacity:0} }
-    .file-chip-msg {
-      display: flex; align-items: center; gap: 8px;
-      padding: 7px 12px; border: 1px solid rgb(var(--color-border));
-      border-radius: 8px; background: rgb(var(--color-surface)); width: fit-content;
-      animation: dmsg-in 0.28s cubic-bezier(.16,1,.3,1) both;
-    }
-    .file-chip-name { font-size: 12.5px; font-weight: 500; color: rgb(var(--color-text)); }
-    .file-chip-sz { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgb(var(--color-text-ter)); }
-    .thinking-dots {
-      display: flex; align-items: center; gap: 4px;
-      padding: 10px 13px; background: rgb(var(--color-surface));
+    .desktop-shot-tab {
+      font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500;
+      padding: 7px 14px; border-radius: 8px;
       border: 1px solid rgb(var(--color-border));
-      border-radius: 11px; border-bottom-left-radius: 4px; width: fit-content;
+      background: rgb(var(--color-surface)); color: rgb(var(--color-text-sec));
+      cursor: pointer; transition: border-color .15s, color .15s, background .15s;
     }
-    .t-dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: rgb(var(--color-text-ter));
-      animation: t-bounce 1.1s ease-in-out infinite;
+    .desktop-shot-tab:hover { color: rgb(var(--color-text)); }
+    .desktop-shot-tab.active {
+      border-color: var(--accent-raw); color: var(--accent-raw); background: var(--accent-dim);
     }
-    .t-dot:nth-child(2){animation-delay:.18s} .t-dot:nth-child(3){animation-delay:.36s}
-    @keyframes t-bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-5px)} }
-    .tool-card {
-      border: 1px solid rgba(251,191,36,0.28); border-radius: 10px;
-      background: rgba(251,191,36,0.05); overflow: hidden;
-      max-width: 84%; animation: dmsg-in 0.28s cubic-bezier(.16,1,.3,1) both;
-    }
-    .tool-card-hdr {
-      display: flex; align-items: center; gap: 7px;
-      padding: 8px 13px; background: rgba(251,191,36,0.10);
-      border-bottom: 1px solid rgba(251,191,36,0.18);
-      font-size: 11.5px; font-weight: 600; color: #B45309;
-    }
-    html[data-theme="dark"] .tool-card-hdr { color: #FCD34D; }
-    .tool-card-body { padding: 10px 13px; }
-    .tool-fn {
-      font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
-      font-weight: 600; color: rgb(var(--color-text)); margin-bottom: 3px;
-    }
-    .tool-params {
-      font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
-      color: rgb(var(--color-text-ter)); margin-bottom: 11px;
-    }
-    .tool-actions { display: flex; gap: 6px; flex-wrap: wrap; }
-    .tc-btn {
-      font-size: 11.5px; font-weight: 500; padding: 5px 12px;
-      border-radius: 6px; cursor: pointer; border: none; transition: opacity 0.15s;
-    }
-    .tc-btn:hover { opacity: 0.82; }
-    .tc-deny { background: rgb(var(--color-elevated)); color: rgb(var(--color-text-sec)); border: 1px solid rgb(var(--color-border)) !important; }
-    .tc-once { background: var(--accent-raw); color: #fff; }
-    .tc-always { background: none; color: var(--accent-raw); border: 1px solid var(--accent-raw) !important; }
-    .tool-card.tc-approved { border-color: rgba(0,184,106,0.28); background: rgba(0,184,106,0.05); }
-    html[data-theme="dark"] .tool-card.tc-approved { border-color: rgba(0,232,122,0.22); }
-    .tool-card.tc-approved .tool-card-hdr {
-      background: rgba(0,184,106,0.10); border-color: rgba(0,184,106,0.18); color: var(--accent-raw);
-    }
-    html[data-theme="dark"] .tool-card.tc-approved .tool-card-hdr { color: var(--accent-raw); }
-    .tc-approved-badge {
-      font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
-      color: var(--accent-raw); padding-top: 4px;
-    }
-    .demo-composer-bar {
-      display: flex; align-items: center; gap: 8px;
-      padding: 10px 14px; border-top: 1px solid rgb(var(--color-border));
-      background: rgb(var(--color-surface));
-    }
-    .demo-composer-input {
-      flex: 1; min-height: 34px; display: flex; align-items: center;
-      padding: 0 11px; border: 1px solid rgb(var(--color-border));
-      border-radius: 7px; background: rgb(var(--color-bg));
-      font-size: 12.5px; overflow: hidden; white-space: nowrap;
-    }
-    .dc-placeholder { color: rgb(var(--color-text-ter)); }
-    .dc-typing { color: rgb(var(--color-text)); }
-    .dc-attach, .dc-send {
-      width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
-      border-radius: 6px; cursor: pointer; border: none; transition: opacity 0.15s;
-    }
-    .dc-attach { background: rgb(var(--color-elevated)); color: rgb(var(--color-text-ter)); }
-    .dc-send { background: var(--accent-raw); color: #fff; }
-    .dc-attach:hover, .dc-send:hover { opacity: 0.80; }
+    /* ── Interactive demo: real desktop-app UI, exact colors from source ── */
     .demo-tab {
       display: flex; align-items: center; gap: 6px;
       padding: 6px 14px; border-radius: 7px; font-size: 13px; font-weight: 500;
       cursor: pointer; border: 1px solid rgb(var(--color-border));
       background: rgb(var(--color-bg)); color: rgb(var(--color-text-sec));
-      transition: color 0.15s, background 0.15s, border-color 0.15s;
     }
-    .demo-tab:hover { color: rgb(var(--color-text)); border-color: rgb(var(--color-text-ter)); }
     .demo-tab.active { background: var(--accent-dim); border-color: var(--accent-raw); color: var(--accent-raw); }
     .demo-tab-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
-    .demo-idle-hint {
-      font-family: 'JetBrains Mono', monospace; font-size: 12px;
-      color: rgb(var(--color-text-ter)); text-align: center;
-      padding: 48px 24px; width: 100%;
+
+    .rc-window {
+      border-radius: 14px; overflow: hidden; border: 1px solid #e2e8f0;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.06);
+      background: #ffffff;
     }
-    .demo-prompts {
-      display: flex; flex-direction: column; gap: 8px;
-      padding: 20px 16px; width: 100%;
-      animation: dmsg-in 0.25s cubic-bezier(.16,1,.3,1) both;
+    html[data-theme="dark"] .rc-window {
+      border-color: #3a3a42; background: #09090b;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.50), 0 4px 16px rgba(0,0,0,0.30);
     }
-    .demo-prompts-label {
-      font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
-      color: rgb(var(--color-text-ter)); margin-bottom: 6px;
+    .rc-titlebar { display: flex; align-items: center; gap: 8px; padding: 11px 16px; background: #f8f9fa; border-bottom: 1px solid #e2e8f0; }
+    html[data-theme="dark"] .rc-titlebar { background: #1e1e22; border-color: #3a3a42; }
+    .rc-tl { width: 11px; height: 11px; border-radius: 50%; }
+    .rc-tl-red { background: #FF5F57; } .rc-tl-yellow { background: #FEBC2E; } .rc-tl-green { background: #28C840; }
+    .rc-titlebar-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #71717a; margin-left: 4px; }
+    html[data-theme="dark"] .rc-titlebar-label { color: #a1a1aa; }
+
+    .rc-body { display: flex; height: 440px; }
+    @media (max-width: 700px) { .rc-body { flex-direction: column; height: auto; } }
+
+    .rc-sidebar { width: 220px; flex-shrink: 0; background: #f8f9fa; border-right: 1px solid #e2e8f0; padding: 14px 10px; overflow-y: auto; }
+    html[data-theme="dark"] .rc-sidebar { background: #09090b; border-color: #3a3a42; }
+    @media (max-width: 700px) {
+      .rc-sidebar { width: 100%; display: flex; gap: 6px; overflow-x: auto; border-right: none; border-bottom: 1px solid #e2e8f0; padding: 10px 12px; max-height: none; }
+      .rc-sidebar-lbl { display: none; }
+      .rc-agent-item { flex-shrink: 0; }
     }
+    .rc-sidebar-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: .12em; color: #71717a; padding: 0 8px; margin-bottom: 8px; }
+    html[data-theme="dark"] .rc-sidebar-lbl { color: #a1a1aa; }
+
+    .rc-agent-item { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 9px; border-radius: 9px; border: none; background: none; cursor: pointer; text-align: left; font: inherit; margin-bottom: 2px; transition: background .15s; }
+    .rc-agent-item:hover { background: rgba(0,0,0,0.04); }
+    html[data-theme="dark"] .rc-agent-item:hover { background: rgba(255,255,255,0.05); }
+    .rc-agent-item.active { background: rgba(59,130,246,0.08); }
+    html[data-theme="dark"] .rc-agent-item.active { background: rgba(96,165,250,0.12); }
+
+    .rc-avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; font-weight: 700; }
+    .rc-agent-meta { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+    .rc-agent-name { font-size: 13px; font-weight: 600; color: #09090b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    html[data-theme="dark"] .rc-agent-name { color: #fafafa; }
+    .rc-agent-item.active .rc-agent-name { color: #3b82f6; }
+    html[data-theme="dark"] .rc-agent-item.active .rc-agent-name { color: #60a5fa; }
+    .rc-agent-url { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #71717a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    html[data-theme="dark"] .rc-agent-url { color: #a1a1aa; }
+
+    .rc-chat { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: #f8f9fa; }
+    html[data-theme="dark"] .rc-chat { background: #09090b; }
+
+    .rc-header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: #ffffff; border-bottom: 1px solid #e2e8f0; }
+    html[data-theme="dark"] .rc-header { background: #1e1e22; border-color: #3a3a42; }
+    .rc-header-meta { display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0; }
+    .rc-header-name { font-size: 15px; font-weight: 600; color: #09090b; }
+    html[data-theme="dark"] .rc-header-name { color: #fafafa; }
+    .rc-header-status { font-size: 12px; font-weight: 500; color: #22C55E; }
+    .rc-header-dots { color: #71717a; font-size: 18px; letter-spacing: 1px; line-height: 1; }
+
+    .rc-tabbar { display: flex; gap: 6px; padding: 9px 14px; background: #ffffff; border-bottom: 1px solid #e2e8f0; }
+    html[data-theme="dark"] .rc-tabbar { background: #1e1e22; border-color: #3a3a42; }
+    .rc-tab { font-size: 12.5px; font-weight: 500; color: #71717a; padding: 6px 12px; border-radius: 8px; border: 1px solid transparent; }
+    html[data-theme="dark"] .rc-tab { color: #a1a1aa; }
+    .rc-tab.active { background: #f8f9fa; border-color: #e2e8f0; color: #09090b; font-weight: 600; }
+    html[data-theme="dark"] .rc-tab.active { background: #09090b; border-color: #3a3a42; color: #fafafa; }
+
+    .rc-msgs { flex: 1; overflow-y: auto; padding: 18px 16px; display: flex; flex-direction: column; gap: 14px; scroll-behavior: smooth; }
+    .rc-msgs::-webkit-scrollbar { width: 3px; }
+    .rc-msgs::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 2px; }
+
+    .rc-row { display: flex; flex-direction: column; gap: 4px; animation: rc-msg-in 0.28s cubic-bezier(.16,1,.3,1) both; }
+    @keyframes rc-msg-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .rc-row.user { align-items: flex-end; }
+    .rc-row.agent { align-items: flex-start; }
+    .rc-bubble { max-width: 78%; padding: 10px 14px; border-radius: 18px; font-size: 13.5px; line-height: 1.55; }
+    .rc-row.user .rc-bubble { background: #2EC4B6; color: #04150c; border-bottom-right-radius: 4px; box-shadow: 0 0 10px rgba(46,196,182,0.22); }
+    .rc-row.agent .rc-bubble { background: #F1F5F9; color: #09090b; border-bottom-left-radius: 4px; }
+    html[data-theme="dark"] .rc-row.agent .rc-bubble { background: #1e1e22; color: #fafafa; }
+
+    .rc-meta { display: flex; align-items: center; gap: 6px; padding: 0 4px; }
+    .rc-meta.user-meta { justify-content: flex-end; }
+    .rc-pulse { width: 6px; height: 6px; border-radius: 50%; background: #2EC4B6; box-shadow: 0 0 6px #2EC4B6; animation: rc-pulse-anim 1.5s ease-in-out infinite; }
+    @keyframes rc-pulse-anim { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+    .rc-ai-badge { font-size: 10px; font-weight: 700; letter-spacing: .4px; color: #2EC4B6; background: rgba(46,196,182,0.1); border: 1px solid rgba(46,196,182,0.25); border-radius: 99px; padding: 1px 7px; }
+    .rc-time { font-size: 11px; color: #71717a; }
+    html[data-theme="dark"] .rc-time { color: #a1a1aa; }
+
+    .rc-thinking { display: flex; align-items: center; gap: 4px; padding: 10px 13px; background: #F1F5F9; border-radius: 11px; border-bottom-left-radius: 4px; width: fit-content; }
+    html[data-theme="dark"] .rc-thinking { background: #1e1e22; }
+    .rc-tdot { width: 5px; height: 5px; border-radius: 50%; background: #71717a; animation: rc-bounce 1.1s ease-in-out infinite; }
+    html[data-theme="dark"] .rc-tdot { background: #a1a1aa; }
+    .rc-tdot:nth-child(2) { animation-delay: .18s; } .rc-tdot:nth-child(3) { animation-delay: .36s; }
+    @keyframes rc-bounce { 0%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-5px); } }
+
+    .rc-composer { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: #ffffff; border-top: 1px solid #e2e8f0; }
+    html[data-theme="dark"] .rc-composer { background: #1e1e22; border-color: #3a3a42; }
+    .rc-composer-input { flex: 1; min-height: 36px; display: flex; align-items: center; padding: 0 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8f9fa; font-size: 13px; overflow: hidden; white-space: nowrap; }
+    html[data-theme="dark"] .rc-composer-input { border-color: #3a3a42; background: #09090b; }
+    .rc-placeholder { color: #71717a; }
+    html[data-theme="dark"] .rc-placeholder { color: #a1a1aa; }
+    .rc-typing { color: #09090b; }
+    html[data-theme="dark"] .rc-typing { color: #fafafa; }
+    .rc-send { width: 32px; height: 32px; border-radius: 8px; background: #3b82f6; color: #fff; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .rc-cursor { display: inline-block; width: 1.5px; height: 0.9em; background: currentColor; vertical-align: text-bottom; animation: rc-blink 0.75s step-end infinite; margin-left: 1px; }
+    @keyframes rc-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    .demo-prompts { display: flex; flex-direction: column; gap: 8px; padding: 20px 16px; width: 100%; }
+    .demo-prompts-label { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #71717a; margin-bottom: 6px; }
+    html[data-theme="dark"] .demo-prompts-label { color: #a1a1aa; }
     .demo-prompt-btn {
       display: flex; align-items: center; gap: 10px;
       padding: 11px 14px; border-radius: 9px;
-      border: 1px solid rgb(var(--color-border));
-      background: rgb(var(--color-surface));
-      color: rgb(var(--color-text)); font-size: 13px; font-family: inherit;
+      border: 1px solid #e2e8f0; background: #ffffff;
+      color: #09090b; font-size: 13px; font-family: inherit;
       text-align: left; cursor: pointer; width: 100%;
       transition: border-color 0.15s, background 0.15s, color 0.15s;
     }
-    .demo-prompt-btn:hover {
-      border-color: var(--accent-raw);
-      background: var(--accent-dim);
-      color: var(--accent-raw);
-    }
+    html[data-theme="dark"] .demo-prompt-btn { border-color: #3a3a42; background: #1e1e22; color: #fafafa; }
+    .demo-prompt-btn:hover { border-color: #3b82f6; background: rgba(59,130,246,0.08); color: #3b82f6; }
     .demo-prompt-btn:hover .prompt-arrow { transform: translateX(3px); }
-    .prompt-arrow {
-      color: var(--accent-raw); font-size: 14px; flex-shrink: 0;
-      transition: transform 0.15s ease;
+    .prompt-arrow { color: #3b82f6; font-size: 14px; flex-shrink: 0; transition: transform 0.15s ease; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rc-row, .rc-pulse, .rc-tdot, .rc-cursor { animation: none; }
     }
   </style>
 
@@ -962,7 +1082,7 @@
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": ["iOS 15.1+", "macOS 12+", "visionOS 1.0+"],
         "softwareVersion": "1.1",
-        "description": "AgentChat Hub is the universal A2A client for iPhone, iPad, Mac, and Vision Pro. Paste any A2A-compatible agent endpoint URL, stream responses token-by-token in real time. No account required, no data collected, no subscription. Free forever.",
+        "description": "AgentChat Hub is the universal AI agent client for iPhone, iPad, Mac, and Vision Pro. Connect any A2A-compatible agent, bring your own key to Claude, OpenAI, Grok, Kimi, or DeepSeek, or run local models via Ollama and LM Studio. MCP tool support, goal-driven Tasks, groups, and full desktop parity. No account required, no data collected, no subscription. Free forever.",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -973,9 +1093,14 @@
           "name": "Ananya Banerjee"
         },
         "featureList": [
-          "Live token-by-token SSE streaming",
           "Connect any A2A-compatible AI agent via URL",
-          "Multi-agent roster with groups and tabs",
+          "Bring your own key to Claude, OpenAI, Grok, Kimi, or DeepSeek",
+          "Run local models via Ollama or LM Studio",
+          "MCP tool support with OAuth for real function-calling",
+          "Tasks — assign a goal, get back a finished result",
+          "Live token-by-token SSE streaming",
+          "Multi-agent roster with groups and custom tabs",
+          "Files view — every attachment in one place",
           "Rich attachments — photos, images, and files",
           "Native app on iPhone, iPad, Mac, and Apple Vision Pro",
           "No account required",
@@ -992,7 +1117,7 @@
         "@id": "https://agent-chat-hub.com/#website",
         "url": "https://agent-chat-hub.com/",
         "name": "AgentChat Hub",
-        "description": "The universal native client for A2A AI agents — free on iOS, Mac, and Vision Pro.",
+        "description": "The universal native AI agent client — A2A, cloud providers, or local models — free on iOS, Mac, and Vision Pro.",
         "publisher": {
           "@type": "Person",
           "name": "Ananya Banerjee"
@@ -1079,7 +1204,31 @@
             "name": "How does AgentChat Hub compare to other AI chat clients?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Most AI chat apps lock you into one provider's model. AgentChat Hub connects to any A2A-compatible agent via URL — you bring the agent, it brings the interface. Key differentiators: works with any self-hosted or third-party A2A agent, real-time SSE token streaming, file attachments, no account required, zero data collection, native on iPhone, iPad, Mac, and Vision Pro."
+              "text": "Most AI chat apps lock you into one provider's model. AgentChat Hub connects three ways — any A2A-compatible agent via URL, cloud providers like Claude, OpenAI, Grok, Kimi, or DeepSeek with your own key, or local models via Ollama and LM Studio. Key differentiators: MCP tool support, goal-driven Tasks, real-time SSE token streaming, file attachments, no account required, zero data collection, native on iPhone, iPad, Mac, and Vision Pro."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is MCP and does AgentChat Hub support it?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MCP (Model Context Protocol) is the open standard for giving AI agents tools. AgentChat Hub connects any agent to MCP servers — add a server once, attach it to whichever agents need it, and get real function-calling against those tools, including OAuth-authenticated servers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need an API key to use AgentChat Hub?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Only if you choose the Cloud AI connection method. To chat with Claude, OpenAI, Grok, Kimi, or DeepSeek directly, bring your own API key — it lives in your device's Keychain and is sent only to that provider. Connecting an A2A agent or a local model requires no API key at all."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I run local AI models with AgentChat Hub?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Point AgentChat Hub at Ollama or LM Studio running on your own machine or network, and it discovers exactly which models you have installed. No API key, no cloud round-trip — the model runs entirely on your hardware."
             }
           }
         ]
@@ -1119,7 +1268,7 @@
           </svg>
         </button>
         <a title="Download on the App Store" href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener noreferrer"
-           class="btn-primary inline-flex items-center gap-2 bg-accent text-bg text-xs font-semibold px-4 py-2 rounded-lg border border-accent/80">
+           class="btn-primary btn-metal inline-flex items-center gap-2 bg-accent text-bg text-xs font-semibold px-4 py-2 rounded-lg border border-accent/80">
           Download
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
         </a>
@@ -1146,27 +1295,27 @@
 
         <div class="hero-anim hero-d2 mb-5">
           <span class="inline-flex items-center gap-2 text-xs font-mono font-medium text-accent bg-accent-dim border border-accent/20 px-3 py-1.5 rounded-md">
-            <span class="w-1.5 h-1.5 rounded-full bg-accent badge-dot"></span>
-            A2A Open Protocol — the open standard for AI agent communication
+            <span class="thinking-orb"></span>
+            A2A · Cloud AI · Local models — three ways to connect
           </span>
         </div>
 
         <p class="hero-anim hero-d2b font-display font-bold text-base md:text-lg text-text-secondary tracking-tight mb-4" style="font-variation-settings:'wdth' 105,'wght' 700">
-          Deployed your agent. Now what?
+          Your AI agents deserve a great interface.
         </p>
 
         <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[0.9] text-text max-w-4xl mb-6" style="font-variation-settings:'wdth' 112,'wght' 800">
-          <span class="word-mask"><span class="word wd0">Chat</span></span>&nbsp;<span class="word-mask"><span class="word wd1">with</span></span>&nbsp;<span class="word-mask"><span class="word wd2">every</span></span>&nbsp;<span class="word-mask"><span class="word wd3">AI</span></span>&nbsp;<span class="word-mask"><span class="word wd4">agent</span></span><br>
-          <span class="word-mask"><span class="word wd5">you</span></span>&nbsp;<span class="word-mask"><span class="word wd6">deploy,</span></span>&nbsp;<span class="word-mask"><span class="word wd7 text-accent2">wherever</span></span>&nbsp;<span class="word-mask"><span class="word wd8 text-accent2">it</span></span>&nbsp;<span class="word-mask"><span class="word wd9 text-accent2">lives.</span></span>
+          <span class="word-mask"><span class="word wd0">Chat</span></span>&nbsp;<span class="word-mask"><span class="word wd1">with</span></span>&nbsp;<span class="word-mask"><span class="word wd2">any</span></span>&nbsp;<span class="word-mask"><span class="word wd3">AI</span></span>&nbsp;<span class="word-mask"><span class="word wd4">agent,</span></span><br>
+          <span class="word-mask"><span class="word wd5">instantly</span></span><span class="word-mask"><span class="word wd6 text-accent2">.</span></span>&nbsp;<span class="word-mask"><span class="word wd7 text-accent2">Any</span></span>&nbsp;<span class="word-mask"><span class="word wd8 text-accent2">model.</span></span>
         </h1>
 
         <p class="hero-anim hero-d4 hero-desc text-base md:text-lg font-medium text-text-secondary leading-relaxed max-w-xl mb-6">
-          Paste any A2A endpoint and you're chatting in seconds. No middleman, no account, no tracking — your conversations never leave your device. Native on iPhone, iPad, Mac, and Vision Pro. Free forever.
+          Bring your own A2A agent, bring your own key to Claude, OpenAI, Grok, Kimi, or DeepSeek, or run models locally with Ollama and LM Studio. No middleman, no account, no tracking — your conversations never leave your device. Native on iPhone, iPad, Mac, and Vision Pro. Free forever.
         </p>
 
         <div class="hero-anim hero-d5 flex flex-wrap items-center gap-4 mb-6">
           <a title="Download on the App Store" href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener noreferrer"
-             class="btn-primary inline-flex items-center gap-3 bg-accent text-bg font-semibold px-6 py-3.5 rounded-xl text-sm border border-accent/80">
+             class="btn-primary btn-metal inline-flex items-center gap-3 bg-accent text-bg font-semibold px-6 py-3.5 rounded-xl text-sm border border-accent/80">
             <svg width="18" height="18" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.2-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.28 2.13-9.54 3.25-12.8 3.35-4.92.21-9.84-1.96-14.75-6.52-3.13-2.73-7.05-7.41-11.76-14.04-5.05-7.14-9.2-15.42-12.44-24.86C18.63 110.62 17 101.02 17 91.71c0-10.67 2.3-19.87 6.92-27.58 3.62-6.18 8.44-11.06 14.48-14.66 6.04-3.6 12.56-5.43 19.6-5.58 3.92 0 9.06 1.21 15.43 3.6 6.35 2.4 10.43 3.62 12.22 3.62 1.34 0 5.87-1.43 13.56-4.28 7.27-2.64 13.41-3.74 18.44-3.32 13.62 1.1 23.85 6.47 30.63 16.15-12.19 7.39-18.22 17.73-18.1 31 .11 10.34 3.86 18.94 11.23 25.77 3.34 3.17 7.07 5.62 11.22 7.36-.9 2.61-1.85 5.11-2.86 7.51zM119.11 7.24c0 8.1-2.96 15.67-8.86 22.67-7.12 8.32-15.73 13.13-25.07 12.37a25.2 25.2 0 0 1-.19-3.07c0-7.78 3.39-16.09 9.4-22.89 3-3.44 6.82-6.31 11.45-8.6 4.62-2.26 8.99-3.51 13.1-3.72.12 1.1.17 2.2.17 3.24z"/></svg>
             Download on the App Store
           </a>
@@ -1184,8 +1333,8 @@
           <span>visionOS 1.0+</span>
         </div>
 
-        <!-- Terminal mockup -->
-        <div class="hero-anim hero-d6 max-w-3xl" id="terminal-wrap">
+        <!-- App screen mockup: real Add Agent screenshot -->
+        <div class="hero-anim hero-d6 max-w-3xl border-beam-wrap" id="terminal-wrap">
           <div class="terminal" id="terminal">
             <div class="terminal-bar">
               <div class="terminal-dot bg-[#FF5F57]"></div>
@@ -1193,7 +1342,7 @@
               <div class="terminal-dot bg-[#28C840]"></div>
               <span class="ml-3 text-xs font-mono text-text-tertiary">AgentChat Hub</span>
             </div>
-            <div class="p-6 font-mono text-sm space-y-4" id="terminal-body"></div>
+            <img src="images/d02.png" alt="AgentChat Hub Add Agent screen — connect via A2A agent, Cloud AI, or Local Server" class="block w-full" loading="eager" width="1600" height="1000">
           </div>
         </div>
 
@@ -1213,7 +1362,7 @@
       <span class="font-mono text-xs text-text-tertiary">One native binary per platform</span>
       <span class="font-mono text-xs text-text-tertiary flex items-center gap-1.5">
         <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
-        A2A Open Protocol compatible
+        A2A · Cloud AI (BYOK) · Local (Ollama, LM Studio)
       </span>
     </div>
   </div>
@@ -1225,101 +1374,119 @@
       <div class="mb-16 reveal">
         <p class="font-mono text-xs font-medium text-accent mb-3 tracking-wide uppercase">Features</p>
         <h2 class="font-display font-semibold text-3xl md:text-5xl tracking-tight leading-tight text-text max-w-2xl">
-          No wrappers. No middleware.<br>Just the agent.
+          Connect to any AI, three ways.<br>No subscriptions. No lock-in.
         </h2>
       </div>
 
-      <!-- Row 1: 7 / 5 asymmetric -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-3 mb-3">
+      <!-- Ferris wheel feature carousel: click a pod, or wait — it cycles on its own -->
+      <div class="ferris-wrap reveal">
+        <div class="ferris-wheel" id="ferris-wheel" role="tablist" aria-label="Features">
+          <div class="ferris-ring" id="ferris-ring">
+            <div class="ferris-rim" aria-hidden="true"></div>
+            <div class="ferris-hub thinking-orb" aria-hidden="true"></div>
 
-        <!-- Anchor card: Any endpoint, instantly — wider, richer -->
-        <div class="feat-card md:col-span-7 rounded-xl bg-surface p-8 reveal">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            </div>
-            <h3 class="font-medium text-base tracking-tight text-text">Any endpoint, instantly</h3>
-          </div>
-          <p class="text-sm text-text-secondary leading-relaxed mb-6 max-w-md">
-            Paste your agent's URL. The app fetches the Agent Card and you're chatting. No approval process, no marketplace, no waiting — just your URL. Railway, Vercel, Fly, Render, Cloudflare — it doesn't matter where your agent lives.
-          </p>
-          <div class="flex flex-wrap items-center gap-3">
-            <code class="font-mono text-xs text-accent bg-accent-dim px-3 py-2 rounded-lg border border-accent/15">my-agent.up.railway.app/.well-known/agent.json</code>
-            <span class="connected-badge flex items-center gap-1.5 font-mono text-xs text-accent" style="--bd:0.8s">
-              <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
-              agent connected
-            </span>
+            <button class="ferris-pod active" style="--i:0" data-idx="0" role="tab" aria-selected="true" aria-label="Bring your own agent">
+              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
+            </button>
+            <button class="ferris-pod" style="--i:1" data-idx="1" role="tab" aria-selected="false" aria-label="Bring your own key">
+              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span>
+            </button>
+            <button class="ferris-pod" style="--i:2" data-idx="2" role="tab" aria-selected="false" aria-label="Run it locally">
+              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></span>
+            </button>
+            <button class="ferris-pod" style="--i:3" data-idx="3" role="tab" aria-selected="false" aria-label="Any A2A endpoint, instantly">
+              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
+            </button>
+            <button class="ferris-pod" style="--i:4" data-idx="4" role="tab" aria-selected="false" aria-label="Watch your agent think">
+              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+            </button>
+            <button class="ferris-pod" style="--i:5" data-idx="5" role="tab" aria-selected="false" aria-label="Give your agents real tools">
+              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+            </button>
+            <button class="ferris-pod" style="--i:6" data-idx="6" role="tab" aria-selected="false" aria-label="Hand off work, not just messages">
+              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span>
+            </button>
+            <button class="ferris-pod" style="--i:7" data-idx="7" role="tab" aria-selected="false" aria-label="Send files, not descriptions">
+              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></span>
+            </button>
+            <button class="ferris-pod" style="--i:8" data-idx="8" role="tab" aria-selected="false" aria-label="Organized around how you work">
+              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
+            </button>
+            <button class="ferris-pod" style="--i:9" data-idx="9" role="tab" aria-selected="false" aria-label="All your agents, one place">
+              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            </button>
           </div>
         </div>
 
-        <!-- Right stack: two lean cards -->
-        <div class="md:col-span-5 flex flex-col gap-3">
-          <div class="feat-card rounded-xl bg-surface p-8 reveal flex-1">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-              </div>
-              <h3 class="font-medium text-base tracking-tight text-text">Watch your agent think</h3>
+        <div class="ferris-callout">
+          <div class="ferris-panel active" data-idx="0">
+            <div class="ferris-panel-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+            <h3 class="font-medium text-lg tracking-tight text-text mb-2">Bring your own agent</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">Any AI agent built on the open A2A protocol. Host it on Railway, Render, Fly.io, or your own server, then connect with a single URL.</p>
+          </div>
+          <div class="ferris-panel" data-idx="1">
+            <div class="ferris-panel-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></div>
+            <h3 class="font-medium text-lg tracking-tight text-text mb-2">Bring your own key</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">Connect directly to Claude, OpenAI, xAI Grok, Moonshot Kimi, or DeepSeek. Your key lives in your device's Keychain and goes nowhere but that provider.</p>
+          </div>
+          <div class="ferris-panel" data-idx="2">
+            <div class="ferris-panel-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+            <h3 class="font-medium text-lg tracking-tight text-text mb-2">Run it locally</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">Point AgentChat Hub at Ollama or LM Studio on your own network — it discovers exactly which models you have installed.</p>
+          </div>
+          <div class="ferris-panel" data-idx="3">
+            <div class="ferris-panel-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+            <h3 class="font-medium text-lg tracking-tight text-text mb-2">Any A2A endpoint, instantly</h3>
+            <p class="text-sm text-text-secondary leading-relaxed mb-4">Paste your agent's URL. The app fetches the Agent Card and you're chatting. No approval process, no marketplace, no waiting — just your URL.</p>
+            <div class="flex flex-wrap items-center gap-2">
+              <code class="font-mono text-[11px] text-accent bg-accent-dim px-2.5 py-1.5 rounded-lg border border-accent/15">my-agent.up.railway.app/.well-known/agent.json</code>
+              <span class="connected-badge flex items-center gap-1.5 font-mono text-xs text-accent" style="--bd:0.5s">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+                agent connected
+              </span>
             </div>
-            <p class="text-sm text-text-secondary leading-relaxed mb-4">
-              Responses stream token by token. Catch a wrong turn early, redirect mid-thought, or just watch it reason. No spinner. No wall of text.
-            </p>
-            <div class="font-mono text-xs text-text-tertiary space-y-1" id="feat-token-stream">
+          </div>
+          <div class="ferris-panel" data-idx="4">
+            <div class="ferris-panel-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <h3 class="font-medium text-lg tracking-tight text-text mb-2">Watch your agent think</h3>
+            <p class="text-sm text-text-secondary leading-relaxed mb-3">Responses stream token by token. Catch a wrong turn early, redirect mid-thought, or just watch it reason. No spinner. No wall of text.</p>
+            <div class="font-mono text-xs text-text-tertiary space-y-1">
               <div class="token-line" style="--tl:0s"><span class="text-accent">›</span> analysing request...</div>
-              <div class="token-line" style="--tl:0.6s"><span class="text-accent">›</span> generating response</div>
-              <div class="token-line" style="--tl:1.2s"><span class="text-accent">›</span> streaming tokens<span class="token-cursor ml-0.5 text-accent">▋</span></div>
+              <div class="token-line" style="--tl:0.4s"><span class="text-accent">›</span> generating response</div>
+              <div class="token-line" style="--tl:0.8s"><span class="text-accent">›</span> streaming tokens<span class="token-cursor ml-0.5 text-accent">▋</span></div>
             </div>
           </div>
-
-        </div>
-      </div>
-
-      <!-- Row 2: 5 / 7 flipped -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
-        <div class="feat-card md:col-span-5 rounded-xl bg-surface p-8 reveal">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+          <div class="ferris-panel" data-idx="5">
+            <div class="ferris-panel-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <h3 class="font-medium text-lg tracking-tight text-text mb-2">Give your agents real tools</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">Connect any agent to MCP (Model Context Protocol) servers — add a server once, attach it to whichever agents need it, and get real function-calling against those tools, OAuth included.</p>
+          </div>
+          <div class="ferris-panel" data-idx="6">
+            <div class="ferris-panel-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
+            <h3 class="font-medium text-lg tracking-tight text-text mb-2">Hand off work, not just messages</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">Give an agent a task with a title and a goal, and it runs its own multi-turn conversation until the job is actually done — no babysitting, no re-typing continue.</p>
+          </div>
+          <div class="ferris-panel" data-idx="7">
+            <div class="ferris-panel-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></div>
+            <h3 class="font-medium text-lg tracking-tight text-text mb-2">Send files, not descriptions</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">Send files to your AI agent directly in the conversation — drop photos, images, and documents inline. Every attachment also collects in a dedicated Files view.</p>
+          </div>
+          <div class="ferris-panel" data-idx="8">
+            <div class="ferris-panel-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
+            <h3 class="font-medium text-lg tracking-tight text-text mb-2">Organized around how you work</h3>
+            <p class="text-sm text-text-secondary leading-relaxed mb-3">Create custom groups for any workflow — name them anything, then drop your agents in. The right agent is always one tap away.</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="feat-chip" style="--cd:0.05s">Work</span>
+              <span class="feat-chip" style="--cd:0.1s">Marketing</span>
+              <span class="feat-chip" style="--cd:0.15s">Content Creation</span>
+              <span class="feat-chip" style="--cd:0.2s">Research</span>
+              <span class="feat-chip" style="--cd:0.25s">+ anything you name</span>
             </div>
-            <h3 class="font-medium text-base tracking-tight text-text">Send files, not descriptions</h3>
           </div>
-          <p class="text-sm text-text-secondary leading-relaxed">
-            Send files to your AI agent directly in the conversation — drop photos, images, and documents inline. Your agent sees exactly what you're looking at. No upload flows, no copy-pasting context.
-          </p>
-        </div>
-
-        <div class="feat-card md:col-span-7 rounded-xl bg-surface p-8 reveal">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <h3 class="font-medium text-base tracking-tight text-text">Organized around how you work</h3>
-          </div>
-          <p class="text-sm text-text-secondary leading-relaxed max-w-md mb-5">
-            Create custom groups for any workflow — name them anything, then drop your agents in. The right agent is always one tap away, never buried in a list.
-          </p>
-          <div class="flex flex-wrap gap-2" id="workflow-chips">
-            <span class="feat-chip" style="--cd:0.1s">Work</span>
-            <span class="feat-chip" style="--cd:0.2s">Marketing</span>
-            <span class="feat-chip" style="--cd:0.3s">Content Creation</span>
-            <span class="feat-chip" style="--cd:0.4s">Data Extraction</span>
-            <span class="feat-chip" style="--cd:0.5s">Research</span>
-            <span class="feat-chip" style="--cd:0.6s">+ anything you name</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Row 3: full-width -->
-      <div class="grid grid-cols-1 gap-3 mt-3">
-        <div class="feat-card rounded-xl bg-surface p-8 reveal flex flex-col sm:flex-row sm:items-center gap-8">
-          <div class="feat-icon w-9 h-9 rounded-lg bg-accent-dim flex items-center justify-center shrink-0">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div class="flex-1">
-            <h3 class="font-medium text-base tracking-tight text-text mb-2">All your agents, one place</h3>
-            <p class="text-sm text-text-secondary leading-relaxed max-w-2xl">
-              Every agent you build, discover, or run — all in one app. No juggling tabs, no hunting through bookmarks. AgentChat Hub is the single place you go to talk to any agent, for any purpose, on any hosting platform.
-            </p>
+          <div class="ferris-panel" data-idx="9">
+            <div class="ferris-panel-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3 class="font-medium text-lg tracking-tight text-text mb-2">All your agents, one place</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">Every agent you build, discover, or run — plus every cloud model and local server you connect — all in one app. No juggling tabs, no hunting through bookmarks.</p>
           </div>
         </div>
       </div>
@@ -1337,96 +1504,69 @@
           See it in action.
         </h2>
         <p class="text-text-secondary text-base max-w-xl">
-          Pick a scenario. AgentChat Hub connects to any A2A agent instantly — coding assistant, research helper, or a personal assistant running on your own hardware.
+          Pick a scenario. This is the real desktop UI, running live — an A2A agent, a cloud model with your own key, or a personal assistant on your own hardware.
         </p>
       </div>
 
       <!-- Scenario tabs -->
       <div class="flex gap-2 mb-6 flex-wrap reveal" role="tablist" aria-label="Demo scenarios">
-        <button class="demo-tab" data-scenario="assistant" role="tab" aria-selected="false" aria-controls="demo-window">
+        <button class="demo-tab active" data-scenario="assistant" role="tab" aria-selected="true" aria-controls="rc-window">
           <span class="demo-tab-dot" aria-hidden="true"></span> Personal Assistant
         </button>
-        <button class="demo-tab" data-scenario="research" role="tab" aria-selected="false" aria-controls="demo-window">
+        <button class="demo-tab" data-scenario="research" role="tab" aria-selected="false" aria-controls="rc-window">
           <span class="demo-tab-dot" aria-hidden="true"></span> Research Agent
         </button>
-        <button class="demo-tab" data-scenario="code" role="tab" aria-selected="false" aria-controls="demo-window">
+        <button class="demo-tab" data-scenario="code" role="tab" aria-selected="false" aria-controls="rc-window">
           <span class="demo-tab-dot" aria-hidden="true"></span> Coding Agent
         </button>
       </div>
 
-      <!-- App window mockup -->
-      <div class="demo-window reveal" id="demo-window" role="tabpanel">
-        <!-- macOS window chrome -->
-        <div class="demo-chrome">
-          <div class="traffic-lights" aria-hidden="true">
-            <span class="tl tl-red"></span>
-            <span class="tl tl-yellow"></span>
-            <span class="tl tl-green"></span>
-          </div>
-          <span class="demo-window-title">AgentChat Hub</span>
-          <div style="width:52px" aria-hidden="true"></div>
+      <!-- Real-desktop-UI window -->
+      <div class="rc-window reveal" id="rc-window" role="tabpanel">
+        <div class="rc-titlebar">
+          <span class="rc-tl rc-tl-red"></span><span class="rc-tl rc-tl-yellow"></span><span class="rc-tl rc-tl-green"></span>
+          <span class="rc-titlebar-label">AgentChat Hub</span>
         </div>
-
-        <!-- Two-panel body -->
-        <div class="demo-body">
+        <div class="rc-body">
           <!-- Sidebar -->
-          <div class="demo-sidebar" aria-label="Connected agents">
-            <div class="sidebar-lbl">AGENTS</div>
-            <div class="demo-agent-item" data-agent="0" role="button" tabindex="0" aria-label="Switch to Personal Assistant">
-              <span class="agent-sdot" aria-hidden="true"></span>
-              <div class="agent-meta-col">
-                <span class="agent-dname">Personal Assistant</span>
-                <span class="agent-durl">assistant.local:8080</span>
-              </div>
-            </div>
-            <div class="demo-agent-item" data-agent="1" role="button" tabindex="0" aria-label="Switch to Research Agent">
-              <span class="agent-sdot" aria-hidden="true"></span>
-              <div class="agent-meta-col">
-                <span class="agent-dname">Research Agent</span>
-                <span class="agent-durl">research.my-server.com</span>
-              </div>
-            </div>
-            <div class="demo-agent-item" data-agent="2" role="button" tabindex="0" aria-label="Switch to Coding Agent">
-              <span class="agent-sdot" aria-hidden="true"></span>
-              <div class="agent-meta-col">
-                <span class="agent-dname">Coding Agent</span>
-                <span class="agent-durl">code-agent.fly.dev</span>
-              </div>
-            </div>
-            <div class="add-agent-row" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="5.5" y1="1" x2="5.5" y2="10"/><line x1="1" y1="5.5" x2="10" y2="5.5"/></svg>
-              Add agent
-            </div>
+          <div class="rc-sidebar" aria-label="Connected agents">
+            <div class="rc-sidebar-lbl">AGENTS</div>
+            <button class="rc-agent-item active" data-agent="0" aria-label="Switch to Personal Assistant">
+              <span class="rc-avatar" style="background:#3B82F6">P</span>
+              <span class="rc-agent-meta"><span class="rc-agent-name">Personal Assistant</span><span class="rc-agent-url">assistant.local:8080</span></span>
+            </button>
+            <button class="rc-agent-item" data-agent="1" aria-label="Switch to Research Agent">
+              <span class="rc-avatar" style="background:#8338EC">R</span>
+              <span class="rc-agent-meta"><span class="rc-agent-name">Research Agent</span><span class="rc-agent-url">research.my-server.com</span></span>
+            </button>
+            <button class="rc-agent-item" data-agent="2" aria-label="Switch to Coding Agent">
+              <span class="rc-avatar" style="background:#06D6A0">C</span>
+              <span class="rc-agent-meta"><span class="rc-agent-name">Coding Agent</span><span class="rc-agent-url">code-agent.fly.dev</span></span>
+            </button>
           </div>
 
           <!-- Chat panel -->
-          <div class="demo-chat-panel">
-            <!-- Header -->
-            <div class="demo-chat-hdr">
-              <div class="conn-indicator">
-                <span class="conn-dot-pulse" aria-hidden="true"></span>
-                <span class="conn-url" id="demo-conn-url">code-agent.fly.dev</span>
-                <span class="conn-badge">Connected</span>
+          <div class="rc-chat">
+            <div class="rc-header">
+              <span class="rc-avatar" id="rc-avatar" style="background:#3B82F6">P</span>
+              <div class="rc-header-meta">
+                <span class="rc-header-name" id="rc-name">Personal Assistant</span>
+                <span class="rc-header-status">● Online</span>
               </div>
-              <button class="demo-replay-btn" id="demo-replay-btn" aria-label="Replay demo">
-                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1,4 1,1 4,1"/><path d="M1,1 C3,1 11,1 11,6 C11,9 8.5,11 6,11 C3.5,11 1,9 1,6"/></svg>
-                Replay
-              </button>
+              <span class="rc-header-dots" aria-hidden="true">⋯</span>
             </div>
-
-            <!-- Messages -->
-            <div class="demo-msgs" id="demo-msgs" aria-live="polite" aria-label="Demo conversation"></div>
-
-            <!-- Composer (decorative) -->
-            <div class="demo-composer-bar" aria-hidden="true">
-              <div class="demo-composer-input">
-                <span id="demo-composer-text" class="dc-placeholder">Send a message…</span>
-              </div>
-              <button class="dc-attach" tabindex="-1">
-                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 6.5L6.5 12.5C5.1 13.9 2.9 13.9 1.5 12.5C0.1 11.1 0.1 8.9 1.5 7.5L7.5 1.5C8.5 0.5 10.1 0.5 11.1 1.5C12.1 2.5 12.1 4.1 11.1 5.1L5.1 11.1C4.6 11.6 3.8 11.6 3.3 11.1C2.8 10.6 2.8 9.8 3.3 9.3L8.5 4"/></svg>
-              </button>
-              <button class="dc-send" tabindex="-1">
-                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="1" y1="7" x2="13" y2="7"/><polyline points="7,1 13,7 7,13"/></svg>
+            <div class="rc-tabbar" aria-hidden="true">
+              <span class="rc-tab">Info</span>
+              <span class="rc-tab active">Chat</span>
+              <span class="rc-tab">Activity</span>
+              <span class="rc-tab">Tasks</span>
+              <span class="rc-tab">Files</span>
+            </div>
+            <div class="rc-msgs" id="rc-msgs" aria-live="polite" aria-label="Demo conversation"></div>
+            <div class="rc-composer" aria-hidden="true">
+              <div class="rc-composer-input"><span id="rc-composer-text" class="rc-placeholder">Send a message…</span></div>
+              <button class="rc-send" tabindex="-1">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="1" y1="7" x2="13" y2="7"/><polyline points="7,1 13,7 7,13"/></svg>
               </button>
             </div>
           </div>
@@ -1434,8 +1574,44 @@
       </div>
 
       <p class="text-text-tertiary text-xs font-mono mt-4 text-center reveal">
-        Click a tab or sidebar agent to run a scenario · Tool call prompts pause for your approval · Click Replay to restart
+        Click a tab or sidebar agent to run a scenario
       </p>
+    </div>
+  </section>
+
+  <!-- ═══ CONNECT EVERYTHING ═══ -->
+  <section aria-label="Connections" class="py-24 md:py-32 border-t border-border-subtle">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <!-- Connect Everything — vertical scrolling list of every connection target -->
+      <div class="connect-wheel-card reveal">
+        <div class="cw-copy">
+          <p class="pipeline-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.2 4.2l2.9 2.9M16.9 16.9l2.9 2.9M1 12h4M19 12h4M4.2 19.8l2.9-2.9M16.9 7.1l2.9-2.9"/></svg>Connections</p>
+          <h3 class="font-display font-bold text-2xl tracking-tight text-text mb-3" style="font-variation-settings:'wdth' 105,'wght' 700">Connect everything, effortlessly.</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Every provider and protocol AgentChat Hub speaks to — cloud, local, or open agent — in one client. No custom integration, no waiting on support.</p>
+        </div>
+        <div class="cw-mask" aria-hidden="true">
+          <div class="cw-wheel">
+            <span>A2A Agents</span>
+            <span>Claude (Anthropic)</span>
+            <span>OpenAI GPT</span>
+            <span>xAI Grok</span>
+            <span>Moonshot Kimi</span>
+            <span>DeepSeek</span>
+            <span>Ollama (Local)</span>
+            <span>LM Studio (Local)</span>
+            <span>MCP Tool Servers</span>
+            <span>A2A Agents</span>
+            <span>Claude (Anthropic)</span>
+            <span>OpenAI GPT</span>
+            <span>xAI Grok</span>
+            <span>Moonshot Kimi</span>
+            <span>DeepSeek</span>
+            <span>Ollama (Local)</span>
+            <span>LM Studio (Local)</span>
+            <span>MCP Tool Servers</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1455,15 +1631,15 @@
     <div class="marquee-track mb-4">
       <div class="marquee-row marquee-row-left px-4">
         <!-- set A -->
-        <div class="phone-shot"><img src="images/s01.png" alt="Messages — empty state" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s02.png" alt="Conversation list" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s03.png" alt="Settings" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s04.png" alt="Add Agent" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s05.png" alt="Agent card" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s06.png" alt="Agent details" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s07.png" alt="Chat view" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s08.png" alt="Discover agents" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s09.png" alt="Settings menu" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s01.png" alt="Home — connect any of three ways" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s02.png" alt="Add Agent — A2A, Cloud AI, or Local Server" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s03.png" alt="Add an A2A agent by URL" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s04.png" alt="Chats — talk to your agents" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s05.png" alt="Streaming responses in real time" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s06.png" alt="Tasks — hand off a job to an agent" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s07.png" alt="Rename agents and set custom profile photos" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s08.png" alt="MCP tool support, built in" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s09.png" alt="Real function-calling — image generation, prompt writing, video" loading="lazy"></div>
         <!-- set B (duplicate for seamless loop) -->
         <div class="phone-shot"><img src="images/s01.png" alt="" loading="lazy" aria-hidden="true"></div>
         <div class="phone-shot"><img src="images/s02.png" alt="" loading="lazy" aria-hidden="true"></div>
@@ -1481,15 +1657,15 @@
     <div class="marquee-track">
       <div class="marquee-row marquee-row-right px-4">
         <!-- set A -->
-        <div class="phone-shot"><img src="images/s10.png" alt="Settings — dark mode" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s11.png" alt="Session settings" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s12.png" alt="Chat — dark mode" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s13.png" alt="Messages list — dark" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s14.png" alt="Messages — dark mode" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s15.png" alt="Chat session" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s16.png" alt="Discover — dark mode" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s17.png" alt="Agent discovery" loading="lazy"></div>
-        <div class="phone-shot"><img src="images/s18.png" alt="iPhone Air view" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s10.png" alt="Home — dark mode" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s11.png" alt="Add Agent — dark mode" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s12.png" alt="Discover — all your agents, one roster" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s13.png" alt="Tasks — dark mode" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s14.png" alt="Chats — dark mode" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s15.png" alt="Settings — profile, MCP, and session" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s16.png" alt="Home — agent connection status" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s17.png" alt="Home — dark mode" loading="lazy"></div>
+        <div class="phone-shot"><img src="images/s18.png" alt="Settings — dark mode" loading="lazy"></div>
         <!-- set B (duplicate for seamless loop) -->
         <div class="phone-shot"><img src="images/s10.png" alt="" loading="lazy" aria-hidden="true"></div>
         <div class="phone-shot"><img src="images/s11.png" alt="" loading="lazy" aria-hidden="true"></div>
@@ -1504,6 +1680,41 @@
     </div>
   </section>
 
+  <!-- ═══ DESKTOP ═══ -->
+  <section aria-label="Desktop app" class="py-24 md:py-32 border-t border-border-subtle">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="mb-10 reveal">
+        <p class="text-xs font-mono font-medium text-accent uppercase tracking-widest mb-4">Now on Mac</p>
+        <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight text-text mb-4" style="font-variation-settings:'wdth' 108,'wght' 800">
+          Full desktop parity.
+        </h2>
+        <p class="text-text-secondary text-base max-w-xl">
+          Home, Chats, Tasks, Groups, MCP servers, and every agent detail — the same three connection methods, the same zero-data-collection design, now on a bigger screen.
+        </p>
+      </div>
+
+      <div class="max-w-[860px] mx-auto reveal">
+        <div class="terminal" id="desktop-shot-window">
+          <div class="terminal-bar">
+            <div class="terminal-dot bg-[#FF5F57]"></div>
+            <div class="terminal-dot bg-[#FEBC2E]"></div>
+            <div class="terminal-dot bg-[#28C840]"></div>
+            <span class="ml-3 text-xs font-mono text-text-tertiary" id="desktop-shot-label">Home dashboard</span>
+          </div>
+          <img id="desktop-shot-img" src="images/d01.png" alt="AgentChat Hub for Mac — home dashboard with three connection methods" loading="lazy" class="block w-full">
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2 mt-5" role="tablist" aria-label="Desktop screenshots">
+          <button class="desktop-shot-tab active" data-img="images/d01.png" data-label="Home dashboard" data-alt="AgentChat Hub for Mac — home dashboard with three connection methods" role="tab" aria-selected="true">Home</button>
+          <button class="desktop-shot-tab" data-img="images/d02.png" data-label="Connect an agent" data-alt="AgentChat Hub for Mac — connect an agent by URL" role="tab" aria-selected="false">Connect</button>
+          <button class="desktop-shot-tab" data-img="images/d03.png" data-label="MCP servers" data-alt="AgentChat Hub for Mac — MCP servers with OAuth" role="tab" aria-selected="false">MCP Servers</button>
+          <button class="desktop-shot-tab" data-img="images/d04.png" data-label="Settings" data-alt="AgentChat Hub for Mac — settings in dark mode" role="tab" aria-selected="false">Settings</button>
+          <button class="desktop-shot-tab" data-img="images/d05.png" data-label="Local model" data-alt="AgentChat Hub for Mac — local Ollama model connection" role="tab" aria-selected="false">Local Model</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ PROTOCOL — centered header + open horizontal 3-node flow ═══ -->
   <section id="protocol" aria-label="How it works" class="py-24 md:py-32 border-t border-border-subtle overflow-hidden">
     <div class="max-w-[1200px] mx-auto px-6">
@@ -1514,7 +1725,7 @@
           Three steps.<br>Zero ceremony.
         </h2>
         <p class="text-text-secondary text-sm leading-relaxed">
-          If it publishes A2A metadata, AgentChat can talk to it. That is the entire integration surface.
+          This is the A2A path — one of three ways to connect. If it publishes A2A metadata, AgentChat can talk to it. Prefer a cloud model or a model on your own machine? Bring your key or point at Ollama instead — same app, same steps.
         </p>
       </div>
 
@@ -1524,7 +1735,7 @@
           <div class="step-node mb-7 shrink-0">
             <span class="step-num font-mono text-xs font-bold text-accent opacity-0">01</span>
           </div>
-          <p class="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">Step one</p>
+          <p class="pipeline-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>Step one</p>
           <h3 class="font-display font-bold text-xl tracking-tight text-text mb-3" style="font-variation-settings:'wdth' 105,'wght' 700">Publish agent metadata</h3>
           <p class="text-sm text-text-secondary leading-relaxed mb-5 flex-1">Host an Agent Card so any client can discover your capabilities without manual configuration.</p>
           <code class="font-mono text-xs text-accent bg-accent-dim px-3 py-2 rounded-lg border border-accent/15 self-start">/.well-known/agent.json</code>
@@ -1534,7 +1745,7 @@
           <div class="step-node step-node-2 mb-7 shrink-0">
             <span class="step-num font-mono text-xs font-bold text-accent2 opacity-0">02</span>
           </div>
-          <p class="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">Step two</p>
+          <p class="pipeline-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11.5 4.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-2.83 2.83a5 5 0 0 0 7.07 7.07L12.5 19.5"/></svg>Step two</p>
           <h3 class="font-display font-bold text-xl tracking-tight text-text mb-3" style="font-variation-settings:'wdth' 105,'wght' 700">Paste the URL</h3>
           <p class="text-sm text-text-secondary leading-relaxed flex-1">AgentChat reads the Agent Card, discovers the endpoint, and establishes a session. No SDK. No API key. No setup ritual.</p>
         </div>
@@ -1542,8 +1753,9 @@
         <div class="step-col reveal flex flex-col px-0 md:pl-10 border-t md:border-t-0 md:border-l border-border-subtle pt-12 md:pt-0">
           <div class="step-node mb-7 shrink-0">
             <span class="step-num font-mono text-xs font-bold text-accent opacity-0">03</span>
+            <span class="step-heartbeat" aria-hidden="true" title="Agent connected"></span>
           </div>
-          <p class="font-mono text-[10px] text-accent tracking-widest uppercase mb-3">Step three</p>
+          <p class="pipeline-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Step three</p>
           <h3 class="font-display font-bold text-xl tracking-tight text-text mb-3" style="font-variation-settings:'wdth' 105,'wght' 700">Start chatting</h3>
           <p class="text-sm text-text-secondary leading-relaxed flex-1">Stream responses, send files, manage conversations. Everything stays on your device — no cloud in the middle.</p>
         </div>
@@ -1804,7 +2016,7 @@
           </summary>
           <div class="faq-body">
             <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
-              No. If you already have an A2A-compatible agent endpoint — or you find one on the open web — you just paste the URL and start chatting. If you want to connect your own agent, you only need to expose an A2A endpoint and a discovery file. No SDK, no API key, no custom frontend to build.
+              No. If you already have an A2A-compatible agent endpoint — or you find one on the open web — you just paste the URL and start chatting. No SDK, no custom frontend to build. Prefer a cloud model instead? Bring your own API key for Claude, OpenAI, Grok, Kimi, or DeepSeek — no A2A endpoint required.
             </div>
           </div>
         </details>
@@ -1879,7 +2091,52 @@
           </summary>
           <div class="faq-body">
             <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
-              Most AI chat apps lock you into one provider's model. AgentChat Hub connects to any A2A-compatible agent via URL — you bring the agent, it brings the interface. No curated marketplace, no vendor lock-in. Key differentiators: works with any self-hosted or third-party A2A agent, real-time SSE token streaming, file attachments, no account required, zero data collection, native binary on iPhone, iPad, Mac, and Vision Pro.
+              Most AI chat apps lock you into one provider's model. AgentChat Hub connects three ways — any A2A-compatible agent via URL, cloud providers like Claude, OpenAI, Grok, Kimi, or DeepSeek with your own key, or local models via Ollama and LM Studio. No curated marketplace, no vendor lock-in. Key differentiators: MCP tool support, goal-driven Tasks, real-time SSE token streaming, file attachments, no account required, zero data collection, native binary on iPhone, iPad, Mac, and Vision Pro.
+            </div>
+          </div>
+        </details>
+
+        <details class="group border-t border-border-subtle">
+          <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+            <div class="flex items-start gap-5">
+              <span class="font-mono text-xs text-accent shrink-0 mt-1.5">11</span>
+              <span class="faq-q">What is MCP and does AgentChat Hub support it?</span>
+            </div>
+            <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+          </summary>
+          <div class="faq-body">
+            <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+              MCP (Model Context Protocol) is the open standard for giving AI agents tools. AgentChat Hub connects any agent to MCP servers — add a server once, attach it to whichever agents need it, and get real function-calling against those tools, including OAuth-authenticated servers.
+            </div>
+          </div>
+        </details>
+
+        <details class="group border-t border-border-subtle">
+          <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+            <div class="flex items-start gap-5">
+              <span class="font-mono text-xs text-accent2 shrink-0 mt-1.5">12</span>
+              <span class="faq-q">Do I need an API key to use AgentChat Hub?</span>
+            </div>
+            <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+          </summary>
+          <div class="faq-body">
+            <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+              Only if you choose the Cloud AI connection method. To chat with Claude, OpenAI, Grok, Kimi, or DeepSeek directly, bring your own API key — it lives in your device's Keychain and is sent only to that provider. Connecting an A2A agent or a local model requires no API key at all.
+            </div>
+          </div>
+        </details>
+
+        <details class="group border-t border-border-subtle">
+          <summary class="py-7 flex items-start justify-between gap-6 select-none cursor-pointer">
+            <div class="flex items-start gap-5">
+              <span class="font-mono text-xs text-accent shrink-0 mt-1.5">13</span>
+              <span class="faq-q">Can I run local AI models with AgentChat Hub?</span>
+            </div>
+            <span class="faq-icon w-6 h-6 rounded-full border border-border flex items-center justify-center shrink-0 text-text-tertiary font-mono text-base leading-none mt-0.5">+</span>
+          </summary>
+          <div class="faq-body">
+            <div class="pb-8 pl-10 text-sm text-text-secondary leading-relaxed">
+              Yes. Point AgentChat Hub at Ollama or LM Studio running on your own machine or network, and it discovers exactly which models you have installed. No API key, no cloud round-trip — the model runs entirely on your hardware.
             </div>
           </div>
         </details>
@@ -1921,13 +2178,13 @@
 
     <div class="max-w-[1200px] mx-auto px-6 text-center relative z-10 reveal">
       <h2 class="font-display font-bold text-4xl md:text-6xl tracking-tight leading-[0.95] text-text max-w-2xl mx-auto mb-6">
-        One app for every AI agent<br>you'll ever use.
+        One app for every AI agent<br>and every model you use.
       </h2>
       <p class="text-base font-medium text-text-secondary leading-relaxed max-w-md mx-auto mb-10">
-        Start for free. No account. Works with any A2A agent. Available now on the App Store.
+        Start for free. No account. A2A, cloud, or local. Available now on the App Store.
       </p>
       <a title="Download on the App Store" href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener noreferrer"
-         class="btn-primary inline-flex items-center gap-3 bg-accent text-bg font-semibold px-8 py-4 rounded-xl text-sm border border-accent/80">
+         class="btn-primary btn-metal inline-flex items-center gap-3 bg-accent text-bg font-semibold px-8 py-4 rounded-xl text-sm border border-accent/80">
         <svg width="18" height="18" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.2-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.28 2.13-9.54 3.25-12.8 3.35-4.92.21-9.84-1.96-14.75-6.52-3.13-2.73-7.05-7.41-11.76-14.04-5.05-7.14-9.2-15.42-12.44-24.86C18.63 110.62 17 101.02 17 91.71c0-10.67 2.3-19.87 6.92-27.58 3.62-6.18 8.44-11.06 14.48-14.66 6.04-3.6 12.56-5.43 19.6-5.58 3.92 0 9.06 1.21 15.43 3.6 6.35 2.4 10.43 3.62 12.22 3.62 1.34 0 5.87-1.43 13.56-4.28 7.27-2.64 13.41-3.74 18.44-3.32 13.62 1.1 23.85 6.47 30.63 16.15-12.19 7.39-18.22 17.73-18.1 31 .11 10.34 3.86 18.94 11.23 25.77 3.34 3.17 7.07 5.62 11.22 7.36-.9 2.61-1.85 5.11-2.86 7.51zM119.11 7.24c0 8.1-2.96 15.67-8.86 22.67-7.12 8.32-15.73 13.13-25.07 12.37a25.2 25.2 0 0 1-.19-3.07c0-7.78 3.39-16.09 9.4-22.89 3-3.44 6.82-6.31 11.45-8.6 4.62-2.26 8.99-3.51 13.1-3.72.12 1.1.17 2.2.17 3.24z"/></svg>
         Download on the App Store
       </a>

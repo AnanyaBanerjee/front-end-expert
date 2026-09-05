@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>agent-chat-hub — A/B variant preview (internal, not deployed)</title>
+<style>
+  body { margin: 0; font-family: system-ui, sans-serif; background: #111; color: #eee; }
+  h1 { padding: 16px 20px 8px; font-size: 16px; }
+  p.hint { padding: 0 20px 16px; font-size: 13px; color: #999; }
+  .row { display: flex; height: calc(100vh - 90px); }
+  .col { flex: 1; display: flex; flex-direction: column; border-right: 2px solid #333; }
+  .col:last-child { border-right: none; }
+  .label { padding: 6px 12px; font-size: 13px; font-weight: 600; background: #1a1a1a; }
+  iframe { flex: 1; border: none; width: 100%; }
+</style>
+</head>
+<body>
+  <h1>agent-chat-hub.com — variant preview</h1>
+  <p class="hint">Internal comparison tool. Not part of the deployed site. Swap the Variant B src once index-b.html exists.</p>
+  <div class="row">
+    <div class="col">
+      <div class="label">Variant A — site/index.html (current)</div>
+      <iframe src="site/index.html"></iframe>
+    </div>
+    <div class="col">
+      <div class="label">Variant B — site/index-b.html (not created yet)</div>
+      <iframe src="site/index-b.html"></iframe>
+    </div>
+  </div>
+</body>
+</html>

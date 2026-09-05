@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentChat Hub — Live Demo Prototype (internal, not for deploy)</title>
+<style>
+  :root{
+    --bg:#0a0a0a; --surface:#111; --border:#262626; --text:#f5f5f5; --text-sec:#a3a3a3;
+    --accent:#00e87a; --danger:#ff5d5d;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--text);}
+  .wrap{max-width:640px;margin:0 auto;padding:32px 20px 80px;}
+  h1{font-size:22px;margin:0 0 4px;}
+  .note{color:var(--text-sec);font-size:13px;margin:0 0 28px;line-height:1.5;}
+  .note code{background:var(--surface);padding:2px 6px;border-radius:4px;}
+  .tabs{display:flex;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;margin-bottom:16px;}
+  .tab{flex:1;text-align:center;padding:9px 0;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;color:var(--text-sec);user-select:none;}
+  .tab.active{background:var(--accent);color:#04150c;}
+  .panel{display:none;}
+  .panel.active{display:block;}
+  .field{margin-bottom:12px;}
+  label{display:block;font-size:12px;color:var(--text-sec);margin-bottom:6px;}
+  input[type=text], select{
+    width:100%;padding:10px 12px;background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;color:var(--text);font-size:14px;
+  }
+  .row{display:flex;gap:8px;}
+  .row > *{flex:1;}
+  button{
+    background:var(--accent);color:#04150c;border:none;border-radius:8px;
+    padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;
+  }
+  button:disabled{opacity:.4;cursor:not-allowed;}
+  button.secondary{background:var(--surface);color:var(--text);border:1px solid var(--border);}
+  .status{font-size:12px;margin:10px 0;padding:8px 10px;border-radius:8px;background:var(--surface);border:1px solid var(--border);color:var(--text-sec);}
+  .status.ok{color:var(--accent);border-color:rgba(0,232,122,.3);}
+  .status.err{color:var(--danger);border-color:rgba(255,93,93,.3);}
+  .chat{border:1px solid var(--border);border-radius:12px;background:var(--surface);margin-top:16px;overflow:hidden;display:none;}
+  .chat.active{display:block;}
+  .chat-msgs{max-height:340px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;}
+  .msg{max-width:85%;padding:9px 12px;border-radius:10px;font-size:14px;line-height:1.45;white-space:pre-wrap;}
+  .msg.user{align-self:flex-end;background:var(--accent);color:#04150c;}
+  .msg.agent{align-self:flex-start;background:#1a1a1a;border:1px solid var(--border);}
+  .msg.pending{color:var(--text-sec);}
+  .chat-input{display:flex;gap:8px;padding:10px;border-top:1px solid var(--border);}
+  .chat-input input{flex:1;}
+  .disconnect{margin-top:10px;}
+  .footer-note{margin-top:28px;font-size:12px;color:var(--text-sec);border-top:1px solid var(--border);padding-top:16px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Try it live — prototype</h1>
+  <p class="note">
+    Internal review page. Not linked from the site, not styled to match yet — this is only to validate
+    the interaction works end-to-end before it gets built into <code>index.html</code>.
+    Runs entirely in your browser: your endpoint URL and messages go straight from this page to the
+    agent/model you point it at. Nothing touches any server we control.
+  </p>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="local">Local model (Ollama)</div>
+    <div class="tab" data-tab="a2a">A2A agent</div>
+  </div>
+
+  <div class="panel active" id="panel-local">
+    <div class="field">
+      <label for="local-url">Ollama endpoint</label>
+      <input type="text" id="local-url" value="http://localhost:11434">
+    </div>
+    <div class="field">
+      <label for="local-model">Model</label>
+      <input type="text" id="local-model" value="qwen2.5-coder:1.5b">
+    </div>
+    <div class="row">
+      <button id="local-connect">Connect</button>
+      <button class="secondary" id="local-list-models">List models</button>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-a2a">
+    <div class="field">
+      <label for="a2a-url">A2A agent URL</label>
+      <input type="text" id="a2a-url" placeholder="https://your-agent.example.dev">
+    </div>
+    <button id="a2a-connect">Connect</button>
+  </div>
+
+  <div class="status" id="status">Not connected.</div>
+
+  <div class="chat" id="chat">
+    <div class="chat-msgs" id="chat-msgs"></div>
+    <div class="chat-input">
+      <input type="text" id="chat-text" placeholder="Send a message…">
+      <button id="chat-send">Send</button>
+    </div>
+  </div>
+  <button class="secondary disconnect" id="disconnect" style="display:none;">Disconnect</button>
+
+  <div class="footer-note">
+    CORS note: Ollama rejects <em>any</em> request carrying an Origin header — including <code>null</code>,
+    which is what browsers send from a <code>file://</code> page — unless that origin is explicitly allowed.
+    To test this prototype for real, stop your current Ollama, then restart it with
+    <code>OLLAMA_ORIGINS=null,http://localhost:PORT ollama serve</code> (matching whatever origin you're loading this
+    page from), and the same applies once this ships on the real domain
+    (<code>OLLAMA_ORIGINS=https://agent-chat-hub.com</code>).
+  </div>
+</div>
+
+<script>
+(() => {
+  const tabs = document.querySelectorAll('.tab');
+  const panels = { local: document.getElementById('panel-local'), a2a: document.getElementById('panel-a2a') };
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    Object.values(panels).forEach(p => p.classList.remove('active'));
+    panels[t.dataset.tab].classList.add('active');
+    resetChat();
+  }));
+
+  const statusEl = document.getElementById('status');
+  const chatEl = document.getElementById('chat');
+  const msgsEl = document.getElementById('chat-msgs');
+  const disconnectBtn = document.getElementById('disconnect');
+  const chatText = document.getElementById('chat-text');
+  const chatSend = document.getElementById('chat-send');
+
+  let mode = null;       // 'local' | 'a2a'
+  let localUrl = null, localModel = null, a2aUrl = null;
+  let history = [];      // {role, content}
+
+  function setStatus(text, kind) {
+    statusEl.textContent = text;
+    statusEl.className = 'status' + (kind ? ' ' + kind : '');
+  }
+
+  function resetChat() {
+    mode = null;
+    history = [];
+    msgsEl.innerHTML = '';
+    chatEl.classList.remove('active');
+    disconnectBtn.style.display = 'none';
+    setStatus('Not connected.');
+  }
+
+  function addMsg(role, text, pending) {
+    const div = document.createElement('div');
+    div.className = 'msg ' + role + (pending ? ' pending' : '');
+    div.textContent = text;
+    msgsEl.appendChild(div);
+    msgsEl.scrollTop = msgsEl.scrollHeight;
+    return div;
+  }
+
+  // ---- Local (Ollama) ----
+  document.getElementById('local-list-models').addEventListener('click', async () => {
+    const url = document.getElementById('local-url').value.trim().replace(/\/$/, '');
+    setStatus('Checking ' + url + ' …');
+    try {
+      const res = await fetch(url + '/api/tags');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const names = (data.models || []).map(m => m.name).join(', ') || '(none installed)';
+      setStatus('Models available: ' + names, 'ok');
+    } catch (e) {
+      setStatus('Could not reach Ollama at ' + url + ' — ' + e.message + '. Is it running? Is OLLAMA_ORIGINS set?', 'err');
+    }
+  });
+
+  document.getElementById('local-connect').addEventListener('click', async () => {
+    localUrl = document.getElementById('local-url').value.trim().replace(/\/$/, '');
+    localModel = document.getElementById('local-model').value.trim();
+    setStatus('Connecting to ' + localUrl + ' (' + localModel + ') …');
+    try {
+      const res = await fetch(localUrl + '/api/tags');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      mode = 'local';
+      setStatus('Connected to local model: ' + localModel, 'ok');
+      chatEl.classList.add('active');
+      disconnectBtn.style.display = 'inline-block';
+      history = [];
+      msgsEl.innerHTML = '';
+    } catch (e) {
+      setStatus('Connection failed — ' + e.message, 'err');
+    }
+  });
+
+  // ---- A2A ----
+  document.getElementById('a2a-connect').addEventListener('click', async () => {
+    a2aUrl = document.getElementById('a2a-url').value.trim().replace(/\/$/, '');
+    if (!a2aUrl) { setStatus('Enter an agent URL first.', 'err'); return; }
+    if (!/^https?:\/\//i.test(a2aUrl)) a2aUrl = 'https://' + a2aUrl;
+    setStatus('Discovering agent at ' + a2aUrl + ' …');
+    try {
+      const res = await fetch(a2aUrl + '/.well-known/agent.json');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const card = await res.json();
+      mode = 'a2a';
+      setStatus('Connected: ' + (card.name || a2aUrl), 'ok');
+      chatEl.classList.add('active');
+      disconnectBtn.style.display = 'inline-block';
+      history = [];
+      msgsEl.innerHTML = '';
+    } catch (e) {
+      setStatus('Could not discover agent card — ' + e.message + '. Does the agent expose CORS + /.well-known/agent.json?', 'err');
+    }
+  });
+
+  disconnectBtn.addEventListener('click', resetChat);
+
+  async function sendLocal(text) {
+    history.push({ role: 'user', content: text });
+    const pendingEl = addMsg('agent', 'thinking…', true);
+    try {
+      const res = await fetch(localUrl + '/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: localModel, messages: history, stream: false })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const reply = data.message ? data.message.content : '(empty response)';
+      pendingEl.textContent = reply;
+      pendingEl.classList.remove('pending');
+      history.push({ role: 'assistant', content: reply });
+    } catch (e) {
+      pendingEl.textContent = 'Error: ' + e.message;
+      pendingEl.classList.remove('pending');
+    }
+  }
+
+  async function sendA2A(text) {
+    const pendingEl = addMsg('agent', 'thinking…', true);
+    try {
+      const res = await fetch(a2aUrl + '/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: String(Date.now()),
+          method: 'message/send',
+          params: { message: { role: 'user', parts: [{ type: 'text', text }] } }
+        })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const parts = data.result && data.result.parts;
+      const reply = parts ? parts.map(p => p.text || '').join(' ') : JSON.stringify(data.result || data);
+      pendingEl.textContent = reply || '(empty response)';
+      pendingEl.classList.remove('pending');
+    } catch (e) {
+      pendingEl.textContent = 'Error: ' + e.message;
+      pendingEl.classList.remove('pending');
+    }
+  }
+
+  async function send() {
+    const text = chatText.value.trim();
+    if (!text || !mode) return;
+    chatText.value = '';
+    addMsg('user', text);
+    chatSend.disabled = true;
+    if (mode === 'local') await sendLocal(text);
+    else await sendA2A(text);
+    chatSend.disabled = false;
+    chatText.focus();
+  }
+
+  chatSend.addEventListener('click', send);
+  chatText.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
+})();
+</script>
+</body>
+</html>
