@@ -32,6 +32,17 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+// ── Scroll reveal: blur-in for select headlines ──
+const blurObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      blurObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.blur-reveal').forEach(el => blurObserver.observe(el));
+
 // ── Step number pop ──
 const stepObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -324,7 +335,6 @@ if (terminal && termWrap) {
     if (activeName) {
       nameEl.textContent = activeName;
       if (avatarEl) {
-        avatarEl.textContent = activeName.trim()[0] || '?';
         avatarEl.style.background = AVATAR_COLORS[sc.agentIndex] || '#3B82F6';
       }
     }
@@ -420,35 +430,35 @@ if (terminal && termWrap) {
   }));
 })();
 
-// ── Ferris wheel feature carousel ──
-// The ring spins continuously in one direction, step by step (like cabins loading
-// on a real wheel): rotate to the next pod, stop, pop up that feature's text, hold,
-// then rotate again. Each pod's icon counter-rotates so it stays upright throughout.
+// ── Feature carousel: pill tabs + single panel ──
+// Click a tab, or wait — it auto-advances to the next feature on its own.
 (function () {
-  const wheel = document.getElementById('ferris-wheel');
-  const ring = document.getElementById('ferris-ring');
-  if (!wheel || !ring) return;
-  const pods = [...wheel.querySelectorAll('.ferris-pod')];
-  const icons = pods.map(p => p.querySelector('.ferris-pod-icon'));
+  const tabsWrap = document.getElementById('feat-tabs');
+  if (!tabsWrap) return;
+  const tabs = [...tabsWrap.querySelectorAll('.feat-tab')];
   const panels = [...document.querySelectorAll('.ferris-panel')];
-  const count = pods.length;
-  const STEP_DEG = 360 / count;
-  const HOLD_MS = 1500;   // how long text stays up once the wheel stops
-  const SPIN_MS = 900;    // matches the CSS transition duration on .ferris-ring / .ferris-pod-icon
+  const count = tabs.length;
+  const HOLD_MS = 3500;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  let step = 0;   // increases forever; active pod = step % count
+  let current = 0;
   let timer = null;
   let paused = false;
 
   function replay(el) {
     el.classList.remove('chip-play', 'badge-play');
     el.style.animation = 'none';
-    void el.offsetHeight; // force reflow so the animation restarts from 0%
+    void el.offsetHeight;
     el.style.animation = '';
   }
 
-  function showPanel(idx) {
+  function show(idx) {
+    current = idx;
+    tabs.forEach((t, i) => {
+      const on = i === idx;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', String(on));
+    });
     panels.forEach(p => {
       const on = +p.dataset.idx === idx;
       p.classList.toggle('active', on);
@@ -462,61 +472,24 @@ if (terminal && termWrap) {
     });
   }
 
-  // Rotates the ring so pod `step % count` sits at the top, keeps every icon upright,
-  // then (after the spin finishes) pops up that pod's text.
-  function settle() {
-    const rotation = -step * STEP_DEG;
-    const active = ((step % count) + count) % count;
-    ring.style.transform = reduced ? 'none' : `rotate(${rotation}deg)`;
-    icons.forEach((icon, i) => {
-      const scale = i === active ? ' scale(1.18)' : '';
-      icon.style.transform = reduced ? '' : `rotate(${-rotation}deg)${scale}`;
-    });
-    pods.forEach(p => {
-      const on = +p.dataset.idx === active;
-      p.classList.toggle('active', on);
-      p.setAttribute('aria-selected', String(on));
-    });
-    if (reduced) { showPanel(active); return; }
-    setTimeout(() => showPanel(active), SPIN_MS);
-  }
-
   function scheduleNext() {
     if (paused || reduced) return;
     timer = setTimeout(() => {
-      step += 1;
-      settle();
+      show((current + 1) % count);
       scheduleNext();
-    }, SPIN_MS + HOLD_MS);
+    }, HOLD_MS);
   }
 
-  function stop() {
-    paused = true;
-    if (timer) clearTimeout(timer);
-    timer = null;
-  }
-  function start() {
-    paused = false;
-    scheduleNext();
-  }
+  function stop() { paused = true; if (timer) clearTimeout(timer); timer = null; }
+  function start() { paused = false; scheduleNext(); }
 
-  pods.forEach(p => {
-    p.addEventListener('click', () => {
-      const target = +p.dataset.idx;
-      const current = ((step % count) + count) % count;
-      const delta = ((target - current) + count) % count;
-      if (delta > 0) step += delta; // always advance forward, like the real wheel
-      settle();
-      stop();
-      start();
-    });
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => { show(i); stop(); start(); });
   });
-  const wrap = wheel.closest('.ferris-wrap');
-  wrap.addEventListener('mouseenter', stop);
-  wrap.addEventListener('mouseleave', start);
+  tabsWrap.addEventListener('mouseenter', stop);
+  tabsWrap.addEventListener('mouseleave', start);
 
-  settle();
-  showPanel(0);
+  show(0);
   start();
 })();
 

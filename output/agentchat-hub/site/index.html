@@ -237,6 +237,21 @@
       clip-path: inset(0 0 0px 0);
     }
 
+    /* ── Scroll reveal — blur-in for select headlines ── */
+    .blur-reveal {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(8px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .blur-reveal.visible {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+
     /* ── Animated background orbs — green + purple ── */
     .orb {
       position: absolute; border-radius: 50%; pointer-events: none;
@@ -271,6 +286,52 @@
       70%      { transform: translate(50px,-40px) scale(0.92); }
     }
 
+    /* ── Hero: starfield + glowing dotted robot silhouette (mysterious/magnetic mood) ── */
+    .hero-starfield {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        radial-gradient(1px 1px at 8% 22%,  rgba(255,255,255,0.9) 50%, transparent 51%),
+        radial-gradient(1px 1px at 18% 78%, rgba(255,255,255,0.7) 50%, transparent 51%),
+        radial-gradient(1px 1px at 32% 12%, rgba(255,255,255,0.6) 50%, transparent 51%),
+        radial-gradient(1px 1px at 46% 55%, rgba(255,255,255,0.8) 50%, transparent 51%),
+        radial-gradient(1px 1px at 61% 30%, rgba(255,255,255,0.6) 50%, transparent 51%),
+        radial-gradient(1px 1px at 73% 68%, rgba(255,255,255,0.9) 50%, transparent 51%),
+        radial-gradient(1px 1px at 85% 15%, rgba(255,255,255,0.6) 50%, transparent 51%),
+        radial-gradient(1px 1px at 93% 82%, rgba(255,255,255,0.7) 50%, transparent 51%),
+        radial-gradient(1px 1px at 5% 90%,  rgba(255,255,255,0.5) 50%, transparent 51%),
+        radial-gradient(1px 1px at 55% 90%, rgba(255,255,255,0.6) 50%, transparent 51%);
+      background-repeat: repeat;
+      background-size: 480px 480px;
+      opacity: 0;
+      animation: star-twinkle 5s ease-in-out infinite;
+    }
+    html[data-theme="light"] .hero-starfield { display: none; }
+    @keyframes star-twinkle { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.85; } }
+
+    .hero-silhouette {
+      position: absolute; z-index: 0; pointer-events: none;
+      height: auto; fill: rgb(var(--color-text));
+      filter:
+        drop-shadow(0 0 40px rgb(var(--color-accent) / 0.55))
+        drop-shadow(0 0 90px rgb(var(--color-accent2) / 0.35));
+      mask-image: radial-gradient(circle, black 42%, transparent 43%);
+      -webkit-mask-image: radial-gradient(circle, black 42%, transparent 43%);
+      mask-size: 7px 7px; -webkit-mask-size: 7px 7px;
+      mask-repeat: repeat; -webkit-mask-repeat: repeat;
+      animation: silhouette-breathe 8s ease-in-out infinite;
+    }
+    .hero-silhouette-m { top: -4%; right: -6%; width: 420px; max-width: 40vw; opacity: 0.5; }
+    .hero-silhouette-f { top: 6%; right: 26%; width: 300px; max-width: 30vw; opacity: 0.32; animation-delay: -3s; }
+    html[data-theme="light"] .hero-silhouette-m { opacity: 0.16; }
+    html[data-theme="light"] .hero-silhouette-f { opacity: 0.1; }
+    @keyframes silhouette-breathe {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.03); }
+    }
+    @media (max-width: 900px) {
+      .hero-silhouette-m, .hero-silhouette-f { display: none; }
+    }
+
     /* ── Terminal typing ── */
     .term-line { opacity: 0; transform: translateX(-8px); }
     .term-line.typed { opacity: 1; transform: translateX(0); transition: opacity 0.3s ease, transform 0.3s ease; }
@@ -288,17 +349,6 @@
       0%, 100% { transform: scale(1); filter: brightness(1); }
       50%      { transform: scale(1.18); filter: brightness(1.3); }
     }
-
-    /* ── Border beam: rotating rainbow glow around the hero screenshot ── */
-    .border-beam-wrap { position: relative; border-radius: 12px; }
-    .border-beam-wrap::before {
-      content: ''; position: absolute; inset: -2px; z-index: -1;
-      border-radius: inherit; opacity: 0.5; filter: blur(3px);
-      background: conic-gradient(from 0deg,
-        #ff5f57, #febc2e, #28c840, #22d3ee, #a78bfa, #ff5f57);
-      animation: beam-spin 7s linear infinite;
-    }
-    @keyframes beam-spin { to { transform: rotate(360deg); } }
 
     /* ── Connect Everything: vertical ferris-wheel list ── */
     .connect-wheel-card {
@@ -499,6 +549,17 @@
     /* Pause on hover */
     .marquee-track:hover .marquee-row { animation-play-state: paused; }
 
+    /* Testimonial cards */
+    .testi-card {
+      display: flex; gap: 12px; align-items: flex-start; flex-shrink: 0;
+      width: 300px; padding: 18px; border-radius: 14px;
+      background: rgb(var(--color-surface)); border: 1px solid rgb(var(--color-border));
+    }
+    .testi-avatar { width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0; }
+    .testi-meta { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .testi-name { font-size: 13px; font-weight: 600; color: rgb(var(--color-text)); }
+    .testi-quote { font-size: 13px; color: rgb(var(--color-text-sec)); line-height: 1.5; }
+
     /* Phone frame */
     .phone-shot {
       flex-shrink: 0;
@@ -539,8 +600,10 @@
       animation: step-heartbeat-pulse 1.1s ease-in-out infinite;
     }
     @keyframes step-heartbeat-pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50%      { transform: scale(1.35); opacity: 0.65; }
+      0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+      25%      { transform: translateY(-5px) scale(1.15); opacity: 1; }
+      50%      { transform: translateY(0) scale(1); opacity: 0.75; }
+      75%      { transform: translateY(2px) scale(0.92); opacity: 1; }
     }
     .step-col:hover .step-node {
       background: var(--accent-mid);
@@ -779,66 +842,30 @@
     @keyframes cursor-blink { 0%,100%{opacity:1} 50%{opacity:0} }
     .token-cursor { animation: cursor-blink 1s step-end infinite; }
 
-    /* ── Ferris wheel feature carousel ── */
-    .ferris-wrap {
-      display: flex; flex-direction: column; align-items: center; gap: 40px;
-      padding: 24px 0 48px;
+    /* ── Feature carousel: pill tabs + single panel ── */
+    .feat-carousel { display: flex; flex-direction: column; gap: 28px; }
+    .feat-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+    .feat-tab {
+      font-size: 13px; font-weight: 500; padding: 9px 16px; border-radius: 999px;
+      border: 1px solid rgb(var(--color-border)); background: rgb(var(--color-surface));
+      color: rgb(var(--color-text-sec)); cursor: pointer; font-family: inherit;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
     }
-    @media (min-width: 900px) {
-      .ferris-wrap { flex-direction: row; align-items: center; justify-content: center; gap: 72px; }
-    }
-    .ferris-wheel {
-      position: relative; flex-shrink: 0;
-      width: 300px; height: 300px;
-    }
-    /* The ring holds rim + pods and is what actually spins (JS sets its rotation each step);
-       each pod counter-rotates its own icon so icons stay upright as the ring turns —
-       exactly like cabins on a real Ferris wheel. */
-    .ferris-ring {
-      position: absolute; inset: 0;
-      transition: transform 900ms cubic-bezier(.65,0,.35,1);
-    }
-    .ferris-rim {
-      position: absolute; inset: 0;
-      border: 1.5px dashed rgb(var(--color-border));
-      border-radius: 50%;
-      animation: ferris-rim-spin 60s linear infinite;
-    }
-    @keyframes ferris-rim-spin { to { transform: rotate(360deg); } }
-    .ferris-hub {
-      position: absolute; top: 50%; left: 50%;
-      margin: -5px;
-    }
-    .ferris-pod {
-      --angle: calc(var(--i) * 36deg);
-      position: absolute; top: 50%; left: 50%;
-      width: 54px; height: 54px; margin: -27px;
-      border-radius: 50%;
-      background: rgb(var(--color-surface));
-      border: 1px solid rgb(var(--color-border));
-      display: flex; align-items: center; justify-content: center;
-      transform: rotate(var(--angle)) translate(0, -150px) rotate(calc(-1 * var(--angle)));
-      transition: box-shadow 320ms ease, border-color 320ms ease, background 320ms ease;
-      cursor: pointer; padding: 0; font: inherit;
-    }
-    .ferris-pod-icon { display: flex; transition: transform 900ms cubic-bezier(.65,0,.35,1); }
-    .ferris-pod svg { width: 18px; height: 18px; }
-    .ferris-pod.active {
-      border-color: var(--accent-raw);
-      background: var(--accent-dim);
-      box-shadow: 0 0 0 5px var(--accent-dim), 0 0 26px var(--accent-mid);
-    }
-    @media (max-width: 899px) {
-      .ferris-wheel { width: 240px; height: 240px; }
-      .ferris-pod {
-        width: 46px; height: 46px; margin: -23px;
-        transform: rotate(var(--angle)) translate(0, -118px) rotate(calc(-1 * var(--angle)));
-      }
+    .feat-tab:hover { border-color: rgb(var(--color-accent) / 0.4); }
+    .feat-tab.active {
+      background: rgb(var(--color-text)); color: rgb(var(--color-bg));
+      border-color: rgb(var(--color-text));
     }
     .ferris-callout {
       position: relative;
-      width: 100%; max-width: 420px;
-      min-height: 230px;
+      width: 100%; max-width: 780px;
+      margin: 0 auto;
+      min-height: 300px;
+      padding: 40px; border-radius: 16px;
+      background: rgb(var(--color-surface)); border: 1px solid rgb(var(--color-border));
+    }
+    @media (min-width: 640px) {
+      .ferris-callout { padding: 52px 56px; min-height: 280px; }
     }
     .ferris-panel {
       position: absolute; inset: 0;
@@ -851,14 +878,15 @@
       pointer-events: auto;
     }
     .ferris-panel-icon {
-      width: 52px; height: 52px; border-radius: 14px;
+      width: 56px; height: 56px; border-radius: 14px;
       background: var(--accent-dim);
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 16px;
+      margin-bottom: 22px;
     }
+    .ferris-panel h3 { font-size: 22px; margin-bottom: 12px; }
+    .ferris-panel p { font-size: 15px; line-height: 1.7; }
     @media (prefers-reduced-motion: reduce) {
-      .ferris-ring, .ferris-pod, .ferris-pod-icon, .ferris-panel { transition: none; }
-      .ferris-rim { animation: none; }
+      .ferris-panel { transition: none; }
     }
 
     /* ── Final CTA animations ── */
@@ -907,11 +935,13 @@
         transition-duration: 0.01ms !important;
       }
       .reveal { opacity: 1; transform: none; clip-path: none; }
+      .blur-reveal { opacity: 1; filter: none; transform: none; }
       .hero-anim { opacity: 1; transform: none; }
       .word { transform: none; opacity: 1; }
       .term-line { opacity: 1; transform: none; }
       details .faq-body { grid-template-rows: 1fr; }
-      .hero-logo, .orb, .marquee-row, .cw-wheel, .step-heartbeat { animation: none; }
+      .hero-logo, .orb, .marquee-row, .cw-wheel, .step-heartbeat, .hero-silhouette-m, .hero-silhouette-f { animation: none; }
+      .hero-starfield { animation: none; opacity: 0.5; }
       .marquee-row { flex-wrap: wrap; width: 100%; }
     }
 
@@ -980,7 +1010,8 @@
     .rc-agent-item.active { background: rgba(59,130,246,0.08); }
     html[data-theme="dark"] .rc-agent-item.active { background: rgba(96,165,250,0.12); }
 
-    .rc-avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; font-weight: 700; }
+    .rc-avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .rc-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .rc-agent-meta { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
     .rc-agent-name { font-size: 13px; font-weight: 600; color: #09090b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     html[data-theme="dark"] .rc-agent-name { color: #fafafa; }
@@ -1002,8 +1033,9 @@
 
     .rc-tabbar { display: flex; gap: 6px; padding: 9px 14px; background: #ffffff; border-bottom: 1px solid #e2e8f0; }
     html[data-theme="dark"] .rc-tabbar { background: #1e1e22; border-color: #3a3a42; }
-    .rc-tab { font-size: 12.5px; font-weight: 500; color: #71717a; padding: 6px 12px; border-radius: 8px; border: 1px solid transparent; }
+    .rc-tab { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 500; color: #71717a; padding: 6px 12px; border-radius: 8px; border: 1px solid transparent; }
     html[data-theme="dark"] .rc-tab { color: #a1a1aa; }
+    .rc-tab-icon { width: 18px; height: 18px; flex-shrink: 0; }
     .rc-tab.active { background: #f8f9fa; border-color: #e2e8f0; color: #09090b; font-weight: 600; }
     html[data-theme="dark"] .rc-tab.active { background: #09090b; border-color: #3a3a42; color: #fafafa; }
 
@@ -1282,6 +1314,14 @@
   <!-- ═══ HERO ═══ -->
   <section aria-label="Hero" class="min-h-[100dvh] pt-14 relative overflow-hidden">
     <div class="dot-grid absolute inset-0 opacity-30" id="hero-grid"></div>
+    <div class="hero-starfield" aria-hidden="true"></div>
+    <svg class="hero-silhouette hero-silhouette-m" viewBox="0 0 200 260" aria-hidden="true">
+      <circle cx="100" cy="60" r="38"/>
+      <path d="M35 260 C35 175 58 145 100 145 C142 145 165 175 165 260 Z"/>
+    </svg>
+    <svg class="hero-silhouette hero-silhouette-f" viewBox="0 0 200 260" aria-hidden="true">
+      <path d="M100 15 C65 15 45 45 48 80 C50 100 55 110 60 118 L58 150 C40 165 35 200 38 260 L162 260 C165 200 160 165 142 150 L140 118 C145 110 150 100 152 80 C155 45 135 15 100 15 Z"/>
+    </svg>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
@@ -1334,7 +1374,7 @@
         </div>
 
         <!-- App screen mockup: real Add Agent screenshot -->
-        <div class="hero-anim hero-d6 max-w-3xl border-beam-wrap" id="terminal-wrap">
+        <div class="hero-anim hero-d6 max-w-3xl" id="terminal-wrap">
           <div class="terminal" id="terminal">
             <div class="terminal-bar">
               <div class="terminal-dot bg-[#FF5F57]"></div>
@@ -1373,49 +1413,24 @@
 
       <div class="mb-16 reveal">
         <p class="font-mono text-xs font-medium text-accent mb-3 tracking-wide uppercase">Features</p>
-        <h2 class="font-display font-semibold text-3xl md:text-5xl tracking-tight leading-tight text-text max-w-2xl">
+        <h2 class="blur-reveal font-display font-semibold text-3xl md:text-5xl tracking-tight leading-tight text-text max-w-2xl">
           Connect to any AI, three ways.<br>No subscriptions. No lock-in.
         </h2>
       </div>
 
-      <!-- Ferris wheel feature carousel: click a pod, or wait — it cycles on its own -->
-      <div class="ferris-wrap reveal">
-        <div class="ferris-wheel" id="ferris-wheel" role="tablist" aria-label="Features">
-          <div class="ferris-ring" id="ferris-ring">
-            <div class="ferris-rim" aria-hidden="true"></div>
-            <div class="ferris-hub thinking-orb" aria-hidden="true"></div>
-
-            <button class="ferris-pod active" style="--i:0" data-idx="0" role="tab" aria-selected="true" aria-label="Bring your own agent">
-              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
-            </button>
-            <button class="ferris-pod" style="--i:1" data-idx="1" role="tab" aria-selected="false" aria-label="Bring your own key">
-              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span>
-            </button>
-            <button class="ferris-pod" style="--i:2" data-idx="2" role="tab" aria-selected="false" aria-label="Run it locally">
-              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></span>
-            </button>
-            <button class="ferris-pod" style="--i:3" data-idx="3" role="tab" aria-selected="false" aria-label="Any A2A endpoint, instantly">
-              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
-            </button>
-            <button class="ferris-pod" style="--i:4" data-idx="4" role="tab" aria-selected="false" aria-label="Watch your agent think">
-              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-            </button>
-            <button class="ferris-pod" style="--i:5" data-idx="5" role="tab" aria-selected="false" aria-label="Give your agents real tools">
-              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
-            </button>
-            <button class="ferris-pod" style="--i:6" data-idx="6" role="tab" aria-selected="false" aria-label="Hand off work, not just messages">
-              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span>
-            </button>
-            <button class="ferris-pod" style="--i:7" data-idx="7" role="tab" aria-selected="false" aria-label="Send files, not descriptions">
-              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></span>
-            </button>
-            <button class="ferris-pod" style="--i:8" data-idx="8" role="tab" aria-selected="false" aria-label="Organized around how you work">
-              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
-            </button>
-            <button class="ferris-pod" style="--i:9" data-idx="9" role="tab" aria-selected="false" aria-label="All your agents, one place">
-              <span class="ferris-pod-icon"><svg viewBox="0 0 24 24" fill="none" class="stroke-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-            </button>
-          </div>
+      <!-- Feature carousel: pill tabs above, one panel below. Click a tab, or wait — it cycles on its own -->
+      <div class="feat-carousel reveal">
+        <div class="feat-tabs" id="feat-tabs" role="tablist" aria-label="Features">
+          <button class="feat-tab active" data-idx="0" role="tab" aria-selected="true">Own Agent</button>
+          <button class="feat-tab" data-idx="1" role="tab" aria-selected="false">Own Key</button>
+          <button class="feat-tab" data-idx="2" role="tab" aria-selected="false">Local</button>
+          <button class="feat-tab" data-idx="3" role="tab" aria-selected="false">A2A URL</button>
+          <button class="feat-tab" data-idx="4" role="tab" aria-selected="false">Streaming</button>
+          <button class="feat-tab" data-idx="5" role="tab" aria-selected="false">MCP Tools</button>
+          <button class="feat-tab" data-idx="6" role="tab" aria-selected="false">Tasks</button>
+          <button class="feat-tab" data-idx="7" role="tab" aria-selected="false">Files</button>
+          <button class="feat-tab" data-idx="8" role="tab" aria-selected="false">Groups</button>
+          <button class="feat-tab" data-idx="9" role="tab" aria-selected="false">All Agents</button>
         </div>
 
         <div class="ferris-callout">
@@ -1532,15 +1547,15 @@
           <div class="rc-sidebar" aria-label="Connected agents">
             <div class="rc-sidebar-lbl">AGENTS</div>
             <button class="rc-agent-item active" data-agent="0" aria-label="Switch to Personal Assistant">
-              <span class="rc-avatar" style="background:#3B82F6">P</span>
+              <span class="rc-avatar" style="background:#3B82F6"><img src="images/rc-icons/avatar-fallback.png" alt="" width="32" height="32"></span>
               <span class="rc-agent-meta"><span class="rc-agent-name">Personal Assistant</span><span class="rc-agent-url">assistant.local:8080</span></span>
             </button>
             <button class="rc-agent-item" data-agent="1" aria-label="Switch to Research Agent">
-              <span class="rc-avatar" style="background:#8338EC">R</span>
+              <span class="rc-avatar" style="background:#8338EC"><img src="images/rc-icons/avatar-fallback.png" alt="" width="32" height="32"></span>
               <span class="rc-agent-meta"><span class="rc-agent-name">Research Agent</span><span class="rc-agent-url">research.my-server.com</span></span>
             </button>
             <button class="rc-agent-item" data-agent="2" aria-label="Switch to Coding Agent">
-              <span class="rc-avatar" style="background:#06D6A0">C</span>
+              <span class="rc-avatar" style="background:#06D6A0"><img src="images/rc-icons/avatar-fallback.png" alt="" width="32" height="32"></span>
               <span class="rc-agent-meta"><span class="rc-agent-name">Coding Agent</span><span class="rc-agent-url">code-agent.fly.dev</span></span>
             </button>
           </div>
@@ -1548,7 +1563,7 @@
           <!-- Chat panel -->
           <div class="rc-chat">
             <div class="rc-header">
-              <span class="rc-avatar" id="rc-avatar" style="background:#3B82F6">P</span>
+              <span class="rc-avatar" id="rc-avatar" style="background:#3B82F6"><img src="images/rc-icons/avatar-fallback.png" alt="" width="32" height="32"></span>
               <div class="rc-header-meta">
                 <span class="rc-header-name" id="rc-name">Personal Assistant</span>
                 <span class="rc-header-status">● Online</span>
@@ -1556,11 +1571,11 @@
               <span class="rc-header-dots" aria-hidden="true">⋯</span>
             </div>
             <div class="rc-tabbar" aria-hidden="true">
-              <span class="rc-tab">Info</span>
-              <span class="rc-tab active">Chat</span>
-              <span class="rc-tab">Activity</span>
-              <span class="rc-tab">Tasks</span>
-              <span class="rc-tab">Files</span>
+              <span class="rc-tab"><img src="images/rc-icons/tab-info.png" alt="" class="rc-tab-icon"><span>Info</span></span>
+              <span class="rc-tab active"><img src="images/rc-icons/tab-chat.png" alt="" class="rc-tab-icon"><span>Chat</span></span>
+              <span class="rc-tab"><img src="images/rc-icons/tab-activity.png" alt="" class="rc-tab-icon"><span>Activity</span></span>
+              <span class="rc-tab"><img src="images/rc-icons/tab-tasks.png" alt="" class="rc-tab-icon"><span>Tasks</span></span>
+              <span class="rc-tab"><img src="images/rc-icons/tab-files.png" alt="" class="rc-tab-icon"><span>Files</span></span>
             </div>
             <div class="rc-msgs" id="rc-msgs" aria-live="polite" aria-label="Demo conversation"></div>
             <div class="rc-composer" aria-hidden="true">
@@ -1931,7 +1946,48 @@
     </div>
   </section>
 
-  <!-- SOCIAL PROOF REMOVED — collect real testimonials at testimonial.to/agentchat-hub-testimonials, then copy section from index_v2.html -->
+  <!-- ═══ TESTIMONIALS — PLACEHOLDER CONTENT, replace with real reviews from
+       testimonial.to/agentchat-hub-testimonials before shipping. Names/quotes below are fake. ═══ -->
+  <section aria-label="Testimonials" class="py-24 md:py-32 border-t border-border-subtle overflow-hidden">
+    <div class="max-w-[1200px] mx-auto px-6 mb-14 reveal">
+      <p class="text-xs font-mono font-medium text-accent uppercase tracking-widest mb-4">Placeholder — not real reviews yet</p>
+      <h2 class="blur-reveal font-display font-bold text-3xl md:text-5xl tracking-tight text-text mb-4" style="font-variation-settings:'wdth' 108,'wght' 800">
+        What people are saying.
+      </h2>
+    </div>
+
+    <div class="marquee-track mb-4">
+      <div class="marquee-row marquee-row-left px-4">
+        <div class="testi-card"><span class="testi-avatar" style="background:#3B82F6"></span><span class="testi-meta"><span class="testi-name">Alex R.</span><span class="testi-quote">Connected my own A2A agent in under a minute. No SDK, no fuss.</span></span></div>
+        <div class="testi-card"><span class="testi-avatar" style="background:#06D6A0"></span><span class="testi-meta"><span class="testi-name">Priya K.</span><span class="testi-quote">Finally a chat client that isn't locked to one AI provider.</span></span></div>
+        <div class="testi-card"><span class="testi-avatar" style="background:#8338EC"></span><span class="testi-meta"><span class="testi-name">Marco T.</span><span class="testi-quote">Streaming responses feel instant — way smoother than I expected.</span></span></div>
+        <div class="testi-card"><span class="testi-avatar" style="background:#F59E0B"></span><span class="testi-meta"><span class="testi-name">Sam O.</span><span class="testi-quote">Pointed it at my local Ollama setup and it just worked.</span></span></div>
+        <div class="testi-card"><span class="testi-avatar" style="background:#EC4899"></span><span class="testi-meta"><span class="testi-name">Dana W.</span><span class="testi-quote">No account, no tracking — exactly what I want from a chat app.</span></span></div>
+        <!-- dup set for seamless loop -->
+        <div class="testi-card" aria-hidden="true"><span class="testi-avatar" style="background:#3B82F6"></span><span class="testi-meta"><span class="testi-name">Alex R.</span><span class="testi-quote">Connected my own A2A agent in under a minute. No SDK, no fuss.</span></span></div>
+        <div class="testi-card" aria-hidden="true"><span class="testi-avatar" style="background:#06D6A0"></span><span class="testi-meta"><span class="testi-name">Priya K.</span><span class="testi-quote">Finally a chat client that isn't locked to one AI provider.</span></span></div>
+        <div class="testi-card" aria-hidden="true"><span class="testi-avatar" style="background:#8338EC"></span><span class="testi-meta"><span class="testi-name">Marco T.</span><span class="testi-quote">Streaming responses feel instant — way smoother than I expected.</span></span></div>
+        <div class="testi-card" aria-hidden="true"><span class="testi-avatar" style="background:#F59E0B"></span><span class="testi-meta"><span class="testi-name">Sam O.</span><span class="testi-quote">Pointed it at my local Ollama setup and it just worked.</span></span></div>
+        <div class="testi-card" aria-hidden="true"><span class="testi-avatar" style="background:#EC4899"></span><span class="testi-meta"><span class="testi-name">Dana W.</span><span class="testi-quote">No account, no tracking — exactly what I want from a chat app.</span></span></div>
+      </div>
+    </div>
+
+    <div class="marquee-track">
+      <div class="marquee-row marquee-row-right px-4">
+        <div class="testi-card"><span class="testi-avatar" style="background:#22D3EE"></span><span class="testi-meta"><span class="testi-name">Jordan L.</span><span class="testi-quote">MCP tool support means my agent can actually do things, not just talk.</span></span></div>
+        <div class="testi-card"><span class="testi-avatar" style="background:#EF4444"></span><span class="testi-meta"><span class="testi-name">Nina S.</span><span class="testi-quote">Handed off a research task and it just... finished it. No babysitting.</span></span></div>
+        <div class="testi-card"><span class="testi-avatar" style="background:#10B981"></span><span class="testi-meta"><span class="testi-name">Chris B.</span><span class="testi-quote">Groups keep my work and personal agents from turning into chaos.</span></span></div>
+        <div class="testi-card"><span class="testi-avatar" style="background:#6366F1"></span><span class="testi-meta"><span class="testi-name">Yuki M.</span><span class="testi-quote">Switched between Claude and my local model without missing a beat.</span></span></div>
+        <div class="testi-card"><span class="testi-avatar" style="background:#F97316"></span><span class="testi-meta"><span class="testi-name">Leah F.</span><span class="testi-quote">The desktop app finally gives me the same experience as my phone.</span></span></div>
+        <!-- dup set for seamless loop -->
+        <div class="testi-card" aria-hidden="true"><span class="testi-avatar" style="background:#22D3EE"></span><span class="testi-meta"><span class="testi-name">Jordan L.</span><span class="testi-quote">MCP tool support means my agent can actually do things, not just talk.</span></span></div>
+        <div class="testi-card" aria-hidden="true"><span class="testi-avatar" style="background:#EF4444"></span><span class="testi-meta"><span class="testi-name">Nina S.</span><span class="testi-quote">Handed off a research task and it just... finished it. No babysitting.</span></span></div>
+        <div class="testi-card" aria-hidden="true"><span class="testi-avatar" style="background:#10B981"></span><span class="testi-meta"><span class="testi-name">Chris B.</span><span class="testi-quote">Groups keep my work and personal agents from turning into chaos.</span></span></div>
+        <div class="testi-card" aria-hidden="true"><span class="testi-avatar" style="background:#6366F1"></span><span class="testi-meta"><span class="testi-name">Yuki M.</span><span class="testi-quote">Switched between Claude and my local model without missing a beat.</span></span></div>
+        <div class="testi-card" aria-hidden="true"><span class="testi-avatar" style="background:#F97316"></span><span class="testi-meta"><span class="testi-name">Leah F.</span><span class="testi-quote">The desktop app finally gives me the same experience as my phone.</span></span></div>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══ FAQ — full-width, large questions, numbered ═══ -->
   <section class="border-t border-border-subtle py-24 md:py-32">
@@ -2177,7 +2233,7 @@
     </div>
 
     <div class="max-w-[1200px] mx-auto px-6 text-center relative z-10 reveal">
-      <h2 class="font-display font-bold text-4xl md:text-6xl tracking-tight leading-[0.95] text-text max-w-2xl mx-auto mb-6">
+      <h2 class="blur-reveal font-display font-bold text-4xl md:text-6xl tracking-tight leading-[0.95] text-text max-w-2xl mx-auto mb-6">
         One app for every AI agent<br>and every model you use.
       </h2>
       <p class="text-base font-medium text-text-secondary leading-relaxed max-w-md mx-auto mb-10">
