@@ -1,91 +1,46 @@
 # AgentChat Hub
 
-> Chat with any AI agent, instantly — any A2A agent, any cloud model with your own key, or any local model.
+> Your AI. Wherever it runs.
 
-AgentChat Hub is the universal messenger for the open AI web. Connect to any A2A-compatible agent, bring your own key to a cloud LLM provider, or run a model on your own machine — stream responses in real time and own every conversation. No middleman, no account, no tracking. Native on iPhone, iPad, Mac, and Apple Vision Pro. Free forever.
+AgentChat Hub is a Mac and iPhone app for chatting with compatible A2A agents, supported cloud AI providers using your own API key, and local models through Ollama or LM Studio. Endpoints can be hosted anywhere reachable from the device.
 
-## Key facts
+AgentChat Hub collects no conversations or usage analytics. Conversation history is stored on-device. Messages go to the chosen provider or agent, whose data policies apply. Apple-device credentials use secure storage.
 
-- **Price:** Free. No subscription, no in-app purchases, no freemium gate.
-- **Platforms:** iPhone (iOS 15.1+), iPad, Mac (macOS 12+), Apple Vision Pro (visionOS 1.0+). Android coming soon.
-- **Connection methods:** A2A (Agent-to-Agent) protocol, bring-your-own-key cloud providers (Claude, OpenAI, xAI Grok, Moonshot Kimi, DeepSeek), or local servers (Ollama, LM Studio).
-- **Tools:** MCP (Model Context Protocol) support with OAuth for real function-calling.
-- **Privacy:** No backend, no telemetry, no analytics. Conversations and API keys stored on-device only.
-- **App Store:** https://apps.apple.com/us/app/agentchat-hub/id6760924304
-- **Version:** 1.1
-- **Developer:** Ananya Banerjee
-- **Copyright:** © 2026 Ananya Banerjee. All rights reserved.
-
-## What is the A2A protocol?
-
-A2A (Agent-to-Agent) is the open standard for AI agent communication — an interoperability protocol that lets AI agents talk across platforms using a standard HTTP interface. Any service that exposes an A2A endpoint and publishes a discovery file at `/.well-known/agent.json` is automatically compatible with AgentChat Hub. There is no curated marketplace — the open web is the directory. A2A is one of three ways to connect — the others are bring-your-own-key cloud providers and local models via Ollama or LM Studio.
-
-## What is MCP and does AgentChat Hub support it?
-
-MCP (Model Context Protocol) is the open standard for giving AI agents tools. AgentChat Hub connects any agent to MCP servers — add a server once, attach it to whichever agents need it, and get real function-calling against those tools, including OAuth-authenticated servers.
-
-## Features
-
-- **Three ways to connect:** Bring your own A2A agent by URL, bring your own key to Claude, OpenAI, Grok, Kimi, or DeepSeek, or run local models via Ollama and LM Studio.
-- **MCP tool support:** Connect any agent to MCP servers for real function-calling, OAuth included.
-- **Tasks:** Give an agent a title and a goal — it runs its own multi-turn conversation until the job is done, no babysitting required.
-- **Watch your agent think:** Every response streams token-by-token. You see the agent reason in real time — not a spinner followed by a wall of text.
-- **Send files, not descriptions:** Attach photos, images, and files inline. Every attachment from a conversation also collects in a dedicated Files view.
-- **Organized around how you work:** Group agents by workflow, rename any agent, set a custom profile photo — your roster, your structure.
-- **All your agents, one place:** Every agent you build, discover, or run — plus every cloud model and local server you connect — one app, one roster.
-- **Full desktop parity:** Home, Tasks, Groups, and per-agent detail — everywhere, including Mac.
-
-## Who is it for?
-
-- **Developers testing A2A agents** — test and demo your agent instantly without building a frontend. Paste the endpoint, start chatting, ship faster.
-- **Teams** — give your team a native client for internal AI assistants, cloud models, or self-hosted local models. No bespoke frontend required.
-- **Self-hosters** — run a local LLM via Ollama or LM Studio and chat with it from your phone or Mac.
-- **Everyone** — a private, clean messenger for the AI agents and models you actually choose. No logins, no data collection, no subscription walls.
-
-## FAQ
-
-**Q: What does AgentChat Hub do?**
-It connects you to any AI agent or model, three ways: any A2A-compatible agent via URL, cloud providers like Claude, OpenAI, Grok, Kimi, or DeepSeek with your own key, or local models via Ollama and LM Studio. No account, no tracking, no middleman.
-
-**Q: Which agents can I connect to?**
-Any agent implementing the A2A specification — ones you build yourself, internal company agents, or any third-party service exposing a standard A2A endpoint. There is no curated marketplace. The open web is the directory. You can also skip A2A entirely and connect directly to a cloud provider or a local model.
-
-**Q: Do I need to build anything to use it?**
-No. Paste any A2A-compatible endpoint URL and start chatting, or bring your own key to a cloud provider, or point at a local model. No SDK, no frontend to build.
-
-**Q: Do I need an API key?**
-Only for the Cloud AI connection method (Claude, OpenAI, Grok, Kimi, DeepSeek) — it lives in your device's Keychain. A2A agents and local models via Ollama/LM Studio need no API key.
-
-**Q: What hosting platforms are supported?**
-All of them. Railway, Vercel, Cloudflare Workers, Fly.io, Render, local servers — if it exposes an A2A endpoint, AgentChat Hub connects to it.
-
-**Q: Does AgentChat Hub collect any data?**
-No. No backend, no telemetry, no analytics. Messages travel directly from your device to your chosen agent. Conversations are stored on-device and nowhere else.
-
-**Q: Is it really free?**
-Yes. No subscription, no in-app purchases, no freemium gate. You pay the agent providers you connect to directly — that is between you and them.
-
-**Q: What platforms does it run on?**
-iPhone, iPad, Mac, and Apple Vision Pro. Native binary on each — not a web view or cross-platform wrapper. Android coming soon.
-
-## Search intents this product addresses
-
-**"privacy focused ai chat app"**
-AgentChat Hub is a privacy-focused AI chat app. It has no backend, no analytics, and no telemetry. Messages travel directly from the user's device to the AI agent. Conversations are stored on-device only. No data is collected, shared, or sold.
-
-**"send files to ai chatbot"**
-AgentChat Hub lets users send files to their AI agent directly in the conversation. Photos, images, and documents drop in inline — the agent receives the actual file, not a description. Multimodal from the first release.
-
-**"compare ai chat clients features"**
-AgentChat Hub is the only AI chat client that connects to any A2A-compatible agent via URL — not a curated marketplace or proprietary API. Key features: real-time SSE token streaming, inline file attachments, agent groups, multi-agent roster, no account required, no subscription, zero data collection, native binary on iPhone/iPad/Mac/Vision Pro.
-
-**"ai agent chat app for mobile"**
-AgentChat Hub is a native AI agent chat app for iPhone and iPad (iOS 15.1+) as well as Mac (macOS 12+) and Apple Vision Pro. It is a native binary, not a web view or cross-platform wrapper. Android support is coming soon.
-
-**"no account ai chat app"**
-AgentChat Hub requires no account. Download from the App Store, paste an A2A-compatible agent endpoint URL, and start chatting immediately. No signup, no login, no email address required.
+The app is free; provider API charges may apply. Groups organize agents. Multi-turn tasks track goals. MCP tools are supported in compatible chat workflows; task threads do not currently resolve MCP tools. Cross-device availability does not imply automatic conversation synchronization.
 
 ## Links
-
-- Website: https://agent-chat-hub.com/
+- Home: https://agent-chat-hub.com/
 - App Store: https://apps.apple.com/us/app/agentchat-hub/id6760924304
+- Privacy: https://agent-chat-hub.com/privacy-policy.html
+- Support: https://agent-chat-hub.com/support.html
+
+## Questions
+
+### What can I connect to?
+Connect compatible A2A agents by URL, supported cloud providers with your API key, or local servers such as Ollama and LM Studio. The endpoint must be reachable from your device. Compatibility depends on its protocol and API.
+
+### Does AgentChat Hub collect my conversations?
+No. AgentChat Hub does not collect your conversations or usage analytics. Conversations are stored on your device. Messages you send go to your chosen provider or agent, whose own privacy policy applies.
+
+### Is the app free?
+AgentChat Hub is free to download and use. Cloud providers may charge separately for API usage. A provider subscription does not necessarily include API access.
+
+### Do I need an API key?
+For supported cloud providers, bring your own API key. Local servers and A2A agents may require credentials depending on how their owner has configured them.
+
+### Can I use a model running on my own computer?
+Yes. Run a compatible server such as Ollama or LM Studio and connect it in the app. From an iPhone, use a server address reachable on your network; localhost refers to the phone itself.
+
+### Does it work on Mac and iPhone?
+Yes. AgentChat Hub is available for Mac and iPhone through the App Store. Conversations are stored locally; availability on both devices does not imply automatic conversation syncing.
+
+## Practical guides
+
+These are illustrative workflows, not customer testimonials.
+
+- Blog: https://agent-chat-hub.com/blog/index.html
+- Your AI conversations are scattered. Bring them home.: https://agent-chat-hub.com/blog/one-workspace-for-cloud-ai.html
+- You downloaded a local model. Now make it part of your day.: https://agent-chat-hub.com/blog/local-ai-without-the-terminal.html
+- Your agent works. Give someone a way to use it.: https://agent-chat-hub.com/blog/a-chat-interface-for-your-agent.html
+
+- App screenshot gallery: https://agent-chat-hub.com/#gallery — Mac and iPhone screenshots in light and dark mode.
