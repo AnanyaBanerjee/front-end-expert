@@ -15,6 +15,12 @@ PHASE 1 — Before writing any code
 PHASE 2 — Choose one style skill
   → see Style Skill Routing below
 
+PHASE 2.5 — Craft guide (read before writing hero/flow/motion)
+  landing-page-craft/SKILL.md ← first-section storytelling, copy rules,
+  section flow, motion timing, product-demo fidelity, working-from-feedback
+  interpretation rules. Cross-cutting, not a visual style — pairs with
+  whichever style skill you picked.
+
 PHASE 3 — Build the page
   Mandatory on EVERY page, no exceptions:
   4. security/SKILL.md     ← _headers, SRI on CDN scripts, safe links
@@ -93,6 +99,7 @@ Pick exactly ONE style skill per project. Never mix two style skills on the same
 
 | Skill | Files | What it covers |
 |---|---|---|
+| Landing Page Craft | `skills/landing-page-craft/SKILL.md` | Cross-cutting build guide: first-section storytelling, copy rules, product-demo fidelity, section flow, motion timing/rhythm, connected-sequence diagrams, working-from-feedback interpretation, final review checklist. Read alongside whichever style skill is active. |
 | Copywriting | `skills/copywriting/SKILL.md` | Consolidated: awareness levels, all frameworks (PAS/AIDA/BAB/PASTOR/4U), psychology triggers, social proof hierarchy, objection handling, CTA rules, scoring rubric, slash commands, industry guidance for tech/entertainment/motivation |
 | Branding | `skills/branding/` | patterns, anti-patterns, decisions, sharp-edges for brand voice and identity |
 | Landing Page Design | `skills/landing-page-design/` | patterns, anti-patterns, layout decisions, sharp-edges for page structure |
