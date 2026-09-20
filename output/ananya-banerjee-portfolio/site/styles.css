@@ -96,7 +96,7 @@ p{max-width:64ch}
 .chip.ghost{border-style:dashed;color:var(--muted);pointer-events:none}
 
 /* media panel */
-.spread-media{position:relative;aspect-ratio:1.06;overflow:hidden;background:var(--panel,#ded5c0);border:1px solid var(--rule)}
+.spread-media{position:relative;aspect-ratio:1.06;overflow:visible}
 .panel-word{position:absolute;top:18px;left:22px;right:22px;display:flex;justify-content:space-between;font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--panel-ink,var(--ink));opacity:.75;z-index:3}
 .device-frame{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:5%;padding:13% 8% 0}
 .phone-bezel{position:relative;width:42%;flex:none;border-radius:26px;background:#141310;padding:8px;box-shadow:0 22px 44px rgba(28,23,16,.22);transition:transform .6s var(--ease);overflow:hidden}
@@ -340,3 +340,11 @@ p{max-width:64ch}
 .site-frame .chrome i{font-style:normal;font-size:10px;color:#8a8a8a;margin-left:10px;letter-spacing:.04em}
 .site-frame img{width:100%;height:auto}
 @media(hover:hover){.spread:hover .site-frame{transform:translateY(calc(-50% - 6px)) rotate(0)}}
+
+/* website + phone combo panels */
+.web-combo{position:absolute;inset:0}
+.web-combo .site-frame{left:5%;right:24%}
+.web-combo .phone-bezel.solo{position:absolute;width:27%;right:5%;bottom:7%;z-index:2;transform:rotate(5deg)}
+@media(hover:hover){.spread:hover .web-combo .phone-bezel.solo{transform:rotate(2deg) translateY(-6px)}}
+.site-frame.vframe video{width:100%;height:auto;display:block}
+.web-combo{animation:float 7s ease-in-out infinite}
