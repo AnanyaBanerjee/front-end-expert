@@ -40,7 +40,5 @@
   - [Read an article](https://www.linkedin.com/pulse/harnessing-ai-new-dawn-productivity-ananya-banerjee)
 - The Tech Blueprint (Earlier work): Part of my writing and technology ventures.
 - Infinitely Finite (Earlier work): Another chapter in the creative portfolio.
-- AgentForHuman (In development): A marketplace connecting humans and AI agents.
-  - [Website](https://www.agentforhuman.ai)
 
 Internal systems and projects in development are labeled. No audience, download, or revenue metrics are claimed.
