@@ -4,6 +4,7 @@
 
 ## Pages
 - [Portfolio](https://ananya-banerjee.com/): Products, systems, writing, experiments, and contact links.
+- [Education](https://ananya-banerjee.com/education.html): M.S. Computer Science (UT Dallas, Intelligent Systems), M.Sc. (Hons) Mathematics (BITS Pilani), academic honors.
 - [About](https://ananya-banerjee.com/about.html): Experience (LinkedIn, eBay, AI research), education (UT Dallas, BITS Pilani), achievements, newsletters, and interests.
 
 ## Work

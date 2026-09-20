@@ -327,3 +327,15 @@ p{max-width:64ch}
 /* icon-only social chips */
 .icon-chip{width:44px;padding:0;justify-content:center}
 .icon-chip svg{width:17px;height:17px}
+
+/* university logos in education rows */
+.row-name.uni{display:flex;align-items:center;gap:14px}
+.row-name.uni img{width:34px;height:34px;object-fit:contain;flex:none;border-radius:4px}
+
+/* live-site browser frame (DramaBubble) */
+.site-frame{position:absolute;inset:12% 7% 0;border:1px solid var(--rule);background:#0c0c0c;box-shadow:0 22px 44px rgba(28,23,16,.28);transform:rotate(-1.5deg);transition:transform .6s var(--ease);overflow:hidden}
+.site-frame .chrome{height:26px;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid #2c2c2c}
+.site-frame .chrome span{width:8px;height:8px;border-radius:50%;background:#3d3d3d}
+.site-frame .chrome i{font-style:normal;font-size:10px;color:#8a8a8a;margin-left:10px;letter-spacing:.04em}
+.site-frame img{width:100%;height:auto}
+@media(hover:hover){.spread:hover .site-frame{transform:rotate(0) translateY(-6px)}}
