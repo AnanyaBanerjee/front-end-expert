@@ -1,47 +1,46 @@
-# Ananya Banerjee — ananyabanerjee.org
+# Ananya Banerjee
 
-> Ananya Banerjee is a Senior Software Engineer at LinkedIn, iOS app developer, AI researcher, and writer based in the San Francisco Bay Area.
+> Software engineer at LinkedIn, builder, and creator of apps, games, AI systems, newsletters, and creative ventures.
 
-## Who I Am
+## Pages
+- [Portfolio](https://ananya-banerjee.com/): Products, systems, writing, experiments, and contact links.
+- [About](https://ananya-banerjee.com/about.html): Experience (LinkedIn, eBay, AI research), education (UT Dallas, BITS Pilani), achievements, newsletters, and interests.
 
-Ananya Banerjee holds an MS in Computer Science from the University of Texas at Dallas (Master's Research Fellow, Jonsson Scholarship recipient) and a BE from BITS Pilani. She is a two-time hackathon champion and CIFAR Deep Learning Reinforcement Learning Summer School scholar (selected from 88 countries).
+## Work
+- Thought Escape (App Store): An arrow puzzle with four worlds to get lost in.
+  - [Website](https://thought-escape.com/)
+  - [App Store](https://apps.apple.com/us/app/thought-escape-arrow-puzzle/id6765780774)
+- AgentChat Hub (App Store): One place to talk to your AI agents.
+  - [Website](https://agent-chat-hub.com/)
+  - [App Store](https://apps.apple.com/us/app/agentchat-hub/id6760924304)
+- It Made My Day (App Store): A home for the things you want to remember.
+  - [Website](https://it-made-my-day.com/)
+  - [App Store](https://apps.apple.com/us/app/itmademyday/id6762099569)
+  - [Instagram](https://www.instagram.com/itmade_myday/)
+- Vent Your Feelings (On the web): A place to break things. And take a breath.
+  - [Try it](https://ventyourfeelings.com/)
+  - [Instagram](https://www.instagram.com/ventyourfeeling/)
+- Again: Daily Checklist (In development): Your everyday list. Ready again tomorrow.
+  - [Website](https://againdailycrossoff.com/)
+- DramaBubble Reviews (Website & channels): Reviews, recommendations, and a love of Asian dramas.
+  - [Website](https://dramabubblereviews.com/)
+  - [Instagram](https://www.instagram.com/dramabubblereviews/)
+  - [YouTube](https://www.youtube.com/@DramaBubbleReviews)
+  - [LinkedIn](https://www.linkedin.com/company/dramabubblereviews/)
+- Daily Vibes (App Store): A daily dose of words worth keeping.
+  - [Website](https://dailyvibesforyou.com/)
+  - [App Store](https://apps.apple.com/app/id6759209446)
+- Ananya’s Build Room (On Substack): Notes from the work in progress.
+  - [Read on Substack](https://buildroomananya.substack.com/)
+- Demystifying the Journey (Listen to the archive): Conversations with the way we think.
+  - [Apple Podcasts](https://podcasts.apple.com/us/podcast/demystifying-the-journey/id1686860913)
+- The Conscious Motivation Project (Earlier work): Thoughts and perspectives for everyday motivation.
+  - [View the project](https://www.linkedin.com/posts/ananyabanerjee15_inspiring-tuesdays-with-the-conscious-motivation-activity-7064473469639397377-cGtf)
+- Meta Minds (Earlier work): Writing about AI and technology.
+  - [Read an article](https://www.linkedin.com/pulse/harnessing-ai-new-dawn-productivity-ananya-banerjee)
+- The Tech Blueprint (Earlier work): Part of my writing and technology ventures.
+- Infinitely Finite (Earlier work): Another chapter in the creative portfolio.
+- AgentForHuman (In development): A marketplace connecting humans and AI agents.
+  - [Website](https://www.agentforhuman.ai)
 
-## What I Build
-
-### iOS Apps
-- **AgentChat Hub** — Universal messenger for A2A-compatible AI agents. Available on iOS, iPad, Mac, and Vision Pro. Free, no account required.
-- **It Made My Day** — Private gratitude vault for capturing daily moments, compliments, photos, voice notes, and links.
-
-### AI Agents & Research
-- **code-review-graph** — Knowledge graph that gives AI coding agents structural context (callers, dependencies, test coverage, impact radius) for code review with far fewer tokens.
-- **Knowledge-Infused Text-to-Image Generation** — Deep learning model that combines common-sense reasoning and scene graphs to generate images from text descriptions.
-- **OpenLLM Bridge** — Bridges open-source LLMs to production agent workflows.
-
-## Where I Write
-
-- Towards Data Science (since Sep 2019)
-- Towards AI (since Apr 2020)
-- Analytics Vidhya (since May 2020)
-- The Startup / Medium (since Oct 2019)
-- LinkedIn Articles (business strategy, AI, productivity)
-
-## Side Ventures
-
-- **AgentHub** — Open directory for discovering AI agents using the Agent Name Service (ANS) and A2A protocol. GitHub: https://github.com/AnanyaBanerjee/agent-share
-- **Multi-Hub AI Backend** — Personal AI backend on Railway: image generation, video processing, WhatsApp automation, newsletter delivery.
-- **Ananya's Build Room** — Substack newsletter: honest log of solo building while working full-time. https://ananyabanerjee.substack.com/
-
-## Key Pages
-- Home: https://www.ananyabanerjee.org/
-- LinkedIn: https://www.linkedin.com/in/ananyabanerjee15/
-- GitHub: https://github.com/AnanyaBanerjee
-- Medium: https://ananya-banerjee.medium.com/
-- Substack: https://ananyabanerjee.substack.com/
-
-## Awards
-- 1st Place, eBay Invent Week 2024 (1,000+ teams)
-- Leadership Choice Award, eBay Global Showcase 2023
-- 1st Place, eBay Invent Week 2023
-- CIFAR DLRL Summer School Scholar 2020 (88 countries)
-- Master's Research Fellowship, UT Dallas 2020
-- Jonsson Graduate Scholarship, UT Dallas 2018
+Internal systems and projects in development are labeled. No audience, download, or revenue metrics are claimed.
