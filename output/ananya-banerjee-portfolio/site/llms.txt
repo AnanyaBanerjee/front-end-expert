@@ -4,6 +4,7 @@
 
 ## Pages
 - [Portfolio](https://ananya-banerjee.com/): Products, systems, writing, experiments, and contact links.
+- [Work](https://ananya-banerjee.com/work.html): The full catalog of apps, games, media ventures, and experiments.
 - [Education](https://ananya-banerjee.com/education.html): M.S. Computer Science (UT Dallas, Intelligent Systems), M.Sc. (Hons) Mathematics (BITS Pilani), academic honors.
 - [About](https://ananya-banerjee.com/about.html): Experience (LinkedIn, eBay, AI research), education (UT Dallas, BITS Pilani), achievements, newsletters, and interests.
 
@@ -37,7 +38,7 @@
   - [Apple Podcasts](https://podcasts.apple.com/us/podcast/demystifying-the-journey/id1686860913)
 - The Conscious Motivation Project (Earlier work): Thoughts and perspectives for everyday motivation.
   - [View the project](https://www.linkedin.com/posts/ananyabanerjee15_inspiring-tuesdays-with-the-conscious-motivation-activity-7064473469639397377-cGtf)
-- Meta Minds (Earlier work): Writing about AI and technology.
+- Meta Minds (LinkedIn newsletter): AI, technology, building, and productivity.
   - [Read an article](https://www.linkedin.com/pulse/harnessing-ai-new-dawn-productivity-ananya-banerjee)
 - The Tech Blueprint (Earlier work): Part of my writing and technology ventures.
 - Infinitely Finite (Earlier work): Another chapter in the creative portfolio.

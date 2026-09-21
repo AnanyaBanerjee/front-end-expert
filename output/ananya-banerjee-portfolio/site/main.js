@@ -1,11 +1,34 @@
 (() => {
   'use strict';
+// ─── EDIT ME: the "Currently" board on the homepage ─────────────────
+const NOW = {
+  updated: 'Updated September 2026',
+  items: [
+    ['Building',       'New consumer products and experiments'],
+    ['Thinking about', 'AI agents, harness engineering and human-agent interaction'],
+    ['Writing about',  'What actually happens between idea → shipped product'],
+    ['Watching',       'Something from my current Asian-drama list'],
+    ['Learning',       'Whatever I\'m actively exploring this month'],
+  ],
+};
+// ────────────────────────────────────────────────────────────────────
+
   document.documentElement.classList.add('js');
   document.querySelectorAll('[data-year]').forEach(node => {
     node.textContent = String(new Date().getFullYear());
   });
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+
+  // render the Currently board from the NOW data above
+  const board = document.getElementById('now-board');
+  if (board) {
+    board.innerHTML = NOW.items.map(([dt, dd]) =>
+      `<div><dt>${dt}</dt><dd>${dd}</dd></div>`).join('');
+    const upd = document.getElementById('now-updated');
+    if (upd) upd.textContent = NOW.updated;
+  }
 
   // mobile menu
   const menu = document.querySelector('.menu-toggle');
