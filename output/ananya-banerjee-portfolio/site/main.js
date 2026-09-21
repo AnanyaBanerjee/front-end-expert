@@ -1,6 +1,28 @@
+// ─── EDIT ME: the "Currently" board on the homepage ─────────────────
+const NOW = {
+  updated: 'Updated September 2026',
+  items: [
+    ['Building',  'Whatever I\'m actively shipping right now'],
+    ['Exploring', 'AI agents, harness engineering and human-agent interaction'],
+    ['Writing',   'My latest piece for Meta Minds'],
+    ['Watching',  'Something from my current drama list'],
+    ['Reading',   'Whatever\'s next on the stack'],
+  ],
+};
+// ──────────────────────────────────────────────────────────────────
+
 (() => {
   'use strict';
   document.documentElement.classList.add('js');
+
+  // render the Currently board from the NOW data above
+  const board = document.getElementById('now-board');
+  if (board) {
+    board.innerHTML = NOW.items.map(([dt, dd]) =>
+      `<div><dt>${dt}</dt><dd>${dd}</dd></div>`).join('');
+    const upd = document.getElementById('now-updated');
+    if (upd) upd.textContent = NOW.updated;
+  }
   document.querySelectorAll('[data-year]').forEach(node => {
     node.textContent = String(new Date().getFullYear());
   });

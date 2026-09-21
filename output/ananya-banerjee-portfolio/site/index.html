@@ -38,7 +38,7 @@
     <a href="work.html" title="Everything I have built">Work</a>
     <a href="#ideas" title="Writing and ideas">Ideas</a>
     <a href="about.html" title="My story">Story</a>
-    
+    <a href="#now" title="What I am doing now">Now</a>
   </nav>
   <a class="nav-contact" href="#connect" title="Connect with Ananya">Connect</a>
 </div></header>
@@ -79,9 +79,31 @@
         <p>AI agents, distributed systems, LLMs, harness engineering and the infrastructure that turns intelligence into reliable software.</p>
         <a class="text-link" href="about.html#experience">My engineering story →</a>
       </div>
-      <div class="id-art" aria-hidden="true"><pre class="id-diagram">idea → prototype → breaks
-     ↑              ↓
-  learn  ←  harden  ←  ship</pre></div>
+      <div class="id-art id-flow" aria-hidden="true">
+        <svg viewBox="0 0 560 230" role="img" aria-label="Loop: idea, prototype, breaks, ship, harden, learn, back to idea">
+          <defs>
+            <marker id="flowArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--vermilion)"/>
+            </marker>
+          </defs>
+          <g class="flow-path" fill="none" stroke="currentColor" stroke-width="1.4" marker-end="url(#flowArrow)">
+            <path d="M100,40 L235,40"/>
+            <path d="M325,40 L460,40"/>
+            <path d="M500,60 C530,100 530,140 500,170"/>
+            <path d="M460,190 L325,190"/>
+            <path d="M235,190 L100,190"/>
+            <path d="M60,170 C30,140 30,100 60,60"/>
+          </g>
+          <g class="flow-nodes" text-anchor="middle">
+            <circle cx="70" cy="40" r="5"/><text x="70" y="18">idea</text>
+            <circle cx="280" cy="40" r="5"/><text x="280" y="18">prototype</text>
+            <circle cx="490" cy="40" r="5"/><text x="490" y="18">breaks</text>
+            <circle cx="490" cy="190" r="5"/><text x="490" y="215">ship</text>
+            <circle cx="280" cy="190" r="5"/><text x="280" y="215">harden</text>
+            <circle cx="70" cy="190" r="5"/><text x="70" y="215">learn</text>
+          </g>
+        </svg>
+      </div>
     </article>
     <article class="identity id-builder reveal">
       <div class="id-copy">
@@ -102,8 +124,8 @@
     <article class="identity id-creator reveal">
       <div class="id-copy">
         <span class="id-kicker">The Creator</span>
-        <h3>Some ideas shouldn't become products. <em>They should become conversations.</em></h3>
-        <p>I write about technology, building, productivity, ambition and the strange process of figuring things out while you're still in the middle of it.</p>
+        <h3>I'm fascinated by how an idea gets built <em>— and how some people turn theirs into something that benefits all of mankind.</em></h3>
+        <p>I write about that process: what separates an idea that changes something real from one that doesn't, and the perspective on life that seems to make the difference.</p>
         <a class="text-link" href="#ideas">Read my writing →</a>
       </div>
       <div class="id-art id-quote" aria-hidden="true"><span>"</span></div>
@@ -114,10 +136,10 @@
 <!-- 03 · MANIFESTO -->
 <section class="manifesto" aria-labelledby="manifesto-title">
   <span class="mini-label">What I believe</span>
-  <h2 id="manifesto-title">Technology should do more <em>than impress us.</em></h2>
+  <h2 id="manifesto-title">I'm less interested in what technology can do. <em>I'm interested in what it can do for someone.</em></h2>
   <div class="manifesto-body">
-    <p>I love technology, but I'm less interested in technology for technology's sake.</p>
-    <p>I'm interested in what it lets people do, understand, feel and become.</p>
+    <p>I love technology, but not for its own sake.</p>
+    <p>I care about what it lets a person do. Understand. Feel. Become.</p>
     <p>That's why my work jumps between AI agents and puzzle games, productivity and mental wellbeing, storytelling and entertainment. They look unrelated from the outside. To me, they're all versions of the same question:</p>
   </div>
   <p class="manifesto-question reveal">Can I make this experience <em>a little better?</em></p>
@@ -133,9 +155,8 @@
     <div class="spread-copy">
       <span class="idx">01 / 04</span><span class="kind">Puzzle game · iOS</span>
       <h3 class="with-logo"><img src="images/te-logo.webp" alt="Thought Escape logo" width="46" height="46" loading="lazy">Thought Escape</h3>
-      <p class="tagline">A game about finding your way out.</p>
-      <p class="blurb">Built around clearing a path, exploring themed worlds, and taking a little time for yourself.</p>
-      <ul class="feat"><li>Arrow escape puzzles</li><li>World journeys and daily challenges</li><li>Collectible board skins</li></ul>
+      <p class="tagline">I wanted a puzzle game that felt like somewhere you could disappear into.</p>
+      <p class="blurb">Not a timer, not a leaderboard — just a path to clear, a world to sit inside for a while, and a little quiet.</p>
       <div class="eco-label">The ecosystem</div>
       <div class="spread-links">
         <a class="chip primary" href="https://apps.apple.com/us/app/thought-escape-arrow-puzzle/id6765780774" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.03-2.89 2.36-4.27 2.47-4.34-1.35-1.97-3.44-2.24-4.18-2.27-1.78-.18-3.47 1.05-4.37 1.05-.9 0-2.29-1.02-3.77-1-1.94.03-3.72 1.13-4.72 2.86-2.01 3.49-.51 8.66 1.45 11.49.96 1.38 2.1 2.94 3.6 2.88 1.45-.06 2-.93 3.75-.93s2.24.93 3.77.9c1.56-.03 2.55-1.41 3.5-2.8 1.1-1.61 1.55-3.17 1.58-3.25-.04-.02-3.04-1.17-3.08-4.59zM14.16 4.06c.8-.97 1.34-2.32 1.19-3.66-1.15.05-2.55.77-3.38 1.74-.74.86-1.39 2.23-1.22 3.55 1.29.1 2.6-.65 3.41-1.63z"/></svg>App Store</a>
@@ -156,9 +177,8 @@
     <div class="spread-copy">
       <span class="idx">02 / 04</span><span class="kind">AI · Agents · iOS · macOS · visionOS</span>
       <h3 class="with-logo"><img src="images/ach-logo.webp" alt="AgentChat Hub logo" width="46" height="46" loading="lazy">AgentChat Hub</h3>
-      <p class="tagline">A home for conversations with AI agents.</p>
-      <p class="blurb">A native client for connecting to A2A-compatible agents, organizing conversations, and sending files directly to the agents you choose.</p>
-      <ul class="feat"><li>Connect agents by URL</li><li>Streaming conversations and file attachments</li><li>iPhone, iPad, Mac, and Vision Pro</li></ul>
+      <p class="tagline">I wanted talking to an AI agent to feel less like wiring an endpoint and more like starting a conversation.</p>
+      <p class="blurb">One place to connect, organize, and actually talk to the agents you use — instead of juggling tabs and API keys.</p>
       <div class="eco-label">The ecosystem</div>
       <div class="spread-links">
         <a class="chip primary" href="https://apps.apple.com/us/app/agentchat-hub/id6760924304" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.03-2.89 2.36-4.27 2.47-4.34-1.35-1.97-3.44-2.24-4.18-2.27-1.78-.18-3.47 1.05-4.37 1.05-.9 0-2.29-1.02-3.77-1-1.94.03-3.72 1.13-4.72 2.86-2.01 3.49-.51 8.66 1.45 11.49.96 1.38 2.1 2.94 3.6 2.88 1.45-.06 2-.93 3.75-.93s2.24.93 3.77.9c1.56-.03 2.55-1.41 3.5-2.8 1.1-1.61 1.55-3.17 1.58-3.25-.04-.02-3.04-1.17-3.08-4.59zM14.16 4.06c.8-.97 1.34-2.32 1.19-3.66-1.15.05-2.55.77-3.38 1.74-.74.86-1.39 2.23-1.22 3.55 1.29.1 2.6-.65 3.41-1.63z"/></svg>App Store</a>
@@ -179,9 +199,8 @@
     <div class="spread-copy">
       <span class="idx">03 / 04</span><span class="kind">Reviews · Entertainment · Community</span>
       <h3 class="with-logo"><img src="images/db-logo.webp" alt="DramaBubble Reviews logo" width="46" height="46" loading="lazy">DramaBubble Reviews</h3>
-      <p class="tagline">An obsession with stories, turned into a media brand.</p>
-      <p class="blurb">A review website and social channels, with a companion app in development for weekly recommendations and personal drama mood boards.</p>
-      <ul class="feat"><li>Website-sourced drama reviews</li><li>Instagram and YouTube channels</li><li>Companion app with mood boards, in development</li></ul>
+      <p class="tagline">I watched enough dramas that eventually recommending them became its own project.</p>
+      <p class="blurb">What started as an opinion in a group chat became a review site and a small, real audience across Instagram, YouTube, and LinkedIn.</p>
       <div class="eco-label">The ecosystem</div>
       <div class="spread-links">
         <a class="chip primary" href="https://dramabubblereviews.com/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>Website</a>
@@ -202,9 +221,8 @@
     <div class="spread-copy">
       <span class="idx">04 / 04</span><span class="kind">Wellbeing · Consumer app · iOS</span>
       <h3 class="with-logo"><img src="images/imd-logo.webp" alt="It Made My Day logo" width="46" height="46" loading="lazy">It Made My Day</h3>
-      <p class="tagline">A place for the things worth remembering.</p>
-      <p class="blurb">Save the photos, words, audio, links, and small moments that give you happiness or hope. Revisit them when you need a boost.</p>
-      <ul class="feat"><li>Save photos, text, links, and audio</li><li>Organize moments into collections</li><li>Mood-based Boost and offline storage</li></ul>
+      <p class="tagline">I kept thinking: why isn't there a save button for the things that make us happy?</p>
+      <p class="blurb">A quiet place for the photos, words, and small moments worth keeping — so they're there when you need a boost, not lost in a camera roll.</p>
       <div class="eco-label">The ecosystem</div>
       <div class="spread-links">
         <a class="chip primary" href="https://apps.apple.com/us/app/itmademyday/id6762099569" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.03-2.89 2.36-4.27 2.47-4.34-1.35-1.97-3.44-2.24-4.18-2.27-1.78-.18-3.47 1.05-4.37 1.05-.9 0-2.29-1.02-3.77-1-1.94.03-3.72 1.13-4.72 2.86-2.01 3.49-.51 8.66 1.45 11.49.96 1.38 2.1 2.94 3.6 2.88 1.45-.06 2-.93 3.75-.93s2.24.93 3.77.9c1.56-.03 2.55-1.41 3.5-2.8 1.1-1.61 1.55-3.17 1.58-3.25-.04-.02-3.04-1.17-3.08-4.59zM14.16 4.06c.8-.97 1.34-2.32 1.19-3.66-1.15.05-2.55.77-3.38 1.74-.74.86-1.39 2.23-1.22 3.55 1.29.1 2.6-.65 3.41-1.63z"/></svg>App Store</a>
@@ -229,13 +247,13 @@
     <div><span class="no">No. 03</span><h2 id="journey-title">None of this happened <em>in a straight line.</em></h2></div>
   </div>
   <ol class="chapters reveal">
-    <li><span class="ch-no">i</span><h3>Mathematics</h3><p>BITS Pilani</p></li>
-    <li><span class="ch-no">ii</span><h3>Artificial Intelligence</h3><p>UT Dallas · Intelligent Systems</p></li>
-    <li><span class="ch-no">iii</span><h3>Research</h3><p>AI Institute · DLRL</p></li>
-    <li><span class="ch-no">iv</span><h3>Software Engineering</h3><p>eBay</p></li>
-    <li><span class="ch-no">v</span><h3>AI + Agent Systems</h3><p>LinkedIn</p></li>
-    <li><span class="ch-no">vi</span><h3>Building after hours</h3><p>Apps · Games · Experiments</p></li>
-    <li><span class="ch-no">vii</span><h3>Sharing the process</h3><p>Writing · Media · Communities</p></li>
+    <li><span class="ch-no">i</span><h3>Mathematics</h3><p>Learned to look for patterns.</p></li>
+    <li><span class="ch-no">ii</span><h3>AI</h3><p>Wondered if machines could find them too.</p></li>
+    <li><span class="ch-no">iii</span><h3>Research</h3><p>Learned to ask unanswered questions.</p></li>
+    <li><span class="ch-no">iv</span><h3>eBay</h3><p>Learned to build for the real world.</p></li>
+    <li><span class="ch-no">v</span><h3>Side projects</h3><p>Learned I could ship my own ideas.</p></li>
+    <li><span class="ch-no">vi</span><h3>AI + agents</h3><p>Exploring what happens when software can reason and act.</p></li>
+    <li><span class="ch-no">vii</span><h3>Writing</h3><p>Sharing what I learn along the way.</p></li>
   </ol>
   <p class="journey-coda reveal">The titles changed. <em>Curiosity didn't.</em></p>
 </section>
@@ -250,7 +268,7 @@
     <div role="listitem"><b>Leadership Choice</b><span>eBay global showcase</span></div>
     <div role="listitem"><b>88 countries</b><span>Selected for DLRL from an international pool</span></div>
     <div role="listitem"><b>Jonsson Scholar</b><span>UT Dallas</span></div>
-    <div role="listitem"><b>AI research</b><span>University research experience</span></div>
+    <div role="listitem"><b>Research Fellow</b><span>UT Dallas Summer Research Fellowship</span></div>
   </div>
 </section>
 
@@ -259,6 +277,22 @@
   <div class="section-bar">
     <div><span class="no">No. 05</span><h2 id="ideas-title">Some ideas <em>become words.</em></h2></div>
     <p class="note">I write when I've learned something I don't want to forget.</p>
+  </div>
+  <div class="ideas-duo reveal">
+    <div class="idea-brand">
+      <img src="images/metaminds-logo.webp" alt="Meta Minds logo" width="48" height="48" loading="lazy">
+      <div class="idea-what">The ideas.</div>
+      <h3>Meta Minds</h3>
+      <p>AI, technology, engineering, and the industry ideas I can't stop thinking about. My LinkedIn newsletter — and the best of my writing.</p>
+      <a class="chip primary" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7079290494182125568" target="_blank" rel="noopener noreferrer">Subscribe on LinkedIn ↗</a>
+    </div>
+    <div class="idea-brand">
+      <img src="images/buildroom-logo.webp" alt="Ananya's Build Room logo" width="48" height="48" loading="lazy">
+      <div class="idea-what">The process.</div>
+      <h3>Ananya's Build Room</h3>
+      <p>What I'm building, the decisions, the mistakes, the launches, and what broke along the way. The behind-the-scenes to Meta Minds' ideas.</p>
+      <a class="chip" href="https://buildroomananya.substack.com/" target="_blank" rel="noopener noreferrer">Read on Substack ↗</a>
+    </div>
   </div>
   <div class="archive-list">
     <details class="archive-row reveal"><summary><span class="row-no">01</span><span class="row-name">Harness, Loop, and Graph Engineering: How to Tell Which One You Actually Need</span><span class="row-kind">Meta Minds — LinkedIn newsletter</span><span class="row-status">Aug 2026</span><span class="row-plus" aria-hidden="true">+</span></summary>
@@ -270,14 +304,6 @@
     <details class="archive-row reveal"><summary><span class="row-no">03</span><span class="row-name">The Uncomfortable Truth About Why Things Sell</span><span class="row-kind">Meta Minds — LinkedIn newsletter</span><span class="row-status">Jan 2026</span><span class="row-plus" aria-hidden="true">+</span></summary>
       <div class="row-body"><div><p>What building and shipping products taught me about what people actually pay for.</p><div class="links"><a href="https://www.linkedin.com/in/ananyabanerjee15/recent-activity/articles/" target="_blank" rel="noopener noreferrer">Read on LinkedIn ↗</a></div></div></div>
     </details>
-  </div>
-  <div class="buildroom reveal">
-    <img src="images/metaminds-logo.webp" alt="Meta Minds logo" width="64" height="64" loading="lazy">
-    <div>
-      <h3>Meta Minds</h3>
-      <p>My LinkedIn newsletter, and the best of my writing: AI, technology, building, and the ideas behind what I ship.</p>
-      <a class="chip primary" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7079290494182125568" target="_blank" rel="noopener noreferrer">Subscribe on LinkedIn ↗</a>
-    </div>
   </div>
   <div class="secondary-platforms reveal">
     <span>Elsewhere</span>
@@ -298,8 +324,21 @@
     <p class="note-card n3 reveal">I can spend an unreasonable amount of time talking about Asian dramas.</p>
     <p class="note-card n4 reveal">I build ideas as soon as I get them.</p>
     <p class="note-card n5 reveal">I'm fascinated by why people think, choose, procrastinate, create and change.</p>
+    <div class="sticky-note reveal">Idea I absolutely do not have time to build ↓<br><small style="opacity:.7">(see: everything else on this page)</small></div>
+    <span class="phone-note-chip reveal">📝 23 new project ideas</span>
   </div>
   <p class="human-coda reveal">Most of my projects probably make more sense <em>once you know these things.</em></p>
+</section>
+
+<!-- 09 · NOW -->
+<section class="section now" id="now" aria-labelledby="now-title">
+  <div class="section-bar">
+    <div><span class="no">No. 07</span><h2 id="now-title">Currently.</h2></div>
+    <p class="note" id="now-updated">Updated September 2026</p>
+  </div>
+  <dl class="now-board" id="now-board">
+    <noscript><div><dt>Building</dt><dd>Whatever I'm actively shipping right now</dd></div></noscript>
+  </dl>
 </section>
 
 <!-- 10 · CONNECT -->
@@ -325,9 +364,10 @@
     <p>Built with curiosity. Always a work in progress.</p>
     <a class="text-link" href="#main" style="color:var(--band-text)">Back to top ↑</a>
   </div>
+  <div class="motif" aria-hidden="true"><span>Notice</span><span class="motif-arrow">→</span><span>Question</span><span class="motif-arrow">→</span><span>Explore</span><span class="motif-arrow">→</span><span>Build</span><span class="motif-arrow">→</span><span>Share</span><span class="motif-arrow">↻</span></div>
   <div class="footer-bottom">
     <p>© <span data-year>2026</span> Ananya Banerjee. All rights reserved.</p>
-    <nav aria-label="Legal"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="dmca.html">DMCA</a></nav>
+    <nav aria-label="Legal"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="dmca.html">DMCA</a><a href="education.html">Education</a></nav>
   </div>
 </footer>
 </body>
