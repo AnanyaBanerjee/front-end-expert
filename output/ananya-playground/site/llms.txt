@@ -1,0 +1,12 @@
+# Ananya Banerjee
+
+> A local design preview of the portfolio of Ananya Banerjee, a software engineer, builder, and creator.
+
+This preview covers the opening composition and Thought Escape. It is not the complete portfolio.
+
+## Featured work
+- [Thought Escape](https://thought-escape.com/): Arrow puzzles across four themed worlds, with daily challenges.
+- [AgentChat Hub](https://agent-chat-hub.com/): A client for communicating with AI agents.
+- [It Made My Day](https://it-made-my-day.com/): A private vault for saved moments.
+- [Ananya’s Build Room](https://buildroomananya.substack.com/): A newsletter about building.
+- [Demystifying the Journey](https://podcasts.apple.com/us/podcast/demystifying-the-journey/id1686860913): A podcast by Ananya Banerjee.
