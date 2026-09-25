@@ -2,29 +2,59 @@ User-agent: *
 Allow: /
 Disallow: /private/
 
-# Block AI training crawlers
-User-agent: GPTBot
-Disallow: /
-
+# ── AI assistants: live retrieval ALLOWED ──
+# These fetch a page only because a real person asked an assistant about it.
+# Allowing them is what makes the site citable in AI answers (AEO).
 User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
 Disallow: /
 
-User-agent: CCBot
+# ── Bulk model-training crawlers: still BLOCKED ──
+User-agent: GPTBot
 Disallow: /
 
 User-agent: anthropic-ai
 Disallow: /
 
-User-agent: Claude-Web
+User-agent: ClaudeBot
 Disallow: /
 
-User-agent: Omgilibot
+User-agent: CCBot
 Disallow: /
 
 User-agent: Google-Extended
 Disallow: /
 
-User-agent: PerplexityBot
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: meta-externalagent
 Disallow: /
 
 Sitemap: https://dailyvibesforyou.com/sitemap.xml

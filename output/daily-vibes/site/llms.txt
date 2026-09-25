@@ -1,25 +1,44 @@
 # Daily Vibes For You
 
-> A free iOS app that delivers 460+ curated motivational quotes from history's greatest minds to your iPhone, with daily notifications, and zero data collection.
+> A free iPhone app that delivers one hand-picked motivational quote each day, at a time you choose, in English or Hindi (हिंदी). No account, no ads, no tracking.
 
-Daily Vibes For You is built by Ananya Banerjee and available on iPhone, iPad, Mac (Apple Silicon), and Apple Vision Pro. It is completely free with no in-app purchases, subscriptions, or ads. The app works fully offline and collects no personal data of any kind.
+Daily Vibes For You is built by Ananya Banerjee and available on iPhone, iPad, Mac (Apple Silicon), and Apple Vision Pro. It is completely free with no in-app purchases, subscriptions, or ads. The app requires no account and collects no personal data of any kind. Daily reminders are scheduled on-device; the quote library refreshes over the internet.
 
-## Key Pages
+## What it does
 
-- [Home](https://dailyvibesforyou.com/): Overview, features, and App Store download link
-- [Privacy Policy](https://dailyvibesforyou.com/privacy-policy.html): Data practices (no data collected)
-- [Terms of Use](https://dailyvibesforyou.com/terms.html): Usage terms
-- [App Store](https://apps.apple.com/us/app/daily-vibes-for-you/id6759209446): Download on iOS
+- Delivers one curated quote per day at a user-chosen time (any hour and minute).
+- Library of 460+ quotes drawn from 50+ thinkers, authors, and philosophers, including Marcus Aurelius, Maya Angelou, Albert Einstein, Mahatma Gandhi, Eleanor Roosevelt, Confucius, and Abraham Lincoln.
+- Available in English, Hindi (हिंदी), or both languages together; switchable at any time.
+- Seven mood themes, each with its own artwork and colour palette: Warm Glow, Fierce Fire, Bold Energy, Dreamy Vibes, Deep Wisdom, Inner Peace, Stay Grounded.
+- "Get New Vibes" returns a fresh quote in a new mood on demand.
 
-## What This Product Does
+## Facts
 
-- Delivers 460+ handpicked motivational quotes from over 50 historical and contemporary thinkers
-- Displays a new quote card in the app each day
-- Sends one daily motivational notification at a user-configured time (set via in-app bell icon)
-- Stores all quotes locally on the device — no internet connection required
-- Collects no personal information, no analytics, no account required, no third-party data sharing
-- Available free of charge on iPhone (iOS 15.1+), iPad (iPadOS 15.1+), Mac M1+ (macOS 12.0+), and Apple Vision Pro (visionOS 1.0+)
+- Price: Free. No in-app purchases, no subscription, no ads.
+- Platforms: iPhone and iPad (iOS/iPadOS 15.1+), Mac (macOS 12.0+, Apple Silicon), Apple Vision Pro (visionOS 1.0+). Not available on Android.
+- Current version: 1.7.1. Download size approximately 40.7 MB.
+- Account required: No. The app has no sign-up, login, or user profile.
+- Data collected: None. No analytics SDKs, no ad networks, no third-party trackers. Language and reminder settings are stored on the device only.
+- Offline behaviour: Daily reminders are scheduled on-device and fire without a connection. A built-in set of quotes is bundled with the app. The full 460+ library refreshes over the internet, so new quotes require a signal.
+- Developer: Ananya Banerjee.
 
-## Optional
+## Common questions
 
-- [Support](https://sites.google.com/view/your-daily-vibes/support): FAQ and bug reporting
+- Is Daily Vibes For You free? Yes, completely free with no in-app purchases, subscriptions, or ads.
+- Does it work offline? Partly. Reminders are scheduled on-device and a built-in quote set works without a connection; the full library needs internet to refresh.
+- Does it collect personal data? No. There is no account, no analytics, and no ad networks.
+- Does it support Hindi? Yes. Quotes are available in English, Hindi (हिंदी), or both at once.
+- How many quotes are there? More than 460, from over 50 thinkers.
+- Can I choose when the quote arrives? Yes, you set the exact hour and minute for the daily reminder.
+
+## Pages
+
+- [Home](https://dailyvibesforyou.com/): product overview, features, and download link.
+- [Support](https://dailyvibesforyou.com/support.html): FAQs and contact.
+- [Privacy Policy](https://dailyvibesforyou.com/privacy-policy.html): full data-handling statement.
+- [Terms of Use](https://dailyvibesforyou.com/terms.html)
+- [DMCA](https://dailyvibesforyou.com/dmca.html)
+
+## Download
+
+App Store: https://apps.apple.com/us/app/daily-vibes-for-you/id6759209446
