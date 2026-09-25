@@ -2893,6 +2893,15 @@
 
         if (heroImg) {
           const shot = (mood && HERO_SHOTS[mood]) || DEFAULT_HERO;
+          // If a mood's screenshot ever fails to load, fall back to the default
+          // rather than leaving raw alt text inside the phone frame.
+          heroImg.onerror = function () {
+            if (heroImg.src.indexOf(DEFAULT_HERO.src) === -1) {
+              heroImg.onerror = null;
+              heroImg.src = DEFAULT_HERO.src;
+              heroImg.alt = DEFAULT_HERO.alt;
+            }
+          };
           heroImg.src = shot.src;
           heroImg.alt = shot.alt;
         }
