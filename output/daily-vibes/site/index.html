@@ -858,7 +858,7 @@
     /* =============================================
        Features Bento Grid
     ============================================= */
-    .features { padding: 96px 0; background: linear-gradient(180deg, rgba(0,0,0,0.20), rgba(0,0,0,0.34)); }
+    .features { padding: 96px 0; background: linear-gradient(180deg, rgba(0,0,0,0.20), rgba(0,0,0,0.34)); overflow: hidden; }
     .section-header {
       margin-bottom: 56px;
       display: inline-block;
@@ -1245,6 +1245,42 @@
       white-space: nowrap;
     }
     .phone-showcase-item:hover .phone-theme-label { color: var(--phone-accent, var(--text-faint)); }
+    .showcase-scroller { position: relative; }
+    .showcase-arrow {
+      position: absolute;
+      top: calc(50% - 22px);
+      transform: translateY(-50%);
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--text);
+      background: linear-gradient(rgba(var(--mood-c1-rgb),0.30), rgba(var(--mood-c1-rgb),0.30)), rgba(8,7,6,0.82);
+      border: 1px solid rgba(var(--accent-rgb),0.42);
+      -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      box-shadow: 0 8px 26px rgba(0,0,0,0.55);
+      transition: background 0.25s var(--ease), border-color 0.25s var(--ease),
+                  transform 0.25s var(--ease), opacity 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+    .showcase-arrow svg { width: 17px; height: 17px; }
+    .showcase-arrow-prev { left: -8px; }
+    .showcase-arrow-next { right: -8px; }
+    .showcase-arrow:hover {
+      border-color: rgba(var(--accent-rgb),0.9);
+      color: var(--accent);
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 22px rgba(var(--accent-rgb),0.4);
+    }
+    .showcase-arrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .showcase-arrow[disabled] { opacity: 0; pointer-events: none; }
+    @media (max-width: 760px) {
+      .showcase-arrow { width: 38px; height: 38px; }
+      .showcase-arrow-prev { left: -6px; }
+      .showcase-arrow-next { right: -6px; }
+    }
     .phone-showcase-item[role="button"] { cursor: pointer; }
     .phone-showcase-item[role="button"]:focus-visible {
       outline: 2px solid var(--accent);
@@ -1566,6 +1602,7 @@
     ============================================= */
     .quote-section {
       padding: 96px 0;
+      overflow: hidden;
       text-align: center;
       background: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.48) 50%, rgba(0,0,0,0.30) 100%);
     }
@@ -1659,6 +1696,7 @@
     ============================================= */
     .faq {
       padding: 96px 0;
+      overflow: hidden;
       border-top: 1px solid var(--border-solid);
       background: var(--surface);
       -webkit-backdrop-filter: blur(16px);
@@ -2339,7 +2377,11 @@
           <h2 id="screenshots-heading" class="section-title">Choose your vibe.</h2>
         </header>
 
-        <div class="phones-showcase" aria-label="Eight app theme screenshots">
+        <div class="showcase-scroller">
+          <button type="button" class="showcase-arrow showcase-arrow-prev" aria-label="Show previous themes" aria-controls="phonesShowcase">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2.5 4.5 8l5.5 5.5"/></svg>
+          </button>
+        <div class="phones-showcase" id="phonesShowcase" aria-label="Eight app theme screenshots">
 
           <div class="phone-showcase-item" role="button" tabindex="0" aria-label="Switch the page to the Dreamy Vibes mood" data-phone="1" data-mood="dreamy" style="--phone-i:0; --phone-accent:#FF9B4D; --phone-glow:rgba(255,155,77,0.38);">
             <div class="phone-showcase-frame">
@@ -2421,6 +2463,10 @@
             <span class="phone-theme-label">Daily Reminder</span>
           </div>
 
+        </div>
+          <button type="button" class="showcase-arrow showcase-arrow-next" aria-label="Show more themes" aria-controls="phonesShowcase">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.5 11.5 8 6 13.5"/></svg>
+          </button>
         </div>
       </div>
     </section>
@@ -2855,6 +2901,33 @@
         }
       });
     });
+
+    // ── Showcase arrows: scroll the theme strip, hide at each end ──
+    (function () {
+      const strip = document.getElementById('phonesShowcase');
+      const prev = document.querySelector('.showcase-arrow-prev');
+      const next = document.querySelector('.showcase-arrow-next');
+      if (!strip || !prev || !next) return;
+
+      function step() {
+        const card = strip.querySelector('.phone-showcase-item');
+        const w = card ? card.getBoundingClientRect().width + 24 : 240;
+        return Math.max(w, Math.floor(strip.clientWidth * 0.8));
+      }
+      // scroll-snap parks the strip on the first card's snap point, which sits
+      // inside the strip's own padding — so "at the start" is never exactly 0.
+      const EDGE = 16;
+      function sync() {
+        const max = strip.scrollWidth - strip.clientWidth;
+        prev.disabled = strip.scrollLeft <= EDGE;
+        next.disabled = strip.scrollLeft >= max - EDGE;
+      }
+      prev.addEventListener('click', () => strip.scrollBy({ left: -step(), behavior: 'smooth' }));
+      next.addEventListener('click', () => strip.scrollBy({ left: step(), behavior: 'smooth' }));
+      strip.addEventListener('scroll', sync, { passive: true });
+      window.addEventListener('resize', sync);
+      sync();
+    })();
 
     // ── Mood selector: recolors the page + pins the matching background photo ──
     (function () {
