@@ -91,16 +91,33 @@ Prefer a white or near-white main canvas with deliberate warm accents.
 
 This composes with [[../../feedback_color_palette]] — pull the accent from the logo, not a muted default.
 
+## Conversion blueprint (mandatory)
+
+Source: Harry Dry, "My step-by-step guide to landing pages that convert" (Indie Hackers). Test: *a caveman should glance at the page and grunt back what you offer.* Clarity beats design elegance. Every landing page follows these 10 steps in this order. Skip a step only if the user says so, and say which one was skipped.
+
+**Above the fold**
+
+1. **Title** — one of: *explain simply* (unique offer, state it plainly), *hook* (answer the customer's main objection directly), or *own your niche* (write as THE solution). Pick one deliberately.
+2. **Subtitle** — specific; introduces the product and how it delivers the title's promise.
+3. **Visual** — the real product in use (screenshot or demo). No illustrations or decoration standing in for it.
+4. **Social proof** — a quantifiable claim (customer count, review count/rating, endorsement). Never invent numbers; if none exist, mark `TODO` and use the honest alternative (see `skills/social-proof/SKILL.md`).
+5. **First CTA** — benefit-led label ("Get Results", not "Sign Up"); reassurance line beneath it addressing hesitation (free, no card, cancel anytime — only if true); email field alongside when the goal is signup.
+
+**Below the fold**
+
+6. **Features + objections** — 2–3 core features that directly back the title's promise. Handle objections in customers' own words, grouped by theme. Ask the user for real customer phrasing; don't guess.
+7. **Social proof (deeper)** — testimonials, results, or usage stories that show the value being delivered.
+8. **FAQ** — leftover features/objections that didn't fit above (doubles as the AEO FAQ).
+9. **Second CTA** — restate why they should click, with more space, then the button.
+10. **Founder's note** — empathize with the customer's situation, name their problem, take ownership of solving it, paint the better outcome. People buy from people.
+
+**Per-element test:** "Would this help me sell if I met the customer in person?" Cut anything that fails.
+
+Before drafting copy, ask the user for: the customer's main objection, the words customers use for their problem, and any real proof (numbers, quotes). These drive steps 1, 6 and 7.
+
 ## Section flow
 
-Choose the order based on comprehension. A strong default is:
-
-1. First-section problem, promise, proof, and action
-2. Trust or low-friction reassurance
-3. Simple repeated workflow
-4. Product screenshots or interactive demonstration
-5. Deeper features and details
-6. Objection handling and closing action
+Follow the Conversion blueprint above for order. Within it, use comprehension to place supporting sections (workflow explainer, screenshots, interactive demo) between steps 5 and 8 — they extend step 6, they don't replace it.
 
 Do not create a new section for content that belongs to the first section. Do not preserve a section merely because it is conventional.
 
@@ -229,6 +246,8 @@ Treat screenshots and positional feedback literally.
 
 Before finishing, confirm:
 
+- All 10 Conversion blueprint steps are present in order (title, subtitle, visual, proof, CTA, features/objections, proof, FAQ, second CTA, founder's note), or the skipped ones were called out.
+- The first screen passes the caveman test: offer is obvious at a glance.
 - The first screen communicates the problem and product idea quickly.
 - New content is in the section the user requested.
 - Every link lands at the expected destination.
